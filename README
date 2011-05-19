@@ -1,0 +1,15 @@
+This directory contains the source to the TAPRegExt IVOA standard.  
+TAPRegExt-v*.xsd is the schema itself. 
+
+spec.xsl.in contains the source of the standards document within an XSL
+stylesheet template.  See the Makefile for how this template is
+combined with sample.xml and the schema to form spec.xsl, that in
+turn is formatted into spec.html using again the schema and the
+vor2* files due to Ray Plante.
+
+dumprecord.py is a program that generates sample.xml from the capabilities
+record for the TAP service of GAVO DaCHS.  It will thus only work if
+you have GAVO DaCHS installed, and you will most certainly not want that
+for the purpose of building this document.  So, don't touch sample.xml or
+dumprecord.py.
+
