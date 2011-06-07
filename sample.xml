@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <capability 
-  xmlns:tr="http://www.ivoa.net/xml/TAP/v0.1" 
+  xmlns:tr="http://www.ivoa.net/xml/TAP/v1.0" 
   xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" 
   xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0" 
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
@@ -73,4 +73,7 @@ matches anything in string, 0 otherwise.</description>
     <default unit="rows">2000</default>
     <hard unit="rows">20000000</hard>
   </outputLimit>
+  <uploadLimit>
+    <hard unit="bytes">100000000</hard>
+  </uploadLimit>
 </capability>

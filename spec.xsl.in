@@ -477,7 +477,7 @@ receive resource descriptions as defined in IVOA standard VOResource: an XML
 Encoding Schema for Resource Metadata <a href="#ref_VOR">[VOR]</a>. In this
 schema, support for a standard service protocol is described as a service's
 capability; the associated metadata is contained within the service resource
-description's <tt><capability></tt> element.</p>
+description's <tt>&amp;lt;capability&amp;gt;</tt> element.</p>
 
 <p>TAPRegExt defines this capability element for TAP services.  In the context
 of registering TAP services, an important role filled by TAPRegExt is the 
@@ -792,10 +792,13 @@ at <a href="http://vo.ari.uni-heidelberg.de/soft">http://vo.ari.uni-heidelberg.d
 <h3>C.1 Changes from WD-20110315</h3>
 
 <ul>
+<li>Schema version was bumped to 1.0 (yes, we indulge in unversioned
+schema changes before this becomes REC).</li>
 <li>uploadLimit interpretation was changed: The default limit is now
 "advisory" and to be interpreted as such by clients, the hard limit
 is what is actually required by the server.</li>
 </ul>
+
 
 <h2 class="toc" id="references">References</h2>
 
