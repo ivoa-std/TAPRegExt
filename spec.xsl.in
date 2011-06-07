@@ -592,6 +592,12 @@ choice of the version to the server.  Therefore, a language is defined using a
 name and one or more versions.  All compliant TAP services must at least
 declare ADQL.</p>
 
+<p>The recommended way to associate larger amounts of documentation with a
+language entry in a capability element is via registration of the language
+using the mechanisms defined in <a href="#ref_SRE">[SRE]</a> and associate the
+registry record with the language element through the latter's ivo-id
+attribute.</p>
+
 <xsl:apply-templates select="//xs:complexType[@name='Language']" mode="def"/>
 
 <p>Many query languages, first and foremost ADQL, have the notion of user defined
@@ -797,6 +803,7 @@ schema changes before this becomes REC).</li>
 <li>uploadLimit interpretation was changed: The default limit is now
 "advisory" and to be interpreted as such by clients, the hard limit
 is what is actually required by the server.</li>
+<li>There's now an optional ivo-id attribute on the language element</li>
 </ul>
 
 

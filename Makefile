@@ -20,7 +20,7 @@ sample.xml: dumprecord.py
 	# some cosmetics on the namespace and schema location
 	sed -e 's/xmlns\|standardID\|xsi:type/~  &/g;s/xsi:schemaLocation="[^"]*"//' $@.tmp \
 		| tr '~' '\n  ' > $@
-	rm $@.tmp
+#	rm $@.tmp
 	
 install:
 	scp $(schemaFile) alnilam:/var/www/docs/schemata

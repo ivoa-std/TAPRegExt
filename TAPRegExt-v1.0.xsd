@@ -231,6 +231,23 @@ xsi:schemaLocation="http://www.w3.org/2001/XMLSchema http://vo.ari.uni-heidelber
         </xs:annotation>
       </xs:element>
     </xs:sequence>
+
+    <xs:attribute name="ivo-id" type="vr:IdentifierURI">
+      <xs:annotation>
+        <xs:documentation>
+        An optional IVORN of the language.
+        </xs:documentation>
+        <xs:documentation>
+        	To more formally define a language supported by a service,
+        	a resource record for the language can be created, both
+        	centrally on the RofR and by other registry operators.  
+        	When such a record exists, the language element's ivo-id
+        	should point to it.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+
+
   </xs:complexType>  
 
   <xs:complexType name="OutputFormat">
