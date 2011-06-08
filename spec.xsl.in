@@ -606,36 +606,71 @@ registry record at <tt>ivo://ivoa.net/ADQL/2.0</tt></p>
 
 <xsl:apply-templates select="//xs:complexType[@name='Language']" mode="def"/>
 
-<p>Many query languages, first and foremost ADQL, have the notion of user defined
-functions, i.e., functions not defined in the ADQL standard but added by
-the operators of the service.  A standard way to communicate those to
-the user is via the <code class="xstype">tr:UserDefinedFunction</code> 
-type.</p>
+<xsl:apply-templates select="//xs:complexType[@name='Version']" mode="def"/>
 
-<p>Specifying function names, arguments, their types and return value(s)
-in a structured form is at least hard, in particular if the formalism should
-work for languages other than ADQL (which may have optional or named arguments,
-complex return types, etc).  Therefore, function signatures are defined
-using a simple plain text representation.  For ADQL, the content of
-the signature element must match the <code>signature</code> nonterminal
-in the following grammar:</p>
 
-<pre><![CDATA[
-  signature ::= <funcname> <arglist> "->" <type_name>
-  funcname ::= <regular_identifier>
-  arglist ::= "(" <arg> { "," <arg> } ")"
-  arg ::= <regular_identifier> <type_name>
+<p>Query languages may support optional features.  For ADQL, the most prominent
+of those are user-defined functions, i.e. functions not defined in the language
+standard but added by the operators of the service, and geometry functions.
+Such optional features may be communicated to the service client by use of one
+or more <code class="xstype">tr:languageFeatures</code> elements.  </p>
+
+<p>Each such list is labelled with an <code>optionType</code> string
+indicating the type of language option being described.
+This string should be an IVORN whose semantics in this context,
+along with the semantics of the content of its descendant 
+<code class="xstype">feature/form</code> elements,
+can documented in association with the language in question.</p>
+
+<p>TAPRegExt itself defines the following feature types:</p>
+<dl>
+<dt><code>ivo://ivoa.net/TAPRegExt#features-udf</code></dt>
+<dd><p>Each feature declares a user-defined ADQL (or similar) function supported.
+    The content of the <code class="xstype">form</code> element
+    must be the signature of the function, written to match the
+    <code>signature</code> nonterminal in the following grammar:</p>
+    <pre><![CDATA[
+signature ::= <funcname> <arglist> "->" <type_name>
+funcname ::= <regular_identifier>
+arglist ::= "(" <arg> { "," <arg> } ")"
+arg ::= <regular_identifier> <type_name>
 ]]></pre>
+    <p>Example:</p>
+    <pre><![CDATA[
+<languageOption>
+  <form>gavo_match(pattern TEXT, string TEXT) -&gt; INTEGER</form>
+  <description>gavo_match returns 1 if the POSIX regular expression pattern
+               matches anything in string, 0 otherwise.</description>
+</languageOption>
+]]></pre>
+    </dd>
+<dt><code>ivo://ivoa.net/TAPRegExt#features-adqlgeo</code></dt>
+<dd><p>Each feature declares support for one of the geometry functions 
+		defined by ADQL
+    (support for these functions is in general optional for ADQL
+    implementations, though TAP imposes some constraints on what 
+    combinations of support are permitted).</p>
+    <p>The signature of these functions, where supported, is fixed by ADQL;
+    the content of the <code>form</code> element
+    is just the name of the function.</p>
+    <p>Example:</p>
+    <pre><![CDATA[
+<languageOption>
+  <form>CONTAINS</form>
+</languageOption>
+]]></pre>
+    </dd>
+</dl>
 
-<p><code>regular_identifier</code> is defined in <a href="#ref_ADQL">[ADQL]</a>,
-and <code>type_name</code> is one of the type specifiers from the table in Section
-2.5 of <a href="#ref_TAP">[TAP]</a>.  Other languages may need different
-formalisms, but authors are encouraged to maintain the character of this
-definition as closely as possible to help users familiar with the ADQL
-definitions make sense of the conventions employed.</p>
+<p><span class="redax">We could go on to define what's allowed in a region and the coordinate systems supported.  However, I'd hope both features won't become very prominent, and thus I'd rather not talk about them too much.  If you disagree, it's not hard to say me, but at least for REGION I'd need input as to what "form" could be for it. -- MD</span></p>
 
-<xsl:apply-templates select="//xs:complexType[@name='UserDefinedFunction']" 
+
+<xsl:apply-templates select="//xs:complexType[@name='LanguageFeatureList']" 
   mode="def"/>
+
+<xsl:apply-templates select="//xs:complexType[@name='LanguageFeature']" 
+  mode="def"/>
+
 
 <h3 class="toc numbered" id="outforms">Output Formats</h3>
 
@@ -809,6 +844,7 @@ at <a href="http://vo.ari.uni-heidelberg.de/soft">http://vo.ari.uni-heidelberg.d
 <h3>C.1 Changes from WD-20110315</h3>
 
 <ul>
+<li>userDefinedFunction was generalized to feature within langFeatures.</li>
 <li>Schema version was bumped to 1.0 (yes, we indulge in unversioned
 schema changes before this becomes REC).</li>
 <li>uploadLimit interpretation was changed: The default limit is now

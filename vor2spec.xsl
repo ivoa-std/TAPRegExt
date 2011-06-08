@@ -585,6 +585,8 @@
               </xsl:apply-templates>
               <xsl:value-of select="$indent"/>
               <xsl:text>&lt;/</xsl:text>
+        			<xsl:value-of select="$xsdprefix"/>
+        			<xsl:text>:</xsl:text>
               <xsl:value-of select="local-name()"/>
               <xsl:text>&gt;</xsl:text>
            </xsl:when>

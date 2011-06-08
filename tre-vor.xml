@@ -93,4 +93,23 @@ RofR -->
 		<name>output-votable-binary</name>
 		<description>VOTable with data in a BINARY element.</description>
 	</key>
+	
+	<!-- feature list types
+	-->
+	<key>
+		<name>features-udf</name>
+		<description>An enumeration of ADQL or SQL user defined functions
+		with their signatures.  See the TAPRegExt specification for details.
+		</description>
+	</key>
+
+	<key>
+		<name>features-adqlgeo</name>
+		<description>An enumeration of ADQL geometry functions implemented
+		by the server.  Support for a geometry function is declared by
+		including a feature having just the function name in its form
+		element.
+		</description>
+	</key>
+
 </ri:Resource>

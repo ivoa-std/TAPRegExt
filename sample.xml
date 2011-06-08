@@ -15,11 +15,51 @@
     <name>ADQL</name>
     <version ivo-id="ivo://ivoa.net/ADQL/2.0">2.0</version>
     <description>ADQL 2.0</description>
-    <userDefinedFunction>
-      <signature>gavo_match(pattern TEXT, string TEXT) -&gt; INTEGER</signature>
-      <description>gavo_match returns 1 if the POSIX regular expression pattern
+    <languageFeatures type="ivo://ivoa.net/TAPRegExt#features-udf">
+      <feature>
+        <form>gavo_match(pattern TEXT, string TEXT) -&gt; INTEGER</form>
+        <description>gavo_match returns 1 if the POSIX regular expression pattern
 matches anything in string, 0 otherwise.</description>
-    </userDefinedFunction>
+      </feature>
+    </languageFeatures>
+    <languageFeatures type="ivo://ivoa.net/TAPRegExt#features-adqlgeo">
+      <feature>
+        <form>BOX</form>
+      </feature>
+      <feature>
+        <form>POINT</form>
+      </feature>
+      <feature>
+        <form>CIRCLE</form>
+      </feature>
+      <feature>
+        <form>POLYGON</form>
+      </feature>
+      <feature>
+        <form>REGION</form>
+      </feature>
+      <feature>
+        <form>CENTROID</form>
+      </feature>
+      <feature>
+        <form>COORD1</form>
+      </feature>
+      <feature>
+        <form>COORD2</form>
+      </feature>
+      <feature>
+        <form>DISTANCE</form>
+      </feature>
+      <feature>
+        <form>CONTAINS</form>
+      </feature>
+      <feature>
+        <form>INTERSECTS</form>
+      </feature>
+      <feature>
+        <form>AREA</form>
+      </feature>
+    </languageFeatures>
   </language>
   <outputFormat ivo-id="ivo://ivoa.net/TAPRegEXT#output-votable-binary">
     <mime>text/xml</mime>

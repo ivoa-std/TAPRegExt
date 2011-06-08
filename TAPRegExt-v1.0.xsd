@@ -211,17 +211,20 @@ xsi:schemaLocation="http://www.w3.org/2001/XMLSchema http://vo.ari.uni-heidelber
         </xs:annotation>
       </xs:element>
 
-      <xs:element name="userDefinedFunction" 
-        type="tr:UserDefinedFunction"
-        minOccurs="0" maxOccurs="unbounded">
-        <xs:annotation>
-          <xs:documentation>
-            Nonstandard functions available on this service.
-          </xs:documentation>
-        </xs:annotation>
+	   	<xs:element name="languageFeatures" type="tr:LanguageFeatureList" 
+	   			minOccurs="0" maxOccurs="unbounded">
+      	<xs:annotation>
+        	<xs:documentation>
+          	Optional features of the query language, grouped by
+          	feature type.
+        	</xs:documentation>
+        	<xs:documentation>
+        		This includes listing user defined functions, geometry support,
+        		or similar concepts.
+        	</xs:documentation>
+      	</xs:annotation>
       </xs:element>
     </xs:sequence>
-
   </xs:complexType>  
 
   <xs:complexType name="Version">
@@ -259,6 +262,81 @@ xsi:schemaLocation="http://www.w3.org/2001/XMLSchema http://vo.ari.uni-heidelber
 		</xs:simpleContent>
   </xs:complexType>
 
+	<xs:complexType name="LanguageFeatureList">
+  	<xs:annotation>
+    	<xs:documentation>
+      	An enumeration of non-standard or non-mandatory features of 
+      	a specific type implemented by the language.
+    	</xs:documentation>
+    	<xs:documentation>
+    		A feature type is a language-dependent concept like 
+    		"user defined function", "geometry support", or maybe 
+    		"units supported".  A featureList gives all features of
+    		a given type applicable for the service.  Multiple featureLists
+    		are possible.
+
+      	All feature in a given list are of the same type.  This type
+      	is declared using the mandatoy <code>optionType</code> attribute.
+      	The value of <code>optionType</code> will typically be an IVORN
+      	representing the feature type.  As of this writing, there
+      	is ivo://ivoa.net/TAPRegExt#opt-udf for user defined functions
+      	and ivo://ivoa.net/TAPRegExt#opt-adqlgeo for ADQL geometry
+      	functions.
+    	</xs:documentation>
+  	</xs:annotation>
+  	<xs:sequence>
+    	<xs:element name="feature" type="tr:LanguageFeature"
+       		minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>
+						A language feature of the type given by this
+						element's type attribute.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+  	</xs:sequence>
+  	<xs:attribute name="type" type="xs:anyURI" 
+	  		use="required">
+			<xs:annotation>
+				<xs:documentation>
+					The type of the features given here.
+				</xs:documentation>
+				<xs:documentation>
+					This is in general an IVORN.  TAPRegExt itself defines
+					the features-adqlgeo and features-udf keys.
+				</xs:documentation>
+			</xs:annotation>
+  	</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="LanguageFeature">
+  	<xs:annotation>
+    	<xs:documentation>
+      	A non-standard or non-mandatory feature implemented
+      	by the language..
+    	</xs:documentation>
+  	</xs:annotation>
+  	<xs:sequence>
+    	<xs:element name="form" type="xs:token">
+      	<xs:annotation>
+        	<xs:documentation>
+          	Formal notation for the language feature.
+        	</xs:documentation>
+        	<xs:documentation>
+          	The syntax for the content of this element is defined by the
+          	type attribute of its parent language list.
+        	</xs:documentation>
+      	</xs:annotation>
+    	</xs:element>
+    	<xs:element name="description" type="xs:string" minOccurs="0">
+      	<xs:annotation>
+        	<xs:documentation>
+          	Human-readable freeform documentation for the language feature.
+        	</xs:documentation>
+      	</xs:annotation>
+    	</xs:element>
+  	</xs:sequence>
+	</xs:complexType>
 
   <xs:complexType name="OutputFormat">
     <xs:annotation>
@@ -447,40 +525,4 @@ xsi:schemaLocation="http://www.w3.org/2001/XMLSchema http://vo.ari.uni-heidelber
     </xs:simpleContent>
   </xs:complexType>
 
-  <xs:complexType name="UserDefinedFunction">
-    <xs:annotation>
-      <xs:documentation>
-      A description of a nonstandard function available on this
-      server.
-      </xs:documentation>
-      <xs:documentation>
-      These descriptions consist of a signature that is in
-      principle machine-parseable and a description intended
-      for humans.
-      </xs:documentation>
-    </xs:annotation>
-
-    <xs:sequence>
-      <xs:element name="signature" type="xs:token">
-        <xs:annotation>
-          <xs:documentation>
-          The function's signature.
-          </xs:documentation>
-          <xs:documentation>
-          The signature of a function in string form as defined in
-          the TAPRegExt recommendation.
-          </xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="description" type="xs:string"
-          minOccurs="0">
-        <xs:annotation>
-          <xs:documentation>
-          Human-readable freeform documentation for the user
-          defined function.
-          </xs:documentation>
-        </xs:annotation>
-      </xs:element>
-    </xs:sequence>
-  </xs:complexType>
 </xs:schema>  
