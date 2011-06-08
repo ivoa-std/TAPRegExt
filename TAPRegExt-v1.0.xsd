@@ -177,11 +177,9 @@ xsi:schemaLocation="http://www.w3.org/2001/XMLSchema http://vo.ari.uni-heidelber
       A query language supported by the service.
       </xs:documentation>
       <xs:documentation>
-      Each language element corresponds to one version of one
-      language.  Either name alone or name-version can be
-      used as values for the server's LANG parameter.  When used
-      without a version, the server will use the version of the
-      language it deems most appropriate.
+      Each language element can describe one or more versions
+      of a language.  Either name alone or name-version can be
+      used as values for the server's LANG parameter.
       </xs:documentation>
     </xs:annotation>
 
@@ -194,22 +192,14 @@ xsi:schemaLocation="http://www.w3.org/2001/XMLSchema http://vo.ari.uni-heidelber
         </xs:annotation>
       </xs:element>
 
-      <xs:element name="version" type="xs:token"
-        minOccurs="1" maxOccurs="unbounded">
-        <xs:annotation>
-          <xs:documentation>
-          One version of the language supported by the service.
-          </xs:documentation>
-          <xs:documentation>
-          If the service supports more than one version of the
-          language, include multiple version elements.
-          It is recommended that you use a version numbering
-          scheme like MAJOR.MINOR in such a way that sorting
-          by ascending character codes will leave the most
-          recent version at the bottom of the list.
-          </xs:documentation>
-        </xs:annotation>
-      </xs:element>
+			<xs:element name="version" type="tr:Version"
+	    	minOccurs="1" maxOccurs="unbounded">
+	    	<xs:annotation>
+	    		<xs:documentation>
+		    		A version of the language supported by the server.
+		    	</xs:documentation>
+	    	</xs:annotation>
+	    </xs:element>
 
       <xs:element name="description" type="xs:token"
         minOccurs="0">
@@ -232,23 +222,43 @@ xsi:schemaLocation="http://www.w3.org/2001/XMLSchema http://vo.ari.uni-heidelber
       </xs:element>
     </xs:sequence>
 
-    <xs:attribute name="ivo-id" type="vr:IdentifierURI">
-      <xs:annotation>
-        <xs:documentation>
-        An optional IVORN of the language.
-        </xs:documentation>
-        <xs:documentation>
-        	To more formally define a language supported by a service,
-        	a resource record for the language can be created, both
-        	centrally on the RofR and by other registry operators.  
-        	When such a record exists, the language element's ivo-id
-        	should point to it.
-        </xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-
-
   </xs:complexType>  
+
+  <xs:complexType name="Version">
+    <xs:annotation>
+      <xs:documentation>
+      One version of the language supported by the service.
+      </xs:documentation>
+      <xs:documentation>
+      If the service supports more than one version of the
+      language, include multiple version elements.
+      It is recommended that you use a version numbering
+      scheme like MAJOR.MINOR in such a way that sorting
+      by ascending character codes will leave the most
+      recent version at the bottom of the list.
+      </xs:documentation>
+    </xs:annotation>
+
+		<xs:simpleContent>
+			<xs:extension base="xs:token">
+				<xs:attribute name="ivo-id" type="vr:IdentifierURI">
+  				<xs:annotation>
+    				<xs:documentation>
+    				An optional IVORN of the language.
+    				</xs:documentation>
+    				<xs:documentation>
+    					To more formally define a language supported by a service,
+    					a resource record for the language can be created, both
+    					centrally on the RofR and by other registry operators.  
+    					When such a record exists, the language element's ivo-id
+    					should point to it.
+    				</xs:documentation>
+  				</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+  </xs:complexType>
+
 
   <xs:complexType name="OutputFormat">
     <xs:annotation>
@@ -264,6 +274,8 @@ xsi:schemaLocation="http://www.w3.org/2001/XMLSchema http://vo.ari.uni-heidelber
       type.  If you want to register an output format, you must
       use a MIME type (or make one up using the x- syntax), although
       the concrete MIME syntax is not enforced by the schema.
+
+      For further specification, an IVORN may be used.
       </xs:documentation>
     </xs:annotation>
 
@@ -291,16 +303,29 @@ xsi:schemaLocation="http://www.w3.org/2001/XMLSchema http://vo.ari.uni-heidelber
         </xs:annotation>
       </xs:element>
         
-      <xs:element name="description" type="xs:token" minOccurs="0"
-        maxOccurs="1">
-        <xs:annotation>
-          <xs:documentation>
-          A human-readable short description of the
-          input format.
-          </xs:documentation>
-        </xs:annotation>
-      </xs:element>
     </xs:sequence>
+  
+    <xs:attribute name="ivo-id" type="xs:anyURI">
+      <!-- We'd like this to be of type vr:IdentifierURI, but that doesn't
+        allow fragments. -->
+      <xs:annotation>
+        <xs:documentation>
+        An optional IVORN of the output format..
+        </xs:documentation>
+        <xs:documentation>
+        	In cases where the MIME type does not uniquely define the
+        	format (or a generic MIME like application/octet-stream or
+        	text/plain is given), the IVORN can point to a key
+        	or StandardsRegExt document defining the format more
+        	precisely.  At the time of writing, the TAPRegExt registry
+        	record defines ivo://ivoa.net/TAPRegExt#output-votable-td
+        	and ivo://ivoa.net/TAPRegExt#output-votable-binary that
+        	could accompany a text/xml MIME to specify output in TABLEDATA
+        	or BINARY encoded VOTable, respectively.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+
   </xs:complexType>  
 
   <xs:complexType name="UploadMethod">
@@ -313,21 +338,12 @@ xsi:schemaLocation="http://www.w3.org/2001/XMLSchema http://vo.ari.uni-heidelber
       Descriptions can be obtained by dereferencing this
       IVORN.
 
-      A typical service would support
+      To see the available values, retrieve the ivo://ivoa.org/TAPRegExt
+      resource record and look for keys starting with upload-.
 
-      ivo://ivoa.org/tap/uploadmethods#inline,
-      ivo://ivoa.org/tap/uploadmethods#http, and
-      ivo://ivoa.org/tap/uploadmethods#https.
-
-      These values come from a StandardKeyEnumeration
-      maintained by IVOA.  To see the available values,
-      ask for the ivo://ivoa.org/tap/uploadmethods resource
-      on any registry.
-
-      In principle, you could define IVORNs yourself.  However,
-      it is recommended that you add your protocol to the
-      uploadmethods StandardKeyEnumeration; see the contact
-      information on the resource record on how to do that.
+      You can register custom upload methods, but you must use the
+      standard IVORNs for the upload methods defined in the TAP
+      specification.
       </xs:documentation>
     </xs:annotation>
 

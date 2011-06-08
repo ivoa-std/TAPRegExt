@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<!-- The resource record for TAPRegExt; this will be uploaded into the
+RofR -->
+<ri:Resource 
+	xsi:type="vstd:Standard" 
+	created="2011-06-07T17:19:00" 
+	updated="2011-06-07T17:19:00" 
+	status="active"
+	xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" 
+	xmlns:vstd="http://www.ivoa.net/xml/StandardsRegExt/v1.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0"
+	xsi:schemaLocation="http://www.ivoa.net/xml/VOResource/v1.0
+		http://www.ivoa.net/xml/VOResource/v1.0
+	http://www.ivoa.net/xml/StandardsRegExt/v1.0
+		http://www.ivoa.net/xml/StandardsRegExt/v1.0
+	http://www.ivoa.net/xml/VOResource/v1.0
+		http://www.ivoa.net/xml/VOResource/v1.0">
+
+  <title>TAPRegExt: a VOResource Schema Extension for Describing TAP Services</title>
+  <identifier>ivo://ivoa.net/std/TAPRegExt</identifier>
+  <curation>
+    <publisher>IVOA</publisher>
+    <creator>
+      <name>IVOA Registry WG</name>
+      <logo>http://www.ivoa.net/icons/ivoa_logo_small.jpg</logo>
+    </creator>
+    <creator>
+      <name>IVOA DAL WG</name>
+      <logo>http://www.ivoa.net/icons/ivoa_logo_small.jpg</logo>
+    </creator>
+    <date role="representative">2011-06-07</date>
+    <version>1.0</version>
+    <contact>
+      <name>IVOA DAL WG</name>
+      <email>dal@ivoa.net</email>
+    </contact>
+  </curation>
+  <content>
+    <subject>standard language identifiers</subject>
+    <subject>virtual observatory</subject>
+    <description>
+        This document describes an XML encoding standard for metadata about
+        TAP services.  Specifically, it defines how the services' capability
+        element is used to communicate upload methods, data formats, data
+        models and languages supported, the languages' properties, as well as
+        server limits.
+      </description>
+    <referenceURL>http://www.ivoa.net/Documents/latest/TAPRegExt.html</referenceURL>
+  </content>
+  <endorsedVersion status="wd">1.0</endorsedVersion>
+
+  <!-- upload methods, reference as
+   ivo://ivoa.net/std/TAPRegExt#key
+  -->
+  <key>
+    <name>upload-inline</name>
+    <description>
+		Table upload inline with the request, as per section
+		2.5.2 of the TAP recommendation 1.0.
+		</description>
+  </key>
+  <key>
+    <name>upload-http</name>
+    <description>
+		Table upload by giving an http URL in the UPLOAD
+		parameter, see section 2.5.1 of the TAP recommendation 1.0.
+		</description>
+  </key>
+  <key>
+    <name>upload-https</name>
+    <description>
+		Table upload by giving an https URL in the UPLOAD
+		parameter, see section 2.5.1 of the TAP recommendation 1.0.
+		</description>
+  </key>
+  <key>
+    <name>upload-ftp</name>
+    <description>
+		Table upload by giving an ftp URL in the UPLOAD
+		parameter, see section 2.5.1 of the TAP recommendation 1.0.
+		</description>
+  </key>
+
+  <!-- detailed output formats, reference as
+   ivo://ivoa.net/std/TAPRegExt#key
+  -->
+	<key>
+		<name>output-votable-td</name>
+		<description>VOTable with data in a TABLEDATA element.</description>
+	</key>
+	<key>
+		<name>output-votable-binary</name>
+		<description>VOTable with data in a BINARY element.</description>
+	</key>
+</ri:Resource>

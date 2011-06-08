@@ -316,6 +316,11 @@ h3.numbered:before {
 p.caption {
 	font-style: italic;
 }
+
+span.redax {
+	background-color: #FFFF90;
+	font-style: italic;
+}
 ]]>
 </style>
 
@@ -596,7 +601,8 @@ declare ADQL.</p>
 language entry in a capability element is via registration of the language
 using the mechanisms defined in <a href="#ref_SRE">[SRE]</a> and associate the
 registry record with the language element through the latter's ivo-id
-attribute.</p>
+attribute.  The only language mandatory for TAP services, ADQL 2.0, has a
+registry record at <tt>ivo://ivoa.net/ADQL/2.0</tt></p>
 
 <xsl:apply-templates select="//xs:complexType[@name='Language']" mode="def"/>
 
@@ -637,9 +643,10 @@ definitions make sense of the conventions employed.</p>
 What output formats are available is defined using the
 <code>outputFormat</code> element.   They 
 declare a MIME type (see <a href="#ref_RFC2045">[RFC2045]</a>) as well
-as aliases (shorthand forms the server also accepts in the FORMAT parameter)
-and a short, human readable description that gives implementors a
-place to put further information on a given output format.</p>
+as aliases (the shorthand forms the server also accepts in the 
+FORMAT parameter).  If desired, the format can be further described
+using an IVORN; at the time of writing, the TAPRegExt provides keys for
+tabledata encoded and binary encoded VOTables.</p>
 
 <xsl:apply-templates select="//xs:complexType[@name='OutputFormat']" 
   mode="def"/>
@@ -651,36 +658,40 @@ place to put further information on a given output format.</p>
 various methods to do this: HTTP upload, retrieval by URL, but also VOSpace
 or possibly retrieval using Grid protocols.  Since an actual specification
 of the details of such protocols is far beyond the scope of a registry
-document and probably would not benefit clients anyway, we employ
-a controlled vocabulary that clients can match against.</p>
+document and probably would not benefit clients anyway, the upload
+methods are given as IVORNs.</p>
 
-<p>The controlled vocabulary is maintained as a 
-StandardKeyEnumeration (see <a href="#ref_SRE">[SRE]</a>) at 
-<code>ivo://ivoa.org/tap/uploadmethods</code>.  The actual protocols are 
-then fragment identifiers into this document.  If necessary, descriptions
+<p>IVORNs for the standard upload methods are provided within the
+resource record
+<code>ivo://ivoa.net/TAPRegExt</code> <span class="redax">(while the registry record is not in place,
+it can be examined <a href="http://code.google.com/p/volute/source/browse/trunk/projects/registry/TAPRegExt/tre-vor.xml">in the volute repository</a>).</span>
+The actual protocols are 
+then fragment identifiers into this document.  If necessary, short descriptions
 of the protocols can be obtained from there as well.</p>
 
-<p>At the time of writing, the set of protocol identifiers included:</p>
+<p>It is permitted to register upload methods under different authorities.
+The registry records can then provide more in-depth information. For
+the upload methods defined in the TAP specification, however, you must
+use the IVORNs of the keys in the TAPRegExt resource record to enable
+clients to identify supported methods using string comparisons.</p>
+
+<p>At the time of writing, the set of protocol identifiers includes:</p>
 
 <ul>
-<li><code>inline</code> -- HTTP upload as per section 2.5.2 of 
+<li><code>upload-inline</code> -- HTTP upload as per section 2.5.2 of 
 <a href="ref_TAP">[TAP]</a>.</li>
-<li><code>http</code> -- retrieval from an http URL.</li>
-<li><code>https</code> -- retrieval from an https URL.</li>
-<li><code>ftp</code> -- retrieval from an ftp URL.</li>
+<li><code>upload-http</code> -- retrieval from an http URL.</li>
+<li><code>upload-https</code> -- retrieval from an https URL.</li>
+<li><code>upload-ftp</code> -- retrieval from an ftp URL.</li>
 </ul>
 
 <p>Thus, a service offering upload by retrieving from ftp and http URLs
 would say:</p>
 
 <pre><![CDATA[
-  <uploadMethod ivo-id="ivo://ivoa.org/tap/uploadmethods#http"/>
-  <uploadMethod ivo-id="ivo://ivoa.org/tap/uploadmethods#ftp"/>
+  <uploadMethod ivo-id="ivo://ivoa.net/TAPRegExt/uploadmethods#upload-http"/>
+  <uploadMethod ivo-id="ivo://ivoa.net/TAPRegExt/uploadmethods#upload-ftp"/>
 ]]></pre>
-
-<p>Values for the ivo-id attribute which are legal IVORNs but are not
-members of this controlled vocabulary are not forbidden, but TAP
-clients cannot in general be expected to understand their semantics.</p>
 
 <h3 class="toc numbered" id="reslimits">Resource Limits</h3>
 
@@ -803,7 +814,9 @@ schema changes before this becomes REC).</li>
 <li>uploadLimit interpretation was changed: The default limit is now
 "advisory" and to be interpreted as such by clients, the hard limit
 is what is actually required by the server.</li>
-<li>There's now an optional ivo-id attribute on the language element</li>
+<li>There's now an optional ivo-id attribute on the version element
+within language.</li>
+<li>There's now an optional ivo-id attribute on out formats.</li>
 </ul>
 
 
