@@ -637,11 +637,11 @@ arg ::= <regular_identifier> <type_name>
 ]]></pre>
     <p>Example:</p>
     <pre><![CDATA[
-<languageOption>
+<feature>
   <form>gavo_match(pattern TEXT, string TEXT) -&gt; INTEGER</form>
   <description>gavo_match returns 1 if the POSIX regular expression pattern
                matches anything in string, 0 otherwise.</description>
-</languageOption>
+</feature>
 ]]></pre>
     </dd>
 <dt><code>ivo://ivoa.net/TAPRegExt#features-adqlgeo</code></dt>
@@ -655,9 +655,9 @@ arg ::= <regular_identifier> <type_name>
     is just the name of the function.</p>
     <p>Example:</p>
     <pre><![CDATA[
-<languageOption>
+<feature>
   <form>CONTAINS</form>
-</languageOption>
+</feature>
 ]]></pre>
     </dd>
 </dl>
@@ -844,7 +844,7 @@ at <a href="http://vo.ari.uni-heidelberg.de/soft">http://vo.ari.uni-heidelberg.d
 <h3>C.1 Changes from WD-20110315</h3>
 
 <ul>
-<li>userDefinedFunction was generalized to feature within langFeatures.</li>
+<li>userDefinedFunction was generalized to feature within languageFeatures.</li>
 <li>Schema version was bumped to 1.0 (yes, we indulge in unversioned
 schema changes before this becomes REC).</li>
 <li>uploadLimit interpretation was changed: The default limit is now
