@@ -78,7 +78,7 @@ xsi:schemaLocation="http://www.w3.org/2001/XMLSchema http://vo.ari.uni-heidelber
             minOccurs="1" maxOccurs="unbounded">
             <xs:annotation>
               <xs:documentation>
-              The language the service supports.
+              Language supported by the service.
               </xs:documentation>
             </xs:annotation>
           </xs:element>
@@ -87,7 +87,7 @@ xsi:schemaLocation="http://www.w3.org/2001/XMLSchema http://vo.ari.uni-heidelber
             minOccurs="1" maxOccurs="unbounded">
             <xs:annotation>
               <xs:documentation>
-                The output format the service supports.
+                Output format supported by the service.
               </xs:documentation>
             </xs:annotation>
           </xs:element>
@@ -96,7 +96,7 @@ xsi:schemaLocation="http://www.w3.org/2001/XMLSchema http://vo.ari.uni-heidelber
             minOccurs="0" maxOccurs="unbounded">
             <xs:annotation>
               <xs:documentation>
-                Upload method supported by this service.
+                Upload method supported by the service.
               </xs:documentation>
               <xs:documentation>
                 The absence of upload methods indicates
@@ -111,7 +111,7 @@ xsi:schemaLocation="http://www.w3.org/2001/XMLSchema http://vo.ari.uni-heidelber
             <xs:annotation>
               <xs:documentation>
               Limits on the time between job creation and
-              DestructionTime
+              destruction time.
               </xs:documentation>
             </xs:annotation>
           </xs:element>
@@ -388,7 +388,7 @@ xsi:schemaLocation="http://www.w3.org/2001/XMLSchema http://vo.ari.uni-heidelber
         allow fragments. -->
       <xs:annotation>
         <xs:documentation>
-        An optional IVORN of the output format..
+        An optional IVORN of the output format.
         </xs:documentation>
         <xs:documentation>
         	In cases where the MIME type does not uniquely define the

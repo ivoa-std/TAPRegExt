@@ -61,10 +61,10 @@ matches anything in string, 0 otherwise.</description>
       </feature>
     </languageFeatures>
   </language>
-  <outputFormat ivo-id="ivo://ivoa.net/TAPRegEXT#output-votable-binary">
+  <outputFormat ivo-id="ivo://ivoa.net/TAPRegExt#output-votable-binary">
     <mime>text/xml</mime>
   </outputFormat>
-  <outputFormat ivo-id="ivo://ivoa.net/TAPRegEXT#output-votable-td">
+  <outputFormat ivo-id="ivo://ivoa.net/TAPRegExt#output-votable-td">
     <mime>application/x-votable+xml;encoding=tabledata</mime>
     <alias>votable/td</alias>
   </outputFormat>
@@ -87,7 +87,7 @@ matches anything in string, 0 otherwise.</description>
     <mime>text/tab-separated-values</mime>
     <alias>tsv</alias>
   </outputFormat>
-  <outputFormat ivo-id="ivo://ivoa.net/TAPRegEXT#output-votable-binary">
+  <outputFormat ivo-id="ivo://ivoa.net/TAPRegExt#output-votable-binary">
     <mime>application/x-votable+xml</mime>
     <alias>votable</alias>
   </outputFormat>

@@ -482,7 +482,7 @@ receive resource descriptions as defined in IVOA standard VOResource: an XML
 Encoding Schema for Resource Metadata <a href="#ref_VOR">[VOR]</a>. In this
 schema, support for a standard service protocol is described as a service's
 capability; the associated metadata is contained within the service resource
-description's <tt>&amp;lt;capability&amp;gt;</tt> element.</p>
+description's <tt>&lt;capability&gt;</tt> element.</p>
 
 <p>TAPRegExt defines this capability element for TAP services.  In the context
 of registering TAP services, an important role filled by TAPRegExt is the 
@@ -599,7 +599,7 @@ declare ADQL.</p>
 
 <p>The recommended way to associate larger amounts of documentation with a
 language entry in a capability element is via registration of the language
-using the mechanisms defined in <a href="#ref_SRE">[SRE]</a> and associate the
+using the mechanisms defined in <a href="#ref_SRE">[SRE]</a> and associating the
 registry record with the language element through the latter's ivo-id
 attribute.  The only language mandatory for TAP services, ADQL 2.0, has a
 registry record at <tt>ivo://ivoa.net/ADQL/2.0</tt></p>
@@ -620,7 +620,7 @@ indicating the type of language option being described.
 This string should be an IVORN whose semantics in this context,
 along with the semantics of the content of its descendant 
 <code class="xstype">feature/form</code> elements,
-can documented in association with the language in question.</p>
+can be documented in association with the language in question.</p>
 
 <p>TAPRegExt itself defines the following feature types:</p>
 <dl>
@@ -674,7 +674,7 @@ arg ::= <regular_identifier> <type_name>
 
 <h3 class="toc numbered" id="outforms">Output Formats</h3>
 
-<p>TAP service may offer a variety of output formats.
+<p>A TAP service may offer a variety of output formats.
 What output formats are available is defined using the
 <code>outputFormat</code> element.   They 
 declare a MIME type (see <a href="#ref_RFC2045">[RFC2045]</a>) as well
@@ -736,7 +736,7 @@ set.  Services typically have some default value for such a limit.  They may
 allow raising the limits by means of queries or query parameters (e.g., the
 size of the result set is limited by the <code>MAXREC</code> parameter, whereas
 the date of job destruction may be changed by adjusting the
-<code>destructionTime</code> parameter).  Services may put some limit to how
+<code>DESTRUCTION</code> parameter).  Services may put some limit to how
 far the resource limitations may be raised.</p>
 
 <p>The resource limits applying to newly created jobs are given in
@@ -758,7 +758,7 @@ no limits are enforced.</p>
 
 <ul>
 <li><code>retentionPeriod</code> -- the time from job creation until
-<code>destructionTime</code>; services are free to give the maximum time
+<code>destruction</code> time; services are free to give the maximum time
 the destruction time may be set in the future here.</li>
 <li><code>executionDuration</code> -- the maximal run time given to
 a query.</li>
