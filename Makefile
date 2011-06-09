@@ -2,14 +2,8 @@ schemaFile=TAPRegExt-v1.0.xsd
 
 .DELETE_ON_ERROR:
 
-spec.html: $(schemaFile) spec.xsl
-	xalan -qc -in $< -xsl spec.xsl -out $@
-
-spec.xsl: $(schemaFile) sample.xml spec.xsl.in
-		sed -e '/^<.-- INCLUDESAMPLE -->/r sample.xml' $@.in\
-		| sed -e "/^<.-- INCLUDESAMPLE -->/d;\
-			/^<.-- INCLUDESCHEMA -->/r "$(schemaFile) \
-		| sed -e '/^<.-- INCLUDESCHEMA -->/d' > $@
+default:
+	@echo "Document building is now done through ant"
 
 sample.xml: dumprecord.py
 	# this rule probably only works of you have GAVO DaCHS installed,
@@ -25,4 +19,5 @@ sample.xml: dumprecord.py
 install:
 	scp $(schemaFile) alnilam:/var/www/docs/schemata
 
-
+install-doc: spec.html
+	scp spec.html TAPRegExt-arch.png alnilam:/var/www/docs/tre/
