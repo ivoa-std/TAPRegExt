@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!-- Sorry, this is guresomely hacked to work with what comes with
+Debian.  A short HOWTO "ivoapub on Debian" is forthcoming, together
+with some improvements to this build file. -->
+
 <project name="ivoapub" default="formatdoc">
     <property name="filename" value="tapregext"/> <!-- set this to the nickname of the document -->
      <property name="docversion" value="1.0"/>

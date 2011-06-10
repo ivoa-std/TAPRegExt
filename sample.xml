@@ -64,7 +64,7 @@ matches anything in string, 0 otherwise.</description>
   <outputFormat ivo-id="ivo://ivoa.net/TAPRegExt#output-votable-binary">
     <mime>text/xml</mime>
   </outputFormat>
-  <outputFormat ivo-id="ivo://ivoa.net/TAPRegExt#output-votable-td">
+  <outputFormat ivo-id="ivo://ivoa.net/TAPRegEXT#output-votable-td">
     <mime>application/x-votable+xml;encoding=tabledata</mime>
     <alias>votable/td</alias>
   </outputFormat>

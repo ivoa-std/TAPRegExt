@@ -160,7 +160,7 @@ xsi:schemaLocation="http://www.w3.org/2001/XMLSchema http://vo.ari.uni-heidelber
 
     <xs:simpleContent>
       <xs:extension base="xs:token"> 
-        <xs:attribute name="ivo-id" type="vr:IdentifierURI">
+        <xs:attribute name="ivo-id" type="vr:IdentifierURI" use="required">
           <xs:annotation>
             <xs:documentation>
             The IVORN of the data model.
@@ -303,7 +303,8 @@ xsi:schemaLocation="http://www.w3.org/2001/XMLSchema http://vo.ari.uni-heidelber
 				</xs:documentation>
 				<xs:documentation>
 					This is in general an IVORN.  TAPRegExt itself defines
-					the features-adqlgeo and features-udf keys.
+					the vo://ivoa.net/TAPRegExt#features-adqlgeo and 
+					vo://ivoa.net/TAPRegExt#features-udf feature types..
 				</xs:documentation>
 			</xs:annotation>
   	</xs:attribute>
@@ -398,7 +399,7 @@ xsi:schemaLocation="http://www.w3.org/2001/XMLSchema http://vo.ari.uni-heidelber
         	precisely.  At the time of writing, the TAPRegExt registry
         	record defines ivo://ivoa.net/TAPRegExt#output-votable-td
         	and ivo://ivoa.net/TAPRegExt#output-votable-binary that
-        	could accompany a text/xml MIME to specify output in TABLEDATA
+        	may accompany a text/xml MIME to specify output in TABLEDATA
         	or BINARY encoded VOTable, respectively.
         </xs:documentation>
       </xs:annotation>
