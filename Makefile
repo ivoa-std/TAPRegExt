@@ -1,3 +1,7 @@
+FILENAME=tapregext   # document nickname
+DOCVERSION=1.0
+PUBSTATUS=WD
+
 schemaFile=TAPRegExt-v1.0.xsd 
 
 .DELETE_ON_ERROR:
