@@ -1,57 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<!-- Sorry, this is guresomely hacked to work with what comes with
-Debian.  A short HOWTO "ivoapub on Debian" is forthcoming, together
-with some improvements to this build file. -->
-
+<!-- note it is intended that this file be used in a directory above this distribution directory -->
 <project name="ivoapub" default="formatdoc">
-    <property name="filename" value="tapregext"/> <!-- set this to the nickname of the document -->
+	<property name="filename" value="tapregext"/> <!-- set this to the nickname of the document -->
      <property name="docversion" value="1.0"/>
      <property name="pubstatus" value="WD"/><!-- set to the status of the document WD, PR, REC, NOTE -->
      
      <!-- the location of latex/bibtex binaries -->
-     <property name="latexlocation" location="/usr/bin"/>
+     <property name="latexlocation" location="/opt/local/bin"/>
      <!-- the location of a binary FOP distribution -->
-     <property name="fop.home" value="/usr/share/java"/>
+     <property name="fop.home" value="/opt/packages/fop-1.0"/>
 
-    <!-- ================================= 
+	<!-- ================================= 
           target: createdoc              
          ================================= -->
-    <target name="formatdoc" description="update TOC, numbering etc">
+	<target name="formatdoc" description="update TOC, numbering etc">
           <tstamp></tstamp>
-
-        <copy file="${filename}.html" tofile="${filename}-old.html"/> 
-        <xslt style="ivoadoc/ivoarestructure.xslt" 
-        	classpathref="debian-default"
-        	in="${filename}-old.html" 
-        	out="${filename}.html" 
-        	force="true" >
-            <factory name="net.sf.saxon.TransformerFactoryImpl" />
+		<copy file="${filename}.html" tofile="${filename}-old.html"/> 
+		<xslt style="ivoadoc/ivoarestructure.xslt" in="${filename}-old.html" out="${filename}.html" force="true" >
+			<factory name="net.sf.saxon.TransformerFactoryImpl" />
                <param name="docversion" expression="${docversion}"/>
                <param name="pubstatus" expression="${pubstatus}"/>
          <xmlcatalog>
             <catalogpath><filelist><file name="./ivoadoc/xmlcatalog/catalog.xml"/></filelist></catalogpath>
          </xmlcatalog>
-        </xslt>
-    </target>
+		</xslt>
+	</target>
 
-    <target name="createPDF">
-        <xslt style="ivoadoc/ivoa-fo.xsl" 
-        	classpathref="debian-default"
-        	in="${filename}.html" 
-        	out="out.fo" 
-        	force="true">
-            <factory name="net.sf.saxon.TransformerFactoryImpl" />
-            <xmlcatalog>
-                <catalogpath><filelist><file name="./ivoadoc/xmlcatalog/catalog.xml"/></filelist></catalogpath>
-            </xmlcatalog>
-        </xslt>
+	<target name="createPDF">
+		<xslt style="ivoadoc/ivoa-fo.xsl" in="${filename}.html" out="out.fo" force="true">
+			<factory name="net.sf.saxon.TransformerFactoryImpl" />
+			<xmlcatalog>
+				<catalogpath><filelist><file name="./ivoadoc/xmlcatalog/catalog.xml"/></filelist></catalogpath>
+			</xmlcatalog>
+		</xslt>
           <echo>applying fop</echo>
-        <fop format="application/pdf" 
-                fofile="out.fo"
-                outfile="${filename}.pdf" messagelevel="DEBUG"   />
-    </target>
-    
+		<fop format="application/pdf" 
+		        fofile="out.fo"
+		        outfile="${filename}.pdf" messagelevel="DEBUG"   />
+	</target>
+	
    <target name="biblio"> 
       <xslt style="ivoadoc/extractcite.xslt" in="${filename}.html" out="${filename}.aux" force="true"  >
          <factory name="net.sf.saxon.TransformerFactoryImpl" />
@@ -76,7 +63,7 @@ with some improvements to this build file. -->
 
         <echo>Now edit the references into the document from ${filename}.bbl</echo>
    </target>
-    
+	
    <!-- ================================= 
           target: package              
          ================================= -->
@@ -89,16 +76,18 @@ with some improvements to this build file. -->
          
         </zip>
     </target>
-    
+	
 
-    <taskdef name="fop" 
-             classname="org.apache.fop.tools.anttasks.Fop">
-      <classpath id="debian-default">
-        <fileset dir="/usr/share/java">
-          <include name="*.jar"/>
-        </fileset>
-      </classpath>
-    </taskdef>
+	<taskdef name="fop" 
+	         classname="org.apache.fop.tools.anttasks.Fop">
+	  <classpath>
+	    <fileset dir="${fop.home}/lib">
+	      <include name="*.jar"/>
+	    </fileset>
+	    <fileset dir="${fop.home}/build">
+	      <include name="fop.jar"/>
+           <include name="fop-hyph.jar"/>
+	    </fileset>
+	  </classpath>
+	</taskdef>
 </project>
-<!-- vim:sw=4:et:sta
--->
