@@ -2,7 +2,18 @@
 ivoadoc toolkit, see somewhere at http://code.google.com/p/volute/ -->
 <!DOCTYPE html
   PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "ivoadoc/xmlcatalog/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><head xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema" profile="http://www.w3.org/1999/xhtml/vocab"><title>TAPRegExt Working Draft 2011-07-27</title><meta http-equiv="content-type" content="text/html; charset=utf-8"/><meta name="author" content="Markus Demleitner, gavo@ari.uni-heidelberg.de"/><meta name="maintainedBy" content="Markus Demleitner, gavo@ari.uni-heidelberg.de"/><link rel="stylesheet" type="text/css" href="http://www.ivoa.net/misc/ivoa_a.css"/><link rel="stylesheet" type="text/css" href="http://www.ivoa.net/misc/ivoa_wd.css"/><link rel="stylesheet" type="text/css" href="./ivoadoc/XMLPrint.css"/><link rel="stylesheet" type="text/css" href="./ivoadoc/ivoa-extras.css"/><style type="text/css" xml:space="preserve">
+<html xmlns="http://www.w3.org/1999/xhtml"><head xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema" profile="http://www.w3.org/1999/xhtml/vocab">
+<title>TAPRegExt Working Draft 2011-07-27</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<meta name="author" content="Markus Demleitner, gavo@ari.uni-heidelberg.de"/>
+<meta name="maintainedBy" content="Markus Demleitner, gavo@ari.uni-heidelberg.de"/>
+
+<link rel="stylesheet" type="text/css" href="http://www.ivoa.net/misc/ivoa_a.css"/>
+<link rel="stylesheet" type="text/css" href="http://www.ivoa.net/misc/ivoa_wd.css"/>
+<link rel="stylesheet" type="text/css" href="./ivoadoc/XMLPrint.css"/>
+<link rel="stylesheet" type="text/css" href="./ivoadoc/ivoa-extras.css"/>
+
+<style type="text/css" xml:space="preserve">
 
 code { 
   font-weight: bold;
@@ -98,15 +109,18 @@ span.redax {
 
 <h1>TAPRegExt: a VOResource Schema Extension for Describing TAP Services<br clear="none"/>
 Version 1.0</h1>
-<h2>IVOA Working Draft 2011-10-27</h2>
+<h2 class="subtitle">Filled in automatically</h2>
 
-<dl><dt>Working Groups</dt><dd>
+<dl><dt>Working Groups:</dt><dd>
 		<a href="http://www.ivoa.net/cgi-bin/twiki/bin/view/IVOA/IvoaResReg" shape="rect">Registry WG</a>, 
-		<a href="http://www.ivoa.net/cgi-bin/twiki/bin/view/IVOA/IvoaDAL" shape="rect">DAL WG</a>
-	</dd><dt>This version:</dt><dd>
-    <a href="http://www.ivoa.net/Documents/TAPRegExt/WD-TAPRegExt-1.0-20110727.html" shape="rect">http://www.ivoa.net/Documents/TAPRegExt/WD-TAPRegExt-1.0-20110727.html</a></dd><dt>Latest version:</dt><dd>
-    <a href="http://www.ivoa.net/Documents/TAPRegExt/" shape="rect">http://www.ivoa.net/Documents/TAPRegExt/</a></dd><dt>Previous versions:</dt><dd>
-    <a href="http://www.ivoa.net/Documents/TAPRegExt/WD-TAPRegExt-0.1-20100127.html" shape="rect">http://www.ivoa.net/Documents/TAPRegExt/WD-TAPRegExt-0.1-20100127.html</a></dd><dt>Authors:</dt><dd>
+		<a href="http://www.ivoa.net/cgi-bin/twiki/bin/view/IVOA/IvoaDAL" shape="rect">DAL WG</a></dd>
+		<dt>This version:</dt>
+		  <dd><a href="" class="currentlink">filled in automatically</a></dd>
+	  <dt><b>Latest version:</b></dt>
+	    <dd><a href="http://www.ivoa.net/Documents/TAPRegExt/" shape="rect">http://www.ivoa.net/Documents/TAPRegExt/</a></dd>
+	  <dt>Previous versions:</dt>
+	    <dd><a href="http://www.ivoa.net/Documents/TAPRegExt/WD-TAPRegExt-0.1-20100127.html" shape="rect">http://www.ivoa.net/Documents/TAPRegExt/WD-TAPRegExt-0.1-20100127.html</a></dd>
+	  <dt>Authors:</dt><dd>
       <a href="http://www.ivoa.net/cgi-bin/twiki/bin/view/IVOA/MarkusDemleitner" shape="rect">Markus Demleitner</a><br clear="none"/>
       <a href="http://www.ivoa.net/cgi-bin/twiki/bin/view/IVOA/PatrickDowler" shape="rect">Patrick Dowler</a><br clear="none"/>
       <a href="http://www.ivoa.net/cgi-bin/twiki/bin/view/IVOA/RayPlante" shape="rect">Ray Plante</a><br clear="none"/>
@@ -128,14 +142,10 @@ and certain limits enforced by the service.</p>
 <h2>Status of this Document</h2>
 <p>This is a Working Draft of the DAL WG in cooperation with the
 Registry WG.  The first release of this document was 2011 Jan 27.  This
-is the second public WD.</p>
+is the third public WD.</p>
 
 
-<p><em>This is an IVOA Working Draft for review by IVOA members and other
-interested parties. It is a draft document and may be updated, replaced, or
-made obsolete by other documents at any time. It is inappropriate to use IVOA
-Working Drafts as reference materials or to cite them as other than "work in
-progress".</em></p>
+<p id="statusdecl"></p>
 
 <p><em>A list of</em> <span style="background: transparent">
 <a href="http://www.ivoa.net/Documents/" shape="rect"><i>current IVOA
@@ -229,12 +239,17 @@ of are communicated using TAPRegExt.</dd><dt>StandardsRegExt <a href="#ref_SRE" 
 in StandardsRegExt to define controlled vocabularies.</dd></dl>
 
 <p>This standard also relates to other IVOA standards:</p>
-<dl><dt>IVOA Standard Interface, v1.0 <a href="#ref_VOSI" shape="rect">[VOSI]</a></dt><dd>VOSI describes the standard interfaces to discover metadata about
+<dl>
+<dt>IVOA Standard Interface, v1.0 <a href="#ref_VOSI" shape="rect">[VOSI]</a></dt><dd>VOSI describes the standard interfaces to discover metadata about
 services; this document describes the response TAP services should
-provide on the <code>capabilities</code> endpoint described by VOSI.</dd><dt>IVOA defined data models</dt><dd>The IVOA defines data models database tables can conform to in order
-to facilitate cross-service queries.  The first example of those is
-<a href="#ref_OT" shape="rect">[ObsTAP]</a>.  The support for queries against such
-data models is noted within TAPRegExt instance documents.</dd></dl>
+provide on the <code>capabilities</code> endpoint described by VOSI.</dd>
+<dt>IVOA defined data models</dt>
+<dd>Data models defined by the IVOA can define the structure of
+database tables holding instances of those data models.
+The first example of such a definition is given by
+<a href="#ref_OT" shape="rect">[ObsCore]</a>.  Services providing
+access to such tables
+can declare that fact within TAPRegExt instance documents.</dd></dl>
 
 </div> <!-- subsection architecture -->
 </div> <!-- section introduction -->
@@ -280,7 +295,7 @@ on a data model or a set of data models to work on all TAP services exposing
 tables instantiating the data model(s).</p>
 
 <p>In TAPRegExt, a data model is identified by its IVORN.  The first example
-for such a data model is ObsCore (see <a href="#ref_OT" shape="rect">[OT]</a>).</p>
+for such a data model is ObsCore (see <a href="#ref_OT" shape="rect">[ObsCore]</a>).</p>
 
 <?schemadef href="../TAPRegExt-v1.0.xsd" defn="DataModelType"?>
 
@@ -549,6 +564,7 @@ within language.</li><li>There's now an optional ivo-id attribute on output form
 	<li>The IVORN for ADQL is now <code>ivo://ivoa.net/std/ADQL#v2.0</code>; it is defined here to be in ADQL's record since we do not want to wait for the ADQL standard to be fixed, but ADQL versioning should really not be done here, so a TAPRegExt IVORN is out of the question.</li>
 	<li>The IVORN of the TAPRegExt standard is now <code>ivo://ivoa.net/std/TAPRegExt</code> to conform with other standard IVORNs.  Unfortunately, this changes
 all other IVORNs dependent on this.</li>
+  <li>We now allow AnyURI on the ivo-id of language to allow fragment identifiers as, e.g., in ADQL.</li>
 </ul>
 </div> <!-- changes -->
 
@@ -557,18 +573,18 @@ all other IVORNs dependent on this.</li>
 <div class="section-nonum"><h2><a id="references" shape="rect"/><span class="secnum"/>References</h2>
 
 <ul class="references">
-<li id="ref_ADQL"><a href="http://www.ivoa.net/Documents/latest/ADQL.html" shape="rect">[ADQL]</a>, Pedro Osuna and Inaki Ortiz (eds), 2008: IVOA Astronomical Data Query Language, Version 2.0, IVOA Recommendation</li>
-<li id="ref_OT">ObsTAP FIXME</li>
-<li id="ref_REGWG"><a href="http://www.ivoa.net/cgi-bin/twiki/bin/view/IVOA/IvoaResReg" shape="rect">[REGWG]</a> Various: Registry Working Group home page.</li>
-<li id="ref_RFC2045"><a href="http://www.ietf.org/rfc/rfc2045.txt" shape="rect">[RFC2045]</a>, N. Freed and N. Borenstein, 1996: "Multipurpose Internet Mail Extensions (MIME) Part One: Format of Internet Message Bodies", IETF RFC 2045</li>
-<li id="ref_RI"><a href="http://www.ivoa.net/Documents/RegistryInterface/20091104/" shape="rect">[RI]</a> Kevin Benson, Ray Plante,  Elizabeth Auden, Matthew Graham, Gretchen Greene, Marin Hill, Tony Linde, Dave Morris, Wil O'Mullane, Guy Rixon, Kona Andrews, 2008, "IVOA Registry Interfaces v1.0", IVOA Recommendation</li>
-<li id="ref_SCHEMA"><a href="http://www.ivoa.net/xml/index.html" shape="rect">[SCHEMA]</a> IVOA Schema Collection</li>
-<li id="ref_SRE"><a href="http://www.ivoa.net/Documents/StandardsRegExt/20100519/WD-StandardsRegExt-1.0-20100519.html" shape="rect">[SRE]</a> Paul Harrison (ed), et al, 2010, "StandardsRegExt: a VOResource Schema Extension for Describing IVOA Standards", IVOA Working Draft 19 May 2010</li>
-<li id="ref_TAP"><a href="http://www.ivoa.net/Documents/TAP/20100327/REC-TAP-1.0.html" shape="rect">[TAP]</a> Patrick Dowler, Guy Rixon, Doug Tody, 2010: "Table Access Protocol", IVOA Recommendation 27 March 2010</li>
-<li id="ref_UWS"><a href="http://www.ivoa.net/Documents/UWS/20101010/REC-UWS-1.0-20101010.pdf" shape="rect">[UWS]</a> Paul Harrison, Guy Rixon, 2010: Universal Worker Service Pattern Version 1.0, IVOA Recommendation 10 October 2010</li>
-<li id="ref_VOR"><a href="http://www.ivoa.net/Documents/REC/ReR/VOResource-20080222.html" shape="rect">[VOR]</a> Raymond Plante, Kevin Benson, Matthew Graham, Gretchen Greene, Paul Harrison, Gerard Lemson, Tony Linde, Guy Rixon, Aurelien Stebe, 2008: VOResource: an XML Encoding Schema for Resource Metadata, Version 1.03, IVOA Recommendation 22 February 2008</li>
-<li id="ref_VOSI"><a href="http://www.ivoa.net/Documents/VOSI/20101206/PR-VOSI-1.0-20101206.pdf" shape="rect">[VOSI]</a> Matthew Graham, Ray Plante, Guy Rixon (Eds), 2010: IVOA Support Interfaces Version 1.0, IVOA Proposed Recommendation 06 December 2010</li>
-<li id="ref_XSD"><a href="http://www.w3.org/TR/xmlschema-0/">[XSD]</a> David C. Fallside, Pricscilla Walmsley, 2004: XML Schema Part 0: Primer Second Edition, W3C Recommendation 28 October 2004</li>
+<li id="ref_ADQL">[ADQL], Pedro Osuna and Inaki Ortiz (eds), 2008: <a href="http://www.ivoa.net/Documents/latest/ADQL.html" shape="rect">IVOA Astronomical Data Query Language</a>, Version 2.0, IVOA Recommendation</li>
+<li id="ref_OT">[ObsCore] Doug Tody, Alberto Micol, Daniel Durand, and Mireille Louys (eds.), 2011: <a href="http://www.ivoa.net/Documents/ObsCore/index.html">Observation Data Model Core Components and its Implementation in the Table Access Protocol</a>, Version 1.0, IVOA Recommendation</li>
+<li id="ref_REGWG">[REGWG] Various: <a href="http://www.ivoa.net/cgi-bin/twiki/bin/view/IVOA/IvoaResReg" shape="rect">Registry Working Group home page</a>.</li>
+<li id="ref_RFC2045">[RFC2045], N. Freed and N. Borenstein, 1996: <a href="http://www.ietf.org/rfc/rfc2045.txt" shape="rect">Multipurpose Internet Mail Extensions (MIME) Part One: Format of Internet Message Bodies</a>, IETF RFC 2045</li>
+<li id="ref_RI">[RI] Kevin Benson, Ray Plante,  Elizabeth Auden, Matthew Graham, Gretchen Greene, Marin Hill, Tony Linde, Dave Morris, Wil O'Mullane, Guy Rixon, Kona Andrews, 2008: <a href="http://www.ivoa.net/Documents/RegistryInterface/20091104/" shape="rect">IVOA Registry Interfaces</a>, Version 1.0, IVOA Recommendation</li>
+<li id="ref_SCHEMA"><a href="http://www.ivoa.net/xml/index.html" shape="rect">[SCHEMA] IVOA Schema Collection</a></li>
+<li id="ref_SRE">[SRE] Paul Harrison (ed), et al, 2010: <a href="http://www.ivoa.net/Documents/StandardsRegExt" shape="rect">StandardsRegExt: a VOResource Schema Extension for Describing IVOA Standards</a>, Version 1.0, IVOA Recommendation</li>
+<li id="ref_TAP">[TAP] Patrick Dowler, Guy Rixon, Doug Tody, 2010: <a href="http://www.ivoa.net/Documents/TAP/20100327/REC-TAP-1.0.html" shape="rect">Table Access Protocol</a>, Version 1.0, IVOA Recommendation</li>
+<li id="ref_UWS">[UWS] Paul Harrison and Guy Rixon, 2010: <a href="http://www.ivoa.net/Documents/UWS" shape="rect">Universal Worker Service Pattern</a>, Version 1.0, IVOA Recommendation</li>
+<li id="ref_VOR">[VOR] Raymond Plante, Kevin Benson, Matthew Graham, Gretchen Greene, Paul Harrison, Gerard Lemson, Tony Linde, Guy Rixon, Aurelien Stebe, 2008: <a href="http://www.ivoa.net/Documents/REC/ReR/VOResource-20080222.html" shape="rect">VOResource: an XML Encoding Schema for Resource Metadata</a>, Version 1.03, IVOA Recommendation</li>
+<li id="ref_VOSI">[VOSI] Matthew Graham, Ray Plante, Guy Rixon (eds), 2011: <a href="http://www.ivoa.net/Documents/VOSI" shape="rect">IVOA Support Interfaces</a> Version 1.0, IVOA Recommendation</li>
+<li id="ref_XSD">[XSD] David C. Fallside, and Pricscilla Walmsley, 2004: <a href="http://www.w3.org/TR/xmlschema-0/">XML Schema Part 0: Primer Second Edition, W3C Recommendation</a></li>
 </ul>
 
 </div> <!-- references -->
