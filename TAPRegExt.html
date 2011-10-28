@@ -168,15 +168,15 @@ full Schema document is listed in <a href="#appA" shape="rect">Appendix A</a>.
 Parts of the schema appear within the main sections of this document;
 however, documentation nodes have been left out for the sake of brevity.</p>
 
-<p>Reference to specific elements and types defined in the VOResource
+<p>References to specific elements and types defined in the VOResource
 schema include the namespace prefix, <code>vr</code>, as in
 <code class="xstype">vr:Resource</code> (a type defined in the VOResource schema).
-Reference to specific elements and types defined in the TAPRegExt
+References to specific elements and types defined in the TAPRegExt
 schema include the namespaces prefix, <code>tr</code>, as in
 <code class="xstype">tr:TableAccess</code> (a type defined in the TAPRegExt schema).
 Use of the <code>tr</code> prefix in compliant instance documents is 
 strongly recommended, particularly in applications that involve
-IVOA Registries.</p>
+IVOA registries.</p>
 
 
 
@@ -199,20 +199,20 @@ standards, premier among which is the Universal Worker Service (see
 can negotiate the execution of a query and the retrieval of results
 without having to maintain a continuous connection.</p>
 
-<p>To accomodate a wide variety of requirements, the TAP specification
+<p>To accommodate a wide variety of requirements, the TAP specification
 offers implementors many choices on optional features, resource limits, or
 locally defined functionality.  One purpose of TAPRegExt is to allow the
 service to communicate such choices to remote clients using the mechanisms
 laid down in the VO Service Interfaces standard (see <a href="#ref_VOSI" shape="rect">[VOSI]</a>).</p>
 
 <p>Clients also need to discover TAP services offering certain kinds of data.
-Central to this is the concept of a registry where resources can be
-described and thus discovered by users and applications in the VO. Registries
-receive resource descriptions as defined in the IVOA standard 
-<a href="#ref_VOR" shape="rect">[VOR]</a>. In this
-schema, support for a standard service protocol is described as a service's
-capability; the associated metadata is contained within the service resource
-description's <code>&lt;capability&gt;</code> element.</p>
+Central to this is the concept of a registry in which resources can be
+described and consequently discovered by users and applications in the VO.
+Registries receive resource descriptions as defined in the IVOA standard 
+<a href="#ref_VOR" shape="rect">[VOR]</a>. In this schema, support for 
+a standard service protocol is described as a service's capability; the
+associated metadata is contained within the service resource description's
+<code>&lt;capability&gt;</code> element.</p>
 
 <p>TAPRegExt defines this capability element for TAP services.  In the context
 of registering TAP services, an important role filled by TAPRegExt is the 
@@ -230,21 +230,30 @@ the related standards marked up.</p>
 <p>This specification directly relates to other IVOA standards in the following
 ways:</p>
 
-<dl><dt>VOResource, v1.03 <a href="#ref_VOR" shape="rect">[VOR]</a></dt><dd>Descriptions of services that support TAP are encoded
+<dl>
+<dt>VOResource, v1.03 <a href="#ref_VOR" shape="rect">[VOR]</a></dt>
+<dd>Descriptions of services that support TAP are encoded
 using the VOResource XML Schema. TAPRegExt is an extension 
-of the VOResource core schema.</dd><dt>TAP, v1.0 <a href="#ref_TAP" shape="rect">[TAP]</a></dt><dd>The TAP standard describes some of the concepts the declaration
+of the VOResource core schema.</dd>
+<dt>TAP, v1.0 <a href="#ref_TAP" shape="rect">[TAP]</a></dt>
+<dd>The TAP standard describes some of the concepts the declaration
 of which is the scope of TAPRegExt; the standard indirectly
-refers to this document in the specification of its capabilities endpoint.</dd><dt>UWS, v1.0 <a href="#ref_UWS" shape="rect">[UWS]</a></dt><dd>The UWS standard describes additional parameters the choices 
-of are communicated using TAPRegExt.</dd><dt>StandardsRegExt <a href="#ref_SRE" shape="rect">[SRE]</a></dt><dd>TAPRegExt uses the StandardKeyEnumeration mechanism introduced
-in StandardsRegExt to define controlled vocabularies.</dd></dl>
+refers to this document in the specification of its capabilities endpoint.</dd>
+<dt>UWS, v1.0 <a href="#ref_UWS" shape="rect">[UWS]</a></dt>
+<dd>The UWS standard describes additional parameters the choices 
+of which are communicated using TAPRegExt.</dd>
+<dt>StandardsRegExt <a href="#ref_SRE" shape="rect">[SRE]</a></dt>
+<dd>TAPRegExt uses the StandardKeyEnumeration mechanism introduced
+in StandardsRegExt to define controlled vocabularies.</dd>
+</dl>
 
 <p>This standard also relates to other IVOA standards:</p>
 <dl>
-<dt>IVOA Standard Interface, v1.0 <a href="#ref_VOSI" shape="rect">[VOSI]</a></dt><dd>VOSI describes the standard interfaces to discover metadata about
+<dt>IVOA Support Interfaces, v1.0 <a href="#ref_VOSI" shape="rect">[VOSI]</a></dt><dd>VOSI describes the standard interfaces to discover metadata about
 services; this document describes the response TAP services should
 provide on the <code>capabilities</code> endpoint described by VOSI.</dd>
 <dt>IVOA defined data models</dt>
-<dd>Data models defined by the IVOA can define the structure of
+<dd>Data models specified by the IVOA can define the structure of
 database tables holding instances of those data models.
 The first example of such a definition is given by
 <a href="#ref_OT" shape="rect">[ObsCore]</a>.  Services providing
@@ -282,7 +291,7 @@ recommends using the TAPRegExt namespace URI as its location URL
        shares with other registries provide location URLs via
        <code>xsi:schemaLocation</code> for the VOResource schema and
        all legal extension schemas that are used in the records.  This
-       rule would apply to the TAPRegExt schema.</p>
+       rule applies to the TAPRegExt schema.</p>
   </div>
 
 </div> <!-- subsection nsloc -->
@@ -322,10 +331,10 @@ ADQL 2.0, is <tt>ivo://ivoa.net/std/ADQL#v2.0</tt>.</p>
 <?schemadef href="../TAPRegExt-v1.0.xsd" defn="Version"?>
 
 <p>Query languages may support optional features.  For ADQL, the most prominent
-of those are user-defined functions, i.e. functions not defined in the language
+of those are user-defined functions, i.e., functions not defined in the language
 standard but added by the operators of the service, and geometry functions.
-Such optional features may be communicated to the service client by use of one
-or more <code class="xstype">tr:languageFeatures</code> elements.  </p>
+Such optional features may be communicated to the service client in
+<code class="xstype">tr:languageFeatures</code> elements.  </p>
 
 <p>Each such list is labelled with a <code>type</code> attribute
 indicating the type of language option being described.
@@ -377,9 +386,9 @@ What output formats are available is defined using
 <code>outputFormat</code> elements.   They 
 declare a MIME type (see <a href="#ref_RFC2045" shape="rect">[RFC2045]</a>) as well
 as aliases (the shorthand forms the server also accepts in the 
-FORMAT parameter).  If desired, the format can be further described
-using an IVORN; TAPRegExt provides keys for some variants of VOTables
-which are not interoperably distinguishable by MIME type so far:</p>
+FORMAT parameter).  If desired, the format can be further described with an
+IVORN in the ivo-id attribute; TAPRegExt provides keys for some variants of
+VOTables which are not interoperably distinguishable by their MIME types so far:</p>
 
 <dl><dt><code>output-votable-td</code></dt><dd>A VOTable in which all DATA elements contain a TABLEDATA element</dd><dt><code>output-votable-binary</code></dt><dd>A VOTable in which all DATA elements contain a STREAM element
 	with a BINARY child</dd><dt><code>output-votable-binary2</code></dt><dd>A VOTable in which all DATA elements contain a STREAM element
@@ -407,11 +416,11 @@ TAPRegExt IVORN.</p>
 <p>It is permitted to register upload methods under authorities other than
 ivoa.net.
 The registry records can then provide more in-depth information. For
-the upload methods defined in the TAP specification, however, you must
-use the IVORNs of the keys in the TAPRegExt resource record to enable
+the upload methods defined in the TAP specification, however, 
+the IVORNs of the keys in the TAPRegExt resource record must be used to enable
 clients to identify supported methods using string comparisons.</p>
 
-<p>At the time of writing, the set of protocol identifiers includes:</p>
+<p>This document defines the following protocol identifiers:</p>
 
 <ul><li><code>upload-inline</code> -- HTTP upload as per section 2.5.2 of 
 <a href="ref_TAP" shape="rect">[TAP]</a>.</li><li><code>upload-http</code> -- retrieval from an http URL.</li><li><code>upload-https</code> -- retrieval from an https URL.</li><li><code>upload-ftp</code> -- retrieval from an ftp URL.</li></ul>
@@ -475,10 +484,10 @@ no limits are enforced.</p>
 
 <h4>Limits on Data</h4>
 
-<p>Limits on data work like time limits, including having a 
-<code>default</code> and a <code>hard</code> value, except that
-both those values have a unit attribute that can either be <code>bytes</code>
-or <code>rows</code>.</p>
+<p>Limits on data are expressed much like time limits in that they give
+<code>default</code> and a <code>hard</code> value as well.  
+Both those values have a unit attribute that can either be <code>bytes</code>
+or <code>rows</code> for data limits.</p>
 
 <p>This document defines two resource limits on data:</p>
 
@@ -487,7 +496,7 @@ the <code>default</code> gives the
 value of TAP's <code>MAXREC</code> parameter the service will use when none
 is specified.</li><li><code>uploadLimit</code> -- the maximum size of uploads.  This 
 is not a TAP adjustable parameter.  The <code>default</code> value
-advises clients about the server's wishes as to the limit above which
+advises clients about the server's wishes as to a limit above which
 some sort of acknowledgement should be requested from the user.  The 
 <code>hard</code> limit gives the maximum size of an upload to the 
 server.</li></ul>
@@ -566,8 +575,9 @@ within language.</li><li>There's now an optional ivo-id attribute on output form
 all other IVORNs dependent on this.</li>
   <li>We now allow AnyURI on the ivo-id of language to allow fragment identifiers as, e.g., in ADQL.</li>
 </ul>
-</div> <!-- changes -->
+</div> <!-- changes vs. 20110727 -->
 
+</div> <!-- changes -->
 
 
 <div class="section-nonum"><h2><a id="references" shape="rect"/><span class="secnum"/>References</h2>
@@ -589,7 +599,6 @@ all other IVORNs dependent on this.</li>
 
 </div> <!-- references -->
 
-</div> <!-- appendices -->
 </div><!-- class="body" --></body></html>
 <!-- vi: enc=utf-8:sw=2:et:sta
 -->
