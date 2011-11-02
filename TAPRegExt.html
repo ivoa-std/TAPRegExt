@@ -357,7 +357,9 @@ arg ::= &lt;regular_identifier&gt; &lt;type_name&gt;
 		<p>The <code>type_name</code> nonterminal is not defined by the ADQL
 		grammar. For the purposes of TAPRegExt, it is sufficient to assume
 		it expands to "some sort of SQL type specifier" (which may
-		include spaces and parentheses).</p>
+		include spaces and parentheses).  For an enumeration of common types
+		in ADQL, refer to the last column of the table in section 2.5 of 
+		<a href="#ref_TAP">[TAP]</a>.</p>
     </dd><dt><code>ivo://ivoa.net/TAPRegExt#features-adqlgeo</code></dt><dd><p>Each feature declares support for one of the geometry functions 
 		defined by ADQL
     (support for these functions is in general optional for ADQL
@@ -430,7 +432,7 @@ would say:</p>
 
 <pre xml:space="preserve">
   &lt;uploadMethod ivo-id="ivo://ivoa.net/std/TAPRegExt#upload-http"/&gt;
-  &lt;uploadMethod ivo-id="ivo://ivoa.net/std/TAPRegExt#upload-ftp"/&gt;
+  &lt;uploadMethod ivo-id="ivo://ivoa.net/std/TAPRegExt#upload-inline"/&gt;
 </pre>
 
 <?schemadef href="../TAPRegExt-v1.0.xsd" defn="UploadMethod"?>

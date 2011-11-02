@@ -242,7 +242,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
 		<xs:simpleContent>
 			<xs:extension base="xs:token">
-				<xs:attribute name="ivo-id" type="vr:AnyURI">
+				<xs:attribute name="ivo-id" type="xs:anyURI">
   				<xs:annotation>
     				<xs:documentation>
     				An optional IVORN of the language.
