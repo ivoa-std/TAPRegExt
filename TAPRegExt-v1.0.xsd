@@ -382,8 +382,6 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     </xs:sequence>
   
     <xs:attribute name="ivo-id" type="xs:anyURI">
-      <!-- We'd like this to be of type vr:IdentifierURI, but that doesn't
-        allow fragments. -->
       <xs:annotation>
         <xs:documentation>
         An optional IVORN of the output format.
@@ -424,8 +422,6 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <xs:complexContent>
       <xs:restriction base="xs:anyType">
         <xs:attribute name="ivo-id" type="xs:anyURI">
-          <!-- We'd like this to be of type vr:IdentifierURI, but that doesn't
-          allow fragments. -->
           <xs:annotation>
             <xs:documentation>
             The IVORN of the upload method.
@@ -436,10 +432,6 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     </xs:complexContent>
   </xs:complexType>
 
-
-  <!-- it would be nice if we could build TimeLimits and DataLimits
-  in the fashion of java generics - is there a Schema way of doing
-  this? -->
 
   <xs:complexType name="TimeLimits">
     <xs:annotation>

@@ -13,7 +13,7 @@
   <dataModel ivo-id="ivo://ivoa.net/std/ObsCore-1.0">ObsCore 1.0</dataModel>
   <language>
     <name>ADQL</name>
-    <version ivo-id="ivo://ivoa.net/std/ADQL#2.0">2.0</version>
+    <version ivo-id="ivo://ivoa.net/std/ADQL#v2.0">2.0</version>
     <description>ADQL 2.0</description>
     <languageFeatures type="ivo://ivoa.net/std/TAPRegExt#features-udf">
       <feature>
@@ -91,10 +91,6 @@ matches anything in string, 0 otherwise.</description>
     <mime>application/x-votable+xml</mime>
     <alias>votable</alias>
   </outputFormat>
-  <uploadMethod ivo-id="ivo://ivoa.org/tap/uploadmethods#https"/>
-  <uploadMethod ivo-id="ivo://ivoa.org/tap/uploadmethods#ftp"/>
-  <uploadMethod ivo-id="ivo://ivoa.org/tap/uploadmethods#inline"/>
-  <uploadMethod ivo-id="ivo://ivoa.org/tap/uploadmethods#http"/>
   <uploadMethod ivo-id="ivo://ivoa.net/std/TAPRegExt#upload-https"/>
   <uploadMethod ivo-id="ivo://ivoa.net/std/TAPRegExt#upload-ftp"/>
   <uploadMethod ivo-id="ivo://ivoa.net/std/TAPRegExt#upload-inline"/>

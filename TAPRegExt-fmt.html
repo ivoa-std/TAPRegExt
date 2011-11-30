@@ -1,0 +1,1741 @@
+<?xml version="1.0" encoding="ISO-8859-1"?><!-- this source is meant to be processed with Paul Harrison's
+ivoadoc toolkit, see somewhere at http://code.google.com/p/volute/ -->
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "ivoadoc/xmlcatalog/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema" profile="http://www.w3.org/1999/xhtml/vocab"><title>TAPRegExt Working Draft 2011-10-27</title><meta http-equiv="content-type" content="text/html; charset=utf-8"/><meta name="author" content="Markus Demleitner, gavo@ari.uni-heidelberg.de"/><meta name="maintainedBy" content="Markus Demleitner, gavo@ari.uni-heidelberg.de"/><link rel="stylesheet" type="text/css" href="http://www.ivoa.net/misc/ivoa_a.css"/><link rel="stylesheet" type="text/css" href="http://www.ivoa.net/misc/ivoa_wd.css"/><link rel="stylesheet" type="text/css" href="./ivoadoc/XMLPrint.css"/><link rel="stylesheet" type="text/css" href="./ivoadoc/ivoa-extras.css"/><style type="text/css" xml:space="preserve">
+
+code { 
+  font-weight: bold;
+  font-family: monospace 
+} 
+
+div.admonition {
+  margin-left: 3em;
+  background: #DDBBBB;
+  padding-top: 0.5ex;
+  padding-bottom: 0.5ex;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  border: 1px solid #EE9999;
+}
+
+div.admonition:before {
+  content: 'Note';
+  font-weight: bold;
+}
+
+body {
+	counter-reset: section;
+	counter-reset: toc_section;
+}
+
+.figurecaption {
+	margin-bottom: 4ex;
+}
+
+.figure img {
+	position: relative;
+	width: 100%;
+}
+
+p.caption {
+	font-style: italic;
+}
+
+span.redax {
+	background-color: #FFFF90;
+	font-style: italic;
+}
+
+</style></head><body><div class="head">
+<div id="titlehead" style="position:relative;height:170px;width: 500px">
+  <div id="logo" style="position:absolute;width:300px;height:169px;left: 50px;top: 0px;">
+    <img src="http://www.ivoa.net/pub/images/IVOA_wb_300.jpg" alt="IVOA logo"/>
+  </div>
+  <div id="logo-title" style="position:absolute;width:200px;height:115px;left: 320px;top: 5px;">
+    <p>
+      <b>
+        <i>
+          <span style="font-size: 14pt; color: #005A9C;"> I</span>
+        </i>
+      </b>
+      <i>
+        <span style="font-size: 14pt; color: #005A9C;">nternational</span>
+      </i>
+    </p>
+    <p>
+      <b>
+        <i>
+          <span style="font-size: 14pt; color: #005A9C;">    V</span>
+        </i>
+      </b>
+      <i>
+        <span style="font-size: 14pt; color: #005A9C;">irtual</span>
+      </i>
+    </p>
+    <p>
+      <b>
+        <i>
+          <span style="font-size: 14pt; color: #005A9C;">    O</span>
+        </i>
+      </b>
+      <i>
+        <span style="font-size: 14pt; color: #005A9C;">bservatory</span>
+      </i>
+    </p>
+    <p>
+      <b>
+        <i>
+          <span style="font-size: 14pt; color: #005A9C;">A</span>
+        </i>
+      </b>
+      <i>
+        <span style="font-size: 14pt; color: #005A9C;">lliance</span>
+      </i>
+    </p>
+  </div>
+</div>
+
+<h1>TAPRegExt: a VOResource Schema Extension for Describing TAP Services<br clear="none"/>
+Version 1.0</h1>
+<h2 xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="subtitle">IVOA Working Draft  2011-10-27</h2>
+
+<dl><dt>Working Groups:</dt><dd>
+		<a href="http://www.ivoa.net/cgi-bin/twiki/bin/view/IVOA/IvoaResReg" shape="rect">Registry WG</a>, 
+		<a href="http://www.ivoa.net/cgi-bin/twiki/bin/view/IVOA/IvoaDAL" shape="rect">DAL WG</a></dd><dt>This version:</dt><dd><a class="currentlink" href="http://www.ivoa.net/Documents/TAPRegExt/20111027">http://www.ivoa.net/Documents/TAPRegExt/20111027</a></dd><dt><b>Latest version:</b></dt><dd><a href="http://www.ivoa.net/Documents/TAPRegExt/" shape="rect">http://www.ivoa.net/Documents/TAPRegExt/</a></dd><dt>Previous versions:</dt><dd><a href="http://www.ivoa.net/Documents/TAPRegExt/20110727" shape="rect">http://www.ivoa.net/Documents/TAPRegExt/20110727</a></dd><dt>Authors:</dt><dd>
+      <a href="http://www.ivoa.net/cgi-bin/twiki/bin/view/IVOA/MarkusDemleitner" shape="rect">Markus Demleitner</a><br clear="none"/>
+      <a href="http://www.ivoa.net/cgi-bin/twiki/bin/view/IVOA/PatrickDowler" shape="rect">Patrick Dowler</a><br clear="none"/>
+      <a href="http://www.ivoa.net/cgi-bin/twiki/bin/view/IVOA/RayPlante" shape="rect">Ray Plante</a><br clear="none"/>
+      <a href="http://www.ivoa.net/cgi-bin/twiki/bin/view/IVOA/GuyRixon" shape="rect">Guy Rixon</a><br clear="none"/>
+      <a href="http://www.ivoa.net/cgi-bin/twiki/bin/view/IVOA/MarkTaylor" shape="rect">Mark Taylor</a><br clear="none"/>
+    </dd></dl>
+<hr/>
+
+<h2>Abstract</h2>
+
+<p>This document describes an XML encoding standard for metadata about
+services implementing the table access protocol TAP <a href="#ref_TAP" shape="rect">[TAP]</a>, referred to as TAPRegExt.  Instance documents are
+part of the service's registry record or can be obtained from the service
+itself.  They deliver information to both humans and software on the languages,
+output formats, and upload methods supported by the service, as well as data
+models implemented by the exposed tables, optional language features,
+and certain limits enforced by the service.</p>
+
+<h2>Status of this Document</h2>
+<p>This is a Working Draft of the DAL WG in cooperation with the
+Registry WG.  The first release of this document was 2011 Jan 27.  This
+is the third public WD.</p>
+
+
+<p xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema" id="statusdecl"><em>
+                    This is an IVOA Working Draft for review by IVOA members
+                    and other interested parties.  It is a draft document and
+                    may be updated, replaced, or obsoleted by other documents
+                    at any time. It is inappropriate to use IVOA Working Drafts
+                    as reference materials or to cite them as other than "work
+                    in progress".
+                </em></p>
+
+<p><em>A list of</em> <span style="background: transparent">
+<a href="http://www.ivoa.net/Documents/" shape="rect"><i>current IVOA
+Recommendations and other technical documents</i></a></span><em> can be
+found at http://www.ivoa.net/Documents/.</em></p>
+
+<h2 class="prologue-heading-western">Acknowledgments</h2>
+
+<p>This document has been developed with support from the German
+Astronomical Virtual Observatory (BMBF Bewilligungsnummer 05A08VHA).</p>
+
+<p>This document has borrowed extensively from StandardsRegExt 
+<a href="#ref_SRE" shape="rect">[SRE]</a> working drafts.</p>
+
+<h2>Syntax Notation Using XML Schema</h2>
+
+<p>This document defines the TAPRegExt schema using XML Schema
+(see <a href="#ref_XSD" shape="rect">[XSD]</a>).  The
+full Schema document is listed in <a href="#appA" shape="rect">Appendix A</a>.
+Parts of the schema appear within the main sections of this document;
+however, documentation nodes have been left out for the sake of brevity.</p>
+
+<p>References to specific elements and types defined in the VOResource
+schema include the namespace prefix, <code>vr</code>, as in
+<code class="xstype">vr:Resource</code> (a type defined in the VOResource schema).
+References to specific elements and types defined in the TAPRegExt
+schema include the namespaces prefix, <code>tr</code>, as in
+<code class="xstype">tr:TableAccess</code> (a type defined in the TAPRegExt schema).
+Use of the <code>tr</code> prefix in compliant instance documents is 
+strongly recommended, particularly in applications that involve
+IVOA registries.</p>
+
+
+
+<h2>Contents</h2>
+<?toc?><div xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema" id="toc" class="toc"><ul><li><a href="#introduction"><span class="secnum">1. </span>Introduction</a><ul><li><a href="#architecture"><span class="secnum">1.1. </span>TAPRegExt within the VO Architecture</a></li></ul></li><li><a href="#taextension"><span class="secnum">2. </span>The Extension</a><ul><li><a href="#nsloc"><span class="secnum">2.1. </span>The Schema Namespace and Location</a></li><li><a href="#dms"><span class="secnum">2.2. </span>Declaring Instantiated Data Models</a></li><li><a href="#langs"><span class="secnum">2.3. </span>Languages Supported</a></li><li><a href="#outforms"><span class="secnum">2.4. </span>Output Formats</a></li><li><a href="#uploadmethods"><span class="secnum">2.5. </span>Upload Methods</a></li><li><a href="#reslimits"><span class="secnum">2.6. </span>Resource Limits</a></li><li><a href="#caprec"><span class="secnum">2.7. </span>The Capability Record</a></li></ul></li><li><a href="#appA"><span class="secnum">Appendix A. </span>The Full Schema</a></li><li><a href="#appB"><span class="secnum">Appendix B. </span>Example Document</a></li><li><a href="#changes"><span class="secnum"/>Changes from Previous Versions</a><ul><li><a href="#changes-20110127"><span class="secnum"/>Changes from WD-20110127</a></li><li><a href="#changes-20110727"><span class="secnum"/>Changes from WD-20110727</a></li></ul></li><li><a href="#references"><span class="secnum"/>References</a></li></ul></div>
+
+</div><!-- class="head" --><div class="body">
+
+<div class="section"><h2><a id="introduction" shape="rect"/><span class="secnum">1. </span>Introduction</h2>
+
+<p>The Table Access Protocol TAP (see <a href="#ref_TAP" shape="rect">[TAP]</a>) allows
+VO clients to send queries to remote database servers and receive the
+results in standard formats.  In addition, it defines means to discover
+database schemata on the remote side, to upload data from the local disk
+or third-party hosts, and more.  TAP builds upon a variety of other
+standards, premier among which is the Universal Worker Service (see 
+<a href="#ref_UWS" shape="rect">[UWS]</a>), which describes how client and server
+can negotiate the execution of a query and the retrieval of results
+without having to maintain a continuous connection.</p>
+
+<p>To accommodate a wide variety of requirements, the TAP specification
+offers implementors many choices on optional features, resource limits, or
+locally defined functionality.  One purpose of TAPRegExt is to allow the
+service to communicate such choices to remote clients using the mechanisms
+laid down in the VO Service Interfaces standard (see <a href="#ref_VOSI" shape="rect">[VOSI]</a>).</p>
+
+<p>Clients also need to discover TAP services offering certain kinds of data.
+Central to this is the concept of a registry in which resources can be
+described and consequently discovered by users and applications in the VO.
+Registries receive resource descriptions as defined in the IVOA standard 
+<a href="#ref_VOR" shape="rect">[VOR]</a>. In this schema, support for 
+a standard service protocol is described as a service's capability; the
+associated metadata is contained within the service resource description's
+<code>&lt;capability&gt;</code> element.</p>
+
+<p>TAPRegExt defines this capability element for TAP services.  In the context
+of registering TAP services, an important role filled by TAPRegExt is the 
+communication of supported data models to the registry.</p>
+
+
+<div class="section"><h3><a id="architecture" shape="rect"/><span class="secnum">1.1. </span>TAPRegExt within the VO Architecture</h3>
+
+<div class="figure">
+<img src="TAPRegExt-arch.png" alt="TAPRegExt within the VO architecture" width="95%" align="center"/>
+<p class="figurecaption"><strong>Figure 1:</strong> IVOA Architecture diagram with TAPRegExt and
+the related standards marked up.</p>
+</div>
+
+<p>This specification directly relates to other IVOA standards in the following
+ways:</p>
+
+<dl><dt>VOResource, v1.03 <a href="#ref_VOR" shape="rect">[VOR]</a></dt><dd>Descriptions of services that support TAP are encoded
+using the VOResource XML Schema. TAPRegExt is an extension 
+of the VOResource core schema.</dd><dt>TAP, v1.0 <a href="#ref_TAP" shape="rect">[TAP]</a></dt><dd>The TAP standard describes some of the concepts the declaration
+of which is the scope of TAPRegExt; the standard indirectly
+refers to this document in the specification of its capabilities endpoint.</dd><dt>UWS, v1.0 <a href="#ref_UWS" shape="rect">[UWS]</a></dt><dd>The UWS standard describes additional parameters the choices 
+of which are communicated using TAPRegExt.</dd><dt>StandardsRegExt <a href="#ref_SRE" shape="rect">[SRE]</a></dt><dd>TAPRegExt uses the StandardKeyEnumeration mechanism introduced
+in StandardsRegExt to define controlled vocabularies.</dd></dl>
+
+<p>This standard also relates to other IVOA standards:</p>
+<dl><dt>IVOA Support Interfaces, v1.0 <a href="#ref_VOSI" shape="rect">[VOSI]</a></dt><dd>VOSI describes the standard interfaces to discover metadata about
+services; this document describes the response TAP services should
+provide on the <code>capabilities</code> endpoint described by VOSI.</dd><dt>IVOA defined data models</dt><dd>Data models specified by the IVOA can define the structure of
+database tables holding instances of those data models.
+The first example of such a definition is given by
+<a href="#ref_OT" shape="rect">[ObsCore]</a>.  Services providing
+access to such tables
+can declare that fact within TAPRegExt instance documents.</dd></dl>
+
+</div> <!-- subsection architecture -->
+</div> <!-- section introduction -->
+
+<div class="section"><h2><a id="taextension" shape="rect"/><span class="secnum">2. </span>The Extension</h2>
+
+<div class="section"><h3><a id="nsloc" shape="rect"/><span class="secnum">2.1. </span>The Schema Namespace and Location</h3>
+
+<p>The namespace associated with TAPRegExt VOResource extensions will be
+<code>http://www.ivoa.net/xml/TAPRegExt/v1.0</code>.  
+Just like the namespace URI for the VOResource schema, the
+TAPRegExt namespace URI can be interpreted as a URL.  Resolving it
+will return the XML Schema document (given in <a href="#appA" shape="rect">Appendix A</a>)
+that defines the TAPRegExt schema.</p>
+
+<p>Authors of VOResource instance documents may choose to
+provide a location for the VOResource XML Schema document and its
+extensions using the
+<a href="http://www.w3.org/TR/xmlschema-0/#schemaLocation" shape="rect"><code>xsi:schemaLocation</code></a> attribute.  While the author is
+free to choose any schema location, this specification
+recommends using the TAPRegExt namespace URI as its location URL
+(as illustrated in the example above), as in,</p>
+
+<blockquote><pre xml:space="preserve">xsi:schemaLocation="http://www.ivoa.net/xml/TAPRegExt/v1.0
+                    http://www.ivoa.net/xml/TAPRegExt/v1.0"</pre></blockquote>
+
+  <div class="admonition">
+  <p>The IVOA Registry Interface standard <a href="#ref_RI" shape="rect">[RI]</a>
+       actually <em>requires</em> that the VOResource records it
+       shares with other registries provide location URLs via
+       <code>xsi:schemaLocation</code> for the VOResource schema and
+       all legal extension schemas that are used in the records.  This
+       rule applies to the TAPRegExt schema.</p>
+  </div>
+
+</div> <!-- subsection nsloc -->
+
+<div class="section"><h3><a id="dms" shape="rect"/><span class="secnum">2.2. </span>Declaring Instantiated Data Models</h3>
+
+<p>The IVOA defines certain data models that can be instantiated in database
+tables exposed by a TAP service.  This allows a query built exclusively
+on a data model or a set of data models to work on all TAP services exposing
+tables instantiating the data model(s).</p>
+
+<p>In TAPRegExt, a data model is identified by its IVORN.  The first example
+for such a data model is ObsCore (see <a href="#ref_OT" shape="rect">[ObsCore]</a>).</p>
+
+<?schemadef href="../TAPRegExt-v1.0.xsd" defn="DataModelType"?>
+   <definition xmlns:vm="http://www.ivoa.net/xml/VOMetadata/v0.1" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.w3.org/2001/XMLSchema" name="DataModelType">
+
+<div xmlns:h="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml" class="schemaOuter">
+<a name="s:DataModelType">
+</a><div class="schemaHeader">tr:DataModelType Type Schema Definition</div>
+<div class="schemaInner">
+<pre>&lt;xs:complexType name="DataModelType" &gt;
+  &lt;xs:simpleContent &gt;
+    &lt;xs:extension base="xs:token" &gt;
+      &lt;xs:attribute name="ivo-id" type="vr:IdentifierURI" use="required" /&gt;
+    &lt;/extension&gt;
+  &lt;/simpleContent&gt;
+&lt;/complexType&gt;
+</pre>
+</div></div>
+    
+
+
+<p xmlns:h="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml">
+<table border="2" width="100%">
+<colgroup>
+  <col width="20%"/>
+  <col width="80%"/>
+</colgroup>
+<thead>
+  <tr><th colspan="2" align="left">tr:DataModelType Attributes</th>
+  </tr><tr><th>Attribute</th><th>Definition</th>
+</tr></thead>
+<tbody>
+
+  <tr><td valign="top">ivo-id</td>
+      <td valign="top"><table border="0" width="100%">
+      <colgroup><col width="20%"/><col width="80%"/></colgroup><tbody>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Value type:</em></td>
+              <td valign="top">an IVOA Identifier URI: <code xmlns="http://www.w3.org/2001/XMLSchema"><a href="http://www.ivoa.net/Documents/REC/ReR/VOResource-20080222.html#d:IdentifierURI">vr:IdentifierURI</a></code></td>
+          </tr>
+          <tr bgcolor="#f5f5f5"><td nowrap="nowrap" valign="top"><em>Semantic Meaning:</em></td>
+              <td valign="top" width="90%">
+            The IVORN of the data model.
+            </td>
+          </tr>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Occurrences:</em></td>
+              <td valign="top">required</td>
+          </tr>
+      </tbody></table>
+  </td></tr>
+    
+</tbody>
+</table>
+</p>
+         </definition>
+
+
+</div> <!-- subsection dms -->
+
+<div class="section"><h3><a id="langs" shape="rect"/><span class="secnum">2.3. </span>Languages Supported</h3>
+
+<p>TAP services may offer a variety of query languages.  In TAPRegExt, the
+<code>language</code> element allows the communication of what languages are
+available on a service.  TAP defines values of the <code>LANG</code> parameter
+to have either the form <code>&lt;name&gt;-&lt;version&gt;</code> or the form
+<code>&lt;name&gt;</code>, where the latter form leaves the choice of the
+version to the server.  Therefore, a language is defined using a name and one
+or more versions.</p>
+
+<p>The recommended way to associate larger amounts of documentation with a
+language entry in a capability element is via registration of the language
+using the mechanisms defined in <a href="#ref_SRE" shape="rect">[SRE]</a> and associating
+the registry record with the language element through the latter's ivo-id
+attribute.  The IVORN for the only language mandatory for TAP services,
+ADQL 2.0, is <tt>ivo://ivoa.net/std/ADQL#v2.0</tt>.</p>
+
+<?schemadef href="../TAPRegExt-v1.0.xsd" defn="Language"?>
+   <definition xmlns:vm="http://www.ivoa.net/xml/VOMetadata/v0.1" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.w3.org/2001/XMLSchema" name="Language">
+
+<div xmlns:h="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml" class="schemaOuter">
+<a name="s:Language">
+</a><div class="schemaHeader">tr:Language Type Schema Definition</div>
+<div class="schemaInner">
+<pre>&lt;xs:complexType name="Language" &gt;
+  &lt;xs:sequence &gt;
+    &lt;xs:element name="name" type="xs:NCName" /&gt;
+    &lt;xs:element name="version" type="tr:Version" minOccurs="1"
+                maxOccurs="unbounded" /&gt;
+    &lt;xs:element name="description" type="xs:token" minOccurs="0" /&gt;
+    &lt;xs:element name="languageFeatures"
+                type="tr:LanguageFeatureList"
+                minOccurs="0"
+                maxOccurs="unbounded" /&gt;
+  &lt;/sequence&gt;
+&lt;/complexType&gt;
+</pre>
+</div></div>
+    
+
+      
+<p xmlns:h="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml">
+<table border="2" width="100%" id="d:Language">
+<colgroup>
+  <col width="20%"/>
+  <col width="80%"/>
+</colgroup>
+<thead>
+  <tr><th colspan="2" align="left">tr:Language Metadata Elements</th>
+  </tr><tr><th>Element</th><th>Definition</th>
+</tr></thead>
+<tbody>
+
+  <tr><td valign="top">name</td>
+      <td valign="top"><table border="0" width="100%">
+      <colgroup><col width="20%"/><col width="80%"/></colgroup><tbody>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Value type:</em></td>
+              <td valign="top">a prefixless XML name</td>
+          </tr>
+          <tr bgcolor="#f5f5f5"><td nowrap="nowrap" valign="top"><em>Semantic Meaning:</em></td>
+              <td valign="top" width="90%">
+          The name of the language without a version suffix.
+          </td>
+          </tr>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Occurrences:</em></td>
+              <td valign="top">required</td>
+          </tr>
+      </tbody></table>
+  </td></tr>
+    
+  <tr><td valign="top">version</td>
+      <td valign="top"><table border="0" width="100%">
+      <colgroup><col width="20%"/><col width="80%"/></colgroup><tbody>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Value type:</em></td>
+              <td valign="top">a string with optional attributes</td>
+          </tr>
+          <tr bgcolor="#f5f5f5"><td nowrap="nowrap" valign="top"><em>Semantic Meaning:</em></td>
+              <td valign="top" width="90%">
+		    		A version of the language supported by the server.
+		    	</td>
+          </tr>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Occurrences:</em></td>
+              <td valign="top">required; multiple occurrences allowed.</td>
+          </tr>
+      </tbody></table>
+  </td></tr>
+    
+  <tr><td valign="top">description</td>
+      <td valign="top"><table border="0" width="100%">
+      <colgroup><col width="20%"/><col width="80%"/></colgroup><tbody>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Value type:</em></td>
+              <td valign="top">string: <code xmlns="http://www.w3.org/2001/XMLSchema">xs:token</code></td>
+          </tr>
+          <tr bgcolor="#f5f5f5"><td nowrap="nowrap" valign="top"><em>Semantic Meaning:</em></td>
+              <td valign="top" width="90%">
+          A short, human-readable description of the
+          query language.
+          </td>
+          </tr>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Occurrences:</em></td>
+              <td valign="top">optional</td>
+          </tr>
+      </tbody></table>
+  </td></tr>
+    
+  <tr><td valign="top">languageFeatures</td>
+      <td valign="top"><table border="0" width="100%">
+      <colgroup><col width="20%"/><col width="80%"/></colgroup><tbody>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Value type:</em></td>
+              <td valign="top">composite: <code xmlns="http://www.w3.org/2001/XMLSchema"><a href="#d:LanguageFeatureList">tr:LanguageFeatureList</a></code></td>
+          </tr>
+          <tr bgcolor="#f5f5f5"><td nowrap="nowrap" valign="top"><em>Semantic Meaning:</em></td>
+              <td valign="top" width="90%">
+          	Optional features of the query language, grouped by
+          	feature type.
+        	</td>
+          </tr>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Occurrences:</em></td>
+              <td valign="top">optional; multiple occurrences allowed.</td>
+          </tr>
+          <tr bgcolor="#f5f5f5"><td nowrap="nowrap" valign="top"><em>Comments:</em></td>
+              <td valign="top">
+<p>
+        		This includes listing user defined functions, geometry support,
+        		or similar concepts.
+        	</p>
+              </td> 
+          </tr>
+      </tbody></table>
+  </td></tr>
+    
+</tbody>
+</table>
+</p>
+      
+    
+   </definition>
+
+<?schemadef href="../TAPRegExt-v1.0.xsd" defn="Version"?>
+   <definition xmlns:vm="http://www.ivoa.net/xml/VOMetadata/v0.1" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.w3.org/2001/XMLSchema" name="Version">
+
+<div xmlns:h="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml" class="schemaOuter">
+<a name="s:Version">
+</a><div class="schemaHeader">tr:Version Type Schema Definition</div>
+<div class="schemaInner">
+<pre>&lt;xs:complexType name="Version" &gt;
+  &lt;xs:simpleContent &gt;
+    &lt;xs:extension base="xs:token" &gt;
+      &lt;xs:attribute name="ivo-id" type="xs:anyURI" /&gt;
+    &lt;/extension&gt;
+  &lt;/simpleContent&gt;
+&lt;/complexType&gt;
+</pre>
+</div></div>
+    
+
+
+<p xmlns:h="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml">
+<table border="2" width="100%">
+<colgroup>
+  <col width="20%"/>
+  <col width="80%"/>
+</colgroup>
+<thead>
+  <tr><th colspan="2" align="left">tr:Version Attributes</th>
+  </tr><tr><th>Attribute</th><th>Definition</th>
+</tr></thead>
+<tbody>
+
+  <tr><td valign="top">ivo-id</td>
+      <td valign="top"><table border="0" width="100%">
+      <colgroup><col width="20%"/><col width="80%"/></colgroup><tbody>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Value type:</em></td>
+              <td valign="top">a URI: <code xmlns="http://www.w3.org/2001/XMLSchema">xs:anyURI</code></td>
+          </tr>
+          <tr bgcolor="#f5f5f5"><td nowrap="nowrap" valign="top"><em>Semantic Meaning:</em></td>
+              <td valign="top" width="90%">
+    				An optional IVORN of the language.
+    				</td>
+          </tr>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Occurrences:</em></td>
+              <td valign="top">optional</td>
+          </tr>
+          <tr bgcolor="#f5f5f5"><td nowrap="nowrap" valign="top"><em>Comments:</em></td>
+              <td valign="top">
+<p>
+    					To more formally define a language supported by a service,
+    					a resource record for the language can be created, either
+    					centrally on the RofR or by other registry operators.  
+    					When such a record exists, the language element's ivo-id
+    					should point to it.
+    				</p>
+              </td> 
+          </tr>
+      </tbody></table>
+  </td></tr>
+    
+</tbody>
+</table>
+</p>
+         </definition>
+
+
+<p>Query languages may support optional features.  For ADQL, the most prominent
+of those are user-defined functions, i.e., functions not defined in the language
+standard but added by the operators of the service, and geometry functions.
+Such optional features may be communicated to the service client in
+<code class="xstype">tr:languageFeatures</code> elements.  </p>
+
+<p>Each such list is labelled with a <code>type</code> attribute
+indicating the type of language option being described.
+This string should be an IVORN whose semantics in this context,
+along with the semantics of the content of its descendant 
+<code class="xstype">feature/form</code> elements,
+can be documented in association with the language in question.</p>
+
+<p>TAPRegExt itself defines the following feature types:</p>
+<dl><dt><code>ivo://ivoa.net/std/TAPRegExt#features-udf</code></dt><dd><p>Each feature declares a user-defined ADQL (or similar) function supported.
+    The content of the <code class="xstype">form</code> element
+    must be the signature of the function, written to match the
+    <code>signature</code> nonterminal in the following grammar:</p>
+    <pre xml:space="preserve">
+signature ::= &lt;funcname&gt; &lt;arglist&gt; "-&gt;" &lt;type_name&gt;
+funcname ::= &lt;regular_identifier&gt;
+arglist ::= "(" &lt;arg&gt; { "," &lt;arg&gt; } ")"
+arg ::= &lt;regular_identifier&gt; &lt;type_name&gt;
+</pre>
+		<p>The <code>type_name</code> nonterminal is not defined by the ADQL
+		grammar. For the purposes of TAPRegExt, it is sufficient to assume
+		it expands to "some sort of SQL type specifier" (which may
+		include spaces and parentheses).  For an enumeration of common types
+		in ADQL, refer to the last column of the table in section 2.5 of 
+		<a href="#ref_TAP" shape="rect">[TAP]</a>.</p>
+		<p>Example:</p>
+		<pre xml:space="preserve">
+&lt;languageFeatures type="ivo://ivoa.net/std/TAPRegExt#features-udf"&gt;
+  &lt;feature&gt;
+    &lt;form&gt;match(pattern TEXT, string TEXT) -&gt; INTEGER&lt;/form&gt;
+    &lt;description&gt;
+      match returns 1 if the POSIX regular expression pattern 
+      matches anything in string, 0 otherwise.
+    &lt;/description&gt;
+  &lt;/feature&gt;
+&lt;/languageFeatures&gt;
+		</pre>
+    </dd><dt><code>ivo://ivoa.net/std/TAPRegExt#features-adqlgeo</code></dt><dd><p>Each feature declares support for one of the geometry functions 
+		defined by ADQL
+    (support for these functions is in general optional for ADQL
+    implementations, though TAP imposes some constraints on what 
+    combinations of support are permitted).</p>
+    <p>The signature of these functions, where supported, is fixed by ADQL;
+    the content of the <code>form</code> element
+    is just the name of the function.</p>
+    <p>Example:</p>
+    <pre xml:space="preserve">
+&lt;feature&gt;
+  &lt;form&gt;CONTAINS&lt;/form&gt;
+&lt;/feature&gt;
+</pre>
+    </dd></dl>
+
+<?schemadef href="../TAPRegExt-v1.0.xsd" defn="LanguageFeatureList"?>
+   <definition xmlns:vm="http://www.ivoa.net/xml/VOMetadata/v0.1" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.w3.org/2001/XMLSchema" name="LanguageFeatureList">
+
+<div xmlns:h="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml" class="schemaOuter">
+<a name="s:LanguageFeatureList">
+</a><div class="schemaHeader">tr:LanguageFeatureList Type Schema Definition</div>
+<div class="schemaInner">
+<pre>&lt;xs:complexType name="LanguageFeatureList" &gt;
+  &lt;xs:sequence &gt;
+    &lt;xs:element name="feature" type="tr:LanguageFeature" minOccurs="0"
+                maxOccurs="unbounded" /&gt;
+  &lt;/sequence&gt;
+  &lt;xs:attribute name="type" type="xs:anyURI" use="required" /&gt;
+&lt;/complexType&gt;
+</pre>
+</div></div>
+    
+
+      
+<p xmlns:h="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml">
+<table border="2" width="100%" id="d:LanguageFeatureList">
+<colgroup>
+  <col width="20%"/>
+  <col width="80%"/>
+</colgroup>
+<thead>
+  <tr><th colspan="2" align="left">tr:LanguageFeatureList Metadata Elements</th>
+  </tr><tr><th>Element</th><th>Definition</th>
+</tr></thead>
+<tbody>
+
+  <tr><td valign="top">feature</td>
+      <td valign="top"><table border="0" width="100%">
+      <colgroup><col width="20%"/><col width="80%"/></colgroup><tbody>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Value type:</em></td>
+              <td valign="top">composite: <code xmlns="http://www.w3.org/2001/XMLSchema"><a href="#d:LanguageFeature">tr:LanguageFeature</a></code></td>
+          </tr>
+          <tr bgcolor="#f5f5f5"><td nowrap="nowrap" valign="top"><em>Semantic Meaning:</em></td>
+              <td valign="top" width="90%">
+						A language feature of the type given by this
+						element's type attribute.
+					</td>
+          </tr>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Occurrences:</em></td>
+              <td valign="top">optional; multiple occurrences allowed.</td>
+          </tr>
+      </tbody></table>
+  </td></tr>
+    
+</tbody>
+</table>
+</p>
+      
+    
+
+<p xmlns:h="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml">
+<table border="2" width="100%">
+<colgroup>
+  <col width="20%"/>
+  <col width="80%"/>
+</colgroup>
+<thead>
+  <tr><th colspan="2" align="left">tr:LanguageFeatureList Attributes</th>
+  </tr><tr><th>Attribute</th><th>Definition</th>
+</tr></thead>
+<tbody>
+
+  <tr><td valign="top">type</td>
+      <td valign="top"><table border="0" width="100%">
+      <colgroup><col width="20%"/><col width="80%"/></colgroup><tbody>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Value type:</em></td>
+              <td valign="top">a URI: <code xmlns="http://www.w3.org/2001/XMLSchema">xs:anyURI</code></td>
+          </tr>
+          <tr bgcolor="#f5f5f5"><td nowrap="nowrap" valign="top"><em>Semantic Meaning:</em></td>
+              <td valign="top" width="90%">
+					The type of the features given here.
+				</td>
+          </tr>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Occurrences:</em></td>
+              <td valign="top">required</td>
+          </tr>
+          <tr bgcolor="#f5f5f5"><td nowrap="nowrap" valign="top"><em>Comments:</em></td>
+              <td valign="top">
+<p>
+					This is in general an IVORN.  TAPRegExt itself gives
+					IVORNs for defining user defined functions and geometry
+					support.
+				</p>
+              </td> 
+          </tr>
+      </tbody></table>
+  </td></tr>
+    
+</tbody>
+</table>
+</p>
+         </definition>
+
+<?schemadef href="../TAPRegExt-v1.0.xsd" defn="LanguageFeature"?>
+   <definition xmlns:vm="http://www.ivoa.net/xml/VOMetadata/v0.1" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.w3.org/2001/XMLSchema" name="LanguageFeature">
+
+<div xmlns:h="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml" class="schemaOuter">
+<a name="s:LanguageFeature">
+</a><div class="schemaHeader">tr:LanguageFeature Type Schema Definition</div>
+<div class="schemaInner">
+<pre>&lt;xs:complexType name="LanguageFeature" &gt;
+  &lt;xs:sequence &gt;
+    &lt;xs:element name="form" type="xs:token" /&gt;
+    &lt;xs:element name="description" type="xs:string" minOccurs="0" /&gt;
+  &lt;/sequence&gt;
+&lt;/complexType&gt;
+</pre>
+</div></div>
+    
+
+      
+<p xmlns:h="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml">
+<table border="2" width="100%" id="d:LanguageFeature">
+<colgroup>
+  <col width="20%"/>
+  <col width="80%"/>
+</colgroup>
+<thead>
+  <tr><th colspan="2" align="left">tr:LanguageFeature Metadata Elements</th>
+  </tr><tr><th>Element</th><th>Definition</th>
+</tr></thead>
+<tbody>
+
+  <tr><td valign="top">form</td>
+      <td valign="top"><table border="0" width="100%">
+      <colgroup><col width="20%"/><col width="80%"/></colgroup><tbody>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Value type:</em></td>
+              <td valign="top">string: <code xmlns="http://www.w3.org/2001/XMLSchema">xs:token</code></td>
+          </tr>
+          <tr bgcolor="#f5f5f5"><td nowrap="nowrap" valign="top"><em>Semantic Meaning:</em></td>
+              <td valign="top" width="90%">
+          	Formal notation for the language feature.
+        	</td>
+          </tr>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Occurrences:</em></td>
+              <td valign="top">required</td>
+          </tr>
+          <tr bgcolor="#f5f5f5"><td nowrap="nowrap" valign="top"><em>Comments:</em></td>
+              <td valign="top">
+<p>
+          	The syntax for the content of this element is defined by the
+          	type attribute of its parent language list.
+        	</p>
+              </td> 
+          </tr>
+      </tbody></table>
+  </td></tr>
+    
+  <tr><td valign="top">description</td>
+      <td valign="top"><table border="0" width="100%">
+      <colgroup><col width="20%"/><col width="80%"/></colgroup><tbody>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Value type:</em></td>
+              <td valign="top">string: <code xmlns="http://www.w3.org/2001/XMLSchema">xs:string</code></td>
+          </tr>
+          <tr bgcolor="#f5f5f5"><td nowrap="nowrap" valign="top"><em>Semantic Meaning:</em></td>
+              <td valign="top" width="90%">
+          	Human-readable freeform documentation for the language feature.
+        	</td>
+          </tr>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Occurrences:</em></td>
+              <td valign="top">optional</td>
+          </tr>
+      </tbody></table>
+  </td></tr>
+    
+</tbody>
+</table>
+</p>
+      
+    
+   </definition>
+
+
+</div> <!-- subsection langs -->
+
+<div class="section"><h3><a id="outforms" shape="rect"/><span class="secnum">2.4. </span>Output Formats</h3>
+
+<p>A TAP service may offer a variety of output formats.
+What output formats are available is defined using
+<code>outputFormat</code> elements.   They 
+declare a MIME type (see <a href="#ref_RFC2045" shape="rect">[RFC2045]</a>) as well
+as aliases (the shorthand forms the server also accepts in the 
+FORMAT parameter).  If desired, the format can be further described with an
+IVORN in the ivo-id attribute; TAPRegExt provides keys for some variants of
+VOTables which are not interoperably distinguishable by their MIME types so far:</p>
+
+<dl><dt><code>output-votable-td</code></dt><dd>A VOTable in which all DATA elements contain a TABLEDATA element</dd><dt><code>output-votable-binary</code></dt><dd>A VOTable in which all DATA elements contain a STREAM element
+	with a BINARY child</dd><dt><code>output-votable-binary2</code></dt><dd>A VOTable in which all DATA elements contain a STREAM element
+	with a child of the yet-to-be-defined BINARY2 VOTable element</dd></dl>
+
+<?schemadef href="../TAPRegExt-v1.0.xsd" defn="OutputFormat"?>
+   <definition xmlns:vm="http://www.ivoa.net/xml/VOMetadata/v0.1" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.w3.org/2001/XMLSchema" name="OutputFormat">
+
+<div xmlns:h="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml" class="schemaOuter">
+<a name="s:OutputFormat">
+</a><div class="schemaHeader">tr:OutputFormat Type Schema Definition</div>
+<div class="schemaInner">
+<pre>&lt;xs:complexType name="OutputFormat" &gt;
+  &lt;xs:sequence &gt;
+    &lt;xs:element name="mime" type="xs:token" /&gt;
+    &lt;xs:element name="alias" type="xs:token" minOccurs="0"
+                maxOccurs="unbounded" /&gt;
+  &lt;/sequence&gt;
+  &lt;xs:attribute name="ivo-id" type="xs:anyURI" /&gt;
+&lt;/complexType&gt;
+</pre>
+</div></div>
+    
+
+      
+<p xmlns:h="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml">
+<table border="2" width="100%" id="d:OutputFormat">
+<colgroup>
+  <col width="20%"/>
+  <col width="80%"/>
+</colgroup>
+<thead>
+  <tr><th colspan="2" align="left">tr:OutputFormat Metadata Elements</th>
+  </tr><tr><th>Element</th><th>Definition</th>
+</tr></thead>
+<tbody>
+
+  <tr><td valign="top">mime</td>
+      <td valign="top"><table border="0" width="100%">
+      <colgroup><col width="20%"/><col width="80%"/></colgroup><tbody>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Value type:</em></td>
+              <td valign="top">string: <code xmlns="http://www.w3.org/2001/XMLSchema">xs:token</code></td>
+          </tr>
+          <tr bgcolor="#f5f5f5"><td nowrap="nowrap" valign="top"><em>Semantic Meaning:</em></td>
+              <td valign="top" width="90%">
+          The MIME type of this format.
+          </td>
+          </tr>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Occurrences:</em></td>
+              <td valign="top">required</td>
+          </tr>
+          <tr bgcolor="#f5f5f5"><td nowrap="nowrap" valign="top"><em>Comments:</em></td>
+              <td valign="top">
+<p>
+          The format of this string is specified by RFC 2045.
+          The service has to accept this string as a 
+          value of the FORMAT parameter.
+          </p>
+              </td> 
+          </tr>
+      </tbody></table>
+  </td></tr>
+    
+  <tr><td valign="top">alias</td>
+      <td valign="top"><table border="0" width="100%">
+      <colgroup><col width="20%"/><col width="80%"/></colgroup><tbody>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Value type:</em></td>
+              <td valign="top">string: <code xmlns="http://www.w3.org/2001/XMLSchema">xs:token</code></td>
+          </tr>
+          <tr bgcolor="#f5f5f5"><td nowrap="nowrap" valign="top"><em>Semantic Meaning:</em></td>
+              <td valign="top" width="90%">
+          Other values of FORMAT ("shorthands") that make the service return 
+          documents with the MIME type.
+          </td>
+          </tr>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Occurrences:</em></td>
+              <td valign="top">optional; multiple occurrences allowed.</td>
+          </tr>
+      </tbody></table>
+  </td></tr>
+    
+</tbody>
+</table>
+</p>
+      
+    
+
+<p xmlns:h="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml">
+<table border="2" width="100%">
+<colgroup>
+  <col width="20%"/>
+  <col width="80%"/>
+</colgroup>
+<thead>
+  <tr><th colspan="2" align="left">tr:OutputFormat Attributes</th>
+  </tr><tr><th>Attribute</th><th>Definition</th>
+</tr></thead>
+<tbody>
+
+  <tr><td valign="top">ivo-id</td>
+      <td valign="top"><table border="0" width="100%">
+      <colgroup><col width="20%"/><col width="80%"/></colgroup><tbody>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Value type:</em></td>
+              <td valign="top">a URI: <code xmlns="http://www.w3.org/2001/XMLSchema">xs:anyURI</code></td>
+          </tr>
+          <tr bgcolor="#f5f5f5"><td nowrap="nowrap" valign="top"><em>Semantic Meaning:</em></td>
+              <td valign="top" width="90%">
+        An optional IVORN of the output format.
+        </td>
+          </tr>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Occurrences:</em></td>
+              <td valign="top">optional</td>
+          </tr>
+          <tr bgcolor="#f5f5f5"><td nowrap="nowrap" valign="top"><em>Comments:</em></td>
+              <td valign="top">
+<p>
+        	When the MIME type does not uniquely define the
+        	format (or a generic MIME like application/octet-stream or
+        	text/plain is given), the IVORN can point to a key
+        	or StandardsRegExt document defining the format more
+        	precisely.  To see values defined in TAPRegExt,
+					retrieve the ivo://ivoa.net/std/TAPRegExt
+      		resource record and look for keys starting with output-.
+        </p>
+              </td> 
+          </tr>
+      </tbody></table>
+  </td></tr>
+    
+</tbody>
+</table>
+</p>
+         </definition>
+
+
+</div> <!-- subsection outforms -->
+
+<div class="section"><h3><a id="uploadmethods" shape="rect"/><span class="secnum">2.5. </span>Upload Methods</h3>
+
+<p>TAP services should allow the upload of VOTables.  They can support
+various methods to do this: HTTP upload, retrieval by URL, but also VOSpace
+or possibly retrieval using Grid protocols.  Since an actual specification
+of the details of such protocols is far beyond the scope of a registry
+document and probably would not benefit clients anyway, the upload
+methods are given as IVORNs.</p>
+
+<p>Keys for the standard upload methods are provided within the
+resource record
+<code>ivo://ivoa.net/std/TAPRegExt</code>.  
+The keys are built by using the keys as fragment identifiers within the 
+TAPRegExt IVORN.</p>
+
+<p>It is permitted to register upload methods under authorities other than
+ivoa.net.
+The registry records can then provide more in-depth information. For
+the upload methods defined in the TAP specification, however, 
+the IVORNs of the keys in the TAPRegExt resource record must be used to enable
+clients to identify supported methods using string comparisons.</p>
+
+<p>This document defines the following protocol identifiers:</p>
+
+<ul><li><code>upload-inline</code> -- HTTP upload as per section 2.5.2 of 
+<a href="ref_TAP" shape="rect">[TAP]</a>.</li><li><code>upload-http</code> -- retrieval from an http URL.</li><li><code>upload-https</code> -- retrieval from an https URL.</li><li><code>upload-ftp</code> -- retrieval from an ftp URL.</li></ul>
+
+<p>Thus, a service offering upload by retrieving from ftp and http URLs
+would say:</p>
+
+<pre xml:space="preserve">
+  &lt;uploadMethod ivo-id="ivo://ivoa.net/std/TAPRegExt#upload-http"/&gt;
+  &lt;uploadMethod ivo-id="ivo://ivoa.net/std/TAPRegExt#upload-inline"/&gt;
+</pre>
+
+<?schemadef href="../TAPRegExt-v1.0.xsd" defn="UploadMethod"?>
+   <definition xmlns:vm="http://www.ivoa.net/xml/VOMetadata/v0.1" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.w3.org/2001/XMLSchema" name="UploadMethod">
+
+<div xmlns:h="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml" class="schemaOuter">
+<a name="s:UploadMethod">
+</a><div class="schemaHeader">tr:UploadMethod Type Schema Definition</div>
+<div class="schemaInner">
+<pre>&lt;xs:complexType name="UploadMethod" &gt;
+  &lt;xs:complexContent &gt;
+    &lt;xs:restriction base="xs:anyType" &gt;
+      &lt;xs:attribute name="ivo-id" type="xs:anyURI" /&gt;
+    &lt;/restriction&gt;
+  &lt;/complexContent&gt;
+&lt;/complexType&gt;
+</pre>
+</div></div>
+    
+
+      
+    
+
+<p xmlns:h="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml">
+<table border="2" width="100%">
+<colgroup>
+  <col width="20%"/>
+  <col width="80%"/>
+</colgroup>
+<thead>
+  <tr><th colspan="2" align="left">tr:UploadMethod Attributes</th>
+  </tr><tr><th>Attribute</th><th>Definition</th>
+</tr></thead>
+<tbody>
+
+  <tr><td valign="top">ivo-id</td>
+      <td valign="top"><table border="0" width="100%">
+      <colgroup><col width="20%"/><col width="80%"/></colgroup><tbody>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Value type:</em></td>
+              <td valign="top">a URI: <code xmlns="http://www.w3.org/2001/XMLSchema">xs:anyURI</code></td>
+          </tr>
+          <tr bgcolor="#f5f5f5"><td nowrap="nowrap" valign="top"><em>Semantic Meaning:</em></td>
+              <td valign="top" width="90%">
+            The IVORN of the upload method.
+            </td>
+          </tr>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Occurrences:</em></td>
+              <td valign="top">optional</td>
+          </tr>
+      </tbody></table>
+  </td></tr>
+    
+</tbody>
+</table>
+</p>
+         </definition>
+
+
+</div>  <!-- subsection uploadmethods -->
+
+<div class="section"><h3><a id="reslimits" shape="rect"/><span class="secnum">2.6. </span>Resource Limits</h3>
+
+<p>TAP services usually impose certain limits on resource usage by clients,
+e.g., a maximum run time per query, or a maximum number of rows in the result
+set.  Services assign such limits to newly created jobs and may
+allow raising the limits by means of queries or query parameters (e.g., the
+size of the result set is limited by the <code>MAXREC</code> parameter, whereas
+the date of job destruction may be changed by posting to the
+<code>destruction</code> parameter).  Services may put some limit to how
+far the resource limitations may be raised.</p>
+
+<p>TAPRegExt's capabilities element allows the declaration of such limits.
+These declarations are primarily intended for human consumption and should give
+conservative guidelines.  Thus, the operators of a service implementing a
+complex, possibly dynamic limits policy should give lower estimates here.</p>
+
+<p>If a service supports authentication and has different
+limits depending on what user is authenticated, it should return the
+limits applying to the logged user.</p>
+
+<p>The resource limits applying to newly created jobs are given in
+<code>default</code> elements, the limits beyond which users cannot
+raise the limits are given in <code>hard</code> elements.</p>
+
+<p>Note that the absence of a specification of limits does not imply that
+no limits are enforced.</p>
+
+<h4>Limits on Time</h4>
+
+<p>This document defines two time-like resource limits:</p>
+
+<ul><li><code>retentionPeriod</code> -- the time from job creation until
+		<code>destruction</code>.</li><li><code>executionDuration</code> -- the maximal run time given to
+		a query.</li></ul>
+
+<p>All values in time-like limits are given in seconds.  Both 
+<code>retentionPeriod</code> and <code>executionDuration</code> are of type
+<code class="xstype">tr:TimeLimits</code>.</p>
+
+<?schemadef href="../TAPRegExt-v1.0.xsd" defn="TimeLimits"?>
+   <definition xmlns:vm="http://www.ivoa.net/xml/VOMetadata/v0.1" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.w3.org/2001/XMLSchema" name="TimeLimits">
+
+<div xmlns:h="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml" class="schemaOuter">
+<a name="s:TimeLimits">
+</a><div class="schemaHeader">tr:TimeLimits Type Schema Definition</div>
+<div class="schemaInner">
+<pre>&lt;xs:complexType name="TimeLimits" &gt;
+  &lt;xs:sequence &gt;
+    &lt;xs:element name="default" type="xs:integer" minOccurs="0" maxOccurs="1" /&gt;
+    &lt;xs:element name="hard" type="xs:integer" minOccurs="0" maxOccurs="1" /&gt;
+  &lt;/sequence&gt;
+&lt;/complexType&gt;
+</pre>
+</div></div>
+    
+
+      
+<p xmlns:h="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml">
+<table border="2" width="100%" id="d:TimeLimits">
+<colgroup>
+  <col width="20%"/>
+  <col width="80%"/>
+</colgroup>
+<thead>
+  <tr><th colspan="2" align="left">tr:TimeLimits Metadata Elements</th>
+  </tr><tr><th>Element</th><th>Definition</th>
+</tr></thead>
+<tbody>
+
+  <tr><td valign="top">default</td>
+      <td valign="top"><table border="0" width="100%">
+      <colgroup><col width="20%"/><col width="80%"/></colgroup><tbody>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Value type:</em></td>
+              <td valign="top">integer</td>
+          </tr>
+          <tr bgcolor="#f5f5f5"><td nowrap="nowrap" valign="top"><em>Semantic Meaning:</em></td>
+              <td valign="top" width="90%">
+          The value of this limit for newly-created jobs, given in seconds.
+          </td>
+          </tr>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Occurrences:</em></td>
+              <td valign="top">optional</td>
+          </tr>
+      </tbody></table>
+  </td></tr>
+    
+  <tr><td valign="top">hard</td>
+      <td valign="top"><table border="0" width="100%">
+      <colgroup><col width="20%"/><col width="80%"/></colgroup><tbody>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Value type:</em></td>
+              <td valign="top">integer</td>
+          </tr>
+          <tr bgcolor="#f5f5f5"><td nowrap="nowrap" valign="top"><em>Semantic Meaning:</em></td>
+              <td valign="top" width="90%">
+          The value this limit cannot be raised above, given in seconds.
+          </td>
+          </tr>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Occurrences:</em></td>
+              <td valign="top">optional</td>
+          </tr>
+      </tbody></table>
+  </td></tr>
+    
+</tbody>
+</table>
+</p>
+      
+    
+   </definition>
+
+    
+
+<h4>Limits on Data</h4>
+
+<p>Limits on data are expressed much like time limits in that they give
+<code>default</code> and a <code>hard</code> value as well.  
+Both those values have a unit attribute that can either be <code>bytes</code>
+or <code>rows</code> for data limits.</p>
+
+<p>This document defines two resource limits on data:</p>
+
+<ul><li><code>outputLimit</code> -- if <code>unit</code> is <code>rows</code> here,
+the <code>default</code> gives the
+value of TAP's <code>MAXREC</code> parameter the service will use when none
+is specified.</li><li><code>uploadLimit</code> -- the maximum size of uploads.  This 
+is not a TAP adjustable parameter.  The <code>default</code> value
+advises clients about the server's wishes as to a limit above which
+some sort of acknowledgement should be requested from the user.  The 
+<code>hard</code> limit gives the maximum size of an upload to the 
+server.</li></ul>
+
+<p>Data limits are defined using the <code class="xstype">tr:DataLimits</code>
+and <code class="xstype">tr:DataLimit</code> types:</p>
+
+<?schemadef href="../TAPRegExt-v1.0.xsd" defn="DataLimits"?>
+   <definition xmlns:vm="http://www.ivoa.net/xml/VOMetadata/v0.1" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.w3.org/2001/XMLSchema" name="DataLimits">
+
+<div xmlns:h="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml" class="schemaOuter">
+<a name="s:DataLimits">
+</a><div class="schemaHeader">tr:DataLimits Type Schema Definition</div>
+<div class="schemaInner">
+<pre>&lt;xs:complexType name="DataLimits" &gt;
+  &lt;xs:sequence &gt;
+    &lt;xs:element name="default" type="tr:DataLimit" minOccurs="0" maxOccurs="1" /&gt;
+    &lt;xs:element name="hard" type="tr:DataLimit" minOccurs="0" maxOccurs="1" /&gt;
+  &lt;/sequence&gt;
+&lt;/complexType&gt;
+</pre>
+</div></div>
+    
+
+      
+<p xmlns:h="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml">
+<table border="2" width="100%" id="d:DataLimits">
+<colgroup>
+  <col width="20%"/>
+  <col width="80%"/>
+</colgroup>
+<thead>
+  <tr><th colspan="2" align="left">tr:DataLimits Metadata Elements</th>
+  </tr><tr><th>Element</th><th>Definition</th>
+</tr></thead>
+<tbody>
+
+  <tr><td valign="top">default</td>
+      <td valign="top"><table border="0" width="100%">
+      <colgroup><col width="20%"/><col width="80%"/></colgroup><tbody>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Value type:</em></td>
+              <td valign="top">an integer with optional attributes</td>
+          </tr>
+          <tr bgcolor="#f5f5f5"><td nowrap="nowrap" valign="top"><em>Semantic Meaning:</em></td>
+              <td valign="top" width="90%">
+          The value of this limit for newly-created jobs.
+          </td>
+          </tr>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Occurrences:</em></td>
+              <td valign="top">optional</td>
+          </tr>
+      </tbody></table>
+  </td></tr>
+    
+  <tr><td valign="top">hard</td>
+      <td valign="top"><table border="0" width="100%">
+      <colgroup><col width="20%"/><col width="80%"/></colgroup><tbody>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Value type:</em></td>
+              <td valign="top">an integer with optional attributes</td>
+          </tr>
+          <tr bgcolor="#f5f5f5"><td nowrap="nowrap" valign="top"><em>Semantic Meaning:</em></td>
+              <td valign="top" width="90%">
+          The value this limit cannot be raised above.
+          </td>
+          </tr>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Occurrences:</em></td>
+              <td valign="top">optional</td>
+          </tr>
+      </tbody></table>
+  </td></tr>
+    
+</tbody>
+</table>
+</p>
+      
+    
+   </definition>
+
+   
+<?schemadef href="../TAPRegExt-v1.0.xsd" defn="DataLimit"?>
+   <definition xmlns:vm="http://www.ivoa.net/xml/VOMetadata/v0.1" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.w3.org/2001/XMLSchema" name="DataLimit">
+
+<div xmlns:h="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml" class="schemaOuter">
+<a name="s:DataLimit">
+</a><div class="schemaHeader">tr:DataLimit Type Schema Definition</div>
+<div class="schemaInner">
+<pre>&lt;xs:complexType name="DataLimit" &gt;
+  &lt;xs:simpleContent &gt;
+    &lt;xs:extension base="xs:integer" &gt;
+      &lt;xs:attribute name="unit" use="required" &gt;
+        &lt;xs:simpleType &gt;
+          &lt;xs:restriction base="xs:token" &gt;
+            &lt;xs:enumeration value="bytes" /&gt;
+            &lt;xs:enumeration value="rows" /&gt;
+          &lt;/restriction&gt;
+        &lt;/simpleType&gt;
+      &lt;/attribute&gt;
+    &lt;/extension&gt;
+  &lt;/simpleContent&gt;
+&lt;/complexType&gt;
+</pre>
+</div></div>
+    
+
+
+<p xmlns:h="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml">
+<table border="2" width="100%">
+<colgroup>
+  <col width="20%"/>
+  <col width="80%"/>
+</colgroup>
+<thead>
+  <tr><th colspan="2" align="left">tr:DataLimit Attributes</th>
+  </tr><tr><th>Attribute</th><th>Definition</th>
+</tr></thead>
+<tbody>
+
+  <tr><td valign="top">unit</td>
+      <td valign="top"><table border="0" width="100%">
+      <colgroup><col width="20%"/><col width="80%"/></colgroup><tbody>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Value type:</em></td>
+              <td valign="top">string with controlled vocabulary</td>
+          </tr>
+          <tr bgcolor="#f5f5f5"><td nowrap="nowrap" valign="top"><em>Semantic Meaning:</em></td>
+              <td valign="top" width="90%">
+            The unit of the limit specified.
+            </td>
+          </tr>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Occurrences:</em></td>
+              <td valign="top">required</td>
+          </tr>
+          <tr bgcolor="#f5f5f5"><td nowrap="nowrap" valign="top"><em>Allowed Values:</em></td>
+              <td valign="top"><code>bytes</code>, <code>rows</code></td> 
+          </tr>
+      </tbody></table>
+  </td></tr>
+    
+</tbody>
+</table>
+</p>
+         </definition>
+
+
+</div>  <!-- subsection reslimits -->
+
+<div class="section"><h3><a id="caprec" shape="rect"/><span class="secnum">2.7. </span>The Capability Record</h3>
+
+<p>Using the types defined above, the 
+<code class="xstype">tr:TableAccess</code> type can be defined.  Note that
+it is a type, not a (global) element.  In instance documents, you
+will typically place it in a capability element with an explicit
+type specification, like this:</p>
+
+<pre xml:space="preserve">
+  &lt;capability 
+    xmlns:tr="http://www.ivoa.net/xml/TAP/v1.0" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    standardID="ivo://ivoa.net/std/TAP" 
+    xsi:type="tr:TableAccess"&gt;
+    ...
+</pre>
+
+
+<?schemadef href="../TAPRegExt-v1.0.xsd" defn="TableAccess"?>
+   <definition xmlns:vm="http://www.ivoa.net/xml/VOMetadata/v0.1" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.w3.org/2001/XMLSchema" name="TableAccess">
+
+<div xmlns:h="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml" class="schemaOuter">
+<a name="s:TableAccess">
+</a><div class="schemaHeader">tr:TableAccess Type Schema Definition</div>
+<div class="schemaInner">
+<pre>&lt;xs:complexType name="TableAccess" &gt;
+  &lt;xs:complexContent &gt;
+    &lt;xs:extension base="tr:TAPCapRestriction" &gt;
+      &lt;xs:sequence &gt;
+        &lt;xs:element name="dataModel" type="tr:DataModelType" minOccurs="0"
+                    maxOccurs="unbounded" /&gt;
+        &lt;xs:element name="language" type="tr:Language" minOccurs="1"
+                    maxOccurs="unbounded" /&gt;
+        &lt;xs:element name="outputFormat" type="tr:OutputFormat" minOccurs="1"
+                    maxOccurs="unbounded" /&gt;
+        &lt;xs:element name="uploadMethod" type="tr:UploadMethod" minOccurs="0"
+                    maxOccurs="unbounded" /&gt;
+        &lt;xs:element name="retentionPeriod" type="tr:TimeLimits" minOccurs="0"
+                    maxOccurs="1" /&gt;
+        &lt;xs:element name="executionDuration" type="tr:TimeLimits" minOccurs="0"
+                    maxOccurs="1" /&gt;
+        &lt;xs:element name="outputLimit" type="tr:DataLimits" minOccurs="0"
+                    maxOccurs="1" /&gt;
+        &lt;xs:element name="uploadLimit" type="tr:DataLimits" minOccurs="0"
+                    maxOccurs="1" /&gt;
+      &lt;/sequence&gt;
+    &lt;/extension&gt;
+  &lt;/complexContent&gt;
+&lt;/complexType&gt;
+</pre>
+</div></div>
+    
+
+      
+<p xmlns:h="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml">
+<table border="2" width="100%" id="d:TableAccess">
+<colgroup>
+  <col width="20%"/>
+  <col width="80%"/>
+</colgroup>
+<thead>
+  <tr><th colspan="2" align="left">tr:TableAccess Extension Metadata Elements</th>
+  </tr><tr><th>Element</th><th>Definition</th>
+</tr></thead>
+<tbody>
+
+  <tr><td valign="top">dataModel</td>
+      <td valign="top"><table border="0" width="100%">
+      <colgroup><col width="20%"/><col width="80%"/></colgroup><tbody>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Value type:</em></td>
+              <td valign="top">a string with optional attributes</td>
+          </tr>
+          <tr bgcolor="#f5f5f5"><td nowrap="nowrap" valign="top"><em>Semantic Meaning:</em></td>
+              <td valign="top" width="90%">
+              Identifier of IVOA-approved data model supported by the 
+              service.
+              </td>
+          </tr>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Occurrences:</em></td>
+              <td valign="top">optional; multiple occurrences allowed.</td>
+          </tr>
+      </tbody></table>
+  </td></tr>
+    
+  <tr><td valign="top">language</td>
+      <td valign="top"><table border="0" width="100%">
+      <colgroup><col width="20%"/><col width="80%"/></colgroup><tbody>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Value type:</em></td>
+              <td valign="top">composite: <code xmlns="http://www.w3.org/2001/XMLSchema"><a href="#d:Language">tr:Language</a></code></td>
+          </tr>
+          <tr bgcolor="#f5f5f5"><td nowrap="nowrap" valign="top"><em>Semantic Meaning:</em></td>
+              <td valign="top" width="90%">
+              Language supported by the service.
+              </td>
+          </tr>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Occurrences:</em></td>
+              <td valign="top">required; multiple occurrences allowed.</td>
+          </tr>
+      </tbody></table>
+  </td></tr>
+    
+  <tr><td valign="top">outputFormat</td>
+      <td valign="top"><table border="0" width="100%">
+      <colgroup><col width="20%"/><col width="80%"/></colgroup><tbody>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Value type:</em></td>
+              <td valign="top">composite: <code xmlns="http://www.w3.org/2001/XMLSchema"><a href="#d:OutputFormat">tr:OutputFormat</a></code></td>
+          </tr>
+          <tr bgcolor="#f5f5f5"><td nowrap="nowrap" valign="top"><em>Semantic Meaning:</em></td>
+              <td valign="top" width="90%">
+                Output format supported by the service.
+              </td>
+          </tr>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Occurrences:</em></td>
+              <td valign="top">required; multiple occurrences allowed.</td>
+          </tr>
+      </tbody></table>
+  </td></tr>
+    
+  <tr><td valign="top">uploadMethod</td>
+      <td valign="top"><table border="0" width="100%">
+      <colgroup><col width="20%"/><col width="80%"/></colgroup><tbody>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Value type:</em></td>
+              <td valign="top">composite: <code xmlns="http://www.w3.org/2001/XMLSchema"><a href="#d:UploadMethod">tr:UploadMethod</a></code></td>
+          </tr>
+          <tr bgcolor="#f5f5f5"><td nowrap="nowrap" valign="top"><em>Semantic Meaning:</em></td>
+              <td valign="top" width="90%">
+                Upload method supported by the service.
+              </td>
+          </tr>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Occurrences:</em></td>
+              <td valign="top">optional; multiple occurrences allowed.</td>
+          </tr>
+          <tr bgcolor="#f5f5f5"><td nowrap="nowrap" valign="top"><em>Comments:</em></td>
+              <td valign="top">
+<p>
+                The absence of upload methods indicates
+                that the service does not support uploads
+                at all.
+              </p>
+              </td> 
+          </tr>
+      </tbody></table>
+  </td></tr>
+    
+  <tr><td valign="top">retentionPeriod</td>
+      <td valign="top"><table border="0" width="100%">
+      <colgroup><col width="20%"/><col width="80%"/></colgroup><tbody>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Value type:</em></td>
+              <td valign="top">composite: <code xmlns="http://www.w3.org/2001/XMLSchema"><a href="#d:TimeLimits">tr:TimeLimits</a></code></td>
+          </tr>
+          <tr bgcolor="#f5f5f5"><td nowrap="nowrap" valign="top"><em>Semantic Meaning:</em></td>
+              <td valign="top" width="90%">
+              Limits on the time between job creation and
+              destruction time.
+              </td>
+          </tr>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Occurrences:</em></td>
+              <td valign="top">optional</td>
+          </tr>
+      </tbody></table>
+  </td></tr>
+    
+  <tr><td valign="top">executionDuration</td>
+      <td valign="top"><table border="0" width="100%">
+      <colgroup><col width="20%"/><col width="80%"/></colgroup><tbody>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Value type:</em></td>
+              <td valign="top">composite: <code xmlns="http://www.w3.org/2001/XMLSchema"><a href="#d:TimeLimits">tr:TimeLimits</a></code></td>
+          </tr>
+          <tr bgcolor="#f5f5f5"><td nowrap="nowrap" valign="top"><em>Semantic Meaning:</em></td>
+              <td valign="top" width="90%">
+              Limits on executionDuration.
+              </td>
+          </tr>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Occurrences:</em></td>
+              <td valign="top">optional</td>
+          </tr>
+      </tbody></table>
+  </td></tr>
+    
+  <tr><td valign="top">outputLimit</td>
+      <td valign="top"><table border="0" width="100%">
+      <colgroup><col width="20%"/><col width="80%"/></colgroup><tbody>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Value type:</em></td>
+              <td valign="top">composite: <code xmlns="http://www.w3.org/2001/XMLSchema"><a href="#d:DataLimits">tr:DataLimits</a></code></td>
+          </tr>
+          <tr bgcolor="#f5f5f5"><td nowrap="nowrap" valign="top"><em>Semantic Meaning:</em></td>
+              <td valign="top" width="90%">
+              Limits on the size of data returned.
+              </td>
+          </tr>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Occurrences:</em></td>
+              <td valign="top">optional</td>
+          </tr>
+      </tbody></table>
+  </td></tr>
+    
+  <tr><td valign="top">uploadLimit</td>
+      <td valign="top"><table border="0" width="100%">
+      <colgroup><col width="20%"/><col width="80%"/></colgroup><tbody>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Value type:</em></td>
+              <td valign="top">composite: <code xmlns="http://www.w3.org/2001/XMLSchema"><a href="#d:DataLimits">tr:DataLimits</a></code></td>
+          </tr>
+          <tr bgcolor="#f5f5f5"><td nowrap="nowrap" valign="top"><em>Semantic Meaning:</em></td>
+              <td valign="top" width="90%">
+              Limits on the size of uploaded data.
+              </td>
+          </tr>
+          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Occurrences:</em></td>
+              <td valign="top">optional</td>
+          </tr>
+      </tbody></table>
+  </td></tr>
+    
+</tbody>
+</table>
+</p>
+      
+    
+   </definition>
+
+
+</div> <!-- subsection capreg -->
+</div> <!-- section taextension -->
+
+<div class="appendices">
+<div class="section"><h2><a id="appA" shape="rect"/><span class="secnum">Appendix A. </span>The Full Schema</h2>
+
+<?incxml href="../TAPRegExt-v1.0.xsd"?><div xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="viewxml"><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:schema</span> <span class="attribute-name">version</span><span class="markup">=</span><span class="attribute-value">"1.0"</span> <span class="attribute-name">targetNamespace</span><span class="markup">=</span><span class="attribute-value">"http://www.ivoa.net/xml/TAPRegExt/v1.0"</span> <span class="attribute-name">elementFormDefault</span><span class="markup">=</span><span class="attribute-value">"unqualified"</span> <span class="attribute-name">attributeFormDefault</span><span class="markup">=</span><span class="attribute-value">"unqualified"</span> <span class="attribute-name">xmlns:xml</span><span class="markup">=</span><span class="attribute-value">"http://www.w3.org/XML/1998/namespace"</span> <span class="attribute-name">xmlns:xs</span><span class="markup">=</span><span class="attribute-value">"http://www.w3.org/2001/XMLSchema"</span> <span class="attribute-name">xmlns:vr</span><span class="markup">=</span><span class="attribute-value">"http://www.ivoa.net/xml/VOResource/v1.0"</span> <span class="attribute-name">xmlns:vm</span><span class="markup">=</span><span class="attribute-value">"http://www.ivoa.net/xml/VOMetadata/v0.1"</span> <span class="attribute-name">xmlns:tr</span><span class="markup">=</span><span class="attribute-value">"http://www.ivoa.net/xml/TAPRegExt/v1.0"</span> <span class="attribute-name">xmlns:xsi</span><span class="markup">=</span><span class="attribute-value">"http://www.w3.org/2001/XMLSchema-instance"</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:annotation</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:appinfo</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">vm:schemaName</span><span class="markup">&gt;</span><span class="text">TAPRegExt</span><span class="markup">&lt;/</span><span class="end-tag">vm:schemaName</span><span class="markup">&gt;</span></div><div class="indent"><span class="markup">&lt;</span><span class="start-tag">vm:schemaPrefix</span><span class="markup">&gt;</span><span class="text">xs</span><span class="markup">&lt;/</span><span class="end-tag">vm:schemaPrefix</span><span class="markup">&gt;</span></div><div class="indent"><span class="markup">&lt;</span><span class="start-tag">vm:targetPrefix</span><span class="markup">&gt;</span><span class="text">tr</span><span class="markup">&lt;/</span><span class="end-tag">vm:targetPrefix</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:appinfo</span><span class="markup">&gt;</span></div><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+    A description of the capabilities metadata for TAP services.
+    </span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:annotation</span><span class="markup">&gt;</span></div><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:import</span> <span class="attribute-name">namespace</span><span class="markup">=</span><span class="attribute-value">"http://www.ivoa.net/xml/VOResource/v1.0"</span> <span class="attribute-name">schemaLocation</span><span class="markup">=</span><span class="attribute-value">"http://www.ivoa.net/xml/VOResource/VOResource-v1.0.xsd"</span><span class="markup">/&gt;</span></div><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:import</span> <span class="attribute-name">namespace</span><span class="markup">=</span><span class="attribute-value">"http://www.ivoa.net/xml/VODataService/v1.1"</span> <span class="attribute-name">schemaLocation</span><span class="markup">=</span><span class="attribute-value">"http://www.ivoa.net/xml/VODataService/VODataService-v1.1.xsd"</span><span class="markup">/&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:complexType</span> <span class="attribute-name">name</span><span class="markup">=</span><span class="attribute-value">"TAPCapRestriction"</span> <span class="attribute-name">abstract</span><span class="markup">=</span><span class="attribute-value">"true"</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:annotation</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+      An abstract capability that fixes the standardID to the
+      IVOA ID for the TAP standard.
+      </span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+      See vr:Capability for documentation on inherited children.
+      </span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:annotation</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:complexContent</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:restriction</span> <span class="attribute-name">base</span><span class="markup">=</span><span class="attribute-value">"vr:Capability"</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:sequence</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:element</span> <span class="attribute-name">name</span><span class="markup">=</span><span class="attribute-value">"validationLevel"</span> <span class="attribute-name">type</span><span class="markup">=</span><span class="attribute-value">"vr:Validation"</span> <span class="attribute-name">minOccurs</span><span class="markup">=</span><span class="attribute-value">"0"</span> <span class="attribute-name">maxOccurs</span><span class="markup">=</span><span class="attribute-value">"unbounded"</span><span class="markup">/&gt;</span></div><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:element</span> <span class="attribute-name">name</span><span class="markup">=</span><span class="attribute-value">"description"</span> <span class="attribute-name">type</span><span class="markup">=</span><span class="attribute-value">"xs:token"</span> <span class="attribute-name">minOccurs</span><span class="markup">=</span><span class="attribute-value">"0"</span><span class="markup">/&gt;</span></div><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:element</span> <span class="attribute-name">name</span><span class="markup">=</span><span class="attribute-value">"interface"</span> <span class="attribute-name">type</span><span class="markup">=</span><span class="attribute-value">"vr:Interface"</span> <span class="attribute-name">minOccurs</span><span class="markup">=</span><span class="attribute-value">"0"</span> <span class="attribute-name">maxOccurs</span><span class="markup">=</span><span class="attribute-value">"unbounded"</span><span class="markup">/&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:sequence</span><span class="markup">&gt;</span></div><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:attribute</span> <span class="attribute-name">name</span><span class="markup">=</span><span class="attribute-value">"standardID"</span> <span class="attribute-name">type</span><span class="markup">=</span><span class="attribute-value">"vr:IdentifierURI"</span> <span class="attribute-name">use</span><span class="markup">=</span><span class="attribute-value">"required"</span> <span class="attribute-name">fixed</span><span class="markup">=</span><span class="attribute-value">"ivo://ivoa.net/std/TAP"</span><span class="markup">/&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:restriction</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:complexContent</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:complexType</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:complexType</span> <span class="attribute-name">name</span><span class="markup">=</span><span class="attribute-value">"TableAccess"</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:annotation</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+      The capabilities of a TAP server.
+      </span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+      The capabilities attempt to define most issues that the
+      TAP standard leaves to the implementors ("may", "should").
+      </span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:annotation</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:complexContent</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:extension</span> <span class="attribute-name">base</span><span class="markup">=</span><span class="attribute-value">"tr:TAPCapRestriction"</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:sequence</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:element</span> <span class="attribute-name">name</span><span class="markup">=</span><span class="attribute-value">"dataModel"</span> <span class="attribute-name">type</span><span class="markup">=</span><span class="attribute-value">"tr:DataModelType"</span> <span class="attribute-name">minOccurs</span><span class="markup">=</span><span class="attribute-value">"0"</span> <span class="attribute-name">maxOccurs</span><span class="markup">=</span><span class="attribute-value">"unbounded"</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:annotation</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+              Identifier of IVOA-approved data model supported by the 
+              service.
+              </span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:annotation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:element</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:element</span> <span class="attribute-name">name</span><span class="markup">=</span><span class="attribute-value">"language"</span> <span class="attribute-name">type</span><span class="markup">=</span><span class="attribute-value">"tr:Language"</span> <span class="attribute-name">minOccurs</span><span class="markup">=</span><span class="attribute-value">"1"</span> <span class="attribute-name">maxOccurs</span><span class="markup">=</span><span class="attribute-value">"unbounded"</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:annotation</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+              Language supported by the service.
+              </span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:annotation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:element</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:element</span> <span class="attribute-name">name</span><span class="markup">=</span><span class="attribute-value">"outputFormat"</span> <span class="attribute-name">type</span><span class="markup">=</span><span class="attribute-value">"tr:OutputFormat"</span> <span class="attribute-name">minOccurs</span><span class="markup">=</span><span class="attribute-value">"1"</span> <span class="attribute-name">maxOccurs</span><span class="markup">=</span><span class="attribute-value">"unbounded"</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:annotation</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+                Output format supported by the service.
+              </span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:annotation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:element</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:element</span> <span class="attribute-name">name</span><span class="markup">=</span><span class="attribute-value">"uploadMethod"</span> <span class="attribute-name">type</span><span class="markup">=</span><span class="attribute-value">"tr:UploadMethod"</span> <span class="attribute-name">minOccurs</span><span class="markup">=</span><span class="attribute-value">"0"</span> <span class="attribute-name">maxOccurs</span><span class="markup">=</span><span class="attribute-value">"unbounded"</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:annotation</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+                Upload method supported by the service.
+              </span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+                The absence of upload methods indicates
+                that the service does not support uploads
+                at all.
+              </span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:annotation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:element</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:element</span> <span class="attribute-name">name</span><span class="markup">=</span><span class="attribute-value">"retentionPeriod"</span> <span class="attribute-name">type</span><span class="markup">=</span><span class="attribute-value">"tr:TimeLimits"</span> <span class="attribute-name">minOccurs</span><span class="markup">=</span><span class="attribute-value">"0"</span> <span class="attribute-name">maxOccurs</span><span class="markup">=</span><span class="attribute-value">"1"</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:annotation</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+              Limits on the time between job creation and
+              destruction time.
+              </span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:annotation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:element</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:element</span> <span class="attribute-name">name</span><span class="markup">=</span><span class="attribute-value">"executionDuration"</span> <span class="attribute-name">type</span><span class="markup">=</span><span class="attribute-value">"tr:TimeLimits"</span> <span class="attribute-name">minOccurs</span><span class="markup">=</span><span class="attribute-value">"0"</span> <span class="attribute-name">maxOccurs</span><span class="markup">=</span><span class="attribute-value">"1"</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:annotation</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+              Limits on executionDuration.
+              </span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:annotation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:element</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:element</span> <span class="attribute-name">name</span><span class="markup">=</span><span class="attribute-value">"outputLimit"</span> <span class="attribute-name">type</span><span class="markup">=</span><span class="attribute-value">"tr:DataLimits"</span> <span class="attribute-name">minOccurs</span><span class="markup">=</span><span class="attribute-value">"0"</span> <span class="attribute-name">maxOccurs</span><span class="markup">=</span><span class="attribute-value">"1"</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:annotation</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+              Limits on the size of data returned.
+              </span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:annotation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:element</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:element</span> <span class="attribute-name">name</span><span class="markup">=</span><span class="attribute-value">"uploadLimit"</span> <span class="attribute-name">type</span><span class="markup">=</span><span class="attribute-value">"tr:DataLimits"</span> <span class="attribute-name">minOccurs</span><span class="markup">=</span><span class="attribute-value">"0"</span> <span class="attribute-name">maxOccurs</span><span class="markup">=</span><span class="attribute-value">"1"</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:annotation</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+              Limits on the size of uploaded data.
+              </span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:annotation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:element</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:sequence</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:extension</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:complexContent</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:complexType</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:complexType</span> <span class="attribute-name">name</span><span class="markup">=</span><span class="attribute-value">"DataModelType"</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:annotation</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+        An IVOA defined data model, identified by an IVORN 
+        intended for machine consumption and a short label
+        intended for human comsumption.
+      </span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:annotation</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:simpleContent</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:extension</span> <span class="attribute-name">base</span><span class="markup">=</span><span class="attribute-value">"xs:token"</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:attribute</span> <span class="attribute-name">name</span><span class="markup">=</span><span class="attribute-value">"ivo-id"</span> <span class="attribute-name">type</span><span class="markup">=</span><span class="attribute-value">"vr:IdentifierURI"</span> <span class="attribute-name">use</span><span class="markup">=</span><span class="attribute-value">"required"</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:annotation</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+            The IVORN of the data model.
+            </span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:annotation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:attribute</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:extension</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:simpleContent</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:complexType</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:complexType</span> <span class="attribute-name">name</span><span class="markup">=</span><span class="attribute-value">"Language"</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:annotation</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+      A query language supported by the service.
+      </span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+      Each language element can describe one or more versions
+      of a language.  Either name alone or name-version can be
+      used as values for the server's LANG parameter.
+      </span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:annotation</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:sequence</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:element</span> <span class="attribute-name">name</span><span class="markup">=</span><span class="attribute-value">"name"</span> <span class="attribute-name">type</span><span class="markup">=</span><span class="attribute-value">"xs:NCName"</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:annotation</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+          The name of the language without a version suffix.
+          </span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:annotation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:element</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:element</span> <span class="attribute-name">name</span><span class="markup">=</span><span class="attribute-value">"version"</span> <span class="attribute-name">type</span><span class="markup">=</span><span class="attribute-value">"tr:Version"</span> <span class="attribute-name">minOccurs</span><span class="markup">=</span><span class="attribute-value">"1"</span> <span class="attribute-name">maxOccurs</span><span class="markup">=</span><span class="attribute-value">"unbounded"</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:annotation</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+		    		A version of the language supported by the server.
+		    	</span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:annotation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:element</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:element</span> <span class="attribute-name">name</span><span class="markup">=</span><span class="attribute-value">"description"</span> <span class="attribute-name">type</span><span class="markup">=</span><span class="attribute-value">"xs:token"</span> <span class="attribute-name">minOccurs</span><span class="markup">=</span><span class="attribute-value">"0"</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:annotation</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+          A short, human-readable description of the
+          query language.
+          </span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:annotation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:element</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:element</span> <span class="attribute-name">name</span><span class="markup">=</span><span class="attribute-value">"languageFeatures"</span> <span class="attribute-name">type</span><span class="markup">=</span><span class="attribute-value">"tr:LanguageFeatureList"</span> <span class="attribute-name">minOccurs</span><span class="markup">=</span><span class="attribute-value">"0"</span> <span class="attribute-name">maxOccurs</span><span class="markup">=</span><span class="attribute-value">"unbounded"</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:annotation</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+          	Optional features of the query language, grouped by
+          	feature type.
+        	</span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+        		This includes listing user defined functions, geometry support,
+        		or similar concepts.
+        	</span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:annotation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:element</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:sequence</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:complexType</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:complexType</span> <span class="attribute-name">name</span><span class="markup">=</span><span class="attribute-value">"Version"</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:annotation</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+      One version of the language supported by the service.
+      </span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+      If the service supports more than one version of the
+      language, include multiple version elements.
+      It is recommended that you use a version numbering
+      scheme like MAJOR.MINOR in such a way that sorting
+      by ascending character codes will leave the most
+      recent version at the bottom of the list.
+      </span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:annotation</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:simpleContent</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:extension</span> <span class="attribute-name">base</span><span class="markup">=</span><span class="attribute-value">"xs:token"</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:attribute</span> <span class="attribute-name">name</span><span class="markup">=</span><span class="attribute-value">"ivo-id"</span> <span class="attribute-name">type</span><span class="markup">=</span><span class="attribute-value">"xs:anyURI"</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:annotation</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+    				An optional IVORN of the language.
+    				</span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+    					To more formally define a language supported by a service,
+    					a resource record for the language can be created, either
+    					centrally on the RofR or by other registry operators.  
+    					When such a record exists, the language element's ivo-id
+    					should point to it.
+    				</span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:annotation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:attribute</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:extension</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:simpleContent</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:complexType</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:complexType</span> <span class="attribute-name">name</span><span class="markup">=</span><span class="attribute-value">"LanguageFeatureList"</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:annotation</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+      	An enumeration of non-standard or non-mandatory features of 
+      	a specific type implemented by the language.
+    	</span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><div class="indent text">
+    		A feature type is a language-dependent concept like 
+    		"user defined function", "geometry support", or possibly 
+    		"units supported".  A featureList gives all features of
+    		a given type applicable for the service.  Multiple featureLists
+    		are possible.
+
+      	All feature in a given list are of the same type.  This type
+      	is declared using the mandatoy </div><div class="indent"><span class="markup">&lt;</span><span class="start-tag">code</span><span class="markup">&gt;</span><span class="text">type</span><span class="markup">&lt;/</span><span class="end-tag">code</span><span class="markup">&gt;</span></div><div class="indent text"> attribute,
+      	the value of which will typically be an IVORN.
+      	To see values defined in TAPRegExt,
+				retrieve the ivo://ivoa.net/std/TAPRegExt
+      	resource record and look for keys starting with features-.
+    	</div><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:annotation</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:sequence</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:element</span> <span class="attribute-name">name</span><span class="markup">=</span><span class="attribute-value">"feature"</span> <span class="attribute-name">type</span><span class="markup">=</span><span class="attribute-value">"tr:LanguageFeature"</span> <span class="attribute-name">minOccurs</span><span class="markup">=</span><span class="attribute-value">"0"</span> <span class="attribute-name">maxOccurs</span><span class="markup">=</span><span class="attribute-value">"unbounded"</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:annotation</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+						A language feature of the type given by this
+						element's type attribute.
+					</span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:annotation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:element</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:sequence</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:attribute</span> <span class="attribute-name">name</span><span class="markup">=</span><span class="attribute-value">"type"</span> <span class="attribute-name">type</span><span class="markup">=</span><span class="attribute-value">"xs:anyURI"</span> <span class="attribute-name">use</span><span class="markup">=</span><span class="attribute-value">"required"</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:annotation</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+					The type of the features given here.
+				</span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+					This is in general an IVORN.  TAPRegExt itself gives
+					IVORNs for defining user defined functions and geometry
+					support.
+				</span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:annotation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:attribute</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:complexType</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:complexType</span> <span class="attribute-name">name</span><span class="markup">=</span><span class="attribute-value">"LanguageFeature"</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:annotation</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+      	A non-standard or non-mandatory feature implemented
+      	by the language..
+    	</span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:annotation</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:sequence</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:element</span> <span class="attribute-name">name</span><span class="markup">=</span><span class="attribute-value">"form"</span> <span class="attribute-name">type</span><span class="markup">=</span><span class="attribute-value">"xs:token"</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:annotation</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+          	Formal notation for the language feature.
+        	</span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+          	The syntax for the content of this element is defined by the
+          	type attribute of its parent language list.
+        	</span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:annotation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:element</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:element</span> <span class="attribute-name">name</span><span class="markup">=</span><span class="attribute-value">"description"</span> <span class="attribute-name">type</span><span class="markup">=</span><span class="attribute-value">"xs:string"</span> <span class="attribute-name">minOccurs</span><span class="markup">=</span><span class="attribute-value">"0"</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:annotation</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+          	Human-readable freeform documentation for the language feature.
+        	</span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:annotation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:element</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:sequence</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:complexType</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:complexType</span> <span class="attribute-name">name</span><span class="markup">=</span><span class="attribute-value">"OutputFormat"</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:annotation</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+      An output format supported by the service.
+      </span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+      All TAP services must support VOTable output, preserving
+      the MIME type of the input.  Other output formats are
+      optional.
+
+      The primary identifier for an output format is the MIME
+      type.  If you want to register an output format, you must
+      use a MIME type (or make one up using the x- syntax), although
+      the concrete MIME syntax is not enforced by the schema.
+
+      For more detailed specification, an IVORN may be used.
+      </span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:annotation</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:sequence</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:element</span> <span class="attribute-name">name</span><span class="markup">=</span><span class="attribute-value">"mime"</span> <span class="attribute-name">type</span><span class="markup">=</span><span class="attribute-value">"xs:token"</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:annotation</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+          The MIME type of this format.
+          </span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+          The format of this string is specified by RFC 2045.
+          The service has to accept this string as a 
+          value of the FORMAT parameter.
+          </span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:annotation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:element</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:element</span> <span class="attribute-name">name</span><span class="markup">=</span><span class="attribute-value">"alias"</span> <span class="attribute-name">type</span><span class="markup">=</span><span class="attribute-value">"xs:token"</span> <span class="attribute-name">minOccurs</span><span class="markup">=</span><span class="attribute-value">"0"</span> <span class="attribute-name">maxOccurs</span><span class="markup">=</span><span class="attribute-value">"unbounded"</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:annotation</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+          Other values of FORMAT ("shorthands") that make the service return 
+          documents with the MIME type.
+          </span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:annotation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:element</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:sequence</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:attribute</span> <span class="attribute-name">name</span><span class="markup">=</span><span class="attribute-value">"ivo-id"</span> <span class="attribute-name">type</span><span class="markup">=</span><span class="attribute-value">"xs:anyURI"</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:annotation</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+        An optional IVORN of the output format.
+        </span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+        	When the MIME type does not uniquely define the
+        	format (or a generic MIME like application/octet-stream or
+        	text/plain is given), the IVORN can point to a key
+        	or StandardsRegExt document defining the format more
+        	precisely.  To see values defined in TAPRegExt,
+					retrieve the ivo://ivoa.net/std/TAPRegExt
+      		resource record and look for keys starting with output-.
+        </span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:annotation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:attribute</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:complexType</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:complexType</span> <span class="attribute-name">name</span><span class="markup">=</span><span class="attribute-value">"UploadMethod"</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:annotation</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+      An upload method as defined by IVOA.
+      </span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+      Upload methods are always identified by an IVORN.  
+      Descriptions can be obtained by dereferencing this
+      IVORN.  To see values defined in TAPRegExt,
+			retrieve the ivo://ivoa.net/std/TAPRegExt
+   		resource record and look for keys starting with upload-.
+
+
+      You can register custom upload methods, but you must use the
+      standard IVORNs for the upload methods defined in the TAP
+      specification.
+      </span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:annotation</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:complexContent</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:restriction</span> <span class="attribute-name">base</span><span class="markup">=</span><span class="attribute-value">"xs:anyType"</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:attribute</span> <span class="attribute-name">name</span><span class="markup">=</span><span class="attribute-value">"ivo-id"</span> <span class="attribute-name">type</span><span class="markup">=</span><span class="attribute-value">"xs:anyURI"</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:annotation</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+            The IVORN of the upload method.
+            </span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:annotation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:attribute</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:restriction</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:complexContent</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:complexType</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:complexType</span> <span class="attribute-name">name</span><span class="markup">=</span><span class="attribute-value">"TimeLimits"</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:annotation</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+      Time-valued limits, all values given in seconds.
+      </span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:annotation</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:sequence</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:element</span> <span class="attribute-name">name</span><span class="markup">=</span><span class="attribute-value">"default"</span> <span class="attribute-name">type</span><span class="markup">=</span><span class="attribute-value">"xs:integer"</span> <span class="attribute-name">minOccurs</span><span class="markup">=</span><span class="attribute-value">"0"</span> <span class="attribute-name">maxOccurs</span><span class="markup">=</span><span class="attribute-value">"1"</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:annotation</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+          The value of this limit for newly-created jobs, given in seconds.
+          </span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:annotation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:element</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:element</span> <span class="attribute-name">name</span><span class="markup">=</span><span class="attribute-value">"hard"</span> <span class="attribute-name">type</span><span class="markup">=</span><span class="attribute-value">"xs:integer"</span> <span class="attribute-name">minOccurs</span><span class="markup">=</span><span class="attribute-value">"0"</span> <span class="attribute-name">maxOccurs</span><span class="markup">=</span><span class="attribute-value">"1"</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:annotation</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+          The value this limit cannot be raised above, given in seconds.
+          </span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:annotation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:element</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:sequence</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:complexType</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:complexType</span> <span class="attribute-name">name</span><span class="markup">=</span><span class="attribute-value">"DataLimits"</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:annotation</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+      Limits on data sizes, given in rows or bytes.
+      </span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:annotation</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:sequence</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:element</span> <span class="attribute-name">name</span><span class="markup">=</span><span class="attribute-value">"default"</span> <span class="attribute-name">type</span><span class="markup">=</span><span class="attribute-value">"tr:DataLimit"</span> <span class="attribute-name">minOccurs</span><span class="markup">=</span><span class="attribute-value">"0"</span> <span class="attribute-name">maxOccurs</span><span class="markup">=</span><span class="attribute-value">"1"</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:annotation</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+          The value of this limit for newly-created jobs.
+          </span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:annotation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:element</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:element</span> <span class="attribute-name">name</span><span class="markup">=</span><span class="attribute-value">"hard"</span> <span class="attribute-name">type</span><span class="markup">=</span><span class="attribute-value">"tr:DataLimit"</span> <span class="attribute-name">minOccurs</span><span class="markup">=</span><span class="attribute-value">"0"</span> <span class="attribute-name">maxOccurs</span><span class="markup">=</span><span class="attribute-value">"1"</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:annotation</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+          The value this limit cannot be raised above.
+          </span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:annotation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:element</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:sequence</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:complexType</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:complexType</span> <span class="attribute-name">name</span><span class="markup">=</span><span class="attribute-value">"DataLimit"</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:annotation</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+      A limit on some data size, either in rows or in bytes.
+      </span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:annotation</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:simpleContent</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:extension</span> <span class="attribute-name">base</span><span class="markup">=</span><span class="attribute-value">"xs:integer"</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:attribute</span> <span class="attribute-name">name</span><span class="markup">=</span><span class="attribute-value">"unit"</span> <span class="attribute-name">use</span><span class="markup">=</span><span class="attribute-value">"required"</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:annotation</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
+            The unit of the limit specified.
+            </span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:annotation</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:simpleType</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:restriction</span> <span class="attribute-name">base</span><span class="markup">=</span><span class="attribute-value">"xs:token"</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:enumeration</span> <span class="attribute-name">value</span><span class="markup">=</span><span class="attribute-value">"bytes"</span><span class="markup">/&gt;</span></div><div class="indent"><span class="markup">&lt;</span><span class="start-tag">xs:enumeration</span> <span class="attribute-name">value</span><span class="markup">=</span><span class="attribute-value">"rows"</span><span class="markup">/&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:restriction</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:simpleType</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:attribute</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:extension</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:simpleContent</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:complexType</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">xs:schema</span><span class="markup">&gt;</span></div></div>
+
+</div>  <!-- section appA -->
+
+<div class="section"><h2><a id="appB" shape="rect"/><span class="secnum">Appendix B. </span>Example Document</h2>
+
+<p>As an example, here is an instance document as it might be 
+part of a response from a VOSI capability endpoint or embedded 
+within a VOResource record:</p>
+
+<?incxml href="../sample.xml"?><div xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="viewxml"><div class="element"><span class="markup">&lt;</span><span class="start-tag">capability</span> <span class="attribute-name">standardID</span><span class="markup">=</span><span class="attribute-value">"ivo://ivoa.net/std/TAP"</span> <span class="attribute-name">xsi:type</span><span class="markup">=</span><span class="attribute-value">"tr:TableAccess"</span> <span class="attribute-name">xmlns:xml</span><span class="markup">=</span><span class="attribute-value">"http://www.w3.org/XML/1998/namespace"</span> <span class="attribute-name">xmlns:tr</span><span class="markup">=</span><span class="attribute-value">"http://www.ivoa.net/xml/TAPRegExt/v1.0"</span> <span class="attribute-name">xmlns:vr</span><span class="markup">=</span><span class="attribute-value">"http://www.ivoa.net/xml/VOResource/v1.0"</span> <span class="attribute-name">xmlns:vs</span><span class="markup">=</span><span class="attribute-value">"http://www.ivoa.net/xml/VODataService/v1.0"</span> <span class="attribute-name">xmlns:xsi</span><span class="markup">=</span><span class="attribute-value">"http://www.w3.org/2001/XMLSchema-instance"</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">interface</span> <span class="attribute-name">role</span><span class="markup">=</span><span class="attribute-value">"std"</span> <span class="attribute-name">xsi:type</span><span class="markup">=</span><span class="attribute-value">"vs:ParamHTTP"</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">accessURL</span> <span class="attribute-name">use</span><span class="markup">=</span><span class="attribute-value">"base"</span><span class="markup">&gt;</span><span class="text">http://localhost:8080/__system__/tap/run/tap</span><span class="markup">&lt;/</span><span class="end-tag">accessURL</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">interface</span><span class="markup">&gt;</span></div><div class="indent"><span class="markup">&lt;</span><span class="start-tag">dataModel</span> <span class="attribute-name">ivo-id</span><span class="markup">=</span><span class="attribute-value">"ivo://ivoa.net/std/ObsCore-1.0"</span><span class="markup">&gt;</span><span class="text">ObsCore 1.0</span><span class="markup">&lt;/</span><span class="end-tag">dataModel</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">language</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">name</span><span class="markup">&gt;</span><span class="text">ADQL</span><span class="markup">&lt;/</span><span class="end-tag">name</span><span class="markup">&gt;</span></div><div class="indent"><span class="markup">&lt;</span><span class="start-tag">version</span> <span class="attribute-name">ivo-id</span><span class="markup">=</span><span class="attribute-value">"ivo://ivoa.net/std/ADQL#v2.0"</span><span class="markup">&gt;</span><span class="text">2.0</span><span class="markup">&lt;/</span><span class="end-tag">version</span><span class="markup">&gt;</span></div><div class="indent"><span class="markup">&lt;</span><span class="start-tag">description</span><span class="markup">&gt;</span><span class="text">ADQL 2.0</span><span class="markup">&lt;/</span><span class="end-tag">description</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">languageFeatures</span> <span class="attribute-name">type</span><span class="markup">=</span><span class="attribute-value">"ivo://ivoa.net/std/TAPRegExt#features-udf"</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">feature</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">form</span><span class="markup">&gt;</span><span class="text">gavo_match(pattern TEXT, string TEXT) -&gt; INTEGER</span><span class="markup">&lt;/</span><span class="end-tag">form</span><span class="markup">&gt;</span></div><div class="indent"><span class="markup">&lt;</span><span class="start-tag">description</span><span class="markup">&gt;</span><span class="text">gavo_match returns 1 if the POSIX regular expression pattern
+matches anything in string, 0 otherwise.</span><span class="markup">&lt;/</span><span class="end-tag">description</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">feature</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">languageFeatures</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">languageFeatures</span> <span class="attribute-name">type</span><span class="markup">=</span><span class="attribute-value">"ivo://ivoa.net/std/TAPRegExt#features-adqlgeo"</span><span class="markup">&gt;</span><div class="element"><span class="markup">&lt;</span><span class="start-tag">feature</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">form</span><span class="markup">&gt;</span><span class="text">BOX</span><span class="markup">&lt;/</span><span class="end-tag">form</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">feature</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">feature</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">form</span><span class="markup">&gt;</span><span class="text">POINT</span><span class="markup">&lt;/</span><span class="end-tag">form</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">feature</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">feature</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">form</span><span class="markup">&gt;</span><span class="text">CIRCLE</span><span class="markup">&lt;/</span><span class="end-tag">form</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">feature</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">feature</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">form</span><span class="markup">&gt;</span><span class="text">POLYGON</span><span class="markup">&lt;/</span><span class="end-tag">form</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">feature</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">feature</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">form</span><span class="markup">&gt;</span><span class="text">REGION</span><span class="markup">&lt;/</span><span class="end-tag">form</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">feature</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">feature</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">form</span><span class="markup">&gt;</span><span class="text">CENTROID</span><span class="markup">&lt;/</span><span class="end-tag">form</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">feature</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">feature</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">form</span><span class="markup">&gt;</span><span class="text">COORD1</span><span class="markup">&lt;/</span><span class="end-tag">form</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">feature</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">feature</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">form</span><span class="markup">&gt;</span><span class="text">COORD2</span><span class="markup">&lt;/</span><span class="end-tag">form</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">feature</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">feature</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">form</span><span class="markup">&gt;</span><span class="text">DISTANCE</span><span class="markup">&lt;/</span><span class="end-tag">form</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">feature</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">feature</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">form</span><span class="markup">&gt;</span><span class="text">CONTAINS</span><span class="markup">&lt;/</span><span class="end-tag">form</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">feature</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">feature</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">form</span><span class="markup">&gt;</span><span class="text">INTERSECTS</span><span class="markup">&lt;/</span><span class="end-tag">form</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">feature</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">feature</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">form</span><span class="markup">&gt;</span><span class="text">AREA</span><span class="markup">&lt;/</span><span class="end-tag">form</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">feature</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">languageFeatures</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">language</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">outputFormat</span> <span class="attribute-name">ivo-id</span><span class="markup">=</span><span class="attribute-value">"ivo://ivoa.net/std/TAPRegExt#output-votable-binary"</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">mime</span><span class="markup">&gt;</span><span class="text">text/xml</span><span class="markup">&lt;/</span><span class="end-tag">mime</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">outputFormat</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">outputFormat</span> <span class="attribute-name">ivo-id</span><span class="markup">=</span><span class="attribute-value">"ivo://ivoa.net/std/TAPRegEXT#output-votable-td"</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">mime</span><span class="markup">&gt;</span><span class="text">application/x-votable+xml;encoding=tabledata</span><span class="markup">&lt;/</span><span class="end-tag">mime</span><span class="markup">&gt;</span></div><div class="indent"><span class="markup">&lt;</span><span class="start-tag">alias</span><span class="markup">&gt;</span><span class="text">votable/td</span><span class="markup">&lt;/</span><span class="end-tag">alias</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">outputFormat</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">outputFormat</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">mime</span><span class="markup">&gt;</span><span class="text">text/html</span><span class="markup">&lt;/</span><span class="end-tag">mime</span><span class="markup">&gt;</span></div><div class="indent"><span class="markup">&lt;</span><span class="start-tag">alias</span><span class="markup">&gt;</span><span class="text">html</span><span class="markup">&lt;/</span><span class="end-tag">alias</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">outputFormat</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">outputFormat</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">mime</span><span class="markup">&gt;</span><span class="text">application/fits</span><span class="markup">&lt;/</span><span class="end-tag">mime</span><span class="markup">&gt;</span></div><div class="indent"><span class="markup">&lt;</span><span class="start-tag">alias</span><span class="markup">&gt;</span><span class="text">fits</span><span class="markup">&lt;/</span><span class="end-tag">alias</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">outputFormat</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">outputFormat</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">mime</span><span class="markup">&gt;</span><span class="text">text/csv</span><span class="markup">&lt;/</span><span class="end-tag">mime</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">outputFormat</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">outputFormat</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">mime</span><span class="markup">&gt;</span><span class="text">text/csv;header=present</span><span class="markup">&lt;/</span><span class="end-tag">mime</span><span class="markup">&gt;</span></div><div class="indent"><span class="markup">&lt;</span><span class="start-tag">alias</span><span class="markup">&gt;</span><span class="text">csv</span><span class="markup">&lt;/</span><span class="end-tag">alias</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">outputFormat</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">outputFormat</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">mime</span><span class="markup">&gt;</span><span class="text">text/tab-separated-values</span><span class="markup">&lt;/</span><span class="end-tag">mime</span><span class="markup">&gt;</span></div><div class="indent"><span class="markup">&lt;</span><span class="start-tag">alias</span><span class="markup">&gt;</span><span class="text">tsv</span><span class="markup">&lt;/</span><span class="end-tag">alias</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">outputFormat</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">outputFormat</span> <span class="attribute-name">ivo-id</span><span class="markup">=</span><span class="attribute-value">"ivo://ivoa.net/std/TAPRegExt#output-votable-binary"</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">mime</span><span class="markup">&gt;</span><span class="text">application/x-votable+xml</span><span class="markup">&lt;/</span><span class="end-tag">mime</span><span class="markup">&gt;</span></div><div class="indent"><span class="markup">&lt;</span><span class="start-tag">alias</span><span class="markup">&gt;</span><span class="text">votable</span><span class="markup">&lt;/</span><span class="end-tag">alias</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">outputFormat</span><span class="markup">&gt;</span></div><div class="indent"><span class="markup">&lt;</span><span class="start-tag">uploadMethod</span> <span class="attribute-name">ivo-id</span><span class="markup">=</span><span class="attribute-value">"ivo://ivoa.net/std/TAPRegExt#upload-https"</span><span class="markup">/&gt;</span></div><div class="indent"><span class="markup">&lt;</span><span class="start-tag">uploadMethod</span> <span class="attribute-name">ivo-id</span><span class="markup">=</span><span class="attribute-value">"ivo://ivoa.net/std/TAPRegExt#upload-ftp"</span><span class="markup">/&gt;</span></div><div class="indent"><span class="markup">&lt;</span><span class="start-tag">uploadMethod</span> <span class="attribute-name">ivo-id</span><span class="markup">=</span><span class="attribute-value">"ivo://ivoa.net/std/TAPRegExt#upload-inline"</span><span class="markup">/&gt;</span></div><div class="indent"><span class="markup">&lt;</span><span class="start-tag">uploadMethod</span> <span class="attribute-name">ivo-id</span><span class="markup">=</span><span class="attribute-value">"ivo://ivoa.net/std/TAPRegExt#upload-http"</span><span class="markup">/&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">retentionPeriod</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">default</span><span class="markup">&gt;</span><span class="text">172800</span><span class="markup">&lt;/</span><span class="end-tag">default</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">retentionPeriod</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">executionDuration</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">default</span><span class="markup">&gt;</span><span class="text">3600</span><span class="markup">&lt;/</span><span class="end-tag">default</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">executionDuration</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">outputLimit</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">default</span> <span class="attribute-name">unit</span><span class="markup">=</span><span class="attribute-value">"rows"</span><span class="markup">&gt;</span><span class="text">2000</span><span class="markup">&lt;/</span><span class="end-tag">default</span><span class="markup">&gt;</span></div><div class="indent"><span class="markup">&lt;</span><span class="start-tag">hard</span> <span class="attribute-name">unit</span><span class="markup">=</span><span class="attribute-value">"rows"</span><span class="markup">&gt;</span><span class="text">20000000</span><span class="markup">&lt;/</span><span class="end-tag">hard</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">outputLimit</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">uploadLimit</span><span class="markup">&gt;</span><div class="indent"><span class="markup">&lt;</span><span class="start-tag">hard</span> <span class="attribute-name">unit</span><span class="markup">=</span><span class="attribute-value">"bytes"</span><span class="markup">&gt;</span><span class="text">20000000</span><span class="markup">&lt;/</span><span class="end-tag">hard</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">uploadLimit</span><span class="markup">&gt;</span></div><span class="markup">&lt;/</span><span class="end-tag">capability</span><span class="markup">&gt;</span></div></div>    
+
+</div> <!-- section appB -->
+
+</div> <!-- appendices -->
+
+<div class="section-nonum"><h2><a id="changes" shape="rect"/><span class="secnum"/>Changes from Previous Versions</h2>
+
+<div class="section"><h2><a id="changes-20110127" shape="rect"/><span class="secnum"/>Changes from WD-20110127</h2>
+
+<ul><li>userDefinedFunction was generalized to feature within languageFeatures.</li><li>The uploadmethods StandardKeyEnumeration was replaced by a
+resource record for TAPRegExt as a whole.  This now includes keys of output
+formats and features as well; therefore, upload method names in their new
+IVORNs are prefixed with upload-</li><li>Schema version was bumped to 1.0 (yes, we indulge in unversioned
+schema changes before this becomes REC).</li><li>uploadLimit interpretation was changed: The default limit is now
+"advisory" and to be interpreted as such by clients, the hard limit
+is what is actually required by the server.</li><li>There's now an optional ivo-id attribute on the version element
+within language.</li><li>There's now an optional ivo-id attribute on output formats.</li></ul>
+</div> <!-- changes from WD-20110127 -->
+
+<div class="section"><h2><a id="changes-20110727" shape="rect"/><span class="secnum"/>Changes from WD-20110727</h2>
+
+<ul><li>The namespace in the schema is now <code>http://www.ivoa.net/xml/TAPRegExt/v1.0</code> consistent with what has already been stated in the text.</li><li>The IVORN for ADQL is now <code>ivo://ivoa.net/std/ADQL#v2.0</code>; it is defined here to be in ADQL's record since we do not want to wait for the ADQL standard to be fixed, but ADQL versioning should really not be done here, so a TAPRegExt IVORN is out of the question.</li><li>The IVORN of the TAPRegExt standard is now <code>ivo://ivoa.net/std/TAPRegExt</code> to conform with other standard IVORNs.  Unfortunately, this changes
+all other IVORNs dependent on this.</li><li>We now allow AnyURI on the ivo-id of language to allow fragment identifiers as, e.g., in ADQL.</li></ul>
+</div> <!-- changes vs. 20110727 -->
+
+</div> <!-- changes -->
+
+
+<div class="section-nonum"><h2><a id="references" shape="rect"/><span class="secnum"/>References</h2>
+
+<ul class="references"><li id="ref_ADQL">[ADQL], Pedro Osuna and Inaki Ortiz (eds), 2008: <a href="http://www.ivoa.net/Documents/latest/ADQL.html" shape="rect">IVOA Astronomical Data Query Language</a>, Version 2.0, IVOA Recommendation</li><li id="ref_OT">[ObsCore] Doug Tody, Alberto Micol, Daniel Durand, and Mireille Louys (eds.), 2011: <a href="http://www.ivoa.net/Documents/ObsCore/index.html" shape="rect">Observation Data Model Core Components and its Implementation in the Table Access Protocol</a>, Version 1.0, IVOA Recommendation</li><li id="ref_REGWG">[REGWG] Various: <a href="http://www.ivoa.net/cgi-bin/twiki/bin/view/IVOA/IvoaResReg" shape="rect">Registry Working Group home page</a>.</li><li id="ref_RFC2045">[RFC2045], N. Freed and N. Borenstein, 1996: <a href="http://www.ietf.org/rfc/rfc2045.txt" shape="rect">Multipurpose Internet Mail Extensions (MIME) Part One: Format of Internet Message Bodies</a>, IETF RFC 2045</li><li id="ref_RI">[RI] Kevin Benson, Ray Plante,  Elizabeth Auden, Matthew Graham, Gretchen Greene, Marin Hill, Tony Linde, Dave Morris, Wil O'Mullane, Guy Rixon, Kona Andrews, 2008: <a href="http://www.ivoa.net/Documents/RegistryInterface/20091104/" shape="rect">IVOA Registry Interfaces</a>, Version 1.0, IVOA Recommendation</li><li id="ref_SCHEMA"><a href="http://www.ivoa.net/xml/index.html" shape="rect">[SCHEMA] IVOA Schema Collection</a></li><li id="ref_SRE">[SRE] Paul Harrison (ed), et al, 2010: <a href="http://www.ivoa.net/Documents/StandardsRegExt" shape="rect">StandardsRegExt: a VOResource Schema Extension for Describing IVOA Standards</a>, Version 1.0, IVOA Recommendation</li><li id="ref_TAP">[TAP] Patrick Dowler, Guy Rixon, Doug Tody, 2010: <a href="http://www.ivoa.net/Documents/TAP/20100327/REC-TAP-1.0.html" shape="rect">Table Access Protocol</a>, Version 1.0, IVOA Recommendation</li><li id="ref_UWS">[UWS] Paul Harrison and Guy Rixon, 2010: <a href="http://www.ivoa.net/Documents/UWS" shape="rect">Universal Worker Service Pattern</a>, Version 1.0, IVOA Recommendation</li><li id="ref_VOR">[VOR] Raymond Plante, Kevin Benson, Matthew Graham, Gretchen Greene, Paul Harrison, Gerard Lemson, Tony Linde, Guy Rixon, Aurelien Stebe, 2008: <a href="http://www.ivoa.net/Documents/REC/ReR/VOResource-20080222.html" shape="rect">VOResource: an XML Encoding Schema for Resource Metadata</a>, Version 1.03, IVOA Recommendation</li><li id="ref_VOSI">[VOSI] Matthew Graham, Ray Plante, Guy Rixon (eds), 2011: <a href="http://www.ivoa.net/Documents/VOSI" shape="rect">IVOA Support Interfaces</a> Version 1.0, IVOA Recommendation</li><li id="ref_XSD">[XSD] David C. Fallside, and Pricscilla Walmsley, 2004: <a href="http://www.w3.org/TR/xmlschema-0/" shape="rect">XML Schema Part 0: Primer Second Edition, W3C Recommendation</a></li></ul>
+
+</div> <!-- references -->
+
+</div><!-- class="body" --></body></html><!-- vi: enc=utf-8:sw=2:et:sta
+-->

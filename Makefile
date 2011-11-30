@@ -75,7 +75,9 @@ package: $(STDNAME)-fmt.html $(STDNAME).pdf
 	mkdir $(versionedName)
 	cp $(STDNAME)-fmt.html $(versionedName)/$(versionedName).html
 	cp $(STDNAME).pdf $(versionedName)/$(versionedName).pdf
-	cp ivoadoc/*.css *.png $(SCHEMA_FILE) $(PACKAGE_EXTRAS) $(versionedName)
+	mkdir $(versionedName)/ivoadoc
+	cp ivoadoc/*.css $(versionedName)/ivoadoc
+	cp *.png $(SCHEMA_FILE) $(PACKAGE_EXTRAS) $(versionedName)
 	zip -r $(versionedName).zip $(versionedName)
 	rm -rf -- $(versionedName)
 
@@ -96,8 +98,10 @@ sample.xml: dumprecord.py
 	# in DaCHS' config.
 	python $< > $@.tmp
 	java -cp `gavo config xsdclasspath` xsdval -n -v -s -f $@.tmp
-	# some cosmetics on the namespace and schema location
+	# some cosmetics on the namespace and schema location, plus remove the
+	# old, invalid upload method URIs
 	sed -e 's/xmlns\|standardID\|xsi:type/~  &/g;s/xsi:schemaLocation="[^"]*"//' $@.tmp \
+		| grep -v "ivo://ivoa.org/tap/uploadmethods" \
 		| tr '~' '\n  ' > $@
 #	rm $@.tmp
 	
