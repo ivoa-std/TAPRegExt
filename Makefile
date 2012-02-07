@@ -33,9 +33,9 @@ STDNAME=TAPRegExt
 # The current version
 DOCVERSION=1.0
 # YYYY-MM-DD of the current release
-DOCDATE=2011-10-27
+DOCDATE=2012-02-08
 # One of NOTE, WD, PR, REC
-PUBSTATUS=WD
+PUBSTATUS=PR
 # Extra files that need to end up in the final package
 # (pngs are included automatically)
 PACKAGE_EXTRAS=TAPRegExt-v1.0.xsd tre-vor.xml
