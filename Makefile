@@ -90,7 +90,7 @@ clean:
 # Local stuff
 SCHEMA_FILE=TAPRegExt-v1.0.xsd 
 
-tapregext-fmt.html: sample.xml $(SCHEMA_FILE)
+TAPRegExt-fmt.html: sample.xml $(SCHEMA_FILE)
 
 sample.xml: dumprecord.py
 	# this rule probably only works of you have GAVO DaCHS installed,
