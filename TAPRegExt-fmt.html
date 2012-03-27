@@ -286,9 +286,9 @@ for such a data model is ObsCore (see <a href="#ref_OT" shape="rect">[ObsCore]</
   &lt;xs:simpleContent &gt;
     &lt;xs:extension base="xs:token" &gt;
       &lt;xs:attribute name="ivo-id" type="vr:IdentifierURI" use="required" /&gt;
-    &lt;/extension&gt;
-  &lt;/simpleContent&gt;
-&lt;/complexType&gt;
+    &lt;/xs:extension&gt;
+  &lt;/xs:simpleContent&gt;
+&lt;/xs:complexType&gt;
 </pre>
 </div></div>
     
@@ -365,8 +365,8 @@ ADQL 2.0, is <tt>ivo://ivoa.net/std/ADQL#v2.0</tt>.</p>
                 type="tr:LanguageFeatureList"
                 minOccurs="0"
                 maxOccurs="unbounded" /&gt;
-  &lt;/sequence&gt;
-&lt;/complexType&gt;
+  &lt;/xs:sequence&gt;
+&lt;/xs:complexType&gt;
 </pre>
 </div></div>
     
@@ -480,9 +480,9 @@ ADQL 2.0, is <tt>ivo://ivoa.net/std/ADQL#v2.0</tt>.</p>
   &lt;xs:simpleContent &gt;
     &lt;xs:extension base="xs:token" &gt;
       &lt;xs:attribute name="ivo-id" type="xs:anyURI" /&gt;
-    &lt;/extension&gt;
-  &lt;/simpleContent&gt;
-&lt;/complexType&gt;
+    &lt;/xs:extension&gt;
+  &lt;/xs:simpleContent&gt;
+&lt;/xs:complexType&gt;
 </pre>
 </div></div>
     
@@ -603,9 +603,9 @@ arg ::= &lt;regular_identifier&gt; &lt;type_name&gt;
   &lt;xs:sequence &gt;
     &lt;xs:element name="feature" type="tr:LanguageFeature" minOccurs="0"
                 maxOccurs="unbounded" /&gt;
-  &lt;/sequence&gt;
+  &lt;/xs:sequence&gt;
   &lt;xs:attribute name="type" type="xs:anyURI" use="required" /&gt;
-&lt;/complexType&gt;
+&lt;/xs:complexType&gt;
 </pre>
 </div></div>
     
@@ -701,8 +701,8 @@ arg ::= &lt;regular_identifier&gt; &lt;type_name&gt;
   &lt;xs:sequence &gt;
     &lt;xs:element name="form" type="xs:token" /&gt;
     &lt;xs:element name="description" type="xs:string" minOccurs="0" /&gt;
-  &lt;/sequence&gt;
-&lt;/complexType&gt;
+  &lt;/xs:sequence&gt;
+&lt;/xs:complexType&gt;
 </pre>
 </div></div>
     
@@ -799,9 +799,9 @@ VOTables which are not interoperably distinguishable by their MIME types so far:
     &lt;xs:element name="mime" type="xs:token" /&gt;
     &lt;xs:element name="alias" type="xs:token" minOccurs="0"
                 maxOccurs="unbounded" /&gt;
-  &lt;/sequence&gt;
+  &lt;/xs:sequence&gt;
   &lt;xs:attribute name="ivo-id" type="xs:anyURI" /&gt;
-&lt;/complexType&gt;
+&lt;/xs:complexType&gt;
 </pre>
 </div></div>
     
@@ -951,7 +951,7 @@ would say:</p>
 
 <pre xml:space="preserve">
   &lt;uploadMethod ivo-id="ivo://ivoa.net/std/TAPRegExt#upload-http"/&gt;
-  &lt;uploadMethod ivo-id="ivo://ivoa.net/std/TAPRegExt#upload-inline"/&gt;
+  &lt;uploadMethod ivo-id="ivo://ivoa.net/std/TAPRegExt#upload-ftp"/&gt;
 </pre>
 
 <?schemadef href="../TAPRegExt-v1.0.xsd" defn="UploadMethod"?>
@@ -965,9 +965,9 @@ would say:</p>
   &lt;xs:complexContent &gt;
     &lt;xs:restriction base="xs:anyType" &gt;
       &lt;xs:attribute name="ivo-id" type="xs:anyURI" /&gt;
-    &lt;/restriction&gt;
-  &lt;/complexContent&gt;
-&lt;/complexType&gt;
+    &lt;/xs:restriction&gt;
+  &lt;/xs:complexContent&gt;
+&lt;/xs:complexType&gt;
 </pre>
 </div></div>
     
@@ -1062,8 +1062,8 @@ no limits are enforced.</p>
   &lt;xs:sequence &gt;
     &lt;xs:element name="default" type="xs:integer" minOccurs="0" maxOccurs="1" /&gt;
     &lt;xs:element name="hard" type="xs:integer" minOccurs="0" maxOccurs="1" /&gt;
-  &lt;/sequence&gt;
-&lt;/complexType&gt;
+  &lt;/xs:sequence&gt;
+&lt;/xs:complexType&gt;
 </pre>
 </div></div>
     
@@ -1157,8 +1157,8 @@ and <code class="xstype">tr:DataLimit</code> types:</p>
   &lt;xs:sequence &gt;
     &lt;xs:element name="default" type="tr:DataLimit" minOccurs="0" maxOccurs="1" /&gt;
     &lt;xs:element name="hard" type="tr:DataLimit" minOccurs="0" maxOccurs="1" /&gt;
-  &lt;/sequence&gt;
-&lt;/complexType&gt;
+  &lt;/xs:sequence&gt;
+&lt;/xs:complexType&gt;
 </pre>
 </div></div>
     
@@ -1233,12 +1233,12 @@ and <code class="xstype">tr:DataLimit</code> types:</p>
           &lt;xs:restriction base="xs:token" &gt;
             &lt;xs:enumeration value="bytes" /&gt;
             &lt;xs:enumeration value="rows" /&gt;
-          &lt;/restriction&gt;
-        &lt;/simpleType&gt;
-      &lt;/attribute&gt;
-    &lt;/extension&gt;
-  &lt;/simpleContent&gt;
-&lt;/complexType&gt;
+          &lt;/xs:restriction&gt;
+        &lt;/xs:simpleType&gt;
+      &lt;/xs:attribute&gt;
+    &lt;/xs:extension&gt;
+  &lt;/xs:simpleContent&gt;
+&lt;/xs:complexType&gt;
 </pre>
 </div></div>
     
@@ -1329,10 +1329,10 @@ type specification, like this:</p>
                     maxOccurs="1" /&gt;
         &lt;xs:element name="uploadLimit" type="tr:DataLimits" minOccurs="0"
                     maxOccurs="1" /&gt;
-      &lt;/sequence&gt;
-    &lt;/extension&gt;
-  &lt;/complexContent&gt;
-&lt;/complexType&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:extension&gt;
+  &lt;/xs:complexContent&gt;
+&lt;/xs:complexType&gt;
 </pre>
 </div></div>
     
@@ -1698,6 +1698,10 @@ within a VOResource record:</p>
 <?incxml href="../sample.xml"?><div xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema" class="viewxml"><div class="element"><span class="markup">&lt;</span><span class="start-tag">capability</span> <span class="attribute-name">standardID</span><span class="markup">=</span><span class="attribute-value">"ivo://ivoa.net/std/TAP"</span> <span class="attribute-name">xsi:type</span><span class="markup">=</span><span class="attribute-value">"tr:TableAccess"</span> <span class="attribute-name">xmlns:xml</span><span class="markup">=</span><span class="attribute-value">"http://www.w3.org/XML/1998/namespace"</span> <span class="attribute-name">xmlns:tr</span><span class="markup">=</span><span class="attribute-value">"http://www.ivoa.net/xml/TAPRegExt/v1.0"</span> <span class="attribute-name">xmlns:vr</span><span class="markup">=</span><span class="attribute-value">"http://www.ivoa.net/xml/VOResource/v1.0"</span> <span class="attribute-name">xmlns:vs</span><span class="markup">=</span><span class="attribute-value">"http://www.ivoa.net/xml/VODataService/v1.1"</span> <span class="attribute-name">xmlns:xsi</span><span class="markup">=</span><span class="attribute-value">"http://www.w3.org/2001/XMLSchema-instance"</span><span class="markup">&gt;</span><div class="indent"><div class="element"><span class="markup">&lt;</span><span class="start-tag">interface</span> <span class="attribute-name">role</span><span class="markup">=</span><span class="attribute-value">"std"</span> <span class="attribute-name">xsi:type</span><span class="markup">=</span><span class="attribute-value">"vs:ParamHTTP"</span><span class="markup">&gt;</span><div class="indent"><div><span class="markup">&lt;</span><span class="start-tag">accessURL</span> <span class="attribute-name">use</span><span class="markup">=</span><span class="attribute-value">"base"</span><span class="markup">&gt;</span><span class="text">http://localhost:8080/__system__/tap/run/tap</span><span class="markup">&lt;/</span><span class="end-tag">accessURL</span><span class="markup">&gt;</span></div></div><span class="markup">&lt;/</span><span class="end-tag">interface</span><span class="markup">&gt;</span></div><div><span class="markup">&lt;</span><span class="start-tag">dataModel</span> <span class="attribute-name">ivo-id</span><span class="markup">=</span><span class="attribute-value">"ivo://ivoa.net/std/ObsCore-1.0"</span><span class="markup">&gt;</span><span class="text">ObsCore 1.0</span><span class="markup">&lt;/</span><span class="end-tag">dataModel</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">language</span><span class="markup">&gt;</span><div class="indent"><div><span class="markup">&lt;</span><span class="start-tag">name</span><span class="markup">&gt;</span><span class="text">ADQL</span><span class="markup">&lt;/</span><span class="end-tag">name</span><span class="markup">&gt;</span></div><div><span class="markup">&lt;</span><span class="start-tag">version</span> <span class="attribute-name">ivo-id</span><span class="markup">=</span><span class="attribute-value">"ivo://ivoa.net/std/ADQL#v2.0"</span><span class="markup">&gt;</span><span class="text">2.0</span><span class="markup">&lt;/</span><span class="end-tag">version</span><span class="markup">&gt;</span></div><div><span class="markup">&lt;</span><span class="start-tag">description</span><span class="markup">&gt;</span><span class="text">ADQL 2.0</span><span class="markup">&lt;/</span><span class="end-tag">description</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">languageFeatures</span> <span class="attribute-name">type</span><span class="markup">=</span><span class="attribute-value">"ivo://ivoa.net/std/TAPRegExt#features-udf"</span><span class="markup">&gt;</span><div class="indent"><div class="element"><span class="markup">&lt;</span><span class="start-tag">feature</span><span class="markup">&gt;</span><div class="indent"><div><span class="markup">&lt;</span><span class="start-tag">form</span><span class="markup">&gt;</span><span class="text">gavo_match(pattern TEXT, string TEXT) -&gt; INTEGER</span><span class="markup">&lt;/</span><span class="end-tag">form</span><span class="markup">&gt;</span></div><div><span class="markup">&lt;</span><span class="start-tag">description</span><span class="markup">&gt;</span><span class="text">gavo_match returns 1 if the POSIX regular expression pattern
 matches anything in string, 0 otherwise.</span><span class="markup">&lt;/</span><span class="end-tag">description</span><span class="markup">&gt;</span></div></div><span class="markup">&lt;/</span><span class="end-tag">feature</span><span class="markup">&gt;</span></div></div><span class="markup">&lt;/</span><span class="end-tag">languageFeatures</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">languageFeatures</span> <span class="attribute-name">type</span><span class="markup">=</span><span class="attribute-value">"ivo://ivoa.net/std/TAPRegExt#features-adqlgeo"</span><span class="markup">&gt;</span><div class="indent"><div class="element"><span class="markup">&lt;</span><span class="start-tag">feature</span><span class="markup">&gt;</span><div class="indent"><div><span class="markup">&lt;</span><span class="start-tag">form</span><span class="markup">&gt;</span><span class="text">BOX</span><span class="markup">&lt;/</span><span class="end-tag">form</span><span class="markup">&gt;</span></div></div><span class="markup">&lt;/</span><span class="end-tag">feature</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">feature</span><span class="markup">&gt;</span><div class="indent"><div><span class="markup">&lt;</span><span class="start-tag">form</span><span class="markup">&gt;</span><span class="text">POINT</span><span class="markup">&lt;/</span><span class="end-tag">form</span><span class="markup">&gt;</span></div></div><span class="markup">&lt;/</span><span class="end-tag">feature</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">feature</span><span class="markup">&gt;</span><div class="indent"><div><span class="markup">&lt;</span><span class="start-tag">form</span><span class="markup">&gt;</span><span class="text">CIRCLE</span><span class="markup">&lt;/</span><span class="end-tag">form</span><span class="markup">&gt;</span></div></div><span class="markup">&lt;/</span><span class="end-tag">feature</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">feature</span><span class="markup">&gt;</span><div class="indent"><div><span class="markup">&lt;</span><span class="start-tag">form</span><span class="markup">&gt;</span><span class="text">POLYGON</span><span class="markup">&lt;/</span><span class="end-tag">form</span><span class="markup">&gt;</span></div></div><span class="markup">&lt;/</span><span class="end-tag">feature</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">feature</span><span class="markup">&gt;</span><div class="indent"><div><span class="markup">&lt;</span><span class="start-tag">form</span><span class="markup">&gt;</span><span class="text">REGION</span><span class="markup">&lt;/</span><span class="end-tag">form</span><span class="markup">&gt;</span></div></div><span class="markup">&lt;/</span><span class="end-tag">feature</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">feature</span><span class="markup">&gt;</span><div class="indent"><div><span class="markup">&lt;</span><span class="start-tag">form</span><span class="markup">&gt;</span><span class="text">CENTROID</span><span class="markup">&lt;/</span><span class="end-tag">form</span><span class="markup">&gt;</span></div></div><span class="markup">&lt;/</span><span class="end-tag">feature</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">feature</span><span class="markup">&gt;</span><div class="indent"><div><span class="markup">&lt;</span><span class="start-tag">form</span><span class="markup">&gt;</span><span class="text">COORD1</span><span class="markup">&lt;/</span><span class="end-tag">form</span><span class="markup">&gt;</span></div></div><span class="markup">&lt;/</span><span class="end-tag">feature</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">feature</span><span class="markup">&gt;</span><div class="indent"><div><span class="markup">&lt;</span><span class="start-tag">form</span><span class="markup">&gt;</span><span class="text">COORD2</span><span class="markup">&lt;/</span><span class="end-tag">form</span><span class="markup">&gt;</span></div></div><span class="markup">&lt;/</span><span class="end-tag">feature</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">feature</span><span class="markup">&gt;</span><div class="indent"><div><span class="markup">&lt;</span><span class="start-tag">form</span><span class="markup">&gt;</span><span class="text">DISTANCE</span><span class="markup">&lt;/</span><span class="end-tag">form</span><span class="markup">&gt;</span></div></div><span class="markup">&lt;/</span><span class="end-tag">feature</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">feature</span><span class="markup">&gt;</span><div class="indent"><div><span class="markup">&lt;</span><span class="start-tag">form</span><span class="markup">&gt;</span><span class="text">CONTAINS</span><span class="markup">&lt;/</span><span class="end-tag">form</span><span class="markup">&gt;</span></div></div><span class="markup">&lt;/</span><span class="end-tag">feature</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">feature</span><span class="markup">&gt;</span><div class="indent"><div><span class="markup">&lt;</span><span class="start-tag">form</span><span class="markup">&gt;</span><span class="text">INTERSECTS</span><span class="markup">&lt;/</span><span class="end-tag">form</span><span class="markup">&gt;</span></div></div><span class="markup">&lt;/</span><span class="end-tag">feature</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">feature</span><span class="markup">&gt;</span><div class="indent"><div><span class="markup">&lt;</span><span class="start-tag">form</span><span class="markup">&gt;</span><span class="text">AREA</span><span class="markup">&lt;/</span><span class="end-tag">form</span><span class="markup">&gt;</span></div></div><span class="markup">&lt;/</span><span class="end-tag">feature</span><span class="markup">&gt;</span></div></div><span class="markup">&lt;/</span><span class="end-tag">languageFeatures</span><span class="markup">&gt;</span></div></div><span class="markup">&lt;/</span><span class="end-tag">language</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">outputFormat</span> <span class="attribute-name">ivo-id</span><span class="markup">=</span><span class="attribute-value">"ivo://ivoa.net/std/TAPRegExt#output-votable-binary"</span><span class="markup">&gt;</span><div class="indent"><div><span class="markup">&lt;</span><span class="start-tag">mime</span><span class="markup">&gt;</span><span class="text">text/xml</span><span class="markup">&lt;/</span><span class="end-tag">mime</span><span class="markup">&gt;</span></div></div><span class="markup">&lt;/</span><span class="end-tag">outputFormat</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">outputFormat</span> <span class="attribute-name">ivo-id</span><span class="markup">=</span><span class="attribute-value">"ivo://ivoa.net/std/TAPRegEXT#output-votable-td"</span><span class="markup">&gt;</span><div class="indent"><div><span class="markup">&lt;</span><span class="start-tag">mime</span><span class="markup">&gt;</span><span class="text">application/x-votable+xml;encoding=tabledata</span><span class="markup">&lt;/</span><span class="end-tag">mime</span><span class="markup">&gt;</span></div><div><span class="markup">&lt;</span><span class="start-tag">alias</span><span class="markup">&gt;</span><span class="text">votable/td</span><span class="markup">&lt;/</span><span class="end-tag">alias</span><span class="markup">&gt;</span></div></div><span class="markup">&lt;/</span><span class="end-tag">outputFormat</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">outputFormat</span><span class="markup">&gt;</span><div class="indent"><div><span class="markup">&lt;</span><span class="start-tag">mime</span><span class="markup">&gt;</span><span class="text">text/html</span><span class="markup">&lt;/</span><span class="end-tag">mime</span><span class="markup">&gt;</span></div><div><span class="markup">&lt;</span><span class="start-tag">alias</span><span class="markup">&gt;</span><span class="text">html</span><span class="markup">&lt;/</span><span class="end-tag">alias</span><span class="markup">&gt;</span></div></div><span class="markup">&lt;/</span><span class="end-tag">outputFormat</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">outputFormat</span><span class="markup">&gt;</span><div class="indent"><div><span class="markup">&lt;</span><span class="start-tag">mime</span><span class="markup">&gt;</span><span class="text">application/fits</span><span class="markup">&lt;/</span><span class="end-tag">mime</span><span class="markup">&gt;</span></div><div><span class="markup">&lt;</span><span class="start-tag">alias</span><span class="markup">&gt;</span><span class="text">fits</span><span class="markup">&lt;/</span><span class="end-tag">alias</span><span class="markup">&gt;</span></div></div><span class="markup">&lt;/</span><span class="end-tag">outputFormat</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">outputFormat</span><span class="markup">&gt;</span><div class="indent"><div><span class="markup">&lt;</span><span class="start-tag">mime</span><span class="markup">&gt;</span><span class="text">text/csv</span><span class="markup">&lt;/</span><span class="end-tag">mime</span><span class="markup">&gt;</span></div></div><span class="markup">&lt;/</span><span class="end-tag">outputFormat</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">outputFormat</span><span class="markup">&gt;</span><div class="indent"><div><span class="markup">&lt;</span><span class="start-tag">mime</span><span class="markup">&gt;</span><span class="text">text/csv;header=present</span><span class="markup">&lt;/</span><span class="end-tag">mime</span><span class="markup">&gt;</span></div><div><span class="markup">&lt;</span><span class="start-tag">alias</span><span class="markup">&gt;</span><span class="text">csv</span><span class="markup">&lt;/</span><span class="end-tag">alias</span><span class="markup">&gt;</span></div></div><span class="markup">&lt;/</span><span class="end-tag">outputFormat</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">outputFormat</span><span class="markup">&gt;</span><div class="indent"><div><span class="markup">&lt;</span><span class="start-tag">mime</span><span class="markup">&gt;</span><span class="text">text/tab-separated-values</span><span class="markup">&lt;/</span><span class="end-tag">mime</span><span class="markup">&gt;</span></div><div><span class="markup">&lt;</span><span class="start-tag">alias</span><span class="markup">&gt;</span><span class="text">tsv</span><span class="markup">&lt;/</span><span class="end-tag">alias</span><span class="markup">&gt;</span></div></div><span class="markup">&lt;/</span><span class="end-tag">outputFormat</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">outputFormat</span> <span class="attribute-name">ivo-id</span><span class="markup">=</span><span class="attribute-value">"ivo://ivoa.net/std/TAPRegExt#output-votable-binary"</span><span class="markup">&gt;</span><div class="indent"><div><span class="markup">&lt;</span><span class="start-tag">mime</span><span class="markup">&gt;</span><span class="text">application/x-votable+xml</span><span class="markup">&lt;/</span><span class="end-tag">mime</span><span class="markup">&gt;</span></div><div><span class="markup">&lt;</span><span class="start-tag">alias</span><span class="markup">&gt;</span><span class="text">votable</span><span class="markup">&lt;/</span><span class="end-tag">alias</span><span class="markup">&gt;</span></div></div><span class="markup">&lt;/</span><span class="end-tag">outputFormat</span><span class="markup">&gt;</span></div><div><span class="markup">&lt;</span><span class="start-tag">uploadMethod</span> <span class="attribute-name">ivo-id</span><span class="markup">=</span><span class="attribute-value">"ivo://ivoa.net/std/TAPRegExt#upload-https"</span><span class="markup">/&gt;</span></div><div><span class="markup">&lt;</span><span class="start-tag">uploadMethod</span> <span class="attribute-name">ivo-id</span><span class="markup">=</span><span class="attribute-value">"ivo://ivoa.net/std/TAPRegExt#upload-ftp"</span><span class="markup">/&gt;</span></div><div><span class="markup">&lt;</span><span class="start-tag">uploadMethod</span> <span class="attribute-name">ivo-id</span><span class="markup">=</span><span class="attribute-value">"ivo://ivoa.net/std/TAPRegExt#upload-inline"</span><span class="markup">/&gt;</span></div><div><span class="markup">&lt;</span><span class="start-tag">uploadMethod</span> <span class="attribute-name">ivo-id</span><span class="markup">=</span><span class="attribute-value">"ivo://ivoa.net/std/TAPRegExt#upload-http"</span><span class="markup">/&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">retentionPeriod</span><span class="markup">&gt;</span><div class="indent"><div><span class="markup">&lt;</span><span class="start-tag">default</span><span class="markup">&gt;</span><span class="text">172800</span><span class="markup">&lt;/</span><span class="end-tag">default</span><span class="markup">&gt;</span></div></div><span class="markup">&lt;/</span><span class="end-tag">retentionPeriod</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">executionDuration</span><span class="markup">&gt;</span><div class="indent"><div><span class="markup">&lt;</span><span class="start-tag">default</span><span class="markup">&gt;</span><span class="text">3600</span><span class="markup">&lt;/</span><span class="end-tag">default</span><span class="markup">&gt;</span></div></div><span class="markup">&lt;/</span><span class="end-tag">executionDuration</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">outputLimit</span><span class="markup">&gt;</span><div class="indent"><div><span class="markup">&lt;</span><span class="start-tag">default</span> <span class="attribute-name">unit</span><span class="markup">=</span><span class="attribute-value">"rows"</span><span class="markup">&gt;</span><span class="text">2000</span><span class="markup">&lt;/</span><span class="end-tag">default</span><span class="markup">&gt;</span></div><div><span class="markup">&lt;</span><span class="start-tag">hard</span> <span class="attribute-name">unit</span><span class="markup">=</span><span class="attribute-value">"rows"</span><span class="markup">&gt;</span><span class="text">20000000</span><span class="markup">&lt;/</span><span class="end-tag">hard</span><span class="markup">&gt;</span></div></div><span class="markup">&lt;/</span><span class="end-tag">outputLimit</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">uploadLimit</span><span class="markup">&gt;</span><div class="indent"><div><span class="markup">&lt;</span><span class="start-tag">hard</span> <span class="attribute-name">unit</span><span class="markup">=</span><span class="attribute-value">"bytes"</span><span class="markup">&gt;</span><span class="text">20000000</span><span class="markup">&lt;/</span><span class="end-tag">hard</span><span class="markup">&gt;</span></div></div><span class="markup">&lt;/</span><span class="end-tag">uploadLimit</span><span class="markup">&gt;</span></div></div><span class="markup">&lt;/</span><span class="end-tag">capability</span><span class="markup">&gt;</span></div></div>    
 
+<p>Note that the encoding parameter in the MIME type given for the output format
+<pre xml:space="preserve">ivo://ivoa.net/std/TAPRegEXT#output-votable-td</pre> in the example is not
+endorsed by IVOA.  Within the example, it represents a local convention.</p>
+
 </div> <!-- section appB -->
 
 </div> <!-- appendices -->
@@ -1727,7 +1731,7 @@ all other IVORNs dependent on this.</li><li>We now allow AnyURI on the ivo-id of
 
 <div class="section-nonum"><h2><a id="references" shape="rect"/><span class="secnum"/>References</h2>
 
-<ul class="references"><li id="ref_ADQL">[ADQL], Pedro Osuna and Inaki Ortiz (eds), 2008: <a href="http://www.ivoa.net/Documents/latest/ADQL.html" shape="rect">IVOA Astronomical Data Query Language</a>, Version 2.0, IVOA Recommendation</li><li id="ref_OT">[ObsCore] Doug Tody, Alberto Micol, Daniel Durand, and Mireille Louys (eds.), 2011: <a href="http://www.ivoa.net/Documents/ObsCore/index.html" shape="rect">Observation Data Model Core Components and its Implementation in the Table Access Protocol</a>, Version 1.0, IVOA Recommendation</li><li id="ref_REGWG">[REGWG] Various: <a href="http://www.ivoa.net/cgi-bin/twiki/bin/view/IVOA/IvoaResReg" shape="rect">Registry Working Group home page</a>.</li><li id="ref_RFC2045">[RFC2045], N. Freed and N. Borenstein, 1996: <a href="http://www.ietf.org/rfc/rfc2045.txt" shape="rect">Multipurpose Internet Mail Extensions (MIME) Part One: Format of Internet Message Bodies</a>, IETF RFC 2045</li><li id="ref_RI">[RI] Kevin Benson, Ray Plante,  Elizabeth Auden, Matthew Graham, Gretchen Greene, Marin Hill, Tony Linde, Dave Morris, Wil O'Mullane, Guy Rixon, Kona Andrews, 2008: <a href="http://www.ivoa.net/Documents/RegistryInterface/20091104/" shape="rect">IVOA Registry Interfaces</a>, Version 1.0, IVOA Recommendation</li><li id="ref_SCHEMA"><a href="http://www.ivoa.net/xml/index.html" shape="rect">[SCHEMA] IVOA Schema Collection</a></li><li id="ref_SRE">[SRE] Paul Harrison (ed), et al, 2010: <a href="http://www.ivoa.net/Documents/StandardsRegExt" shape="rect">StandardsRegExt: a VOResource Schema Extension for Describing IVOA Standards</a>, Version 1.0, IVOA Recommendation</li><li id="ref_TAP">[TAP] Patrick Dowler, Guy Rixon, Doug Tody, 2010: <a href="http://www.ivoa.net/Documents/TAP/20100327/REC-TAP-1.0.html" shape="rect">Table Access Protocol</a>, Version 1.0, IVOA Recommendation</li><li id="ref_UWS">[UWS] Paul Harrison and Guy Rixon, 2010: <a href="http://www.ivoa.net/Documents/UWS" shape="rect">Universal Worker Service Pattern</a>, Version 1.0, IVOA Recommendation</li><li id="ref_VOR">[VOR] Raymond Plante, Kevin Benson, Matthew Graham, Gretchen Greene, Paul Harrison, Gerard Lemson, Tony Linde, Guy Rixon, Aurelien Stebe, 2008: <a href="http://www.ivoa.net/Documents/REC/ReR/VOResource-20080222.html" shape="rect">VOResource: an XML Encoding Schema for Resource Metadata</a>, Version 1.03, IVOA Recommendation</li><li id="ref_VOSI">[VOSI] Matthew Graham, Ray Plante, Guy Rixon (eds), 2011: <a href="http://www.ivoa.net/Documents/VOSI" shape="rect">IVOA Support Interfaces</a> Version 1.0, IVOA Recommendation</li><li id="ref_XSD">[XSD] David C. Fallside, and Pricscilla Walmsley, 2004: <a href="http://www.w3.org/TR/xmlschema-0/" shape="rect">XML Schema Part 0: Primer Second Edition, W3C Recommendation</a></li></ul>
+<ul class="references"><li id="ref_ADQL">[ADQL], Pedro Osuna and Inaki Ortiz (eds), 2008: <a href="http://www.ivoa.net/Documents/latest/ADQL.html" shape="rect">IVOA Astronomical Data Query Language</a>, Version 2.0, IVOA Recommendation</li><li id="ref_OT">[ObsCore] Doug Tody, Alberto Micol, Daniel Durand, and Mireille Louys (eds.), 2011: <a href="http://www.ivoa.net/Documents/ObsCore/index.html" shape="rect">Observation Data Model Core Components and its Implementation in the Table Access Protocol</a>, Version 1.0, IVOA Recommendation</li><li id="ref_REGWG">[REGWG] Various: <a href="http://www.ivoa.net/cgi-bin/twiki/bin/view/IVOA/IvoaResReg" shape="rect">Registry Working Group home page</a>.</li><li id="ref_RFC2045">[RFC2045], N. Freed and N. Borenstein, 1996: <a href="http://www.ietf.org/rfc/rfc2045.txt" shape="rect">Multipurpose Internet Mail Extensions (MIME) Part One: Format of Internet Message Bodies</a>, IETF RFC 2045</li><li id="ref_RI">[RI] Kevin Benson, Ray Plante,  Elizabeth Auden, Matthew Graham, Gretchen Greene, Marin Hill, Tony Linde, Dave Morris, Wil O'Mullane, Guy Rixon, Kona Andrews, 2008: <a href="http://www.ivoa.net/Documents/RegistryInterface/20091104/" shape="rect">IVOA Registry Interfaces</a>, Version 1.0, IVOA Recommendation</li><li id="ref_SCHEMA"><a href="http://www.ivoa.net/xml/index.html" shape="rect">[SCHEMA] IVOA Schema Collection</a></li><li id="ref_SRE">[SRE] Paul Harrison (ed), et al, 2010: <a href="http://www.ivoa.net/Documents/StandardsRegExt" shape="rect">StandardsRegExt: a VOResource Schema Extension for Describing IVOA Standards</a>, Version 1.0, IVOA Recommendation</li><li id="ref_TAP">[TAP] Patrick Dowler, Guy Rixon, Doug Tody, 2010: <a href="http://www.ivoa.net/Documents/TAP/20100327/REC-TAP-1.0.html" shape="rect">Table Access Protocol</a>, Version 1.0, IVOA Recommendation</li><li id="ref_UWS">[UWS] Paul Harrison and Guy Rixon, 2010: <a href="http://www.ivoa.net/Documents/UWS" shape="rect">Universal Worker Service Pattern</a>, Version 1.0, IVOA Recommendation</li><li id="ref_VOR">[VOR] Raymond Plante, Kevin Benson, Matthew Graham, Gretchen Greene, Paul Harrison, Gerard Lemson, Tony Linde, Guy Rixon, Aurelien Stebe, 2008: <a href="http://www.ivoa.net/Documents/REC/ReR/VOResource-20080222.html" shape="rect">VOResource: an XML Encoding Schema for Resource Metadata</a>, Version 1.03, IVOA Recommendation</li><li id="ref_VOSI">[VOSI] Matthew Graham, Ray Plante, Guy Rixon (eds), 2011: <a href="http://www.ivoa.net/Documents/VOSI" shape="rect">IVOA Support Interfaces</a> Version 1.0, IVOA Recommendation</li><li id="ref_XSD">[XSD] David C. Fallside, and Priscilla Walmsley, 2004: <a href="http://www.w3.org/TR/xmlschema-0/" shape="rect">XML Schema Part 0: Primer Second Edition, W3C Recommendation</a></li></ul>
 
 </div> <!-- references -->
 

@@ -440,7 +440,7 @@ would say:</p>
 
 <pre xml:space="preserve">
   &lt;uploadMethod ivo-id="ivo://ivoa.net/std/TAPRegExt#upload-http"/&gt;
-  &lt;uploadMethod ivo-id="ivo://ivoa.net/std/TAPRegExt#upload-inline"/&gt;
+  &lt;uploadMethod ivo-id="ivo://ivoa.net/std/TAPRegExt#upload-ftp"/&gt;
 </pre>
 
 <?schemadef href="../TAPRegExt-v1.0.xsd" defn="UploadMethod"?>
@@ -558,6 +558,10 @@ within a VOResource record:</p>
 
 <?incxml href="../sample.xml"?>    
 
+<p>Note that the encoding parameter in the MIME type given for the output format
+<pre>ivo://ivoa.net/std/TAPRegEXT#output-votable-td</pre> in the example is not
+endorsed by IVOA.  Within the example, it represents a local convention.</p>
+
 </div> <!-- section appB -->
 
 </div> <!-- appendices -->
@@ -604,7 +608,7 @@ all other IVORNs dependent on this.</li>
 <li id="ref_UWS">[UWS] Paul Harrison and Guy Rixon, 2010: <a href="http://www.ivoa.net/Documents/UWS" shape="rect">Universal Worker Service Pattern</a>, Version 1.0, IVOA Recommendation</li>
 <li id="ref_VOR">[VOR] Raymond Plante, Kevin Benson, Matthew Graham, Gretchen Greene, Paul Harrison, Gerard Lemson, Tony Linde, Guy Rixon, Aurelien Stebe, 2008: <a href="http://www.ivoa.net/Documents/REC/ReR/VOResource-20080222.html" shape="rect">VOResource: an XML Encoding Schema for Resource Metadata</a>, Version 1.03, IVOA Recommendation</li>
 <li id="ref_VOSI">[VOSI] Matthew Graham, Ray Plante, Guy Rixon (eds), 2011: <a href="http://www.ivoa.net/Documents/VOSI" shape="rect">IVOA Support Interfaces</a> Version 1.0, IVOA Recommendation</li>
-<li id="ref_XSD">[XSD] David C. Fallside, and Pricscilla Walmsley, 2004: <a href="http://www.w3.org/TR/xmlschema-0/">XML Schema Part 0: Primer Second Edition, W3C Recommendation</a></li>
+<li id="ref_XSD">[XSD] David C. Fallside, and Priscilla Walmsley, 2004: <a href="http://www.w3.org/TR/xmlschema-0/">XML Schema Part 0: Primer Second Edition, W3C Recommendation</a></li>
 </ul>
 
 </div> <!-- references -->
