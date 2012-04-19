@@ -159,12 +159,13 @@ Astronomical Virtual Observatory (BMBF Bewilligungsnummer 05A08VHA).</p>
 <h2>Syntax Notation Using XML Schema</h2>
 
 <p>This document defines the TAPRegExt schema using XML Schema
-(see <a href="#ref_XSD" shape="rect">[XSD]</a>).  The
-full Schema document is listed in <a href="#appA" shape="rect">Appendix A</a>.
+<a href="#ref_XSD" shape="rect">[XSD]</a>.  The
+full schema document is listed in <a href="#appA" shape="rect">Appendix A</a>.
 Parts of the schema appear within the main sections of this document;
 however, documentation nodes have been left out for the sake of brevity.</p>
 
 <p>References to specific elements and types defined in the VOResource
+<a href="#ref_VOR" shape="rect">[VOR]</a>
 schema include the namespace prefix, <code>vr</code>, as in
 <code class="xstype">vr:Resource</code> (a type defined in the VOResource schema).
 References to specific elements and types defined in the TAPRegExt
@@ -185,13 +186,13 @@ IVOA registries.</p>
 
 <div class="section"><h2><a id="introduction" shape="rect"/><span class="secnum">1. </span>Introduction</h2>
 
-<p>The Table Access Protocol TAP (see <a href="#ref_TAP" shape="rect">[TAP]</a>) allows
+<p>The Table Access Protocol TAP <a href="#ref_TAP" shape="rect">[TAP]</a> allows
 VO clients to send queries to remote database servers and receive the
 results in standard formats.  In addition, it defines means to discover
 database schemata on the remote side, to upload data from the local disk
 or third-party hosts, and more.  TAP builds upon a variety of other
-standards, premier among which is the Universal Worker Service (see 
-<a href="#ref_UWS" shape="rect">[UWS]</a>), which describes how client and server
+standards, premier among which is the Universal Worker Service 
+<a href="#ref_UWS" shape="rect">[UWS]</a>, which describes how client and server
 can negotiate the execution of a query and the retrieval of results
 without having to maintain a continuous connection.</p>
 
@@ -199,7 +200,7 @@ without having to maintain a continuous connection.</p>
 offers implementors many choices on optional features, resource limits, or
 locally defined functionality.  One purpose of TAPRegExt is to allow the
 service to communicate such choices to remote clients using the mechanisms
-laid down in the VO Service Interfaces standard (see <a href="#ref_VOSI" shape="rect">[VOSI]</a>).</p>
+laid down in the VO Service Interfaces standard <a href="#ref_VOSI" shape="rect">[VOSI]</a>.</p>
 
 <p>Clients also need to discover TAP services offering certain kinds of data.
 Central to this is the concept of a registry in which resources can be
@@ -229,10 +230,10 @@ ways:</p>
 <dl>
 <dt>VOResource, v1.03 <a href="#ref_VOR" shape="rect">[VOR]</a></dt>
 <dd>Descriptions of services that support TAP are encoded
-using the VOResource XML Schema. TAPRegExt is an extension 
+using the VOResource XML schema. TAPRegExt is an extension 
 of the VOResource core schema.</dd>
 <dt>TAP, v1.0 <a href="#ref_TAP" shape="rect">[TAP]</a></dt>
-<dd>The TAP standard describes some of the concepts the declaration
+<dd>The TAP standard describes some of the concepts, the declaration
 of which is the scope of TAPRegExt; the standard indirectly
 refers to this document in the specification of its capabilities endpoint.</dd>
 <dt>UWS, v1.0 <a href="#ref_UWS" shape="rect">[UWS]</a></dt>
@@ -263,32 +264,30 @@ can declare that fact within TAPRegExt instance documents.</dd></dl>
 
 <div class="section"><h3><a id="nsloc" shape="rect"/><span class="secnum">2.1. </span>The Schema Namespace and Location</h3>
 
-<p>The namespace associated with TAPRegExt VOResource extensions will be
+<p>The namespace associated with TAPRegExt VOResource extensions is
 <code>http://www.ivoa.net/xml/TAPRegExt/v1.0</code>.  
 Just like the namespace URI for the VOResource schema, the
 TAPRegExt namespace URI can be interpreted as a URL.  Resolving it
-will return the XML Schema document (given in <a href="#appA" shape="rect">Appendix A</a>)
+returns the XML schema document (given in <a href="#appA" shape="rect">Appendix A</a>)
 that defines the TAPRegExt schema.</p>
 
 <p>Authors of VOResource instance documents may choose to
-provide a location for the VOResource XML Schema document and its
+provide a location for the VOResource XML schema document and its
 extensions using the
-<a href="http://www.w3.org/TR/xmlschema-0/#schemaLocation" shape="rect"><code>xsi:schemaLocation</code></a> attribute.  While the author is
-free to choose any schema location, this specification
+<a href="http://www.w3.org/TR/xmlschema-0/#schemaLocation" shape="rect"><code>xsi:schemaLocation</code></a> attribute.  
+While generators are
+free to provide any schema location (e.g., a local mirror), this specification
 recommends using the TAPRegExt namespace URI as its location URL
 (as illustrated in the example above), as in,</p>
 
 <blockquote><pre xml:space="preserve">xsi:schemaLocation="http://www.ivoa.net/xml/TAPRegExt/v1.0
                     http://www.ivoa.net/xml/TAPRegExt/v1.0"</pre></blockquote>
 
-  <div class="admonition">
-  <p>The IVOA Registry Interface standard <a href="#ref_RI" shape="rect">[RI]</a>
-       actually <em>requires</em> that the VOResource records it
-       shares with other registries provide location URLs via
-       <code>xsi:schemaLocation</code> for the VOResource schema and
-       all legal extension schemas that are used in the records.  This
-       rule applies to the TAPRegExt schema.</p>
-  </div>
+<p>Note that you must give the <code>xsi:schemaLocation</code> of
+the TAPRegExt schema when the capability defined here is part of a published
+registry resource record as per the IVOA Registry Interface standard <a
+href="#ref_RI" shape="rect">[RI]</a>.  This does not apply to the use
+in a TAP server's capabilities endpoint.</p>
 
 </div> <!-- subsection nsloc -->
 
@@ -299,8 +298,8 @@ tables exposed by a TAP service.  This allows a query built exclusively
 on a data model or a set of data models to work on all TAP services exposing
 tables instantiating the data model(s).</p>
 
-<p>In TAPRegExt, a data model is identified by its IVORN.  The first example
-for such a data model is ObsCore (see <a href="#ref_OT" shape="rect">[ObsCore]</a>).</p>
+<p>In TAPRegExt, a data model is identified by its IVORN <a href="#ref_IVORN">[IVORN]</a>.  The first example
+for such a data model is ObsCore <a href="#ref_OT" shape="rect">[ObsCore]</a>.</p>
 
 <?schemadef href="../TAPRegExt-v1.0.xsd" defn="DataModelType"?>
 
@@ -394,7 +393,7 @@ arg ::= &lt;regular_identifier&gt; &lt;type_name&gt;
 <p>A TAP service may offer a variety of output formats.
 What output formats are available is defined using
 <code>outputFormat</code> elements.   They 
-declare a MIME type (see <a href="#ref_RFC2045" shape="rect">[RFC2045]</a>) as well
+declare a MIME type <a href="#ref_RFC2045" shape="rect">[RFC2045]</a> as well
 as aliases (the shorthand forms the server also accepts in the 
 FORMAT parameter).  If desired, the format can be further described with an
 IVORN in the ivo-id attribute; TAPRegExt provides keys for some variants of
@@ -537,6 +536,11 @@ type specification, like this:</p>
     ...
 </pre>
 
+<p>By restriction from VOResource's <code>vr:Capability</code>, the 
+<code>standardID</code> attribute of <code>tr:TableAccess</code>-typed 
+capabilities is fixed to <code>ivo://ivoa.net/std/TAP</code> in this version.
+This string can be used to locate TAP services in the registry.</p>
+
 
 <?schemadef href="../TAPRegExt-v1.0.xsd" defn="TableAccess"?>
 
@@ -598,6 +602,7 @@ all other IVORNs dependent on this.</li>
 
 <ul class="references">
 <li id="ref_ADQL">[ADQL], Pedro Osuna and Inaki Ortiz (eds), 2008: <a href="http://www.ivoa.net/Documents/latest/ADQL.html" shape="rect">IVOA Astronomical Data Query Language</a>, Version 2.0, IVOA Recommendation</li>
+<li id="ref_IVORN">[IVORN], Raymond Plante (ed), 2007: <a href="http://www.ivoa.net/Documents/REC/Identifiers/Identifiers-20070302.html">IVOA Identifiers</a>, Version 1.12, IVOA Recommendation</li>
 <li id="ref_OT">[ObsCore] Doug Tody, Alberto Micol, Daniel Durand, and Mireille Louys (eds.), 2011: <a href="http://www.ivoa.net/Documents/ObsCore/index.html">Observation Data Model Core Components and its Implementation in the Table Access Protocol</a>, Version 1.0, IVOA Recommendation</li>
 <li id="ref_REGWG">[REGWG] Various: <a href="http://www.ivoa.net/cgi-bin/twiki/bin/view/IVOA/IvoaResReg" shape="rect">Registry Working Group home page</a>.</li>
 <li id="ref_RFC2045">[RFC2045], N. Freed and N. Borenstein, 1996: <a href="http://www.ietf.org/rfc/rfc2045.txt" shape="rect">Multipurpose Internet Mail Extensions (MIME) Part One: Format of Internet Message Bodies</a>, IETF RFC 2045</li>
