@@ -322,6 +322,17 @@ the registry record with the language element through the latter's ivo-id
 attribute.  The IVORN for the only language mandatory for TAP services,
 ADQL 2.0, is <tt>ivo://ivoa.net/std/ADQL#v2.0</tt>.</p>
 
+<p>The type of the <code>ivo-id</code> attribute on version is 
+<code>xs:anyURI</code> as opposed to <code>vr:IdentifierURI</code> since
+the latter does not allow frament identifiers.  This is fine when referring
+to complete standards (as for the <code>dataModel</code> above), but will
+not work when the entities referred to are members of, say,
+StandardsRegExt enumerations.  Hence, we allow any URI here in the
+schema.  The description constrains the value to be an IVORN, though.
+The same reasoning applies to the
+<code>ivo-id</code> attributes of <code>outputFormat</code> and
+<code>uploadMethod</code>.</p>
+
 <?schemadef href="../TAPRegExt-v1.0.xsd" defn="Language"?>
 <?schemadef href="../TAPRegExt-v1.0.xsd" defn="Version"?>
 
