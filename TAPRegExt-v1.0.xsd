@@ -503,8 +503,8 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           </xs:annotation>
           <xs:simpleType>
             <xs:restriction base="xs:token">
-              <xs:enumeration value="bytes"/>
-              <xs:enumeration value="rows"/>
+              <xs:enumeration value="byte"/>
+              <xs:enumeration value="row"/>
             </xs:restriction>
           </xs:simpleType>
         </xs:attribute>

@@ -506,12 +506,12 @@ no limits are enforced.</p>
 
 <p>Limits on data are expressed much like time limits in that they give
 <code>default</code> and a <code>hard</code> value as well.  
-Both those values have a unit attribute that can either be <code>bytes</code>
-or <code>rows</code> for data limits.</p>
+Both those values have a unit attribute that can either be <code>byte</code>
+or <code>row</code> for data limits.</p>
 
 <p>This document defines two resource limits on data:</p>
 
-<ul><li><code>outputLimit</code> -- if <code>unit</code> is <code>rows</code> here,
+<ul><li><code>outputLimit</code> -- if <code>unit</code> is <code>row</code> here,
 the <code>default</code> gives the
 value of TAP's <code>MAXREC</code> parameter the service will use when none
 is specified.</li><li><code>uploadLimit</code> -- the maximum size of uploads.  This 
@@ -605,6 +605,12 @@ all other IVORNs dependent on this.</li>
   <li>We now allow AnyURI on the ivo-id of language to allow fragment identifiers as, e.g., in ADQL.</li>
 </ul>
 </div> <!-- changes vs. 20110727 -->
+
+<div class="section"><h2><a id="changes-20120208" shape="rect"/><span class="secnum"/>Changes from PR-20120812</h2>
+
+<ul>
+  <li>Fixed units in limits to "row" and "byte".</li>
+</ul>
 
 </div> <!-- changes -->
 
