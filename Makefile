@@ -33,7 +33,7 @@ STDNAME=TAPRegExt
 # The current version
 DOCVERSION=1.0
 # YYYYMMDD of the current release
-DOCDATE=20120208
+DOCDATE=20120508
 # One of NOTE, WD, PR, REC
 PUBSTATUS=PR
 # Extra files that need to end up in the final package

@@ -233,8 +233,8 @@ ways:</p>
 using the VOResource XML schema. TAPRegExt is an extension 
 of the VOResource core schema.</dd>
 <dt>TAP, v1.0 <a href="#ref_TAP" shape="rect">[TAP]</a></dt>
-<dd>The TAP standard describes some of the concepts, the declaration
-of which is the scope of TAPRegExt; the standard indirectly
+<dd>The TAP standard defines some of the concepts that TAPRegExt
+deals with. The TAP standard document indirectly
 refers to this document in the specification of its capabilities endpoint.</dd>
 <dt>UWS, v1.0 <a href="#ref_UWS" shape="rect">[UWS]</a></dt>
 <dd>The UWS standard describes additional parameters the choices 
@@ -247,7 +247,7 @@ in StandardsRegExt to define controlled vocabularies.</dd>
 <p>This standard also relates to other IVOA standards:</p>
 <dl>
 <dt>IVOA Support Interfaces, v1.0 <a href="#ref_VOSI" shape="rect">[VOSI]</a></dt><dd>VOSI describes the standard interfaces to discover metadata about
-services; this document describes the response TAP services should
+services; this document defines the response TAP services should
 provide on the <code>capabilities</code> endpoint described by VOSI.</dd>
 <dt>IVOA defined data models</dt>
 <dd>Data models specified by the IVOA can define the structure of
@@ -327,11 +327,10 @@ ADQL 2.0, is <tt>ivo://ivoa.net/std/ADQL#v2.0</tt>.</p>
 the latter does not allow frament identifiers.  This is fine when referring
 to complete standards (as for the <code>dataModel</code> above), but will
 not work when the entities referred to are members of, say,
-StandardsRegExt enumerations.  Hence, we allow any URI here in the
-schema.  The description constrains the value to be an IVORN, though.
-The same reasoning applies to the
-<code>ivo-id</code> attributes of <code>outputFormat</code> and
-<code>uploadMethod</code>.</p>
+StandardsRegExt enumerations.  Hence, we allow any URI in the
+schema for this attribute.  The description constrains the value to be an
+IVORN, though.  The same reasoning applies to the <code>ivo-id</code>
+attributes of <code>outputFormat</code> and <code>uploadMethod</code>.</p>
 
 <?schemadef href="../TAPRegExt-v1.0.xsd" defn="Language"?>
 <?schemadef href="../TAPRegExt-v1.0.xsd" defn="Version"?>
@@ -427,10 +426,10 @@ of the details of such protocols is far beyond the scope of a registry
 document and probably would not benefit clients anyway, the upload
 methods are given as IVORNs.</p>
 
-<p>Keys for the standard upload methods are provided within the
+<p>IVORNs for the standard upload methods are provided within the
 resource record
 <code>ivo://ivoa.net/std/TAPRegExt</code>.  
-The keys are built by using the keys as fragment identifiers within the 
+The IVORNs are built by using the keys as fragment identifiers within the 
 TAPRegExt IVORN.</p>
 
 <p>It is permitted to register upload methods under authorities other than
@@ -611,6 +610,7 @@ all other IVORNs dependent on this.</li>
 <ul>
   <li>Fixed units in limits to "row" and "byte".</li>
 </ul>
+</div> <!-- changes vs. PR-20110812 -->
 
 </div> <!-- changes -->
 

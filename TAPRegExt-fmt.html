@@ -166,7 +166,7 @@ IVOA registries.</p>
 
 
 <h2>Contents</h2>
-<?toc?><div id="toc" class="toc"><ul><li><a href="#introduction"><span class="secnum">1. </span>Introduction</a><ul><li><a href="#architecture"><span class="secnum">1.1. </span>TAPRegExt within the VO Architecture</a></li></ul></li><li><a href="#taextension"><span class="secnum">2. </span>The Extension</a><ul><li><a href="#nsloc"><span class="secnum">2.1. </span>The Schema Namespace and Location</a></li><li><a href="#dms"><span class="secnum">2.2. </span>Declaring Instantiated Data Models</a></li><li><a href="#langs"><span class="secnum">2.3. </span>Languages Supported</a></li><li><a href="#outforms"><span class="secnum">2.4. </span>Output Formats</a></li><li><a href="#uploadmethods"><span class="secnum">2.5. </span>Upload Methods</a></li><li><a href="#reslimits"><span class="secnum">2.6. </span>Resource Limits</a></li><li><a href="#caprec"><span class="secnum">2.7. </span>The Capability Record</a></li></ul></li><li><a href="#appA"><span class="secnum">A. </span>The Full Schema</a></li><li><a href="#appB"><span class="secnum">B. </span>Example Document</a></li><li><a href="#changes"><span class="secnum"/>Changes from Previous Versions</a><ul><li><a href="#changes-20110127"><span class="secnum"/>Changes from WD-20110127</a></li><li><a href="#changes-20110727"><span class="secnum"/>Changes from WD-20110727</a></li></ul></li><li><a href="#references"><span class="secnum"/>References</a></li></ul></div>
+<?toc?><div id="toc" class="toc"><ul><li><a href="#introduction"><span class="secnum">1. </span>Introduction</a><ul><li><a href="#architecture"><span class="secnum">1.1. </span>TAPRegExt within the VO Architecture</a></li></ul></li><li><a href="#taextension"><span class="secnum">2. </span>The Extension</a><ul><li><a href="#nsloc"><span class="secnum">2.1. </span>The Schema Namespace and Location</a></li><li><a href="#dms"><span class="secnum">2.2. </span>Declaring Instantiated Data Models</a></li><li><a href="#langs"><span class="secnum">2.3. </span>Languages Supported</a></li><li><a href="#outforms"><span class="secnum">2.4. </span>Output Formats</a></li><li><a href="#uploadmethods"><span class="secnum">2.5. </span>Upload Methods</a></li><li><a href="#reslimits"><span class="secnum">2.6. </span>Resource Limits</a></li><li><a href="#caprec"><span class="secnum">2.7. </span>The Capability Record</a></li></ul></li><li><a href="#appA"><span class="secnum">A. </span>The Full Schema</a></li><li><a href="#appB"><span class="secnum">B. </span>Example Document</a></li><li><a href="#changes"><span class="secnum"/>Changes from Previous Versions</a><ul><li><a href="#changes-20110127"><span class="secnum"/>Changes from WD-20110127</a></li><li><a href="#changes-20110727"><span class="secnum"/>Changes from WD-20110727</a></li><li><a href="#changes-20120208"><span class="secnum"/>Changes from PR-20120812</a></li></ul></li><li><a href="#references"><span class="secnum"/>References</a></li></ul></div>
 
 </div><!-- class="head" --><div class="body">
 
@@ -215,15 +215,15 @@ ways:</p>
 
 <dl><dt>VOResource, v1.03 <a href="#ref_VOR" shape="rect">[VOR]</a></dt><dd>Descriptions of services that support TAP are encoded
 using the VOResource XML schema. TAPRegExt is an extension 
-of the VOResource core schema.</dd><dt>TAP, v1.0 <a href="#ref_TAP" shape="rect">[TAP]</a></dt><dd>The TAP standard describes some of the concepts, the declaration
-of which is the scope of TAPRegExt; the standard indirectly
+of the VOResource core schema.</dd><dt>TAP, v1.0 <a href="#ref_TAP" shape="rect">[TAP]</a></dt><dd>The TAP standard defines some of the concepts that TAPRegExt
+deals with. The TAP standard document indirectly
 refers to this document in the specification of its capabilities endpoint.</dd><dt>UWS, v1.0 <a href="#ref_UWS" shape="rect">[UWS]</a></dt><dd>The UWS standard describes additional parameters the choices 
 of which are communicated using TAPRegExt.</dd><dt>StandardsRegExt <a href="#ref_SRE" shape="rect">[SRE]</a></dt><dd>TAPRegExt uses the StandardKeyEnumeration mechanism introduced
 in StandardsRegExt to define controlled vocabularies.</dd></dl>
 
 <p>This standard also relates to other IVOA standards:</p>
 <dl><dt>IVOA Support Interfaces, v1.0 <a href="#ref_VOSI" shape="rect">[VOSI]</a></dt><dd>VOSI describes the standard interfaces to discover metadata about
-services; this document describes the response TAP services should
+services; this document defines the response TAP services should
 provide on the <code>capabilities</code> endpoint described by VOSI.</dd><dt>IVOA defined data models</dt><dd>Data models specified by the IVOA can define the structure of
 database tables holding instances of those data models.
 The first example of such a definition is given by
@@ -352,11 +352,10 @@ ADQL 2.0, is <tt>ivo://ivoa.net/std/ADQL#v2.0</tt>.</p>
 the latter does not allow frament identifiers.  This is fine when referring
 to complete standards (as for the <code>dataModel</code> above), but will
 not work when the entities referred to are members of, say,
-StandardsRegExt enumerations.  Hence, we allow any URI here in the
-schema.  The description constrains the value to be an IVORN, though.
-The same reasoning applies to the
-<code>ivo-id</code> attributes of <code>outputFormat</code> and
-<code>uploadMethod</code>.</p>
+StandardsRegExt enumerations.  Hence, we allow any URI in the
+schema for this attribute.  The description constrains the value to be an
+IVORN, though.  The same reasoning applies to the <code>ivo-id</code>
+attributes of <code>outputFormat</code> and <code>uploadMethod</code>.</p>
 
 <?schemadef href="../TAPRegExt-v1.0.xsd" defn="Language"?>
    <definition xmlns:vm="http://www.ivoa.net/xml/VOMetadata/v0.1" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.w3.org/2001/XMLSchema" name="Language">
@@ -938,10 +937,10 @@ of the details of such protocols is far beyond the scope of a registry
 document and probably would not benefit clients anyway, the upload
 methods are given as IVORNs.</p>
 
-<p>Keys for the standard upload methods are provided within the
+<p>IVORNs for the standard upload methods are provided within the
 resource record
 <code>ivo://ivoa.net/std/TAPRegExt</code>.  
-The keys are built by using the keys as fragment identifiers within the 
+The IVORNs are built by using the keys as fragment identifiers within the 
 TAPRegExt IVORN.</p>
 
 <p>It is permitted to register upload methods under authorities other than
@@ -1138,12 +1137,12 @@ no limits are enforced.</p>
 
 <p>Limits on data are expressed much like time limits in that they give
 <code>default</code> and a <code>hard</code> value as well.  
-Both those values have a unit attribute that can either be <code>bytes</code>
-or <code>rows</code> for data limits.</p>
+Both those values have a unit attribute that can either be <code>byte</code>
+or <code>row</code> for data limits.</p>
 
 <p>This document defines two resource limits on data:</p>
 
-<ul><li><code>outputLimit</code> -- if <code>unit</code> is <code>rows</code> here,
+<ul><li><code>outputLimit</code> -- if <code>unit</code> is <code>row</code> here,
 the <code>default</code> gives the
 value of TAP's <code>MAXREC</code> parameter the service will use when none
 is specified.</li><li><code>uploadLimit</code> -- the maximum size of uploads.  This 
@@ -1241,8 +1240,8 @@ and <code class="xstype">tr:DataLimit</code> types:</p>
       &lt;xs:attribute name="unit" use="required" &gt;
         &lt;xs:simpleType &gt;
           &lt;xs:restriction base="xs:token" &gt;
-            &lt;xs:enumeration value="bytes" /&gt;
-            &lt;xs:enumeration value="rows" /&gt;
+            &lt;xs:enumeration value="byte" /&gt;
+            &lt;xs:enumeration value="row" /&gt;
           &lt;/xs:restriction&gt;
         &lt;/xs:simpleType&gt;
       &lt;/xs:attribute&gt;
@@ -1281,7 +1280,7 @@ and <code class="xstype">tr:DataLimit</code> types:</p>
               <td valign="top">required</td>
           </tr>
           <tr bgcolor="#f5f5f5"><td nowrap="nowrap" valign="top"><em>Allowed Values:</em></td>
-              <td valign="top"><code>bytes</code>, <code>rows</code></td> 
+              <td valign="top"><code>byte</code>, <code>row</code></td> 
           </tr>
       </tbody></table>
   </td></tr>
@@ -1700,7 +1699,7 @@ This string can be used to locate TAP services in the registry.</p>
       A limit on some data size, either in rows or in bytes.
       </span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div></div><span class="markup">&lt;/</span><span class="end-tag">xs:annotation</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:simpleContent</span><span class="markup">&gt;</span><div class="indent"><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:extension</span> <span class="attribute-name">base</span><span class="markup">=</span><span class="attribute-value">"xs:integer"</span><span class="markup">&gt;</span><div class="indent"><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:attribute</span> <span class="attribute-name">name</span><span class="markup">=</span><span class="attribute-value">"unit"</span> <span class="attribute-name">use</span><span class="markup">=</span><span class="attribute-value">"required"</span><span class="markup">&gt;</span><div class="indent"><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:annotation</span><span class="markup">&gt;</span><div class="indent"><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:documentation</span><span class="markup">&gt;</span><span class="text">
             The unit of the limit specified.
-            </span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div></div><span class="markup">&lt;/</span><span class="end-tag">xs:annotation</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:simpleType</span><span class="markup">&gt;</span><div class="indent"><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:restriction</span> <span class="attribute-name">base</span><span class="markup">=</span><span class="attribute-value">"xs:token"</span><span class="markup">&gt;</span><div class="indent"><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:enumeration</span> <span class="attribute-name">value</span><span class="markup">=</span><span class="attribute-value">"bytes"</span><span class="markup">/&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:enumeration</span> <span class="attribute-name">value</span><span class="markup">=</span><span class="attribute-value">"rows"</span><span class="markup">/&gt;</span></div></div><span class="markup">&lt;/</span><span class="end-tag">xs:restriction</span><span class="markup">&gt;</span></div></div><span class="markup">&lt;/</span><span class="end-tag">xs:simpleType</span><span class="markup">&gt;</span></div></div><span class="markup">&lt;/</span><span class="end-tag">xs:attribute</span><span class="markup">&gt;</span></div></div><span class="markup">&lt;/</span><span class="end-tag">xs:extension</span><span class="markup">&gt;</span></div></div><span class="markup">&lt;/</span><span class="end-tag">xs:simpleContent</span><span class="markup">&gt;</span></div></div><span class="markup">&lt;/</span><span class="end-tag">xs:complexType</span><span class="markup">&gt;</span></div></div><span class="markup">&lt;/</span><span class="end-tag">xs:schema</span><span class="markup">&gt;</span></div></h:div>
+            </span><span class="markup">&lt;/</span><span class="end-tag">xs:documentation</span><span class="markup">&gt;</span></div></div><span class="markup">&lt;/</span><span class="end-tag">xs:annotation</span><span class="markup">&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:simpleType</span><span class="markup">&gt;</span><div class="indent"><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:restriction</span> <span class="attribute-name">base</span><span class="markup">=</span><span class="attribute-value">"xs:token"</span><span class="markup">&gt;</span><div class="indent"><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:enumeration</span> <span class="attribute-name">value</span><span class="markup">=</span><span class="attribute-value">"byte"</span><span class="markup">/&gt;</span></div><div class="element"><span class="markup">&lt;</span><span class="start-tag">xs:enumeration</span> <span class="attribute-name">value</span><span class="markup">=</span><span class="attribute-value">"row"</span><span class="markup">/&gt;</span></div></div><span class="markup">&lt;/</span><span class="end-tag">xs:restriction</span><span class="markup">&gt;</span></div></div><span class="markup">&lt;/</span><span class="end-tag">xs:simpleType</span><span class="markup">&gt;</span></div></div><span class="markup">&lt;/</span><span class="end-tag">xs:attribute</span><span class="markup">&gt;</span></div></div><span class="markup">&lt;/</span><span class="end-tag">xs:extension</span><span class="markup">&gt;</span></div></div><span class="markup">&lt;/</span><span class="end-tag">xs:simpleContent</span><span class="markup">&gt;</span></div></div><span class="markup">&lt;/</span><span class="end-tag">xs:complexType</span><span class="markup">&gt;</span></div></div><span class="markup">&lt;/</span><span class="end-tag">xs:schema</span><span class="markup">&gt;</span></div></h:div>
 
 </div>  <!-- section appA -->
 
@@ -1740,6 +1739,11 @@ within language.</li><li>There's now an optional ivo-id attribute on output form
 <ul><li>The namespace in the schema is now <code>http://www.ivoa.net/xml/TAPRegExt/v1.0</code> consistent with what has already been stated in the text.</li><li>The IVORN for ADQL is now <code>ivo://ivoa.net/std/ADQL#v2.0</code>; it is defined here to be in ADQL's record since we do not want to wait for the ADQL standard to be fixed, but ADQL versioning should really not be done here, so a TAPRegExt IVORN is out of the question.</li><li>The IVORN of the TAPRegExt standard is now <code>ivo://ivoa.net/std/TAPRegExt</code> to conform with other standard IVORNs.  Unfortunately, this changes
 all other IVORNs dependent on this.</li><li>We now allow AnyURI on the ivo-id of language to allow fragment identifiers as, e.g., in ADQL.</li></ul>
 </div> <!-- changes vs. 20110727 -->
+
+<div class="section"><h2><a id="changes-20120208" shape="rect"><span class="secnum"/>Changes from PR-20120812</a></h2>
+
+<ul><li>Fixed units in limits to "row" and "byte".</li></ul>
+</div> <!-- changes vs. PR-20110812 -->
 
 </div> <!-- changes -->
 
