@@ -42,8 +42,30 @@ PACKAGE_EXTRAS=TAPRegExt-v1.0.xsd tre-vor.xml
 
 
 # You probably want to configure your system so the following works
-SAXON=saxonb-xslt
-FOP=FOP_HYPHENATION_PATH=./fop-hyph.jar fop
+# Basically, RESOLVERJAR must eventally point to a jar of apache
+# xml commons resolver, and SAXONJAR to a jar containing saxon-b
+#
+# This stuff should work for Debian, except you'll need to download
+# fop-hyph.jar into ivoadoc,
+# see http://offo.sourceforge.net/hyphenation/fop-stable/installation.html
+#
+# For Debian Squeeze, you need to install the backported fop to make
+# this work.
+
+CATALOG=ivoadoc/xmlcatalog/catalog.xml
+JARROOT=/usr/share/java
+RESOLVERJAR=$(JARROOT)/xml-commons-resolver-1.1.jar
+SAXONJAR=$(JARROOT)/saxonb.jar
+SAXON=java -cp $(RESOLVERJAR):$(SAXONJAR) \
+	-Dxml.catalog.files=$(CATALOG) -Dxml.catalog.verbosity=1\
+	net.sf.saxon.Transform\
+	-novw -r org.apache.xml.resolver.tools.CatalogResolver\
+	-x org.apache.xml.resolver.tools.ResolvingXMLReader\
+	-y org.apache.xml.resolver.tools.ResolvingXMLReader
+
+# TODO: make fop use our custom catalog
+FOP=FOP_HYPHENATION_PATH=./fop-hyph.jar fop -catalog
+
 HTMLSTYLE=ivoadoc/ivoarestructure.xslt
 FOSTYLE=ivoadoc/ivoa-fo.xsl
 
