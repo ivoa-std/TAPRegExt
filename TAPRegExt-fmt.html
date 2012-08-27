@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><!-- this source is meant to be processed with Paul Harrison's
+<?xml version="1.0" encoding="UTF-8"?><!-- this source is meant to be processed with Paul Harrison's
 ivoadoc toolkit, see somewhere at http://code.google.com/p/volute/ -->
 <!DOCTYPE html
-  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><head profile="http://www.w3.org/1999/xhtml/vocab"><title>TAPRegExt IVOA Proposed Recommendation  8 May 2012</title><meta xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema" http-equiv="content-type" content="text/html; charset=utf-8"/><meta xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema" name="author" content="Markus Demleitner, gavo@ari.uni-heidelberg.de"/><meta xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema" name="maintainedBy" content="Markus Demleitner, gavo@ari.uni-heidelberg.de"/><link xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema" rel="stylesheet" type="text/css" href="http://www.ivoa.net/misc/ivoa_a.css"/><link xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema" rel="stylesheet" type="text/css" href="http://www.ivoa.net/misc/ivoa_wd.css"/><link xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema" rel="stylesheet" type="text/css" href="./ivoadoc/XMLPrint.css"/><link xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema" rel="stylesheet" type="text/css" href="./ivoadoc/ivoa-extras.css"/><style xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema" type="text/css" xml:space="preserve">
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head profile="http://www.w3.org/1999/xhtml/vocab"><title>TAPRegExt IVOA Recommendation  27 August 2012</title><meta xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema" http-equiv="content-type" content="text/html; charset=utf-8"/><meta xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema" name="author" content="Markus Demleitner, gavo@ari.uni-heidelberg.de"/><meta xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema" name="maintainedBy" content="Markus Demleitner, gavo@ari.uni-heidelberg.de"/><link xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema" rel="stylesheet" type="text/css" href="http://www.ivoa.net/misc/ivoa_a.css"/><link xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema" rel="stylesheet" type="text/css" href="http://www.ivoa.net/misc/ivoa_wd.css"/><link xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema" rel="stylesheet" type="text/css" href="./ivoadoc/XMLPrint.css"/><link xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema" rel="stylesheet" type="text/css" href="./ivoadoc/ivoa-extras.css"/><style xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema" type="text/css" xml:space="preserve">
 
 code { 
   font-weight: bold;
@@ -49,10 +49,10 @@ span.redax {
 
 </style></head><body><div class="head">
 <div id="titlehead" style="position:relative;height:170px;width: 500px">
-  <div id="logo" style="position:absolute;width:300px;height:169px;left: 50px;top: 0px;">
+  <div id="logo" style="position:absolute;width:300px;height:169px;left: 10px;top: 0px;">
     <img src="http://www.ivoa.net/pub/images/IVOA_wb_300.jpg" alt="IVOA logo"/>
   </div>
-  <div id="logo-title" style="position:absolute;width:200px;height:115px;left: 320px;top: 5px;">
+  <div id="logo-title" style="position:absolute;width:200px;height:115px;left: 300px;top: 5px;">
     <p>
       <b>
         <i>
@@ -66,7 +66,7 @@ span.redax {
     <p>
       <b>
         <i>
-          <span style="font-size: 14pt; color: #005A9C;">    V</span>
+          <span style="font-size: 14pt; color: #005A9C;padding-left:30px">V</span>
         </i>
       </b>
       <i>
@@ -76,7 +76,7 @@ span.redax {
     <p>
       <b>
         <i>
-          <span style="font-size: 14pt; color: #005A9C;">    O</span>
+          <span style="font-size: 14pt; color: #005A9C;padding-left:30px">O</span>
         </i>
       </b>
       <i>
@@ -98,11 +98,11 @@ span.redax {
 
 <h1>TAPRegExt: a VOResource Schema Extension for Describing TAP Services<br clear="none"/>
 Version 1.0</h1>
-<h2 class="subtitle">IVOA Proposed Recommendation  8 May 2012</h2>
+<h2 class="subtitle">IVOA Recommendation  27 August 2012</h2>
 
 <dl><dt>Working Groups:</dt><dd>
 		<a href="http://www.ivoa.net/cgi-bin/twiki/bin/view/IVOA/IvoaResReg" shape="rect">Registry WG</a>, 
-		<a href="http://www.ivoa.net/cgi-bin/twiki/bin/view/IVOA/IvoaDAL" shape="rect">DAL WG</a></dd><dt>This version:</dt><dd><a class="currentlink" href="http://www.ivoa.net/Documents/TAPRegExt-20120508">http://www.ivoa.net/Documents/TAPRegExt-20120508</a></dd><dt><b>Latest version:</b></dt><dd><a href="http://www.ivoa.net/Documents/TAPRegExt/" shape="rect">http://www.ivoa.net/Documents/TAPRegExt/</a></dd><dt>Previous versions:</dt><dd><a href="http://www.ivoa.net/Documents/TAPRegExt/20120208" shape="rect">http://www.ivoa.net/Documents/TAPRegExt/20110727</a></dd><dt>Authors:</dt><dd>
+		<a href="http://www.ivoa.net/cgi-bin/twiki/bin/view/IVOA/IvoaDAL" shape="rect">DAL WG</a></dd><dt>This version:</dt><dd><a class="currentlink" href="http://www.ivoa.net/Documents/TAPRegExt-20120827">http://www.ivoa.net/Documents/TAPRegExt-20120827</a></dd><dt><b>Latest version:</b></dt><dd><a href="http://www.ivoa.net/Documents/TAPRegExt/" shape="rect">http://www.ivoa.net/Documents/TAPRegExt/</a></dd><dt>Previous versions:</dt><dd><a href="http://www.ivoa.net/Documents/TAPRegExt/20120208" shape="rect">http://www.ivoa.net/Documents/TAPRegExt/20110727</a></dd><dt>Authors:</dt><dd>
       <a href="http://www.ivoa.net/cgi-bin/twiki/bin/view/IVOA/MarkusDemleitner" shape="rect">Markus Demleitner</a><br clear="none"/>
       <a href="http://www.ivoa.net/cgi-bin/twiki/bin/view/IVOA/PatrickDowler" shape="rect">Patrick Dowler</a><br clear="none"/>
       <a href="http://www.ivoa.net/cgi-bin/twiki/bin/view/IVOA/RayPlante" shape="rect">Ray Plante</a><br clear="none"/>
@@ -124,11 +124,15 @@ and certain limits enforced by the service.</p>
 <h2>Status of this Document</h2>
 
 <p id="statusdecl"><em>
-                    This is an IVOA Proposed Recommendation made available for
-                    public review. It is appropriate to reference this document
-                    only as a recommended standard that is under review and
-                    which may be changed before it is accepted as a full
-                    Recommendation.
+                    This document has been reviewed by IVOA Members and other
+                    interested parties, and has been endorsed by the IVOA
+                    Executive Committee as an IVOA Recommendation. It is a
+                    stable document and may be used as reference material or
+                    cited as a normative reference from another document.
+                    IVOA's role in making the Recommendation is to draw
+                    attention to the specification and to promote its
+                    widespread deployment. This enhances the functionality and
+                    interoperability inside the Astronomical Community.
                 </em></p>
 
 <p><em>A list of</em> <span style="background: transparent">
