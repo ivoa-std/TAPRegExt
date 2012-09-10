@@ -17,9 +17,34 @@
     <description>ADQL 2.0</description>
     <languageFeatures type="ivo://ivoa.net/std/TAPRegExt#features-udf">
       <feature>
+        <form>ivo_nocasematch(value TEXT, pattern TEXT) -&gt; INTEGER</form>
+        <description>ivo_nocasematch returns 1 if pattern matches value, 0 otherwise.
+pattern is defined as for the SQL LIKE operator, but the
+match is performed case-insensitively.  This function in effect
+provides a surrogate for the ILIKE SQL operator that is missing from
+ADQL.</description>
+      </feature>
+      <feature>
+        <form>ivo_hashlist_has(hashlist TEXT, item TEXT) -&gt; INTEGER</form>
+        <description>The function takes two strings; the first is a list of words not
+containing the hash sign (#), concatenated by hash signs, the second is
+a word not containing the hash sign.  It returns 1 if, compared
+case-insensitively, the second argument is in the list of words coded in
+the first argument.  The behaviour in case the the second
+argument contains a hash sign is unspecified.</description>
+      </feature>
+      <feature>
         <form>gavo_match(pattern TEXT, string TEXT) -&gt; INTEGER</form>
         <description>gavo_match returns 1 if the POSIX regular expression pattern
 matches anything in string, 0 otherwise.</description>
+      </feature>
+      <feature>
+        <form>ivo_hasword(haystack TEXT, needle TEXT) -&gt; INTEGER</form>
+        <description>gavo_hasword returns 1 if needle shows up in haystack, 0 otherwise.  This
+is for "google-like"-searches in text-like fields.  In word, you can
+actually employ a fairly complex query language; see
+http://www.postgresql.org/docs/8.3/static/textsearch.html
+for details.</description>
       </feature>
     </languageFeatures>
     <languageFeatures type="ivo://ivoa.net/std/TAPRegExt#features-adqlgeo">
@@ -91,6 +116,9 @@ matches anything in string, 0 otherwise.</description>
     <mime>application/x-votable+xml</mime>
     <alias>votable</alias>
   </outputFormat>
+  <outputFormat>
+    <mime>text/plain</mime>
+  </outputFormat>
   <uploadMethod ivo-id="ivo://ivoa.net/std/TAPRegExt#upload-https"/>
   <uploadMethod ivo-id="ivo://ivoa.net/std/TAPRegExt#upload-ftp"/>
   <uploadMethod ivo-id="ivo://ivoa.net/std/TAPRegExt#upload-inline"/>
@@ -102,10 +130,10 @@ matches anything in string, 0 otherwise.</description>
     <default>3600</default>
   </executionDuration>
   <outputLimit>
-    <default unit="rows">2000</default>
-    <hard unit="rows">20000000</hard>
+    <default unit="row">2000</default>
+    <hard unit="row">20000000</hard>
   </outputLimit>
   <uploadLimit>
-    <hard unit="bytes">20000000</hard>
+    <hard unit="byte">20000000</hard>
   </uploadLimit>
 </capability>
