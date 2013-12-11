@@ -10,7 +10,7 @@
   xsi:type="vs:ParamHTTP">
     <accessURL use="base">http://localhost:8080/__system__/tap/run/tap</accessURL>
   </interface>
-  <dataModel ivo-id="ivo://ivoa.net/std/ObsCore-1.0">ObsCore 1.0</dataModel>
+  <dataModel ivo-id="ivo://ivoa.net/std/ObsCore/v1.0">ObsCore 1.0</dataModel>
   <language>
     <name>ADQL</name>
     <version ivo-id="ivo://ivoa.net/std/ADQL#v2.0">2.0</version>

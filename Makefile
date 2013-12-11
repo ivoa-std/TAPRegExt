@@ -31,11 +31,11 @@
 # title; this is case sensitive)
 STDNAME=TAPRegExt
 # The current version
-DOCVERSION=1.0
+DOCVERSION=1.01
 # YYYYMMDD of the current release
-DOCDATE=20120827
+DOCDATE=20131211
 # One of NOTE, WD, PR, REC
-PUBSTATUS=REC
+PUBSTATUS=PR
 # Extra files that need to end up in the final package
 # (pngs are included automatically)
 PACKAGE_EXTRAS=TAPRegExt-v1.0.xsd tre-vor.xml
@@ -53,8 +53,10 @@ PACKAGE_EXTRAS=TAPRegExt-v1.0.xsd tre-vor.xml
 # this work.
 
 CATALOG=ivoadoc/xmlcatalog/catalog.xml
+FOPHYPH=/usr/share/fop/fop-hyph.jar
+
 JARROOT=/usr/share/java
-RESOLVERJAR=$(JARROOT)/xml-commons-resolver-1.1.jar
+RESOLVERJAR=$(JARROOT)/xml-resolver.jar
 SAXONJAR=$(JARROOT)/saxonb.jar
 SAXON=java -cp $(RESOLVERJAR):$(SAXONJAR) \
 	-Dxml.catalog.files=$(CATALOG) -Dxml.catalog.verbosity=1\
@@ -62,9 +64,11 @@ SAXON=java -cp $(RESOLVERJAR):$(SAXONJAR) \
 	-novw -r org.apache.xml.resolver.tools.CatalogResolver\
 	-x org.apache.xml.resolver.tools.ResolvingXMLReader\
 	-y org.apache.xml.resolver.tools.ResolvingXMLReader
+BIBTEX=bibtex
+SED=sed
 
 # TODO: make fop use our custom catalog
-FOP=FOP_HYPHENATION_PATH=./fop-hyph.jar fop -catalog
+FOP=FOP_HYPHENATION_PATH=$(FOPHYPH) fop -catalog
 
 HTMLSTYLE=ivoadoc/ivoarestructure.xslt
 FOSTYLE=ivoadoc/ivoa-fo.xsl

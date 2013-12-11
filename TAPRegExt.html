@@ -2,6 +2,11 @@
 ivoadoc toolkit, see somewhere at http://code.google.com/p/volute/ -->
 <!DOCTYPE html
   PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "ivoadoc/xmlcatalog/xhtml1-strict.dtd">
+
+<!-- TODO: make it clear that if data models have IVORNs, it's those people
+should look for, and *never* DM names, which are purely informative for
+IVOA DMs.  -->
+
 <html xmlns="http://www.w3.org/1999/xhtml"><head xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema" profile="http://www.w3.org/1999/xhtml/vocab">
 <title>TAPRegExt</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
@@ -108,18 +113,23 @@ span.redax {
 </div>
 
 <h1>TAPRegExt: a VOResource Schema Extension for Describing TAP Services<br clear="none"/>
-Version 1.0</h1>
+Version <span class="docversion"/></h1>
 <h2 class="subtitle">Filled in automatically</h2>
 
 <dl><dt>Working Groups:</dt><dd>
 		<a href="http://www.ivoa.net/cgi-bin/twiki/bin/view/IVOA/IvoaResReg" shape="rect">Registry WG</a>, 
 		<a href="http://www.ivoa.net/cgi-bin/twiki/bin/view/IVOA/IvoaDAL" shape="rect">DAL WG</a></dd>
+
 		<dt>This version:</dt>
 		  <dd><a href="" class="currentlink">filled in automatically</a></dd>
+
 	  <dt><b>Latest version:</b></dt>
 	    <dd><a href="http://www.ivoa.net/Documents/TAPRegExt/" shape="rect">http://www.ivoa.net/Documents/TAPRegExt/</a></dd>
+
 	  <dt>Previous versions:</dt>
-	    <dd><a href="http://www.ivoa.net/Documents/TAPRegExt/20120208" shape="rect">http://www.ivoa.net/Documents/TAPRegExt/20110727</a></dd>
+	    <dd><a href="http://www.ivoa.net/documents/TAPRegExt/20120827/" shape="rect">REC-1.0</a>,<br/>
+	    <a href="http://www.ivoa.net/Documents/TAPRegExt/20120208" shape="rect">PR-20110727</a></dd>
+
 	  <dt>Authors:</dt><dd>
       <a href="http://www.ivoa.net/cgi-bin/twiki/bin/view/IVOA/MarkusDemleitner" shape="rect">Markus Demleitner</a><br clear="none"/>
       <a href="http://www.ivoa.net/cgi-bin/twiki/bin/view/IVOA/PatrickDowler" shape="rect">Patrick Dowler</a><br clear="none"/>
@@ -612,6 +622,14 @@ all other IVORNs dependent on this.</li>
 </ul>
 </div> <!-- changes vs. PR-20110812 -->
 
+<div class="section"><h2><a id="changes-v1.0" shape="rect"/><span class="secnum"/>Changes from REC-1.0</h2>
+
+<ul>
+  <li>Fixed the IVORN of the obscore data model in the example.</li>
+</ul>
+</div> <!-- changes vs. PR-v1.0 -->
+
+
 </div> <!-- changes -->
 
 
@@ -636,5 +654,3 @@ all other IVORNs dependent on this.</li>
 </div> <!-- references -->
 
 </div><!-- class="body" --></body></html>
-<!-- vi: enc=utf-8:sw=2:et:sta
--->
