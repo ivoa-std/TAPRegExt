@@ -570,7 +570,7 @@ This string can be used to locate TAP services in the registry.</p>
 <div class="appendices">
 <div class="section"><h2><a id="appA" shape="rect"/><span class="secnum">Appendix A. </span>The Full Schema</h2>
 
-<?incxml href="../TAPRegExt-v1.0.xsd"?>
+<?incxml href="../TAPRegExt-v1.1.xsd"?>
 
 </div>  <!-- section appA -->
 
@@ -591,6 +591,13 @@ endorsed by IVOA.  Within the example, it represents a local convention.</p>
 </div> <!-- appendices -->
 
 <div class="section-nonum"><h2><a id="changes" shape="rect"/><span class="secnum"/>Changes from Previous Versions</h2>
+
+<div class="section"><h2><a id="changes-rec-1.0" shape="rect"/><span class="secnum"/>Changes from WD-20110127</h2>
+<ul>
+<li>Fixed obscore data model URI to what the obscore standard specifies.</li>
+<li>dataModel/@ivo-id and capabilitiy/@standardID are now types xs:anyURI
+to allow fragment identifiers on them.</li>
+</div>
 
 <div class="section"><h2><a id="changes-20110127" shape="rect"/><span class="secnum"/>Changes from WD-20110127</h2>
 
