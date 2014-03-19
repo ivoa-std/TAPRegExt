@@ -48,7 +48,7 @@ RofR -->
       </description>
     <referenceURL>http://www.ivoa.net/Documents/TAPRegExt</referenceURL>
   </content>
-  <endorsedVersion status="wd">1.0</endorsedVersion>
+  <endorsedVersion status="rec">1.0</endorsedVersion>
 
   <!-- upload methods, reference as
    ivo://ivoa.net/std/TAPRegExt#key
