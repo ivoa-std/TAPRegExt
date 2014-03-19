@@ -4,7 +4,7 @@ RofR -->
 <ri:Resource 
 	xsi:type="vstd:Standard" 
 	created="2011-06-07T17:19:00" 
-	updated="2011-06-07T17:19:00" 
+	updated="2014-02-19T09:49:00" 
 	status="active"
 	xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" 
 	xmlns:vstd="http://www.ivoa.net/xml/StandardsRegExt/v1.0" 
@@ -29,7 +29,7 @@ RofR -->
       <name>IVOA DAL WG</name>
       <logo>http://www.ivoa.net/icons/ivoa_logo_small.jpg</logo>
     </creator>
-    <date role="representative">2011-10-27</date>
+    <date role="representative">2012-08-27</date>
     <version>1.0</version>
     <contact>
       <name>IVOA DAL WG</name>
