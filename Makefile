@@ -1,139 +1,28 @@
-# Makefile to drive ivoadoc.
-#
-# To use this, you must have checked out ivoadoc as svn:externals into
-# your document directory.  Copy this Makefile into that directory and
-# edit it as necessary.
-#
-# The Makefile assumes you have xalanb-xslt and fop in your path.  On
-# Debian-derived systems, you could say
-#
-# sudo aptitude install xalan fop w3c-dtd-xhtml
-#
-# You most likely want the hyphenation patterns for fop (the PDF
-# formatter), too.  Presumably for licensing reasons, you have to 
-# get them manually from http://offo.sourceforge.net.  Drop them
-# into your working directory as fop-hyph.jar.
-#
-# Edit your source as $(STDNAME).html; available targets then are:
-#
-# * default: format the html, expanding the magic things explained in
-#   README
-# * $(STDNAME).pdf: same, but make a pdf
-# * package: package the docs, css, all pngs and whatever is in
-#   PACKAGE_EXTRAS into an aptly-named zip that expands into a
-#   nicely-named subdirectory.
-#
-# Contact for this Makefile: Markus Demleitner (gavo@ari.uni-heidelberg.de)
-#
-# Fix (and maintain, as you go on) the following set of variables:
-#
-# The base name of the files (a sensible abbreviation of your standard's 
-# title; this is case sensitive)
-STDNAME=TAPRegExt
-# The current version
-DOCVERSION=1.1
-# YYYYMMDD of the current release
-DOCDATE=20140220
-# One of NOTE, WD, PR, REC
-PUBSTATUS=WD
-# Extra files that need to end up in the final package
-# (pngs are included automatically)
-PACKAGE_EXTRAS=TAPRegExt-v1.1.xsd tre-vor.xml
+# ivoatex Makefile.  The ivoatex/README for the targets available.
 
+# short name of your document (edit $DOCNAME.tex; would be like RegTAP)
+DOCNAME = TAPRegExt
 
-# You probably want to configure your system so the following works
-# Basically, RESOLVERJAR must eventally point to a jar of apache
-# xml commons resolver, and SAXONJAR to a jar containing saxon-b
-#
-# This stuff should work for Debian, except you'll need to download
-# fop-hyph.jar into ivoadoc,
-# see http://offo.sourceforge.net/hyphenation/fop-stable/installation.html
-#
-# For Debian Squeeze, you need to install the backported fop to make
-# this work.
+# count up; you probably do not want to bother with versions <1.0
+DOCVERSION = 1.1
 
-CATALOG=ivoadoc/xmlcatalog/catalog.xml
-FOPHYPH=/usr/share/fop/fop-hyph.jar
+# Publication date, ISO format; update manually for "releases"
+DOCDATE = 2015-10-15
 
-JARROOT=/usr/share/java
-RESOLVERJAR=$(JARROOT)/xml-resolver.jar
-SAXONJAR=$(JARROOT)/saxonb.jar
-SAXON=java -cp $(RESOLVERJAR):$(SAXONJAR) \
-	-Dxml.catalog.files=$(CATALOG) -Dxml.catalog.verbosity=1\
-	net.sf.saxon.Transform\
-	-novw -r org.apache.xml.resolver.tools.CatalogResolver\
-	-x org.apache.xml.resolver.tools.ResolvingXMLReader\
-	-y org.apache.xml.resolver.tools.ResolvingXMLReader
-BIBTEX=bibtex
-SED=sed
+# What is it you're writing: NOTE, WD, PR, or REC
+DOCTYPE = WD
 
-# TODO: make fop use our custom catalog
-FOP=FOP_HYPHENATION_PATH=$(FOPHYPH) fop -catalog
+# Source files for the TeX document (but the main file must always
+# be called $(DOCNAME).tex
+SOURCES = $(DOCNAME).tex TAPRegExt-v1.0.xsd sample.xml
 
-HTMLSTYLE=ivoadoc/ivoarestructure.xslt
-FOSTYLE=ivoadoc/ivoa-fo.xsl
+# List of pixel image files to be included in submitted package 
+FIGURES = TAPRegExt-arch.png
 
-# You should not need to edit anything below this line
+# List of PDF figures (for vector graphics)
+VECTORFIGURES = 
 
-versionedName:=$(PUBSTATUS)-$(STDNAME)-$(DOCVERSION)
-ifneq "$(PUBSTATUS)" "REC"
-		versionedName:=$(versionedName)-$(subst -,,$(DOCDATE))
-endif
+# Additional files to distribute (e.g., CSS, schema files, examples...)
+AUX_FILES = 
 
-.PHONY: package
-
-%-fmt.html: %.html $(HTMLSTYLE)
-	$(SAXON) -o $@ $< $(HTMLSTYLE) docdate=$(DOCDATE)\
-		docversion=$(DOCVERSION) pubstatus=$(PUBSTATUS) ivoname=$(STDNAME)
-
-%.fo: %-fmt.html
-	$(SAXON) -o $@ $< $(FOSTYLE) docdate=$(DOCDATE)\
-		docversion=$(DOCVERSION) pubstatus=$(PUBSTATUS) ivoname=$(STDNAME)
-
-%.pdf: %.fo
-	$(FOP) -pdf $@ -fo $<
-
-
-default: $(STDNAME)-fmt.html
-
-package: $(STDNAME)-fmt.html $(STDNAME).pdf
-	rm -rf -- $(versionedName)
-	mkdir $(versionedName)
-	cp $(STDNAME)-fmt.html $(versionedName)/$(versionedName).html
-	cp $(STDNAME).pdf $(versionedName)/$(versionedName).pdf
-	mkdir $(versionedName)/ivoadoc
-	cp ivoadoc/*.css $(versionedName)/ivoadoc
-	cp *.png $(SCHEMA_FILE) $(PACKAGE_EXTRAS) $(versionedName)
-	zip -r $(versionedName).zip $(versionedName)
-	rm -rf -- $(versionedName)
-
-clean:
-	rm -f $(PUBSTATUS)-$(STDNAME)-*.html
-	rm -f $(PUBSTATUS)-$(STDNAME)-*.pdf
-	rm -f $(STDNAME).pdf
-	rm -r $(PUBSTATUS)-$(STDNAME)*.zip
-
-# Local stuff
-SCHEMA_FILE=TAPRegExt-v1.0.xsd 
-
-TAPRegExt-fmt.html: sample.xml $(SCHEMA_FILE)
-
-sample.xml: dumprecord.py
-	# this rule probably only works of you have GAVO DaCHS installed,
-	# built the validator in (source_dir)schemata, and adjusted xsdclasspath
-	# in DaCHS' config.
-	python $< > $@.tmp
-	java -cp `gavo config xsdclasspath` xsdval -n -v -s -f $@.tmp
-	# some cosmetics on the namespace and schema location, plus remove the
-	# old, invalid upload method URIs
-	sed -e 's/xmlns\|standardID\|xsi:type/~  &/g;s/xsi:schemaLocation="[^"]*"//' $@.tmp \
-		| grep -v "ivo://ivoa.org/tap/uploadmethods" \
-		| tr '~' '\n  ' > $@
-#	rm $@.tmp
-	
-install:
-	# local to Markus' setup
-	fixschema $(SCHEMA_FILE) > ~/gavo/trunk/schemata/$(SCHEMA_FILE)
-
-install-doc: spec.html
-	scp spec.html TAPRegExt-arch.png alnilam:/var/www/docs/tre/
+include ivoatex/Makefile

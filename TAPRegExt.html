@@ -334,11 +334,8 @@ ADQL 2.0, is <tt>ivo://ivoa.net/std/ADQL#v2.0</tt>.</p>
 
 <p>The type of the <code>ivo-id</code> attribute on version is 
 <code>xs:anyURI</code> as opposed to <code>vr:IdentifierURI</code> since
-the latter does not allow frament identifiers.  This is fine when referring
-to complete standards (as for the <code>dataModel</code> above), but will
-not work when the entities referred to are members of, say,
-StandardsRegExt enumerations.  Hence, we allow any URI in the
-schema for this attribute.  The description constrains the value to be an
+the latter does not allow frament identifiers. 
+The description constrains the value to be an
 IVORN, though.  The same reasoning applies to the <code>ivo-id</code>
 attributes of <code>outputFormat</code> and <code>uploadMethod</code>.</p>
 
@@ -592,11 +589,12 @@ endorsed by IVOA.  Within the example, it represents a local convention.</p>
 
 <div class="section-nonum"><h2><a id="changes" shape="rect"/><span class="secnum"/>Changes from Previous Versions</h2>
 
-<div class="section"><h2><a id="changes-rec-1.0" shape="rect"/><span class="secnum"/>Changes from WD-20110127</h2>
+<div class="section"><h2><a id="changes-rec-1.0" shape="rect"/><span class="secnum"/>Changes from REC-1.0</h2>
 <ul>
 <li>Fixed obscore data model URI to what the obscore standard specifies.</li>
-<li>dataModel/@ivo-id and capabilitiy/@standardID are now types xs:anyURI
-to allow fragment identifiers on them.</li>
+<li>dataModel/@ivo-id is now typed xs:anyURI
+to allow fragment identifiers on it.</li>
+</ul>
 </div>
 
 <div class="section"><h2><a id="changes-20110127" shape="rect"/><span class="secnum"/>Changes from WD-20110127</h2>
