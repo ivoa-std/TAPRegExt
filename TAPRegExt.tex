@@ -123,16 +123,6 @@ can declare that fact within TAPRegExt instance documents.
 \end{description}
 
 
-% HTML section ends
-
-% subsection architecture
-
-% HTML section ends
-
-% section introduction
-
-% HTML section start
-
 \section{The Extension}
 
 \label{taextension}
@@ -183,6 +173,38 @@ In TAPRegExt, a data model is identified by its IVOA identifier
 \citep{std:VOID}.  The first example for such a data model is ObsCore
 \citep{ref:OBSCORE}.
 
+% GENERATED: xsltproc --stringparam destType DataModelType schemadoc.xslt TAPRegExt-v1.0.xsd
+\noindent\rule[-2pt]{\textwidth}{0.5pt}\\
+			\textbf{\xmlel{tr:DataModelType} Type Schema Definition}
+
+\begin{lstlisting}[language=XML]
+<xs:complexType name="DataModelType" >
+  <xs:simpleContent >
+    <xs:extension base="xs:token" >
+      <xs:attribute name="ivo-id" type="vr:anyURI" use="required" />
+    </xs:extension>
+  </xs:simpleContent>
+</xs:complexType>
+\end{lstlisting}
+
+\noindent\rule[-2pt]{\textwidth}{0.5pt}\\
+					\textbf{\xmlel{tr:DataModelType} Attributes}
+
+\begin{bigdescription}
+\item[ivo-id]
+\begin{description}
+\item[Type\quad] composite: vr:anyURI
+\item[Meaning\quad] 
+            The IVORN of the data model.
+            
+\item[Occurrence\quad] required
+\end{description}
+
+
+\end{bigdescription}
+
+
+% /GENERATED
 
 \subsection{Languages Supported}
 
@@ -211,6 +233,118 @@ the latter does not allow frament identifiers.
 The description constrains the value to be an
 IVORN, though.  The same reasoning applies to the \texttt{ivo-id}
 attributes of \texttt{outputFormat} and \texttt{uploadMethod}.
+
+% GENERATED: xsltproc --stringparam destType Language schemadoc.xslt schemadoc.xslt TAPRegExt-v1.0.xsd
+\noindent\rule[-2pt]{\textwidth}{0.5pt}\\
+			\textbf{\xmlel{tr:Language} Type Schema Definition}
+
+\begin{lstlisting}[language=XML]
+<xs:complexType name="Language" >
+  <xs:sequence >
+    <xs:element name="name" type="xs:NCName" />
+    <xs:element name="version" type="tr:Version" minOccurs="1"
+              maxOccurs="unbounded" />
+    <xs:element name="description" type="xs:token" minOccurs="0" />
+    <xs:element name="languageFeatures"
+              type="tr:LanguageFeatureList"
+              minOccurs="0"
+              maxOccurs="unbounded" />
+  </xs:sequence>
+</xs:complexType>
+\end{lstlisting}
+
+\noindent\rule[-2pt]{\textwidth}{0.5pt}\\
+					\textbf{\xmlel{tr:Language} Metadata Elements}
+
+\begin{bigdescription}\item[Element \xmlel{name}]
+\begin{description}
+\item[Type\quad] a prefixless XML name
+\item[Meaning\quad] 
+          The name of the language without a version suffix.
+          
+\item[Occurrence\quad] required
+
+\end{description}
+\item[Element \xmlel{version}]
+\begin{description}
+\item[Type\quad] a string with optional attributes
+\item[Meaning\quad] 
+		    		A version of the language supported by the server.
+		    	
+\item[Occurrence\quad] required; multiple occurrences allowed.
+
+\end{description}
+\item[Element \xmlel{description}]
+\begin{description}
+\item[Type\quad] string: xs:token
+\item[Meaning\quad] 
+          A short, human-readable description of the
+          query language.
+          
+\item[Occurrence\quad] optional
+
+\end{description}
+\item[Element \xmlel{languageFeatures}]
+\begin{description}
+\item[Type\quad] composite: tr:LanguageFeatureList
+\item[Meaning\quad] 
+          	Optional features of the query language, grouped by
+          	feature type.
+        	
+\item[Occurrence\quad] optional; multiple occurrences allowed.
+\item[Comment\quad] 
+        		This includes listing user defined functions, geometry support,
+        		or similar concepts.
+        	
+
+\end{description}
+
+
+\end{bigdescription}
+
+
+% /GENERATED
+
+% GENERATED: xsltproc --stringparam destType Version schemadoc.xslt schemadoc.xslt TAPRegExt-v1.0.xsd
+\noindent\rule[-2pt]{\textwidth}{0.5pt}\\
+			\textbf{\xmlel{tr:Version} Type Schema Definition}
+
+\begin{lstlisting}[language=XML]
+<xs:complexType name="Version" >
+  <xs:simpleContent >
+    <xs:extension base="xs:token" >
+      <xs:attribute name="ivo-id" type="xs:anyURI" />
+    </xs:extension>
+  </xs:simpleContent>
+</xs:complexType>
+\end{lstlisting}
+
+\noindent\rule[-2pt]{\textwidth}{0.5pt}\\
+					\textbf{\xmlel{tr:Version} Attributes}
+
+\begin{bigdescription}
+\item[ivo-id]
+\begin{description}
+\item[Type\quad] a URI: xs:anyURI
+\item[Meaning\quad] 
+    				An optional IVORN of the language.
+    				
+\item[Occurrence\quad] optional
+\item[Comment\quad] 
+    					To more formally define a language supported by a service,
+    					a resource record for the language can be created, either
+    					centrally on the Registry of Registries or by other registry operators.  
+    					When such a record exists, the language element's ivo-id
+    					should point to it.
+    				
+\end{description}
+
+
+\end{bigdescription}
+
+
+% /GENERATED
+
 
 Query languages may support optional features.  For ADQL, the most prominent
 of those are user-defined functions, i.e., functions not defined in the language
@@ -289,6 +423,108 @@ Example:
 \end{description}
 
 
+% GENERATED: xsltproc --stringparam destType  LanguageFeatureList schemadoc.xslt schemadoc.xslt TAPRegExt-v1.0.xsd
+\noindent\rule[-2pt]{\textwidth}{0.5pt}\\
+			\textbf{\xmlel{tr:LanguageFeatureList} Type Schema Definition}
+
+\begin{lstlisting}[language=XML]
+<xs:complexType name="LanguageFeatureList" >
+  <xs:sequence >
+    <xs:element name="feature" type="tr:LanguageFeature" minOccurs="0"
+              maxOccurs="unbounded" />
+  </xs:sequence>
+  <xs:attribute name="type" type="xs:anyURI" use="required" />
+</xs:complexType>
+\end{lstlisting}
+
+\noindent\rule[-2pt]{\textwidth}{0.5pt}\\
+					\textbf{\xmlel{tr:LanguageFeatureList} Attributes}
+
+\begin{bigdescription}
+\item[type]
+\begin{description}
+\item[Type\quad] a URI: xs:anyURI
+\item[Meaning\quad] 
+					The type of the features given here.
+				
+\item[Occurrence\quad] required
+\item[Comment\quad] 
+					This is in general an IVORN.  TAPRegExt itself gives
+					IVORNs for defining user defined functions and geometry
+					support.
+				
+\end{description}
+
+
+\end{bigdescription}
+
+
+
+\noindent\rule[-2pt]{\textwidth}{0.5pt}\\
+					\textbf{\xmlel{tr:LanguageFeatureList} Metadata Elements}
+
+\begin{bigdescription}\item[Element \xmlel{feature}]
+\begin{description}
+\item[Type\quad] composite: tr:LanguageFeature
+\item[Meaning\quad] 
+						A language feature of the type given by this
+						element's type attribute.
+					
+\item[Occurrence\quad] optional; multiple occurrences allowed.
+
+\end{description}
+
+
+\end{bigdescription}
+
+
+% /GENERATED
+
+% GENERATED: xsltproc --stringparam destType  LanguageFeature schemadoc.xslt schemadoc.xslt TAPRegExt-v1.0.xsd
+\noindent\rule[-2pt]{\textwidth}{0.5pt}\\
+			\textbf{\xmlel{tr:LanguageFeature} Type Schema Definition}
+
+\begin{lstlisting}[language=XML]
+<xs:complexType name="LanguageFeature" >
+  <xs:sequence >
+    <xs:element name="form" type="xs:token" />
+    <xs:element name="description" type="xs:string" minOccurs="0" />
+  </xs:sequence>
+</xs:complexType>
+\end{lstlisting}
+
+\noindent\rule[-2pt]{\textwidth}{0.5pt}\\
+					\textbf{\xmlel{tr:LanguageFeature} Metadata Elements}
+
+\begin{bigdescription}\item[Element \xmlel{form}]
+\begin{description}
+\item[Type\quad] string: xs:token
+\item[Meaning\quad] 
+          	Formal notation for the language feature.
+        	
+\item[Occurrence\quad] required
+\item[Comment\quad] 
+          	The syntax for the content of this element is defined by the
+          	type attribute of its parent language list.
+        	
+
+\end{description}
+\item[Element \xmlel{description}]
+\begin{description}
+\item[Type\quad] string: xs:string
+\item[Meaning\quad] 
+          	Human-readable freeform documentation for the language feature.
+        	
+\item[Occurrence\quad] optional
+
+\end{description}
+
+
+\end{bigdescription}
+
+
+% /GENERATED
+
 \subsection{Output Formats}
 
 \label{outforms}
@@ -311,6 +547,81 @@ VOTables which are not interoperably distinguishable by their MIME types so far:
 	with a child of the yet-to-be-defined BINARY2 VOTable element
 \end{description}
 
+% GENERATED: xsltproc --stringparam destType OutputFormat schemadoc.xslt schemadoc.xslt TAPRegExt-v1.0.xsd
+\noindent\rule[-2pt]{\textwidth}{0.5pt}\\
+			\textbf{\xmlel{tr:OutputFormat} Type Schema Definition}
+
+\begin{lstlisting}[language=XML]
+<xs:complexType name="OutputFormat" >
+  <xs:sequence >
+    <xs:element name="mime" type="xs:token" />
+    <xs:element name="alias" type="xs:token" minOccurs="0"
+              maxOccurs="unbounded" />
+  </xs:sequence>
+  <xs:attribute name="ivo-id" type="xs:anyURI" />
+</xs:complexType>
+\end{lstlisting}
+
+\noindent\rule[-2pt]{\textwidth}{0.5pt}\\
+					\textbf{\xmlel{tr:OutputFormat} Attributes}
+
+\begin{bigdescription}
+\item[ivo-id]
+\begin{description}
+\item[Type\quad] a URI: xs:anyURI
+\item[Meaning\quad] 
+        An optional IVORN of the output format.
+        
+\item[Occurrence\quad] optional
+\item[Comment\quad] 
+        	When the MIME type does not uniquely define the
+        	format (or a generic MIME like application/octet-stream or
+        	text/plain is given), the IVORN can point to a key
+        	or StandardsRegExt document defining the format more
+        	precisely.  To see values defined in TAPRegExt,
+					retrieve the ivo://ivoa.net/std/TAPRegExt
+      		resource record and look for keys starting with "output-".
+        
+\end{description}
+
+
+\end{bigdescription}
+
+
+
+\noindent\rule[-2pt]{\textwidth}{0.5pt}\\
+					\textbf{\xmlel{tr:OutputFormat} Metadata Elements}
+
+\begin{bigdescription}\item[Element \xmlel{mime}]
+\begin{description}
+\item[Type\quad] string: xs:token
+\item[Meaning\quad] 
+          The MIME type of this format.
+          
+\item[Occurrence\quad] required
+\item[Comment\quad] 
+          The format of this string is specified by RFC 2045.
+          The service has to accept this string as a 
+          value of the FORMAT parameter.
+          
+
+\end{description}
+\item[Element \xmlel{alias}]
+\begin{description}
+\item[Type\quad] string: xs:token
+\item[Meaning\quad] 
+          Other values of FORMAT ("shorthands") that make the service return 
+          documents with the MIME type.
+          
+\item[Occurrence\quad] optional; multiple occurrences allowed.
+
+\end{description}
+
+
+\end{bigdescription}
+
+
+% /GENERATED
 
 \subsection{Upload Methods}
 
@@ -361,6 +672,39 @@ would say:
   <uploadMethod ivo-id="ivo://ivoa.net/std/TAPRegExt#upload-ftp"/>
 \end{lstlisting}
 
+% GENERATED: xsltproc --stringparam destType  UploadMethod schemadoc.xslt schemadoc.xslt TAPRegExt-v1.0.xsd
+\noindent\rule[-2pt]{\textwidth}{0.5pt}\\
+			\textbf{\xmlel{tr:UploadMethod} Type Schema Definition}
+
+\begin{lstlisting}[language=XML]
+<xs:complexType name="UploadMethod" >
+  <xs:complexContent >
+    <xs:restriction base="xs:anyType" >
+      <xs:attribute name="ivo-id" type="xs:anyURI" />
+    </xs:restriction>
+  </xs:complexContent>
+</xs:complexType>
+\end{lstlisting}
+
+\noindent\rule[-2pt]{\textwidth}{0.5pt}\\
+					\textbf{\xmlel{tr:UploadMethod} Attributes}
+
+\begin{bigdescription}
+\item[ivo-id]
+\begin{description}
+\item[Type\quad] a URI: xs:anyURI
+\item[Meaning\quad] 
+            The IVORN of the upload method.
+            
+\item[Occurrence\quad] optional
+\end{description}
+
+
+\end{bigdescription}
+
+
+% /GENERATED
+
 \subsection{Resource Limits}
 
 \label{reslimits}
@@ -408,6 +752,46 @@ All values in time-like limits are given in seconds.  Both
 \texttt{retentionPeriod} and \texttt{executionDuration} are of type
 \texttt{tr:TimeLimits}.
 
+% GENERATED: xsltproc --stringparam destType  TimeLimits schemadoc.xslt schemadoc.xslt TAPRegExt-v1.0.xsd
+\noindent\rule[-2pt]{\textwidth}{0.5pt}\\
+			\textbf{\xmlel{tr:TimeLimits} Type Schema Definition}
+
+\begin{lstlisting}[language=XML]
+<xs:complexType name="TimeLimits" >
+  <xs:sequence >
+    <xs:element name="default" type="xs:integer" minOccurs="0" maxOccurs="1" />
+    <xs:element name="hard" type="xs:integer" minOccurs="0" maxOccurs="1" />
+  </xs:sequence>
+</xs:complexType>
+\end{lstlisting}
+
+\noindent\rule[-2pt]{\textwidth}{0.5pt}\\
+					\textbf{\xmlel{tr:TimeLimits} Metadata Elements}
+
+\begin{bigdescription}\item[Element \xmlel{default}]
+\begin{description}
+\item[Type\quad] integer
+\item[Meaning\quad] 
+          The value of this limit for newly-created jobs, given in seconds.
+          
+\item[Occurrence\quad] optional
+
+\end{description}
+\item[Element \xmlel{hard}]
+\begin{description}
+\item[Type\quad] integer
+\item[Meaning\quad] 
+          The value this limit cannot be raised above, given in seconds.
+          
+\item[Occurrence\quad] optional
+
+\end{description}
+
+
+\end{bigdescription}
+
+
+% /GENERATED
 
 \subsubsection{Limits on Data}
 Limits on DataLimits on data are expressed much like time limits in that they give
@@ -437,6 +821,91 @@ Data limits are defined using the \texttt{tr:DataLimits}
 and \texttt{tr:DataLimit} types:
 
 
+% GENERATED: xsltproc --stringparam destType  DataLimits schemadoc.xslt schemadoc.xslt TAPRegExt-v1.0.xsd
+\noindent\rule[-2pt]{\textwidth}{0.5pt}\\
+			\textbf{\xmlel{tr:DataLimits} Type Schema Definition}
+
+\begin{lstlisting}[language=XML]
+<xs:complexType name="DataLimits" >
+  <xs:sequence >
+    <xs:element name="default" type="tr:DataLimit" minOccurs="0" maxOccurs="1" />
+    <xs:element name="hard" type="tr:DataLimit" minOccurs="0" maxOccurs="1" />
+  </xs:sequence>
+</xs:complexType>
+\end{lstlisting}
+
+\noindent\rule[-2pt]{\textwidth}{0.5pt}\\
+					\textbf{\xmlel{tr:DataLimits} Metadata Elements}
+
+\begin{bigdescription}\item[Element \xmlel{default}]
+\begin{description}
+\item[Type\quad] an integer with optional attributes
+\item[Meaning\quad] 
+          The value of this limit for newly-created jobs.
+          
+\item[Occurrence\quad] optional
+
+\end{description}
+\item[Element \xmlel{hard}]
+\begin{description}
+\item[Type\quad] an integer with optional attributes
+\item[Meaning\quad] 
+          The value this limit cannot be raised above.
+          
+\item[Occurrence\quad] optional
+
+\end{description}
+
+
+\end{bigdescription}
+
+
+% /GENERATED
+
+% GENERATED: xsltproc --stringparam destType DataLimit schemadoc.xslt schemadoc.xslt TAPRegExt-v1.0.xsd
+\noindent\rule[-2pt]{\textwidth}{0.5pt}\\
+			\textbf{\xmlel{tr:DataLimit} Type Schema Definition}
+
+\begin{lstlisting}[language=XML]
+<xs:complexType name="DataLimit" >
+  <xs:simpleContent >
+    <xs:extension base="xs:integer" >
+      <xs:attribute name="unit" use="required" >
+        <xs:simpleType >
+          <xs:restriction base="xs:token" >
+            <xs:enumeration value="byte" />
+            <xs:enumeration value="row" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:extension>
+  </xs:simpleContent>
+</xs:complexType>
+\end{lstlisting}
+
+\noindent\rule[-2pt]{\textwidth}{0.5pt}\\
+					\textbf{\xmlel{tr:DataLimit} Attributes}
+
+\begin{bigdescription}
+\item[unit]
+\begin{description}
+\item[Type\quad] string with controlled vocabulary
+\item[Meaning\quad] 
+            The unit of the limit specified.
+            
+\item[Occurrence\quad] required
+
+
+
+
+\end{description}
+
+
+\end{bigdescription}
+
+
+% /GENERATED
+
 \subsection{The Capability Record}
 
 \label{caprec}
@@ -462,6 +931,125 @@ By restriction from VOResource's \texttt{vr:Capability}, the
 capabilities is fixed to \texttt{ivo://ivoa.net/std/TAP} in this version.
 This string can be used to locate TAP services in the registry.
 
+% GENERATED: xsltproc --stringparam destType TableAccess schemadoc.xslt TAPRegExt-v1.0.xsd
+\noindent\rule[-2pt]{\textwidth}{0.5pt}\\
+			\textbf{\xmlel{tr:TableAccess} Type Schema Definition}
+
+\begin{lstlisting}[language=XML]
+<xs:complexType name="TableAccess" >
+  <xs:complexContent >
+    <xs:extension base="tr:TAPCapRestriction" >
+      <xs:sequence >
+        <xs:element name="dataModel" type="tr:DataModelType" minOccurs="0"
+                  maxOccurs="unbounded" />
+        <xs:element name="language" type="tr:Language" minOccurs="1"
+                  maxOccurs="unbounded" />
+        <xs:element name="outputFormat" type="tr:OutputFormat" minOccurs="1"
+                  maxOccurs="unbounded" />
+        <xs:element name="uploadMethod" type="tr:UploadMethod" minOccurs="0"
+                  maxOccurs="unbounded" />
+        <xs:element name="retentionPeriod" type="tr:TimeLimits" minOccurs="0"
+                  maxOccurs="1" />
+        <xs:element name="executionDuration" type="tr:TimeLimits" minOccurs="0"
+                  maxOccurs="1" />
+        <xs:element name="outputLimit" type="tr:DataLimits" minOccurs="0"
+                  maxOccurs="1" />
+        <xs:element name="uploadLimit" type="tr:DataLimits" minOccurs="0"
+                  maxOccurs="1" />
+      </xs:sequence>
+    </xs:extension>
+  </xs:complexContent>
+</xs:complexType>
+\end{lstlisting}
+
+\noindent\rule[-2pt]{\textwidth}{0.5pt}\\
+					\textbf{\xmlel{tr:TableAccess} Extension Metadata Elements}
+
+\begin{bigdescription}\item[Element \xmlel{dataModel}]
+\begin{description}
+\item[Type\quad] a string with optional attributes
+\item[Meaning\quad] 
+              Identifier of IVOA-approved data model supported by the 
+              service.
+              
+\item[Occurrence\quad] optional; multiple occurrences allowed.
+
+\end{description}
+\item[Element \xmlel{language}]
+\begin{description}
+\item[Type\quad] composite: tr:Language
+\item[Meaning\quad] 
+              Language supported by the service.
+              
+\item[Occurrence\quad] required; multiple occurrences allowed.
+
+\end{description}
+\item[Element \xmlel{outputFormat}]
+\begin{description}
+\item[Type\quad] composite: tr:OutputFormat
+\item[Meaning\quad] 
+                Output format supported by the service.
+              
+\item[Occurrence\quad] required; multiple occurrences allowed.
+
+\end{description}
+\item[Element \xmlel{uploadMethod}]
+\begin{description}
+\item[Type\quad] composite: tr:UploadMethod
+\item[Meaning\quad] 
+                Upload method supported by the service.
+              
+\item[Occurrence\quad] optional; multiple occurrences allowed.
+\item[Comment\quad] 
+                The absence of upload methods indicates
+                that the service does not support uploads
+                at all.
+              
+
+\end{description}
+\item[Element \xmlel{retentionPeriod}]
+\begin{description}
+\item[Type\quad] composite: tr:TimeLimits
+\item[Meaning\quad] 
+              Limits on the time between job creation and
+              destruction time.
+              
+\item[Occurrence\quad] optional
+
+\end{description}
+\item[Element \xmlel{executionDuration}]
+\begin{description}
+\item[Type\quad] composite: tr:TimeLimits
+\item[Meaning\quad] 
+              Limits on executionDuration.
+              
+\item[Occurrence\quad] optional
+
+\end{description}
+\item[Element \xmlel{outputLimit}]
+\begin{description}
+\item[Type\quad] composite: tr:DataLimits
+\item[Meaning\quad] 
+              Limits on the size of data returned.
+              
+\item[Occurrence\quad] optional
+
+\end{description}
+\item[Element \xmlel{uploadLimit}]
+\begin{description}
+\item[Type\quad] composite: tr:DataLimits
+\item[Meaning\quad] 
+              Limits on the size of uploaded data.
+              
+\item[Occurrence\quad] optional
+
+\end{description}
+
+
+\end{bigdescription}
+
+
+% /GENERATED
 
 \appendix
 
@@ -491,20 +1079,8 @@ endorsed by IVOA.  Within the example, it represents a local convention.
 
 \label{changes}
 
-\section{Changes from REC-1.0}
 
-\label{changes-rec-1.0}
-
-\begin{itemize}
-
-\item Fixed obscore data model URI to what the obscore standard specifies.{}
-
-\item dataModel/@ivo-id is now typed xs:anyURI
-to allow fragment identifiers on it.{}
-
-\end{itemize}
-
-\section{Changes from WD-20110127}
+\subsection{Changes from WD-20110127}
 
 \label{changes-20110127}
 
@@ -531,7 +1107,7 @@ within language.{}
 
 \end{itemize}
 
-\section{Changes from WD-20110727}
+\subsection{Changes from WD-20110727}
 
 \label{changes-20110727}
 
@@ -549,7 +1125,7 @@ all other IVORNs dependent on this.{}
 \end{itemize}
 
 
-\section{Changes from PR-20120812}
+\subsection{Changes from PR-20120812}
 
 \label{changes-20120208}
 
@@ -559,14 +1135,18 @@ all other IVORNs dependent on this.{}
 
 \end{itemize}
 
-\section{Changes from REC-1.0}
+\subsection{Changes from REC-1.0}
 
-\label{changes-v1.0}
+\label{changes-rec-1.0}
 
 \begin{itemize}
 
-\item Migrated to ivoatex
-\item Fixed the IVORN of the obscore data model in the example.{}
+\item Migrated to ivoatex.
+\item Fixed obscore data model URI in the example.
+\item dataModel/@ivo-id is now typed xs:anyURI
+to allow fragment identifiers on it.{}
+\item Fixed the IVOID of the obscore data model in the example.{}
+
 
 \end{itemize}
 
