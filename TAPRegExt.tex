@@ -926,10 +926,11 @@ type specification, like this:
     ...
 \end{lstlisting}
 
-By restriction from VOResource's \texttt{vr:Capability}, the 
-\texttt{standardID} attribute of \texttt{tr:TableAccess}-typed 
-capabilities is fixed to \texttt{ivo://ivoa.net/std/TAP} in this version.
-This string can be used to locate TAP services in the registry.
+\xmlel{tr:TableAccess}-typed capabilites can be used with arbitrary
+standardIDs; this is different from previous TAPRegExt versions, which
+fixed it to \nolinkurl{ivo://ivoa.net/std/TAP}.  This URI should still
+be given for TAP 1.0 services.  Services having other capabilities
+(e.g., TAP 1.1 or even UWS) will use other standardIDs.
 
 % GENERATED: xsltproc --stringparam destType TableAccess schemadoc.xslt TAPRegExt-v1.0.xsd
 \noindent\rule[-2pt]{\textwidth}{0.5pt}\\
@@ -938,7 +939,7 @@ This string can be used to locate TAP services in the registry.
 \begin{lstlisting}[language=XML]
 <xs:complexType name="TableAccess" >
   <xs:complexContent >
-    <xs:extension base="tr:TAPCapRestriction" >
+    <xs:extension base="vr:Capability" >
       <xs:sequence >
         <xs:element name="dataModel" type="tr:DataModelType" minOccurs="0"
                   maxOccurs="unbounded" />
@@ -1141,11 +1142,13 @@ all other IVORNs dependent on this.{}
 
 \begin{itemize}
 
-\item Migrated to ivoatex.
-\item Fixed obscore data model URI in the example.
+\item No longer restricting TableAccess' standardID to the (old)
+TAP standardID.  TAPRegExt capabilities are now allowed with arbitrary
+standardIDs.
+\item Repaired obscore data model URI in the example.
 \item dataModel/@ivo-id is now typed xs:anyURI
 to allow fragment identifiers on it.{}
-\item Fixed the IVOID of the obscore data model in the example.{}
+\item Migrated to ivoatex.
 
 
 \end{itemize}

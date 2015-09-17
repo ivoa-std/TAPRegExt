@@ -20,33 +20,6 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     </xs:documentation>
   </xs:annotation>
   <xs:import namespace="http://www.ivoa.net/xml/VOResource/v1.0" schemaLocation="http://www.ivoa.net/xml/VOResource/VOResource-v1.0.xsd"/>
-  <xs:complexType name="TAPCapRestriction" abstract="true">
-    <xs:annotation>
-      <xs:documentation>
-      An abstract capability that fixes the standardID to the
-      IVOA ID for the TAP standard.
-      </xs:documentation>
-      <xs:documentation>
-      See vr:Capability for documentation on inherited children.
-      </xs:documentation>
-    </xs:annotation>
-    <xs:complexContent>
-      <xs:restriction base="vr:Capability">
-        <xs:sequence>
-          <xs:element name="validationLevel" 
-            type="vr:Validation" minOccurs="0" 
-            maxOccurs="unbounded"/>
-          <xs:element name="description" type="xs:token" 
-            minOccurs="0"/>
-          <xs:element name="interface" type="vr:Interface" 
-            minOccurs="0" maxOccurs="unbounded"/>
-        </xs:sequence>
-        <xs:attribute name="standardID" type="vr:IdentifierURI" 
-          use="required" fixed="ivo://ivoa.net/std/TAP"/>
-      </xs:restriction>
-    </xs:complexContent>
-  </xs:complexType>
-
   <xs:complexType name="TableAccess">
     <xs:annotation>
       <xs:documentation>
@@ -58,7 +31,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
       </xs:documentation>
     </xs:annotation>
     <xs:complexContent>
-      <xs:extension base="tr:TAPCapRestriction">
+      <xs:extension base="vr:Capability">
         <xs:sequence>
 
           <xs:element name="dataModel" type="tr:DataModelType"
@@ -157,10 +130,10 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
     <xs:simpleContent>
       <xs:extension base="xs:token"> 
-        <xs:attribute name="ivo-id" type="vr:anyURI" use="required">
+        <xs:attribute name="ivo-id" type="xs:anyURI" use="required">
           <xs:annotation>
             <xs:documentation>
-            The IVORN of the data model.
+            The IVOID of the data model.
             </xs:documentation>
           </xs:annotation>
         </xs:attribute>
