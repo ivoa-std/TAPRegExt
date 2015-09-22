@@ -610,13 +610,27 @@
     <xsl:text>\end{lstlisting}</xsl:text>
   </xsl:template>
 
+	<xsl:template match="xs:documentation" mode="typedesc">
+		<xsl:text>\noindent{\small</xsl:text>
+		<xsl:value-of select="."/>
+		<xsl:text>\par}&#10;&#10;</xsl:text>
+	</xsl:template>
+
   <xsl:template match="xs:complexType|xs:simpleType">
     <xsl:if test="@name=$destType">
+      <xsl:text>\vspace{2ex}\noindent\textbf{\xmlel{</xsl:text>
+      <xsl:value-of select="concat(/xs:schema/xs:annotation/xs:appinfo/vm:targetPrefix,':',@name)"/>
+      <xsl:text>}</xsl:text>
+      <xsl:text> Type Schema Documentation}&#10;&#10;</xsl:text>
+      <xsl:apply-templates select="./xs:annotation/xs:documentation"
+      	mode="typedesc"/>
+
       <xsl:text>\vspace{1ex}\noindent\textbf{\xmlel{</xsl:text>
       <xsl:value-of select="concat(/xs:schema/xs:annotation/xs:appinfo/vm:targetPrefix,':',@name)"/>
       <xsl:text>}</xsl:text>
       <xsl:text> Type Schema Definition}&#10;&#10;</xsl:text>
       <xsl:apply-templates select="." mode="xsddef"/>
+
       <xsl:if test=".//xs:attribute">
         <xsl:text>&#10;&#10;\vspace{0.5ex}\noindent\textbf{</xsl:text>
         <xsl:apply-templates select="." mode="attributeTitle"/>
@@ -624,6 +638,7 @@
         <xsl:apply-templates select="." mode="attributes"/>
         <xsl:text>&#10;\end{bigdescription}\endgroup&#10;&#10;</xsl:text>
       </xsl:if>
+
       <xsl:if test=".//xs:element">
         <xsl:text>&#10;&#10;\vspace{0.5ex}\noindent\textbf{</xsl:text>
         <xsl:apply-templates select="." mode="MetadataTitle"/>
