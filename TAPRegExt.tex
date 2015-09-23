@@ -1216,15 +1216,12 @@ be given for TAP 1.0 services.  Services having other capabilities
 
 \section{Example Document}
 
-\label{example}
+\label{app:example}
 
-As an example, here is an instance document as it might be 
-part of a response from a VOSI capability endpoint or embedded 
-within a VOResource record:
-
-Note that the encoding parameter in the MIME type given for the output format
-\nolinkurl{ivo://ivoa.net/std/TAPRegEXT\#output-votable-td} in the example is not
-endorsed by IVOA.  Within the example, it represents a local convention.
+This appendix contains an instance document as it should be 
+delivered from the VOSI capability endpoint. When embedded in a
+VOResource record, the cpability elements would be direct children of
+the \xmlel{vr:Resource} element.
 
 
 \lstinputlisting[language=XML,basicstyle=\footnotesize]{sample.xml}
@@ -1303,13 +1300,14 @@ all other IVOIDs dependent on this.{}
 
 \item No longer restricting TableAccess' standardID to the (old)
 TAP standardID.  TAPRegExt capabilities are now allowed with arbitrary
-standardIDs.
+standardIDs
 \item Made most former IVORNs IVOID to comply with a proposed
 clarification of terminology in Identifiers 2.0
-\item Repaired obscore data model URI in the example.
+\item The example now shows an entire capabilities response
+\item Repaired obscore data model URI in the example
 \item dataModel/@ivo-id is now typed xs:anyURI
-to allow fragment identifiers on it.{}
-\item Migrated to ivoatex.
+to allow fragment identifiers on it
+\item Migrated to ivoatex
 
 
 \end{itemize}

@@ -31,15 +31,19 @@ AUX_FILES = $(SCHEMA_FILE)
 
 include ivoatex/Makefile
 
-sample.xml: dumprecord.py
-	# this rule only works of you have GAVO DaCHS installed.
-	python $< > $@.tmp
-	# some cosmetics on the namespace and schema location, plus remove the
-	# old, invalid upload method URIs
-	gavo admin xsdValidate sample.xml
-	sed -e 's/xmlns\|standardID\|xsi:type/~  &/g;s/xsi:schemaLocation="[^"]*"//' $@.tmp \
-		| grep -v "ivo://ivoa.org/tap/uploadmethods" \
-		| tr '~' '\n  ' > $@
+sample.xml: samplegroom.sed Makefile
+	# this rule only works if there's a (proper) TAP service on
+	# http://localhost:8080/tap
+	curl -s http://localhost:8080/tap/capabilities \
+		| xmlstarlet ed -d "//feature[starts-with(form, 'ivo_apply_pm')]" \
+			-d "//feature[starts-with(form, 'gavo_to_jd')]" \
+			-d "//feature[starts-with(form, 'gavo_to_mjd')]" \
+			-d "//feature[starts-with(form, 'ivo_hashlist_has')]" \
+			-d "//feature[starts-with(form, 'ivo_nocasematch')]" \
+			-d "//feature[starts-with(form, 'ivo_hasword')]" \
+		| xmlstarlet fo > $@.tmp
+	gavo admin xsdValidate $@.tmp
+	sed -f samplegroom.sed $@.tmp > $@
 #	rm $@.tmp
 	
 install:
