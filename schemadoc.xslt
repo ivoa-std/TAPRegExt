@@ -124,7 +124,7 @@
   <xsl:template match="xs:element|xs:attribute" mode="content.type">
     <xsl:param name="row" select="1"/>
     <xsl:variable name="type">
-      <xsl:text>\item[Type\quad] </xsl:text>
+      <xsl:text>\item[Type] </xsl:text>
       <xsl:choose>
         <xsl:when test="@type">
           <xsl:apply-templates select="@type" mode="type"/>
@@ -142,7 +142,7 @@
 
   <xsl:template match="xs:element|xs:attribute" mode="content.meaning">
     <xsl:param name="row" select="1"/>
-    <xsl:text>\item[Meaning\quad] </xsl:text>
+    <xsl:text>\item[Meaning] </xsl:text>
     <xsl:value-of select="xs:annotation/xs:documentation[1]"/>
     <xsl:text>&#10;</xsl:text>
   </xsl:template>
@@ -162,7 +162,7 @@
   </xsl:template>
 
   <xsl:template match="xs:element" mode="occurrences">
-    <xsl:text>\item[Occurrence\quad] </xsl:text>
+    <xsl:text>\item[Occurrence] </xsl:text>
     <xsl:choose>
       <xsl:when test="@minOccurs='0'">
         <xsl:text>optional</xsl:text>
@@ -223,7 +223,7 @@
     <xsl:text>&#10;</xsl:text>
   </xsl:template>
   <xsl:template match="xs:attribute" mode="occurrences">
-    <xsl:text>\item[Occurrence\quad] </xsl:text>
+    <xsl:text>\item[Occurrence] </xsl:text>
     <xsl:choose>
       <xsl:when test="@use='required'">required</xsl:when>
       <xsl:otherwise>optional</xsl:otherwise>
@@ -253,7 +253,7 @@
   <xsl:template match="xs:element|xs:attribute" mode="content.comment">
     <xsl:param name="row" select="1"/>
     <xsl:for-each select="xs:annotation/xs:documentation[position() &gt; 1]">
-      <xsl:text>\item[Comment\quad] </xsl:text>
+      <xsl:text>\item[Comment] </xsl:text>
       <xsl:attribute namespace="" name="row">
         <xsl:value-of select="$row"/>
       </xsl:attribute>
@@ -288,19 +288,14 @@
   </xsl:template>
 
   <xsl:template match="@type[starts-with(., 'vr:')]" mode="type">
-    <xsl:text>composite: </xsl:text>
-    <code>
-      <xsl:value-of select="."/>
-    </code>
-  </xsl:template>
+    <xsl:text>composite: \xmlel{</xsl:text>
+      <xsl:value-of select="."/>}</xsl:template>
+
   <xsl:template match="@type[starts-with(., 'xs:')]" mode="type">
     <xsl:choose>
       <xsl:when test=".='xs:token' or .='xs:string'">
-        <xsl:text>string: </xsl:text>
-        <code>
-          <xsl:value-of select="."/>
-        </code>
-      </xsl:when>
+        <xsl:text>string: \xmlel{</xsl:text>
+          <xsl:value-of select="."/>}</xsl:when>
       <xsl:when test=".='xs:integer'">
         <xsl:text>integer</xsl:text>
       </xsl:when>
@@ -308,17 +303,11 @@
         <xsl:text>a prefixless XML name</xsl:text>
       </xsl:when>
       <xsl:when test=".='xs:decimal' or .='xs:float' or .='xs:double'">
-        <xsl:text>floating-point number: </xsl:text>
-        <code>
-          <xsl:value-of select="."/>
-        </code>
-      </xsl:when>
+        <xsl:text>floating-point number: \xmlel{</xsl:text>
+          <xsl:value-of select="."/>}</xsl:when>
       <xsl:when test=".='xs:anyURI'">
-        <xsl:text>a URI: </xsl:text>
-        <code>
-          <xsl:value-of select="."/>
-        </code>
-      </xsl:when>
+        <xsl:text>a URI: \xmlel{</xsl:text>
+          <xsl:value-of select="."/>}</xsl:when>
     </xsl:choose>
   </xsl:template>
 
@@ -350,32 +339,23 @@
             <xsl:when test="@base='xs:decimal' 
             		or @base='xs:float' 
             		or @base='xsdouble'">
-              <xsl:text>a floating point number (</xsl:text>
-              <code>
+              <xsl:text>a floating point number (\xmlel{</xsl:text>
                 <xsl:value-of select="@base"/>
-              </code>
-              <xsl:text>)</xsl:text>
+              <xsl:text>})</xsl:text>
             </xsl:when>
             <xsl:when test="@base='boolean'">
               <xsl:text>a boolean value (true, false, 0, or 1)</xsl:text>
             </xsl:when>
             <xsl:otherwise>
-              <code>
-                <xsl:value-of select="@base"/>
-              </code>
-            </xsl:otherwise>
+              <xsl:text>\xmlel{</xsl:text>
+                <xsl:value-of select="@base"/>}</xsl:otherwise>
           </xsl:choose>
           <xsl:text> with optional attributes</xsl:text>
         </xsl:for-each>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:text>composite: </xsl:text>
-        <code>
-          <a href="#d:{substring-after(.,':')}">
-            <xsl:value-of select="."/>
-          </a>
-        </code>
-      </xsl:otherwise>
+        <xsl:text>composite: \xmlel{</xsl:text>
+          <xsl:value-of select="."/>}</xsl:otherwise>
     </xsl:choose>
   </xsl:template>
 
@@ -618,7 +598,10 @@
 
   <xsl:template match="xs:complexType|xs:simpleType">
     <xsl:if test="@name=$destType">
-      <xsl:text>\vspace{2ex}\noindent\textbf{\xmlel{</xsl:text>
+      <xsl:text>\begingroup
+      	\renewcommand*\descriptionlabel[1]{%
+      	\hbox to 5.5em{\emph{#1}\hfil}}
+      	\vspace{2ex}\noindent\textbf{\xmlel{</xsl:text>
       <xsl:value-of select="concat(/xs:schema/xs:annotation/xs:appinfo/vm:targetPrefix,':',@name)"/>
       <xsl:text>}</xsl:text>
       <xsl:text> Type Schema Documentation}&#10;&#10;</xsl:text>
@@ -646,6 +629,7 @@
         <xsl:apply-templates select="." mode="content"/>
         <xsl:text>&#10;\end{bigdescription}\endgroup&#10;&#10;</xsl:text>
       </xsl:if>
+      <xsl:text>\endgroup</xsl:text>
     </xsl:if>
   </xsl:template>
 

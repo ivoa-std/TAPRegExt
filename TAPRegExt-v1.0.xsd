@@ -122,7 +122,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <xs:complexType name="DataModelType">
     <xs:annotation>
       <xs:documentation>
-        An IVOA defined data model, identified by an IVORN 
+        An IVOA defined data model, identified by an IVOID 
         intended for machine consumption and a short label
         intended for human comsumption.
       </xs:documentation>
@@ -217,7 +217,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 				<xs:attribute name="ivo-id" type="xs:anyURI">
   				<xs:annotation>
     				<xs:documentation>
-    				An optional IVORN of the language.
+    				An optional IVOID of the language.
     				</xs:documentation>
     				<xs:documentation>
     					To more formally define a language supported by a service,
@@ -240,14 +240,14 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     	</xs:documentation>
     	<xs:documentation>
     		A feature type is a language-dependent concept like 
-    		"user defined function", "geometry support", or possibly 
-    		"units supported".  A featureList gives all features of
+    		``user defined function'', ``geometry support'', or possibly 
+    		``units supported''.  A featureList gives all features of
     		a given type applicable for the service.  Multiple featureLists
     		are possible.
 
       	All feature in a given list are of the same type.  This type
       	is declared using the mandatory type attribute,
-      	the value of which will typically be an IVORN.
+      	the value of which will typically be an IVOID.
       	To see values defined in TAPRegExt,
 				retrieve the ivo://ivoa.net/std/TAPRegExt
       	resource record and look for keys starting with "features-".
@@ -271,8 +271,8 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 					The type of the features given here.
 				</xs:documentation>
 				<xs:documentation>
-					This is in general an IVORN.  TAPRegExt itself gives
-					IVORNs for defining user defined functions and geometry
+					This is in general an IVOID.  TAPRegExt itself gives
+					IVOIDs for defining user defined functions and geometry
 					support.
 				</xs:documentation>
 			</xs:annotation>
@@ -323,7 +323,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
       use a MIME type (or make one up using the x- syntax), although
       the concrete MIME syntax is not enforced by the schema.
 
-      For more detailed specification, an IVORN may be used.
+      For more detailed specification, an IVOID may be used.
       </xs:documentation>
     </xs:annotation>
 
@@ -356,12 +356,12 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <xs:attribute name="ivo-id" type="xs:anyURI">
       <xs:annotation>
         <xs:documentation>
-        An optional IVORN of the output format.
+        An optional IVOID of the output format.
         </xs:documentation>
         <xs:documentation>
         	When the MIME type does not uniquely define the
         	format (or a generic MIME like application/octet-stream or
-        	text/plain is given), the IVORN can point to a key
+        	text/plain is given), the IVOID can point to a key
         	or StandardsRegExt document defining the format more
         	precisely.  To see values defined in TAPRegExt,
 					retrieve the ivo://ivoa.net/std/TAPRegExt
@@ -378,15 +378,15 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
       An upload method as defined by IVOA.
       </xs:documentation>
       <xs:documentation>
-      Upload methods are always identified by an IVORN.  
+      Upload methods are always identified by an IVOID.  
       Descriptions can be obtained by dereferencing this
-      IVORN.  To see values defined in TAPRegExt,
+      IVOID.  To see values defined in TAPRegExt,
 			retrieve the ivo://ivoa.net/std/TAPRegExt
    		resource record and look for keys starting with "upload-".
 
 
       You can register custom upload methods, but you must use the
-      standard IVORNs for the upload methods defined in the TAP
+      standard IVOIDs for the upload methods defined in the TAP
       specification.
       </xs:documentation>
     </xs:annotation>
@@ -396,7 +396,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
         <xs:attribute name="ivo-id" type="xs:anyURI">
           <xs:annotation>
             <xs:documentation>
-            The IVORN of the upload method.
+            The IVOID of the upload method.
             </xs:documentation>
           </xs:annotation>
         </xs:attribute>
