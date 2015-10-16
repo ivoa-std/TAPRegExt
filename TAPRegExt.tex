@@ -246,7 +246,7 @@ ADQL 2.0, is
 
 The type of the \xmlel{ivo-id} attribute on version is 
 \xmlel{xs:anyURI} as opposed to \xmlel{vr:IdentifierURI} since
-the latter does not allow frament identifiers in VOResource 1.0. 
+the latter does not allow fragment identifiers in VOResource 1.0. 
 The description constrains the value to be an
 IVOID (i.e., a URI with a schema of ivo:), though.  
 The same reasoning applies to the \xmlel{ivo-id}
@@ -835,7 +835,7 @@ the date of job destruction may be changed by posting to the
 \texttt{destruction} parameter).  Services may put some limit to how
 far the resource limitations may be raised.
 
-TAPRegExt's capabilities element allows the declaration of such limits.
+TAPRegExt's \xmlel{capabilities} element allows the declaration of such limits.
 These declarations are primarily intended for human consumption and should give
 conservative guidelines.  Thus, the operators of a service implementing a
 complex, possibly dynamic limits policy should give lower estimates here.
@@ -856,7 +856,7 @@ no limits are enforced.
 
 
 \subsubsection{Limits on Time}
-Limits on TimeThis document defines two time-like resource limits:
+This document defines two time-like resource limits:
 
 
 \begin{itemize}
