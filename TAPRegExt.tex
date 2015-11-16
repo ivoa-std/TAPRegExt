@@ -610,7 +610,7 @@ Example:
 A TAP service may offer a variety of output formats.
 What output formats are available is defined using
 \xmlel{outputFormat} elements.   They 
-declare an RFC 2045 media type \citep{std:MIME} as well
+declare an RFC 2046 media type \citep{std:MIME} as well
 as aliases (the shorthand forms the server also accepts in the 
 FORMAT parameter).  If desired, the format can be further described with an
 IVOID in the ivo-id attribute; TAPRegExt provides keys for some variants of
@@ -637,8 +637,8 @@ VOTables which are not interoperably distinguishable by their MIME types so far:
 
 \noindent{\small
       All TAP services must support VOTable output, preserving
-      the MIME type of the input.  Other output formats are
-      optional.
+      the MIME type of the input as per section 2.7.1 of the TAP standard.  
+      Other output formats are optional.
 
       The primary identifier for an output format is the MIME
       type.  If you want to register an output format, you must
@@ -697,7 +697,7 @@ VOTables which are not interoperably distinguishable by their MIME types so far:
           
 \item[Occurrence] required
 \item[Comment] 
-          The format of this string is specified by RFC 2045.
+          The format of this string is specified by RFC 2046.
           The service has to accept this string as a 
           value of the FORMAT parameter.
           
@@ -735,7 +735,7 @@ IVOIDs for the standard upload methods are provided within the
 resource record
 \texttt{ivo://ivoa.net/std/TAPRegExt}.  
 The IVOIDs are built by using the keys as fragments after the 
-TAPRegExt IVORN.
+TAPRegExt IVOID.
 
 It is permitted to register upload methods under authorities other than
 ivoa.net.
@@ -1301,15 +1301,14 @@ all other IVOIDs dependent on this.{}
 \item No longer restricting TableAccess' standardID to the (old)
 TAP standardID.  TAPRegExt capabilities are now allowed with arbitrary
 standardIDs
-\item Made most former IVORNs IVOID to comply with a proposed
-clarification of terminology in Identifiers 2.0
+\item Changed former use of the term ``IVORN''  to ``IVOID'' (or
+Registry part, as appropriate) to comply with a proposed clarification of 
+terminology in Identifiers 2.0
 \item The example now shows an entire capabilities response
 \item Repaired obscore data model URI in the example
 \item dataModel/@ivo-id is now typed xs:anyURI
 to allow fragment identifiers on it
 \item Migrated to ivoatex
-
-
 \end{itemize}
 
 \bibliography{ivoatex/ivoabib}
