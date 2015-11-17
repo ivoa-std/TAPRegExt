@@ -24,7 +24,7 @@ Taylor}
 \previousversion[http://www.ivoa.net/documents/TAPRegExt/20120827/]{REC-1.0}
 \previousversion[http://www.ivoa.net/Documents/TAPRegExt/20120208]{PR-20110727}
 
-\title{TAPRegExt}
+\title{TAPRegExt: A VOResource Schema Extension for Describing TAP Services}
 
 \begin{document}
 
@@ -265,7 +265,7 @@ attributes of \xmlel{outputFormat} and \xmlel{uploadMethod}.
 \noindent{\small
       Each language element can describe one or more versions
       of a language.  Either name alone or name-version can be
-      used as values for the server's LANG parameter.
+      used as values for the LANG parameter of the service.
       \par}
 
 \vspace{1ex}\noindent\textbf{\xmlel{tr:Language} Type Schema Definition}
@@ -300,8 +300,8 @@ attributes of \xmlel{outputFormat} and \xmlel{uploadMethod}.
 \begin{description}
 \item[Type] a string with optional attributes
 \item[Meaning] 
-		    		A version of the language supported by the server.
-		    	
+            A version of the language supported by the server.
+          
 \item[Occurrence] required; multiple occurrences allowed.
 
 \end{description}
@@ -319,14 +319,14 @@ attributes of \xmlel{outputFormat} and \xmlel{uploadMethod}.
 \begin{description}
 \item[Type] composite: \xmlel{tr:LanguageFeatureList}
 \item[Meaning] 
-          	Optional features of the query language, grouped by
-          	feature type.
-        	
+            Optional features of the query language, grouped by
+            feature type.
+          
 \item[Occurrence] optional; multiple occurrences allowed.
 \item[Comment] 
-        		This includes listing user defined functions, geometry support,
-        		or similar concepts.
-        	
+            This includes listing user defined functions, geometry support,
+            or similar concepts.
+          
 
 \end{description}
 
@@ -374,16 +374,16 @@ attributes of \xmlel{outputFormat} and \xmlel{uploadMethod}.
 \begin{description}
 \item[Type] a URI: \xmlel{xs:anyURI}
 \item[Meaning] 
-    				An optional IVOID of the language.
-    				
+            An optional IVOID of the language.
+            
 \item[Occurrence] optional
 \item[Comment] 
-    					To more formally define a language supported by a service,
-    					a resource record for the language can be created, either
-    					centrally on the Registry of Registries or by other registry operators.  
-    					When such a record exists, the language element's ivo-id
-    					should point to it.
-    				
+              To more formally define a language supported by a service,
+              a resource record for the language can be created, either
+              centrally on the Registry of Registries or by other registry operators.  
+              When such a record exists, the ivo-id attribute of language
+              should point to it.
+            
 \end{description}
 
 
@@ -478,24 +478,24 @@ Example:
       	\vspace{2ex}\noindent\textbf{\xmlel{tr:LanguageFeatureList} Type Schema Documentation}
 
 \noindent{\small
-      	An enumeration of non-standard or non-mandatory features of 
-      	a specific type implemented by the language.
-    	\par}
+        An enumeration of non-standard or non-mandatory features of 
+        a specific type implemented by the language.
+      \par}
 
 \noindent{\small
-    		A feature type is a language-dependent concept like 
-    		"user defined function", "geometry support", or possibly 
-    		"units supported".  A featureList gives all features of
-    		a given type applicable for the service.  Multiple featureLists
-    		are possible.
+        A feature type is a language-dependent concept like 
+        ``user defined function'', ``geometry support'', or possibly 
+        ``units supported''.  A featureList gives all features of
+        a given type applicable for the service.  Multiple featureLists
+        are possible.
 
-      	All feature in a given list are of the same type.  This type
-      	is declared using the mandatory type attribute,
-      	the value of which will typically be an IVOID.
-      	To see values defined in TAPRegExt,
-				retrieve the ivo://ivoa.net/std/TAPRegExt
-      	resource record and look for keys starting with "features-".
-    	\par}
+        All feature in a given list are of the same type.  This type
+        is declared using the mandatory type attribute,
+        the value of which will typically be an IVOID.
+        To see values defined in TAPRegExt,
+        retrieve the ivo://ivoa.net/std/TAPRegExt
+        resource record and look for keys starting with "features-".
+      \par}
 
 \vspace{1ex}\noindent\textbf{\xmlel{tr:LanguageFeatureList} Type Schema Definition}
 
@@ -516,14 +516,14 @@ Example:
 \begin{description}
 \item[Type] a URI: \xmlel{xs:anyURI}
 \item[Meaning] 
-					The type of the features given here.
-				
+          The type of the features given here.
+        
 \item[Occurrence] required
 \item[Comment] 
-					This is in general an IVOID.  TAPRegExt itself gives
-					IVOIDs for defining user defined functions and geometry
-					support.
-				
+          This is in general an IVOID.  TAPRegExt itself gives
+          IVOIDs for defining user defined functions and geometry
+          support.
+        
 \end{description}
 
 
@@ -537,9 +537,9 @@ Example:
 \begin{description}
 \item[Type] composite: \xmlel{tr:LanguageFeature}
 \item[Meaning] 
-						A language feature of the type given by this
-						element's type attribute.
-					
+            A language feature of the type given by the
+            type attribute.
+          
 \item[Occurrence] optional; multiple occurrences allowed.
 
 \end{description}
@@ -557,9 +557,9 @@ Example:
       	\vspace{2ex}\noindent\textbf{\xmlel{tr:LanguageFeature} Type Schema Documentation}
 
 \noindent{\small
-      	A non-standard or non-mandatory feature implemented
-      	by the language..
-    	\par}
+        A non-standard or non-mandatory feature implemented
+        by the language..
+      \par}
 
 \vspace{1ex}\noindent\textbf{\xmlel{tr:LanguageFeature} Type Schema Definition}
 
@@ -578,21 +578,21 @@ Example:
 \begin{description}
 \item[Type] string: \xmlel{xs:token}
 \item[Meaning] 
-          	Formal notation for the language feature.
-        	
+            Formal notation for the language feature.
+          
 \item[Occurrence] required
 \item[Comment] 
-          	The syntax for the content of this element is defined by the
-          	type attribute of its parent language list.
-        	
+            The syntax for the content of this element is defined by the
+            type attribute of its parent language list.
+          
 
 \end{description}
 \item[Element \xmlel{description}]
 \begin{description}
 \item[Type] string: \xmlel{xs:string}
 \item[Meaning] 
-          	Human-readable freeform documentation for the language feature.
-        	
+            Human-readable freeform documentation for the language feature.
+          
 \item[Occurrence] optional
 
 \end{description}
@@ -636,14 +636,14 @@ VOTables which are not interoperably distinguishable by their MIME types so far:
       \par}
 
 \noindent{\small
-      All TAP services must support VOTable output, preserving
-      the MIME type of the input as per section 2.7.1 of the TAP standard.  
-      Other output formats are optional.
+			All TAP services must support VOTable output, with media types as 
+      requested by the FORMAT parameter if applicable (cf.~section 2.7.1 
+      of the TAP standard).
 
-      The primary identifier for an output format is the MIME
+      The primary identifier for an output format is the RFC 2046 media
       type.  If you want to register an output format, you must
-      use a MIME type (or make one up using the x- syntax), although
-      the concrete MIME syntax is not enforced by the schema.
+      use a media type (or make one up using the x- syntax), although
+      the concrete media syntax is not enforced by the schema.
 
       For more detailed specification, an IVOID may be used.
       \par}
@@ -672,13 +672,13 @@ VOTables which are not interoperably distinguishable by their MIME types so far:
         
 \item[Occurrence] optional
 \item[Comment] 
-        	When the MIME type does not uniquely define the
-        	format (or a generic MIME like application/octet-stream or
-        	text/plain is given), the IVOID can point to a key
-        	or StandardsRegExt document defining the format more
-        	precisely.  To see values defined in TAPRegExt,
-					retrieve the ivo://ivoa.net/std/TAPRegExt
-      		resource record and look for keys starting with "output-".
+          When the media type does not uniquely define the
+          format (or a generic media type like application/octet-stream or
+          text/plain is given), the IVOID can point to a key
+          or StandardsRegExt document defining the format more
+          precisely.  To see values defined in TAPRegExt,
+          retrieve the ivo://ivoa.net/std/TAPRegExt
+          resource record and look for keys starting with "output-".
         
 \end{description}
 
@@ -693,7 +693,7 @@ VOTables which are not interoperably distinguishable by their MIME types so far:
 \begin{description}
 \item[Type] string: \xmlel{xs:token}
 \item[Meaning] 
-          The MIME type of this format.
+          The media type of this format.
           
 \item[Occurrence] required
 \item[Comment] 
@@ -708,7 +708,7 @@ VOTables which are not interoperably distinguishable by their MIME types so far:
 \item[Type] string: \xmlel{xs:token}
 \item[Meaning] 
           Other values of FORMAT ("shorthands") that make the service return 
-          documents with the MIME type.
+          documents with the media type.
           
 \item[Occurrence] optional; multiple occurrences allowed.
 
@@ -783,9 +783,8 @@ would say:
       Upload methods are always identified by an IVOID.  
       Descriptions can be obtained by dereferencing this
       IVOID.  To see values defined in TAPRegExt,
-			retrieve the ivo://ivoa.net/std/TAPRegExt
-   		resource record and look for keys starting with "upload-".
-
+      retrieve the ivo://ivoa.net/std/TAPRegExt
+      resource record and look for keys starting with "upload-".
 
       You can register custom upload methods, but you must use the
       standard IVOIDs for the upload methods defined in the TAP

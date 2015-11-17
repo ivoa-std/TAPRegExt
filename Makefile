@@ -9,7 +9,7 @@ DOCNAME = TAPRegExt
 DOCVERSION = 1.1
 
 # Publication date, ISO format; update manually for "releases"
-DOCDATE = 2015-10-15
+DOCDATE = 2015-11-17
 
 # What is it you're writing: NOTE, WD, PR, or REC
 DOCTYPE = WD
