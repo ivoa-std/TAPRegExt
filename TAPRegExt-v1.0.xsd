@@ -28,7 +28,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
       </xs:documentation>
       <xs:documentation>
       The capabilities attempt to define most issues that the
-      TAP standard leaves to the implementors ("may", "should").
+      TAP standard leaves to the implementors (”may”, “should”).
       </xs:documentation>
     </xs:annotation>
     <xs:complexContent>
@@ -241,8 +241,8 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
       </xs:documentation>
       <xs:documentation>
         A feature type is a language-dependent concept like 
-        ``user defined function'', ``geometry support'', or possibly 
-        ``units supported''.  A featureList gives all features of
+        “user defined function”, “geometry support”, or possibly 
+        “units supported”.  A featureList gives all features of
         a given type applicable for the service.  Multiple featureLists
         are possible.
 
@@ -251,7 +251,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
         the value of which will typically be an IVOID.
         To see values defined in TAPRegExt,
         retrieve the ivo://ivoa.net/std/TAPRegExt
-        resource record and look for keys starting with "features-".
+        resource record and look for keys starting with “features-”.
       </xs:documentation>
     </xs:annotation>
     <xs:sequence>
@@ -346,7 +346,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
         minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
-          Other values of FORMAT ("shorthands") that make the service return 
+          Other values of FORMAT (“shorthands”) that make the service return 
           documents with the media type.
           </xs:documentation>
         </xs:annotation>
@@ -366,7 +366,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           or StandardsRegExt document defining the format more
           precisely.  To see values defined in TAPRegExt,
           retrieve the ivo://ivoa.net/std/TAPRegExt
-          resource record and look for keys starting with "output-".
+          resource record and look for keys starting with “output-”.
         </xs:documentation>
       </xs:annotation>
     </xs:attribute>
@@ -383,7 +383,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
       Descriptions can be obtained by dereferencing this
       IVOID.  To see values defined in TAPRegExt,
       retrieve the ivo://ivoa.net/std/TAPRegExt
-      resource record and look for keys starting with "upload-".
+      resource record and look for keys starting with ”upload-”.
 
       You can register custom upload methods, but you must use the
       standard IVOIDs for the upload methods defined in the TAP
