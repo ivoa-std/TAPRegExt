@@ -8,7 +8,9 @@ to be registered.
 The last stable version is
 **[REC-1.0](https://www.ivoa.net/documents/TAPRegExt/20120827/)**.
 
-The version in development is WD-1.1 and a PDF is automatically produced from this repository
+The version in development is WD-1.1 and a 
+[![PDF-Preview](https://img.shields.io/badge/Preview-PDF-blue)](../../releases/download/auto-pdf-preview/TAPRegExt-draft.pdf)
+is automatically produced from this repository
 
 ## Files
 
