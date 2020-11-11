@@ -1,9 +1,25 @@
-# doc-template
-document template
+# TAPRegExt
 
-<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
-  <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>
-  <br />
-  This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
-  Creative Commons Attribution-ShareAlike 4.0 International License</a>.
-  
+This describes a schema extension of [resource metadata](http://www.ivoa.net/Documents/latest/RM.html) to allow [TAP](http://www.ivoa.net/documents/TAP/) services
+to be registered.
+
+## Status
+
+The last stable version is
+**[REC-1.0](https://www.ivoa.net/documents/TAPRegExt/20120827/)**.
+
+The version in development is WD-1.1 and a PDF is automatically produced from this repository
+
+## Files
+
+The document source is in TAPRegExt.tex and TAPRegExt-v*.xsd is the schema itself.
+
+dumprecord.py is a program that generates sample.xml from the capabilities
+record for the TAP service of GAVO DaCHS.  It will thus only work if
+you have GAVO DaCHS installed, and you will most certainly not want that
+for the purpose of building this document.  
+
+
+[![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/)
+This work is licensed under a
+[Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/).
