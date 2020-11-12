@@ -16,7 +16,7 @@ DOCTYPE = WD
 
 # Source files for the TeX document (but the main file must always
 # be called $(DOCNAME).tex
-SOURCES = $(DOCNAME).tex $(SCHEMA_FILE) sample.xml
+SOURCES = $(DOCNAME).tex $(SCHEMA_FILE) sample.xml gitmeta.tex 
 
 # List of pixel image files to be included in submitted package 
 FIGURES = TAPRegExt-arch.png
@@ -34,7 +34,7 @@ include ivoatex/Makefile
 sample.xml: samplegroom.sed Makefile
 	# this rule only works if there's a (proper) TAP service on
 	# http://localhost:8080/tap
-	curl -s http://localhost:8080/tap/capabilities \
+	curl -s http://dc.zah.uni-heidelberg.de/__system__/tap/run/tap/capabilities \
 		| xmlstarlet ed -d "//feature[starts-with(form, 'ivo_apply_pm')]" \
 			-d "//feature[starts-with(form, 'gavo_to_jd')]" \
 			-d "//feature[starts-with(form, 'gavo_to_mjd')]" \
@@ -42,7 +42,7 @@ sample.xml: samplegroom.sed Makefile
 			-d "//feature[starts-with(form, 'ivo_nocasematch')]" \
 			-d "//feature[starts-with(form, 'ivo_hasword')]" \
 		| xmlstarlet fo > $@.tmp
-	gavo admin xsdValidate $@.tmp
+#	gavo admin xsdValidate $@.tmp
 	sed -f samplegroom.sed $@.tmp > $@
 #	rm $@.tmp
 	

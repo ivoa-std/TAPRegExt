@@ -1,7 +1,7 @@
 name: Update PDF Preview
 
 env:
-  doc_name:
+  doc_name: TAPRegExt
 
 on:
   push:

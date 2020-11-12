@@ -1,7 +1,7 @@
 name: Check the IVOA document
 
 env:
-  doc_name:
+  doc_name: TAPRegExt
 
 on:
   pull_request:
