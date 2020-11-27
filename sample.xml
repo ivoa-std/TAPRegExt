@@ -1,0 +1,153 @@
+<cap:capabilities 
+	xmlns:cap="http://www.ivoa.net/xml/VOSICapabilities/v1.0" 
+	xmlns:tr="http://www.ivoa.net/xml/TAPRegExt/v1.0" 
+	xmlns:vg="http://www.ivoa.net/xml/VORegistry/v1.0" 
+	xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" 
+	xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.1" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+  <capability 
+	standardID="ivo://ivoa.net/std/VOSI#availability">
+    <interface 
+	xsi:type="vs:ParamHTTP">
+      <accessURL use="full">http://localhost:8080/availability</accessURL>
+    </interface>
+  </capability>
+  <capability 
+	standardID="ivo://ivoa.net/std/VOSI#capabilities">
+    <interface 
+	xsi:type="vs:ParamHTTP">
+      <accessURL use="full">http://localhost:8080/capabilities</accessURL>
+    </interface>
+  </capability>
+  <capability 
+	standardID="ivo://ivoa.net/std/VOSI#tables">
+    <interface 
+	xsi:type="vs:ParamHTTP">
+      <accessURL use="full">http://localhost:8080/tableMetadata</accessURL>
+    </interface>
+  </capability>
+  <capability 
+	standardID="ivo://ivoa.net/std/TAP" 
+	xsi:type="tr:TableAccess">
+    <interface role="std" 
+	xsi:type="vs:ParamHTTP">
+      <accessURL use="base">http://localhost:8080/tap</accessURL>
+    </interface>
+    <dataModel ivo-id="ivo://ivoa.net/std/RegTAP#1.0">Registry 1.0</dataModel>
+    <dataModel ivo-id="ivo://ivoa.net/std/ObsCore/v1.0">Obscore-1.0</dataModel>
+    <dataModel ivo-id="ivo://org.gavo.dc/std/glots#tables-1.0">GloTS 1.0</dataModel>
+    <language>
+      <name>ADQL</name>
+      <version ivo-id="ivo://ivoa.net/std/ADQL#v2.0">2.0</version>
+      <description>ADQL 2.0</description>
+      <languageFeatures type="ivo://ivoa.net/std/TAPRegExt#features-udf">
+        <feature>
+          <form>gavo_match(pattern TEXT, string TEXT) -&gt; INTEGER</form>
+          <description>gavo_match returns 1 if the POSIX regular expression pattern
+matches anything in string, 0 otherwise.</description>
+        </feature>
+        <feature>
+          <form>ivo_string_agg(expression TEXT, delimiter TEXT) -&gt; TEXT</form>
+          <description>An aggregate function returning all values of
+expression within a GROUP contcatenated with delimiter</description>
+        </feature>
+      </languageFeatures>
+      <languageFeatures type="ivo://ivoa.net/std/TAPRegExt#features-adqlgeo">
+        <feature>
+          <form>BOX</form>
+        </feature>
+        <feature>
+          <form>POINT</form>
+        </feature>
+        <feature>
+          <form>CIRCLE</form>
+        </feature>
+        <feature>
+          <form>POLYGON</form>
+        </feature>
+        <feature>
+          <form>REGION</form>
+        </feature>
+        <feature>
+          <form>CENTROID</form>
+        </feature>
+        <feature>
+          <form>COORD1</form>
+        </feature>
+        <feature>
+          <form>COORD2</form>
+        </feature>
+        <feature>
+          <form>DISTANCE</form>
+        </feature>
+        <feature>
+          <form>CONTAINS</form>
+        </feature>
+        <feature>
+          <form>INTERSECTS</form>
+        </feature>
+        <feature>
+          <form>AREA</form>
+        </feature>
+      </languageFeatures>
+    </language>
+    <outputFormat ivo-id="ivo://ivoa.net/std/TAPRegExt#output-votable-binary">
+      <mime>text/xml</mime>
+    </outputFormat>
+    <outputFormat>
+      <mime>text/html</mime>
+      <alias>html</alias>
+    </outputFormat>
+    <outputFormat ivo-id="ivo://ivoa.net/std/TAPRegExt#output-votable-binary2">
+      <mime>application/x-votable+xml;serialization=binary2</mime>
+      <alias>votable/b2</alias>
+    </outputFormat>
+    <outputFormat>
+      <mime>application/fits</mime>
+      <alias>fits</alias>
+    </outputFormat>
+    <outputFormat>
+      <mime>text/csv</mime>
+    </outputFormat>
+    <outputFormat>
+      <mime>text/csv;header=present</mime>
+      <alias>csv</alias>
+    </outputFormat>
+    <outputFormat ivo-id="ivo://ivoa.net/std/TAPRegEXT#output-votable-td">
+      <mime>application/x-votable+xml;serialization=tabledata</mime>
+      <alias>votable/td</alias>
+    </outputFormat>
+    <outputFormat>
+      <mime>application/json</mime>
+      <alias>json</alias>
+    </outputFormat>
+    <outputFormat ivo-id="ivo://ivoa.net/std/TAPRegExt#output-votable-binary">
+      <mime>application/x-votable+xml</mime>
+      <alias>votable</alias>
+    </outputFormat>
+    <outputFormat>
+      <mime>text/plain</mime>
+    </outputFormat>
+    <outputFormat>
+      <mime>text/tab-separated-values</mime>
+      <alias>tsv</alias>
+    </outputFormat>
+    <uploadMethod ivo-id="ivo://ivoa.net/std/TAPRegExt#upload-https"/>
+    <uploadMethod ivo-id="ivo://ivoa.net/std/TAPRegExt#upload-ftp"/>
+    <uploadMethod ivo-id="ivo://ivoa.net/std/TAPRegExt#upload-inline"/>
+    <uploadMethod ivo-id="ivo://ivoa.net/std/TAPRegExt#upload-http"/>
+    <retentionPeriod>
+      <default>172800</default>
+    </retentionPeriod>
+    <executionDuration>
+      <default>3600</default>
+    </executionDuration>
+    <outputLimit>
+      <default unit="row">2000</default>
+      <hard unit="row">20000000</hard>
+    </outputLimit>
+    <uploadLimit>
+      <hard unit="byte">20000000</hard>
+    </uploadLimit>
+  </capability>
+</cap:capabilities>
