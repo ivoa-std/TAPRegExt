@@ -121,7 +121,7 @@ RofR -->
 	<key>
 		<name>features-adql-string</name>
 		<description>An enumeration of optional string functions implemented
-		by the service.  ADQL 2.1 defines the LOWER and ILIKE features here.
+		by the service.  ADQL 2.1 defines the UPPER, LOWER and ILIKE features here.
 		</description>
 	</key>
 
@@ -139,6 +139,15 @@ RofR -->
 		UNION, EXCEPT, INTERSECT.
 		</description>
 	</key>
+
+	<key>
+		<name>features-adql-type</name>
+		<description>Features related to the type conversions
+		in the service's ADQL.  ADQL 2.1 defines one feature here:
+		CAST.
+		</description>
+	</key>
+
 
 	<key>
 		<name>features-adql-unit</name>
