@@ -4,7 +4,7 @@ RofR -->
 <ri:Resource 
 	xsi:type="vstd:Standard" 
 	created="2011-06-07T17:19:00" 
-	updated="2014-02-19T09:49:00" 
+	updated="2021-07-07T10:00:00" 
 	status="active"
 	xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" 
 	xmlns:vstd="http://www.ivoa.net/xml/StandardsRegExt/v1.0" 
@@ -112,7 +112,54 @@ RofR -->
 		<description>An enumeration of ADQL geometry functions implemented
 		by the server.  Support for a geometry function is declared by
 		including a feature having just the function name in its form
-		element.
+		element.  Since ADQL 2.0, there are the features AREA, BOX (deprecated in
+		2.1), CENTROID, CIRCLE, CONTAINS, COORD1, COORD2, DISTANCE, INTERSECTS,
+		REGION, POINT, and POLYGON here.
+		</description>
+	</key>
+
+	<key>
+		<name>features-adql-string</name>
+		<description>An enumeration of optional string functions implemented
+		by the service.  ADQL 2.1 defines the UPPER, LOWER and ILIKE features here.
+		</description>
+	</key>
+
+	<key>
+		<name>features-adql-common-table</name>
+		<description>Features related to the support of common table expressions
+		in the service's ADQL.  ADQL 2.1 only has one feature, WITH, here.
+		</description>
+	</key>
+
+	<key>
+		<name>features-adql-sets</name>
+		<description>Features related to the support of set operators
+		in the service's ADQL.  ADQL 2.1 defines three features here:
+		UNION, EXCEPT, INTERSECT.
+		</description>
+	</key>
+
+	<key>
+		<name>features-adql-type</name>
+		<description>Features related to the type conversions
+		in the service's ADQL.  ADQL 2.1 defines one feature here:
+		CAST.
+		</description>
+	</key>
+
+
+	<key>
+		<name>features-adql-unit</name>
+		<description>Features related to the service's support of in-ADQL unit 
+		parsing and coversion. ADQL 2.1 has only one feature, IN_UNIT, here.
+		</description>
+	</key>
+
+	<key>
+		<name>features-adql-offset</name>
+		<description>Features related to the service's support of the ADQL OFFSET 
+		construct; ADQL 2.1 has only one feature, OFFSET, here.
 		</description>
 	</key>
 
