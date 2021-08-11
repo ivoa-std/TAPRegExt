@@ -6,6 +6,7 @@
 \lstloadlanguages{XML}
 \lstset{flexiblecolumns=true,tagstyle=\ttfamily,
 showstringspaces=False}
+\usepackage{todonotes}
 
 \ivoagroup{Registry}
 
@@ -181,14 +182,14 @@ In TAPRegExt, a data model is identified by its IVOA identifier
 \citep{2016ivoa.spec.0523D}.  The example document in Appendix~\ref{app:example}
 uses this to define support for both the ObsCore and RegTAP data models.
 
-% GENERATED: !schemadoc TAPRegExt-v1.0.xsd DataModelType
+% GENERATED: !schemadoc TAPRegExt-v1.1.xsd DataModelType
 \begin{generated}
 \begingroup
       	\renewcommand*\descriptionlabel[1]{%
       	\hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:DataModelType} Type Schema Documentation}
 
 \noindent{\small
-        An IVOA defined data model, identified by an IVOID 
+        An IVOA defined data model, identified by an IVORN 
         intended for machine consumption and a short label
         intended for human comsumption.
       \par}
@@ -255,7 +256,7 @@ IVOID (i.e., a URI with a schema of ivo:), though.
 The same reasoning applies to the \xmlel{ivo-id}
 attributes of \xmlel{outputFormat} and \xmlel{uploadMethod}.
 
-% GENERATED: !schemadoc TAPRegExt-v1.0.xsd Language
+% GENERATED: !schemadoc TAPRegExt-v1.1.xsd Language
 \begin{generated}
 \begingroup
       	\renewcommand*\descriptionlabel[1]{%
@@ -268,7 +269,7 @@ attributes of \xmlel{outputFormat} and \xmlel{uploadMethod}.
 \noindent{\small
       Each language element can describe one or more versions
       of a language.  Either name alone or name-version can be
-      used as values for the LANG parameter of the service.
+      used as values for the server's LANG parameter.
       \par}
 
 \vspace{1ex}\noindent\textbf{\xmlel{tr:Language} Type Schema Definition}
@@ -341,7 +342,7 @@ attributes of \xmlel{outputFormat} and \xmlel{uploadMethod}.
 
 % /GENERATED
 
-% GENERATED: !schemadoc TAPRegExt-v1.0.xsd Version
+% GENERATED: !schemadoc TAPRegExt-v1.1.xsd Version
 \begin{generated}
 \begingroup
       	\renewcommand*\descriptionlabel[1]{%
@@ -478,7 +479,7 @@ Example:
 \end{bigdescription}
 
 
-% GENERATED: !schemadoc TAPRegExt-v1.0.xsd LanguageFeatureList
+% GENERATED: !schemadoc TAPRegExt-v1.1.xsd LanguageFeatureList
 \begin{generated}
 \begingroup
       	\renewcommand*\descriptionlabel[1]{%
@@ -559,7 +560,7 @@ Example:
 
 % /GENERATED
 
-% GENERATED: !schemadoc TAPRegExt-v1.0.xsd LanguageFeature
+% GENERATED: !schemadoc TAPRegExt-v1.1.xsd LanguageFeature
 \begin{generated}
 \begingroup
       	\renewcommand*\descriptionlabel[1]{%
@@ -636,7 +637,7 @@ VOTables which are not interoperably distinguishable by their MIME types so far:
 	with a BINARY2 child
 \end{description}
 
-% GENERATED: !schemadoc TAPRegExt-v1.0.xsd OutputFormat
+% GENERATED: !schemadoc TAPRegExt-v1.1.xsd OutputFormat
 \begin{generated}
 \begingroup
       	\renewcommand*\descriptionlabel[1]{%
@@ -647,7 +648,7 @@ VOTables which are not interoperably distinguishable by their MIME types so far:
       \par}
 
 \noindent{\small
-			All TAP services must support VOTable output, with media types as 
+      All TAP services must support VOTable output, with media types as 
       requested by the FORMAT parameter if applicable (cf.~section 2.7.1 
       of the TAP standard).
 
@@ -782,7 +783,7 @@ would say:
   <uploadMethod ivo-id="ivo://ivoa.net/std/TAPRegExt#upload-ftp"/>
 \end{lstlisting}
 
-% GENERATED: !schemadoc TAPRegExt-v1.0.xsd UploadMethod
+% GENERATED: !schemadoc TAPRegExt-v1.1.xsd UploadMethod
 \begin{generated}
 \begingroup
       	\renewcommand*\descriptionlabel[1]{%
@@ -886,7 +887,7 @@ All values in time-like limits are given in seconds.  Both
 \xmlel{retentionPeriod} and \xmlel{executionDuration} are of type
 \xmlel{tr:TimeLimits}.
 
-% GENERATED: !schemadoc TAPRegExt-v1.0.xsd TimeLimits
+% GENERATED: !schemadoc TAPRegExt-v1.1.xsd TimeLimits
 \begin{generated}
 \begingroup
       	\renewcommand*\descriptionlabel[1]{%
@@ -965,7 +966,7 @@ Data limits are defined using the \xmlel{tr:DataLimits}
 and \xmlel{tr:DataLimit} types:
 
 
-% GENERATED: !schemadoc TAPRegExt-v1.0.xsd DataLimits
+% GENERATED: !schemadoc TAPRegExt-v1.1.xsd DataLimits
 \begin{generated}
 \begingroup
       	\renewcommand*\descriptionlabel[1]{%
@@ -1017,7 +1018,7 @@ and \xmlel{tr:DataLimit} types:
 
 % /GENERATED
 
-% GENERATED: !schemadoc TAPRegExt-v1.0.xsd DataLimit
+% GENERATED: !schemadoc TAPRegExt-v1.1.xsd DataLimit
 \begin{generated}
 \begingroup
       	\renewcommand*\descriptionlabel[1]{%
@@ -1071,6 +1072,317 @@ and \xmlel{tr:DataLimit} types:
 
 % /GENERATED
 
+\subsection{Interface Declaration}
+\label{intfdecl}
+
+Version 1.0 of this specification used a VODataService
+\xmlel{vs:ParamHTTP} interface to declare the TAP service's base URL.
+This was mainly done to maintain common service discovery patterns --
+other DAL protocols use \xmlel{vs:ParamHTTP}-typed interfaces as well
+--, but it ignored the semantics of the type, which in particular is
+that the access URL of such an interface is what clients use in queries.
+Against that, the TAP specification actually leaves open what
+directly dereferencing the base URL should result in.  Instead, all
+functionality is offered through children of the base URL.  The abuse of
+\xmlel{vs:ParamHTTP} later had a severe fallout as discussed in
+\citet{note:caproles}.
+
+However, existing TAP clients rely on the interface declaration for
+discovery, and hence all
+capability elements with a TAPRegExt version~1 \xmlel{standardID} must include
+a \xmlel{vs:ParamHTTP}-typed interface with
+
+\begin{itemize}
+\item a child element \xmlel{accessURL} with its content the base URL of
+the TAP service (the parent of sync, async, etc.) and its \xmlel{use}
+attribute set to \verb|base|.
+\item its \xmlel{role} attribute set to \verb|std|
+\item its \xmlel{version} attribute set to the version of the TAP
+specification implemented.
+\end{itemize}
+
+In order to open the path to advanced use cases (e.g., involving
+authenticated access), services implementing TAPRegExt~1.1 must include
+another interface element of type \xmlel{tr:DALIInterface}.  
+
+% GENERATED: !schemadoc TAPRegExt-v1.1.xsd DALIInterface
+\begin{generated}
+\begingroup
+      	\renewcommand*\descriptionlabel[1]{%
+      	\hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:DALIInterface} Type Schema Documentation}
+
+\noindent{\small
+        An interface for a complex, multi-endpoint interfaces as
+        regulated by DALI.
+      \par}
+
+\noindent{\small
+        In addition to the standard vr:Interface elements, DALIInterfaces
+        have endpoints, listed by name; that name doubles as a path segment
+        to append to the interface's access URL, yielding the URI at
+        which the endpoint is operated.
+      \par}
+
+\vspace{1ex}\noindent\textbf{\xmlel{tr:DALIInterface} Type Schema Definition}
+
+\begin{lstlisting}[language=XML,basicstyle=\footnotesize]
+<xs:complexType name="DALIInterface" >
+  <xs:complexContent >
+    <xs:extension base="vr:Interface" >
+      <xs:sequence >
+        <xs:element name="endpoint" type="tr:Endpoint" minOccurs="0"
+                  maxOccurs="unbounded" />
+      </xs:sequence>
+    </xs:extension>
+  </xs:complexContent>
+</xs:complexType>
+\end{lstlisting}
+
+\vspace{0.5ex}\noindent\textbf{\xmlel{tr:DALIInterface} Extension Metadata Elements}
+
+\begingroup\small\begin{bigdescription}\item[Element \xmlel{endpoint}]
+\begin{description}
+\item[Type] composite: \xmlel{tr:Endpoint}
+\item[Meaning] 
+                An endpoint accessible through this interface.
+              
+\item[Occurrence] optional; multiple occurrences allowed.
+
+\end{description}
+
+
+\end{bigdescription}\endgroup
+
+\endgroup
+\end{generated}
+
+% /GENERATED
+
+The \xmlel{tr:DALIInterface}-typed interface must satisfy the same
+requirements as the \xmlel{vs:ParamHTTP}-typed one as regards its
+\xmlel{accessURL} child and \xmlel{role} and \xmlel{version} attributes.
+Furthermore, this interface now enumerates the various endpoints exposed
+below the base URI in \xmlel{endpoint} elements\todo{We may want to
+support vocab on endpoint; or do we want an implicit prefix as in
+datalink?}.
+
+% GENERATED: !schemadoc TAPRegExt-v1.1.xsd Endpoint
+\begin{generated}
+\begingroup
+      	\renewcommand*\descriptionlabel[1]{%
+      	\hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:Endpoint} Type Schema Documentation}
+
+\noindent{\small
+        An endpoint of a complex interface.
+      \par}
+
+\noindent{\small
+        An endpoint is characterised and addrssed by its name;
+        they can further be defined through RDF triples.  This is a
+        generic extension mechanism for endpoint-specific metadata,
+        primarily intended for custom, vendor-specific extensions.
+      \par}
+
+\vspace{1ex}\noindent\textbf{\xmlel{tr:Endpoint} Type Schema Definition}
+
+\begin{lstlisting}[language=XML,basicstyle=\footnotesize]
+<xs:complexType name="Endpoint" >
+  <xs:sequence >
+    <xs:element name="name" type="xs:token" minOccurs="1" maxOccurs="1" />
+    <xs:element name="meta" type="tr:MetaTriple" minOccurs="0"
+              maxOccurs="unbounded" />
+  </xs:sequence>
+</xs:complexType>
+\end{lstlisting}
+
+\vspace{0.5ex}\noindent\textbf{\xmlel{tr:Endpoint} Metadata Elements}
+
+\begingroup\small\begin{bigdescription}\item[Element \xmlel{name}]
+\begin{description}
+\item[Type] string: \xmlel{xs:token}
+\item[Meaning] 
+            The endpoint name, which is also the last component of the
+            path of its URI.
+          
+\item[Occurrence] required
+\item[Comment] 
+            Names without dashes are reserved for IVOA use and are expected to
+            work the same way on all services.  Well-known examples for
+            such endpoint names include sync, async, and tables.
+          
+
+\end{description}
+\item[Element \xmlel{meta}]
+\begin{description}
+\item[Type] a string with optional attributes
+\item[Meaning] 
+            Auxiliary information on this endpoint.
+          
+\item[Occurrence] optional; multiple occurrences allowed.
+
+\end{description}
+
+
+\end{bigdescription}\endgroup
+
+\endgroup
+\end{generated}
+
+% /GENERATED
+
+For TAP, at least the \verb|sync|, \verb|async|, and \verb|tables|
+endpoints must be declared, as well as \verb|examples| if present.  The VOSI
+capabilities URL, while in TAP also a child of the base URL,
+continues to be declared in separate capability in this version rather
+than a DALI interface endpoint.  TAPRegExt specifically discourages
+returning different capability contents from different interfaces (e.g.,
+with and without authentication) of a service.
+
+While in general, not overly much configurability should be enabled on
+the level of endpoints, operators can attach extra per-endpoint metadata
+using their \xmlel{meta} children.  These support a subset of
+the attributes defined by RDFa lite \citep{std:RDFaLite11}, enough to
+make statements consisting of a subject (\xmlel{about}), a predicate
+(\xmlel{property}), and an object (content or \xmlel{resource}):
+
+% GENERATED: !schemadoc TAPRegExt-v1.1.xsd MetaTriple
+\begin{generated}
+\begingroup
+      	\renewcommand*\descriptionlabel[1]{%
+      	\hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:MetaTriple} Type Schema Documentation}
+
+\noindent{\small
+        A container for an RDFa triple giving information related to
+        an endpoint.
+      \par}
+
+\vspace{1ex}\noindent\textbf{\xmlel{tr:MetaTriple} Type Schema Definition}
+
+\begin{lstlisting}[language=XML,basicstyle=\footnotesize]
+<xs:complexType name="MetaTriple" >
+  <xs:simpleContent >
+    <xs:extension base="xs:token" >
+      <xs:attribute name="about" type="xs:anyURI" use="optional" />
+      <xs:attribute name="property" type="xs:anyURI" use="required" />
+      <xs:attribute name="resource" type="xs:anyURI" use="optional" />
+    </xs:extension>
+  </xs:simpleContent>
+</xs:complexType>
+\end{lstlisting}
+
+\vspace{0.5ex}\noindent\textbf{\xmlel{tr:MetaTriple} Attributes}
+
+\begingroup\small\begin{bigdescription}
+\item[about]
+\begin{description}
+\item[Type] a URI: \xmlel{xs:anyURI}
+\item[Meaning] 
+              The subject of the statement.
+            
+\item[Occurrence] optional
+\item[Comment] 
+              If missing, the endpoint itself is assumed as the subject.
+            
+\end{description}
+\item[property]
+\begin{description}
+\item[Type] a URI: \xmlel{xs:anyURI}
+\item[Meaning] 
+              The property of the statement.
+            
+\item[Occurrence] required
+\item[Comment] 
+              This is a reference to an RDF resource.  IVOA standards may define
+              semantics for scheme-less URI; non-IVOA properties must use
+              full URIs with at least scheme and authority; in this
+              version, no vocab attributes are supported.
+            
+\end{description}
+\item[resource]
+\begin{description}
+\item[Type] a URI: \xmlel{xs:anyURI}
+\item[Meaning] 
+              The object of the statement.
+            
+\item[Occurrence] optional
+\item[Comment] 
+              If missing, the text content of the element is used as the
+              object.
+            
+\end{description}
+
+
+\end{bigdescription}\endgroup
+
+\endgroup
+\end{generated}
+
+% /GENERATED
+
+This is intended to give operators the possibility to communicate extra
+information to custom clients primarily by defining properties, which
+are simply URIs controlled by the operator and should dereference to
+documents explaining the semantics of the properties, ideally authored
+in HTML.  The object of the statement is typically given by the element
+contents, but where the object cannot be inlined, the \xmlel{meta}'s
+\xmlel{resource} attribute can be used instead.
+
+For instance, to convey a custom method to upload tables on an
+(authenticated) tables endpoint, an operator could say:
+
+\begin{lstlisting}[language=XML, basicstyle=\footnotesize]
+<endpoint>
+  <name>tables</name>
+  <meta property="http://operator.example.edu/supports-our-extension"
+    >table-upload</meta>
+</endpoint>
+\end{lstlisting}
+
+To prevent a fragmentation of the TAP standard, such extensions should
+be restricted to single service providers and custom clients and be
+considered for addition to the TAP standard as other parties take them
+up.
+
+Because it models the most essential aspects of RDF, the \xmlel{meta}
+element, in principle, allows operators to build almost arbitrarily
+complex metadata structures when other \xmlel{meta} elements are used as
+subjects.  Continuing the example above, the operator could declare
+media types and labels for upload formats like this:
+
+\begin{lstlisting}[language=XML, basicstyle=\footnotesize]
+<endpoint>
+  <name>tables</name>
+  <meta property="http://operator.example.edu/supports-our-extension"
+    id="custom-upload"
+    >table-upload</meta>
+
+  <meta about="#custom-upload"
+    property="http://operator.example.edu/supports-format"
+    id="fits-binary"/>
+  <meta about="#fits-binary"
+    property="http://operator.example.edu/upload-label"
+    >FITS Binary</meta>
+  <meta about="#fits-binary"
+    property="http://operator.example.edu/upload-media-type"
+    >application/fits</meta>
+
+  <meta about="#custom-upload"
+    property="http://operator.example.edu/supports-format"
+    id="votable"/>
+  <meta about="#votable"
+    property="http://operator.example.edu/upload-label"
+    >VOTable</meta>
+  <meta about="#votable"
+    property="http://operator.example.edu/upload-media-type"
+    >application/x-votable+xml</meta>
+</endpoint>
+\end{lstlisting}
+
+Again, this facility is intended to support prototyping features as well
+as facilitate provider-specific extensions aiding custom tooling on top
+of standard interfaces.  Interoperable TAP functionality should probably
+not need to rely on per-endpoint metadata of this complexity.
+
 \subsection{The Capability Record}
 
 \label{caprec}
@@ -1097,7 +1409,7 @@ fixed it to \nolinkurl{ivo://ivoa.net/std/TAP}.  This URI should still
 be given for TAP 1.0 services.  Services having other capabilities
 (e.g., TAP 1.1 or even UWS) will use other standardIDs.
 
-% GENERATED: !schemadoc TAPRegExt-v1.0.xsd TableAccess
+% GENERATED: !schemadoc TAPRegExt-v1.1.xsd TableAccess
 \begin{generated}
 \begingroup
       	\renewcommand*\descriptionlabel[1]{%
@@ -1257,7 +1569,11 @@ this URI is only intended for use in review or debugging.
 This appendix contains an instance document as it should be 
 delivered from the VOSI capability endpoint. When embedded in a
 VOResource record, the capability elements would be direct children of
-the \xmlel{vr:Resource} element.
+the \xmlel{vr:Resource} element.  The example file declares one custom
+extension to the async endpoint, a user defined function from the
+Catalogue of user defined functions, the common extension features from
+ADQL 2.1.  It also declares a separate capability for the VOSI
+capabilities endpoint.
 
 
 % GENERATED: make-sample.sh
@@ -1427,6 +1743,11 @@ the given index at the given order.</description>
 
 \label{changes}
 
+\subsection{Changes from REC-1.0}
+
+\begin{itemize}
+\item Adding tr:DALIInterface to the schema.
+\end{itemize}
 
 \subsection{Changes from WD-20110127}
 

@@ -1,6 +1,6 @@
 # ivoatex Makefile.  The ivoatex/README for the targets available.
 
-SCHEMA_FILE=TAPRegExt-v1.0.xsd 
+SCHEMA_FILE=TAPRegExt-v1.1.xsd 
 
 # short name of your document (edit $DOCNAME.tex; would be like RegTAP)
 DOCNAME = TAPRegExt
@@ -30,6 +30,7 @@ VECTORFIGURES =
 # Additional files to distribute (e.g., CSS, schema files, examples...)
 AUX_FILES = $(SCHEMA_FILE)
 
+-include ivoatex/Makefile
 
 sample.xml: samplegroom.sed Makefile
 	# this rule only works if there's a (proper) TAP service on
@@ -45,7 +46,6 @@ sample.xml: samplegroom.sed Makefile
 	sed -f samplegroom.sed $@.tmp > $@
 	rm $@.tmp
 	
--include ivoatex/Makefile
 
 install:
 	# local to Markus' setup

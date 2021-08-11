@@ -157,7 +157,7 @@ xsi:schemaLocation="http://www.w3.org/2001/XMLSchema http://vo.ari.uni-heidelber
         An endpoint of a complex interface.
       </xs:documentation>
       <xs:documentation>
-        An endpoint is characterised and addrssed by its name;
+        An endpoint is characterised and addressed by its name;
         they can further be defined through RDF triples.  This is a
         generic extension mechanism for endpoint-specific metadata,
         primarily intended for custom, vendor-specific extensions.
