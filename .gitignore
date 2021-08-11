@@ -7,3 +7,6 @@ TAPRegExt.pdf
 TAPRegExt.toc
 ivoatexmeta.tex
 gitmeta.tex 
+*.fdb_latexmk
+*.fls
+*.swp

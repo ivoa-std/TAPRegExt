@@ -1,4 +1,4 @@
-\documentclass{ivoa}
+\documentclass{ivoa} 
 \input tthdefs
 \input gitmeta
 
@@ -481,8 +481,8 @@ Example:
 
 \noindent{\small
         A feature type is a language-dependent concept like 
-        “user defined function”, “geometry support”, or possibly 
-        “units supported”.  A featureList gives all features of
+        "user defined function", "geometry support", or possibly 
+        "units supported".  A featureList gives all features of
         a given type applicable for the service.  Multiple featureLists
         are possible.
 
@@ -491,7 +491,7 @@ Example:
         the value of which will typically be an IVOID.
         To see values defined in TAPRegExt,
         retrieve the ivo://ivoa.net/std/TAPRegExt
-        resource record and look for keys starting with “features-”.
+        resource record and look for keys starting with "features-".
       \par}
 
 \vspace{1ex}\noindent\textbf{\xmlel{tr:LanguageFeatureList} Type Schema Definition}
@@ -673,7 +673,7 @@ VOTables which are not interoperably distinguishable by their MIME types so far:
           or StandardsRegExt document defining the format more
           precisely.  To see values defined in TAPRegExt,
           retrieve the ivo://ivoa.net/std/TAPRegExt
-          resource record and look for keys starting with “output-”.
+          resource record and look for keys starting with "output-".
         }}}
 \end{description}
 
@@ -702,7 +702,7 @@ VOTables which are not interoperably distinguishable by their MIME types so far:
 \begin{description}
 \item[Type] string: \xmlel{xs:token}
 \item[Meaning] escape-for-TeX{{{
-          Other values of FORMAT (“shorthands”) that make the service return 
+          Other values of FORMAT ("shorthands") that make the service return 
           documents with the media type.
           }}}
 \item[Occurrence] optional; multiple occurrences allowed.
@@ -778,7 +778,7 @@ would say:
       Descriptions can be obtained by dereferencing this
       IVOID.  To see values defined in TAPRegExt,
       retrieve the ivo://ivoa.net/std/TAPRegExt
-      resource record and look for keys starting with ”upload-”.
+      resource record and look for keys starting with "upload-".
 
       You can register custom upload methods, but you must use the
       standard IVOIDs for the upload methods defined in the TAP
@@ -879,7 +879,8 @@ All values in time-like limits are given in seconds.  Both
 \begin{lstlisting}[language=XML,basicstyle=\footnotesize]
 <xs:complexType name="TimeLimits" >
   <xs:sequence >
-    <xs:element name="default" type="xs:integer" minOccurs="0" maxOccurs="1" />
+    <xs:element name="default" type="xs:integer" minOccurs="0"
+              maxOccurs="1" />
     <xs:element name="hard" type="xs:integer" minOccurs="0" maxOccurs="1" />
   </xs:sequence>
 </xs:complexType>
@@ -954,8 +955,10 @@ and \xmlel{tr:DataLimit} types:
 \begin{lstlisting}[language=XML,basicstyle=\footnotesize]
 <xs:complexType name="DataLimits" >
   <xs:sequence >
-    <xs:element name="default" type="tr:DataLimit" minOccurs="0" maxOccurs="1" />
-    <xs:element name="hard" type="tr:DataLimit" minOccurs="0" maxOccurs="1" />
+    <xs:element name="default" type="tr:DataLimit" minOccurs="0"
+              maxOccurs="1" />
+    <xs:element name="hard" type="tr:DataLimit" minOccurs="0"
+              maxOccurs="1" />
   </xs:sequence>
 </xs:complexType>
 \end{lstlisting}
@@ -1075,7 +1078,7 @@ be given for TAP 1.0 services.  Services having other capabilities
 
 \noindent{\small
       The capabilities attempt to define most issues that the
-      TAP standard leaves to the implementors (”may”, “should”).
+      TAP standard leaves to the implementors ("may", "should").
       \par}
 
 \vspace{1ex}\noindent\textbf{\xmlel{tr:TableAccess} Type Schema Definition}
@@ -1095,7 +1098,8 @@ be given for TAP 1.0 services.  Services having other capabilities
                   maxOccurs="unbounded" />
         <xs:element name="retentionPeriod" type="tr:TimeLimits" minOccurs="0"
                   maxOccurs="1" />
-        <xs:element name="executionDuration" type="tr:TimeLimits" minOccurs="0"
+        <xs:element name="executionDuration" type="tr:TimeLimits"
+                  minOccurs="0"
                   maxOccurs="1" />
         <xs:element name="outputLimit" type="tr:DataLimits" minOccurs="0"
                   maxOccurs="1" />
@@ -1219,11 +1223,155 @@ this URI is only intended for use in review or debugging.
 
 This appendix contains an instance document as it should be 
 delivered from the VOSI capability endpoint. When embedded in a
-VOResource record, the cpability elements would be direct children of
+VOResource record, the capability elements would be direct children of
 the \xmlel{vr:Resource} element.
 
 
-\lstinputlisting[language=XML,basicstyle=\footnotesize]{sample.xml}
+% GENERATED: make-sample.sh
+\begin{lstlisting}[basicstyle=\footnotesize,language=XML]
+<cap:capabilities 
+	xmlns:cap="http://www.ivoa.net/xml/VOSICapabilities/v1.0" 
+	xmlns:tr="http://www.ivoa.net/xml/TAPRegExt/v1.0" 
+	xmlns:vg="http://www.ivoa.net/xml/VORegistry/v1.0" 
+	xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" 
+	xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.1" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+  <capability 
+	standardID="ivo://ivoa.net/std/TAP" 
+	xsi:type="tr:TableAccess">
+    <interface role="std" version="1.1" 
+	xsi:type="vs:ParamHTTP">
+      <accessURL use="base">http://localhost:8080/tap</accessURL>
+    </interface>
+    <dataModel ivo-id="ivo://org.gavo.dc/std/glots#tables-1.0">GloTS 1.0</dataModel>
+    <dataModel ivo-id="ivo://ivoa.net/std/ObsCore#core-1.1">Obscore-1.1</dataModel>
+    <language>
+      <name>ADQL</name>
+      <version ivo-id="ivo://ivoa.net/std/ADQL#v2.0">2.0</version>
+      <version ivo-id="ivo://ivoa.net/std/ADQL#v2.1">2.1</version>
+      <description>The Astronomical Data Query Language is the standard IVOA dialect of SQL; it contains a very general SELECT statement as well as some extensions for spherical geometry and higher mathematics....</description>
+      <languageFeatures type="ivo://ivoa.net/std/TAPRegExt#features-udf">
+        <feature>
+          <form>ivo_healpix_center(hpxOrder INTEGER, hpxIndex BIGINT) -&gt; POINT</form>
+          <description>returns a POINT corresponding to the center of the healpix with
+the given index at the given order.</description>
+        </feature>
+      </languageFeatures>
+      <languageFeatures type="ivo://ivoa.net/std/TAPRegExt#features-adqlgeo">
+        <feature>
+          <form>BOX</form>
+        </feature>
+        <feature>
+          <form>POINT</form>
+        </feature>
+        <feature>
+          <form>CIRCLE</form>
+        </feature>
+        <feature>
+          <form>POLYGON</form>
+        </feature>
+        <feature>
+          <form>REGION</form>
+        </feature>
+        <feature>
+          <form>CENTROID</form>
+        </feature>
+        <feature>
+          <form>COORD1</form>
+        </feature>
+        <feature>
+          <form>COORD2</form>
+        </feature>
+        <feature>
+          <form>DISTANCE</form>
+        </feature>
+        <feature>
+          <form>CONTAINS</form>
+        </feature>
+        <feature>
+          <form>INTERSECTS</form>
+        </feature>
+        <feature>
+          <form>AREA</form>
+        </feature>
+      </languageFeatures>
+      <languageFeatures type="ivo://ivoa.net/std/TAPRegExt#features-adql-string">
+        <feature>
+          <form>LOWER</form>
+        </feature>
+        <feature>
+          <form>ILIKE</form>
+        </feature>
+      </languageFeatures>
+      <languageFeatures type="ivo://ivoa.net/std/TAPRegExt#features-adql-offset">
+        <feature>
+          <form>OFFSET</form>
+        </feature>
+      </languageFeatures>
+      <languageFeatures type="ivo://ivoa.net/std/TAPRegExt#features-adql-type">
+        <feature>
+          <form>CAST</form>
+        </feature>
+      </languageFeatures>
+      <languageFeatures type="ivo://ivoa.net/std/TAPRegExt#features-adql-unit">
+        <feature>
+          <form>IN_UNIT</form>
+        </feature>
+      </languageFeatures>
+      <languageFeatures type="ivo://ivoa.net/std/TAPRegExt#features-adql-common-table">
+        <feature>
+          <form>WITH</form>
+        </feature>
+      </languageFeatures>
+      <languageFeatures type="ivo://org.gavo.dc/std/exts#extra-adql-keywords"/>
+      <languageFeatures type="ivo://ivoa.net/std/TAPRegExt#features-adql-sets">
+        <feature>
+          <form>UNION</form>
+        </feature>
+        <feature>
+          <form>EXCEPT</form>
+        </feature>
+        <feature>
+          <form>INTERSECT</form>
+        </feature>
+      </languageFeatures>
+    </language>
+    <outputFormat ivo-id="ivo://ivoa.net/std/TAPRegEXT#output-votable-binary">
+      <mime>application/x-votable+xml</mime>
+      <alias>votable</alias>
+    </outputFormat>
+    <outputFormat>
+      <mime>text/csv</mime>
+    </outputFormat>
+    <uploadMethod ivo-id="ivo://ivoa.net/std/TAPRegExt#upload-inline"/>
+    <uploadMethod ivo-id="ivo://ivoa.net/std/TAPRegExt#upload-http"/>
+    <uploadMethod ivo-id="ivo://ivoa.net/std/TAPRegExt#upload-https"/>
+    <uploadMethod ivo-id="ivo://ivoa.net/std/TAPRegExt#upload-ftp"/>
+    <retentionPeriod>
+      <default>172800</default>
+    </retentionPeriod>
+    <executionDuration>
+      <default>7200</default>
+    </executionDuration>
+    <outputLimit>
+      <default unit="row">20000</default>
+      <hard unit="row">20000000</hard>
+    </outputLimit>
+    <uploadLimit>
+      <hard unit="byte">8000000</hard>
+    </uploadLimit>
+  </capability>
+  <capability 
+	standardID="ivo://ivoa.net/std/VOSI#capabilities">
+    <interface role="std" 
+	xsi:type="vs:ParamHTTP">
+      <accessURL use="full">http://localhost:8080/tap/capabilities</accessURL>
+    </interface>
+  </capability>
+</cap:capabilities>
+\end{lstlisting}
+
+% /GENERATED
 
 \section{Changes from Previous Versions}
 
