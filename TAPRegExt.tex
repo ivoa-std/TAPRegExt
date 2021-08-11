@@ -143,9 +143,8 @@ changes that could break clients are introduced.
 
 Just like the namespace URI for the VOResource schema, the
 TAPRegExt namespace URI can be interpreted as a URL.  Resolving it
-returns the XML schema document (also given as a part of this document
-in Appendix~\ref{app:fullschema})
-that defines the TAPRegExt schema.
+returns the current XML schema document
+that defines the TAPRegExt schema (cf.~Appendix~\ref{app:fullschema}).
 
 Authors of VOResource instance documents may choose to
 provide a location for the VOResource XML schema document and its
@@ -1199,11 +1198,20 @@ be given for TAP 1.0 services.  Services having other capabilities
 \appendix
 
 
-\section{The Full Schema}
+\section{Obtaining the Schema}
 
 \label{app:fullschema}
 
-\lstinputlisting[language=XML,basicstyle=\footnotesize]{TAPRegExt-v1.0.xsd}
+The recommended way to obtain the TAPRegExt schema is to retrieve the
+namespace URI, \url{http://www.ivoa.net/xml/TAPRegExt/v1.0}, which will
+usually involve one or two redirects.  Despite to suggestive name, this
+will always return the latest version of the TAPRegExt schema in major
+version 1; see \citet{2018ivoa.spec.0529H} for the background of this
+somewhat unfortunate circumstance.
+
+The schema accompanying this specific version is published alongside this
+document\footnote{\auxiliaryurl{TAPRegExt-v1.0.xsd}}.  The document at
+this URI is only intended for use in review or debugging.
 
 \section{Example Document}
 
