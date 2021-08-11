@@ -16,6 +16,7 @@ DOCTYPE = WD
 
 # Source files for the TeX document (but the main file must always
 # be called $(DOCNAME).tex
+
 SOURCES = $(DOCNAME).tex $(SCHEMA_FILE) sample.xml gitmeta.tex role_diagram.pdf
 
 # List of image files to be included in submitted package (anything that
@@ -29,8 +30,6 @@ VECTORFIGURES =
 # Additional files to distribute (e.g., CSS, schema files, examples...)
 AUX_FILES = $(SCHEMA_FILE)
 
-
-include ivoatex/Makefile
 
 sample.xml: samplegroom.sed Makefile
 	# this rule only works if there's a (proper) TAP service on
@@ -46,6 +45,13 @@ sample.xml: samplegroom.sed Makefile
 	sed -f samplegroom.sed $@.tmp > $@
 	rm $@.tmp
 	
+-include ivoatex/Makefile
+
 install:
 	# local to Markus' setup
-	fixschema $(SCHEMA_FILE) > ~/gavo/trunk/schemata/$(SCHEMA_FILE)
+	fixschema $(SCHEMA_FILE) > ~/gavo/trunk/schemata/TAPRegExt.xsd
+
+ivoatex/Makefile:
+	@echo "*** ivoatex submodule not found.  Initialising submodules."
+	@echo
+	git submodule update --init
