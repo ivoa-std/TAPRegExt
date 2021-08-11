@@ -9,7 +9,7 @@
 DEST=sample.xml
 
 function cleanup() {
-	trap rm -f $DEST.tmp.$$
+	rm -f $DEST.tmp.$$
 }
 trap cleanup EXIT
 
