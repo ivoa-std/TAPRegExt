@@ -181,7 +181,8 @@ In TAPRegExt, a data model is identified by its IVOA identifier
 \citep{2016ivoa.spec.0523D}.  The example document in Appendix~\ref{app:example}
 uses this to define support for both the ObsCore and RegTAP data models.
 
-% GENERATED: xsltproc --stringparam destType DataModelType ivoatex/schemadoc.xslt TAPRegExt-v1.0.xsd
+% GENERATED: !schemadoc TAPRegExt-v1.0.xsd DataModelType
+\begin{generated}
 \begingroup
       	\renewcommand*\descriptionlabel[1]{%
       	\hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:DataModelType} Type Schema Documentation}
@@ -210,9 +211,9 @@ uses this to define support for both the ObsCore and RegTAP data models.
 \item[ivo-id]
 \begin{description}
 \item[Type] a URI: \xmlel{xs:anyURI}
-\item[Meaning] escape-for-TeX{{{
+\item[Meaning] 
             The IVOID of the data model.
-            }}}
+            
 \item[Occurrence] required
 \end{description}
 
@@ -220,6 +221,8 @@ uses this to define support for both the ObsCore and RegTAP data models.
 \end{bigdescription}\endgroup
 
 \endgroup
+\end{generated}
+
 % /GENERATED
 
 \subsection{Languages Supported}
@@ -252,7 +255,8 @@ IVOID (i.e., a URI with a schema of ivo:), though.
 The same reasoning applies to the \xmlel{ivo-id}
 attributes of \xmlel{outputFormat} and \xmlel{uploadMethod}.
 
-% GENERATED: xsltproc --stringparam destType Language ivoatex/schemadoc.xslt TAPRegExt-v1.0.xsd
+% GENERATED: !schemadoc TAPRegExt-v1.0.xsd Language
+\begin{generated}
 \begingroup
       	\renewcommand*\descriptionlabel[1]{%
       	\hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:Language} Type Schema Documentation}
@@ -289,43 +293,43 @@ attributes of \xmlel{outputFormat} and \xmlel{uploadMethod}.
 \begingroup\small\begin{bigdescription}\item[Element \xmlel{name}]
 \begin{description}
 \item[Type] a prefixless XML name
-\item[Meaning] escape-for-TeX{{{
+\item[Meaning] 
           The name of the language without a version suffix.
-          }}}
+          
 \item[Occurrence] required
 
 \end{description}
 \item[Element \xmlel{version}]
 \begin{description}
 \item[Type] a string with optional attributes
-\item[Meaning] escape-for-TeX{{{
+\item[Meaning] 
             A version of the language supported by the server.
-          }}}
+          
 \item[Occurrence] required; multiple occurrences allowed.
 
 \end{description}
 \item[Element \xmlel{description}]
 \begin{description}
 \item[Type] string: \xmlel{xs:token}
-\item[Meaning] escape-for-TeX{{{
+\item[Meaning] 
           A short, human-readable description of the
           query language.
-          }}}
+          
 \item[Occurrence] optional
 
 \end{description}
 \item[Element \xmlel{languageFeatures}]
 \begin{description}
 \item[Type] composite: \xmlel{tr:LanguageFeatureList}
-\item[Meaning] escape-for-TeX{{{
+\item[Meaning] 
             Optional features of the query language, grouped by
             feature type.
-          }}}
+          
 \item[Occurrence] optional; multiple occurrences allowed.
-\item[Comment] escape-for-TeX{{{
+\item[Comment] 
             This includes listing user defined functions, geometry support,
             or similar concepts.
-          }}}
+          
 
 \end{description}
 
@@ -333,9 +337,12 @@ attributes of \xmlel{outputFormat} and \xmlel{uploadMethod}.
 \end{bigdescription}\endgroup
 
 \endgroup
+\end{generated}
+
 % /GENERATED
 
-% GENERATED: xsltproc --stringparam destType Version ivoatex/schemadoc.xslt TAPRegExt-v1.0.xsd
+% GENERATED: !schemadoc TAPRegExt-v1.0.xsd Version
+\begin{generated}
 \begingroup
       	\renewcommand*\descriptionlabel[1]{%
       	\hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:Version} Type Schema Documentation}
@@ -371,23 +378,25 @@ attributes of \xmlel{outputFormat} and \xmlel{uploadMethod}.
 \item[ivo-id]
 \begin{description}
 \item[Type] a URI: \xmlel{xs:anyURI}
-\item[Meaning] escape-for-TeX{{{
+\item[Meaning] 
             An optional IVOID of the language.
-            }}}
+            
 \item[Occurrence] optional
-\item[Comment] escape-for-TeX{{{
+\item[Comment] 
               To more formally define a language supported by a service,
               a resource record for the language can be created, either
               centrally on the Registry of Registries or by other registry operators.  
               When such a record exists, the ivo-id attribute of language
               should point to it.
-            }}}
+            
 \end{description}
 
 
 \end{bigdescription}\endgroup
 
 \endgroup
+\end{generated}
+
 % /GENERATED
 
 
@@ -469,7 +478,8 @@ Example:
 \end{bigdescription}
 
 
-% GENERATED: xsltproc --stringparam destType  LanguageFeatureList ivoatex/schemadoc.xslt TAPRegExt-v1.0.xsd
+% GENERATED: !schemadoc TAPRegExt-v1.0.xsd LanguageFeatureList
+\begin{generated}
 \begingroup
       	\renewcommand*\descriptionlabel[1]{%
       	\hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:LanguageFeatureList} Type Schema Documentation}
@@ -512,15 +522,15 @@ Example:
 \item[type]
 \begin{description}
 \item[Type] a URI: \xmlel{xs:anyURI}
-\item[Meaning] escape-for-TeX{{{
+\item[Meaning] 
           The type of the features given here.
-        }}}
+        
 \item[Occurrence] required
-\item[Comment] escape-for-TeX{{{
+\item[Comment] 
           This is in general an IVOID.  TAPRegExt itself gives
           IVOIDs for defining user defined functions and geometry
           support.
-        }}}
+        
 \end{description}
 
 
@@ -533,10 +543,10 @@ Example:
 \begingroup\small\begin{bigdescription}\item[Element \xmlel{feature}]
 \begin{description}
 \item[Type] composite: \xmlel{tr:LanguageFeature}
-\item[Meaning] escape-for-TeX{{{
+\item[Meaning] 
             A language feature of the type given by the
             type attribute.
-          }}}
+          
 \item[Occurrence] optional; multiple occurrences allowed.
 
 \end{description}
@@ -545,9 +555,12 @@ Example:
 \end{bigdescription}\endgroup
 
 \endgroup
+\end{generated}
+
 % /GENERATED
 
-% GENERATED: xsltproc --stringparam destType  LanguageFeature ivoatex/schemadoc.xslt TAPRegExt-v1.0.xsd
+% GENERATED: !schemadoc TAPRegExt-v1.0.xsd LanguageFeature
+\begin{generated}
 \begingroup
       	\renewcommand*\descriptionlabel[1]{%
       	\hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:LanguageFeature} Type Schema Documentation}
@@ -573,22 +586,22 @@ Example:
 \begingroup\small\begin{bigdescription}\item[Element \xmlel{form}]
 \begin{description}
 \item[Type] string: \xmlel{xs:token}
-\item[Meaning] escape-for-TeX{{{
+\item[Meaning] 
             Formal notation for the language feature.
-          }}}
+          
 \item[Occurrence] required
-\item[Comment] escape-for-TeX{{{
+\item[Comment] 
             The syntax for the content of this element is defined by the
             type attribute of its parent language list.
-          }}}
+          
 
 \end{description}
 \item[Element \xmlel{description}]
 \begin{description}
 \item[Type] string: \xmlel{xs:string}
-\item[Meaning] escape-for-TeX{{{
+\item[Meaning] 
             Human-readable freeform documentation for the language feature.
-          }}}
+          
 \item[Occurrence] optional
 
 \end{description}
@@ -597,6 +610,8 @@ Example:
 \end{bigdescription}\endgroup
 
 \endgroup
+\end{generated}
+
 % /GENERATED
 
 \subsection{Output Formats}
@@ -621,7 +636,8 @@ VOTables which are not interoperably distinguishable by their MIME types so far:
 	with a BINARY2 child
 \end{description}
 
-% GENERATED: xsltproc --stringparam destType OutputFormat ivoatex/schemadoc.xslt TAPRegExt-v1.0.xsd
+% GENERATED: !schemadoc TAPRegExt-v1.0.xsd OutputFormat
+\begin{generated}
 \begingroup
       	\renewcommand*\descriptionlabel[1]{%
       	\hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:OutputFormat} Type Schema Documentation}
@@ -662,19 +678,19 @@ VOTables which are not interoperably distinguishable by their MIME types so far:
 \item[ivo-id]
 \begin{description}
 \item[Type] a URI: \xmlel{xs:anyURI}
-\item[Meaning] escape-for-TeX{{{
+\item[Meaning] 
         An optional IVOID of the output format.
-        }}}
+        
 \item[Occurrence] optional
-\item[Comment] escape-for-TeX{{{
+\item[Comment] 
           When the media type does not uniquely define the
           format (or a generic media type like application/octet-stream or
           text/plain is given), the IVOID can point to a key
           or StandardsRegExt document defining the format more
           precisely.  To see values defined in TAPRegExt,
           retrieve the ivo://ivoa.net/std/TAPRegExt
-          resource record and look for keys starting with "output-".
-        }}}
+          resource record and look for keys starting with {"}output-{"}.
+        
 \end{description}
 
 
@@ -687,24 +703,24 @@ VOTables which are not interoperably distinguishable by their MIME types so far:
 \begingroup\small\begin{bigdescription}\item[Element \xmlel{mime}]
 \begin{description}
 \item[Type] string: \xmlel{xs:token}
-\item[Meaning] escape-for-TeX{{{
+\item[Meaning] 
           The media type of this format.
-          }}}
+          
 \item[Occurrence] required
-\item[Comment] escape-for-TeX{{{
+\item[Comment] 
           The format of this string is specified by RFC 2046.
           The service has to accept this string as a 
           value of the FORMAT parameter.
-          }}}
+          
 
 \end{description}
 \item[Element \xmlel{alias}]
 \begin{description}
 \item[Type] string: \xmlel{xs:token}
-\item[Meaning] escape-for-TeX{{{
-          Other values of FORMAT ("shorthands") that make the service return 
+\item[Meaning] 
+          Other values of FORMAT ({"}shorthands{"}) that make the service return 
           documents with the media type.
-          }}}
+          
 \item[Occurrence] optional; multiple occurrences allowed.
 
 \end{description}
@@ -713,6 +729,8 @@ VOTables which are not interoperably distinguishable by their MIME types so far:
 \end{bigdescription}\endgroup
 
 \endgroup
+\end{generated}
+
 % /GENERATED
 
 \subsection{Upload Methods}
@@ -764,7 +782,8 @@ would say:
   <uploadMethod ivo-id="ivo://ivoa.net/std/TAPRegExt#upload-ftp"/>
 \end{lstlisting}
 
-% GENERATED: xsltproc --stringparam destType  UploadMethod ivoatex/schemadoc.xslt TAPRegExt-v1.0.xsd
+% GENERATED: !schemadoc TAPRegExt-v1.0.xsd UploadMethod
+\begin{generated}
 \begingroup
       	\renewcommand*\descriptionlabel[1]{%
       	\hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:UploadMethod} Type Schema Documentation}
@@ -803,9 +822,9 @@ would say:
 \item[ivo-id]
 \begin{description}
 \item[Type] a URI: \xmlel{xs:anyURI}
-\item[Meaning] escape-for-TeX{{{
+\item[Meaning] 
             The IVOID of the upload method.
-            }}}
+            
 \item[Occurrence] optional
 \end{description}
 
@@ -813,6 +832,8 @@ would say:
 \end{bigdescription}\endgroup
 
 \endgroup
+\end{generated}
+
 % /GENERATED
 
 \subsection{Resource Limits}
@@ -865,7 +886,8 @@ All values in time-like limits are given in seconds.  Both
 \xmlel{retentionPeriod} and \xmlel{executionDuration} are of type
 \xmlel{tr:TimeLimits}.
 
-% GENERATED: xsltproc --stringparam destType  TimeLimits ivoatex/schemadoc.xslt TAPRegExt-v1.0.xsd
+% GENERATED: !schemadoc TAPRegExt-v1.0.xsd TimeLimits
+\begin{generated}
 \begingroup
       	\renewcommand*\descriptionlabel[1]{%
       	\hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:TimeLimits} Type Schema Documentation}
@@ -891,18 +913,18 @@ All values in time-like limits are given in seconds.  Both
 \begingroup\small\begin{bigdescription}\item[Element \xmlel{default}]
 \begin{description}
 \item[Type] integer
-\item[Meaning] escape-for-TeX{{{
+\item[Meaning] 
           The value of this limit for newly-created jobs, given in seconds.
-          }}}
+          
 \item[Occurrence] optional
 
 \end{description}
 \item[Element \xmlel{hard}]
 \begin{description}
 \item[Type] integer
-\item[Meaning] escape-for-TeX{{{
+\item[Meaning] 
           The value this limit cannot be raised above, given in seconds.
-          }}}
+          
 \item[Occurrence] optional
 
 \end{description}
@@ -911,6 +933,8 @@ All values in time-like limits are given in seconds.  Both
 \end{bigdescription}\endgroup
 
 \endgroup
+\end{generated}
+
 % /GENERATED
 
 \subsubsection{Limits on Data}
@@ -941,7 +965,8 @@ Data limits are defined using the \xmlel{tr:DataLimits}
 and \xmlel{tr:DataLimit} types:
 
 
-% GENERATED: xsltproc --stringparam destType  DataLimits ivoatex/schemadoc.xslt TAPRegExt-v1.0.xsd
+% GENERATED: !schemadoc TAPRegExt-v1.0.xsd DataLimits
+\begin{generated}
 \begingroup
       	\renewcommand*\descriptionlabel[1]{%
       	\hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:DataLimits} Type Schema Documentation}
@@ -968,18 +993,18 @@ and \xmlel{tr:DataLimit} types:
 \begingroup\small\begin{bigdescription}\item[Element \xmlel{default}]
 \begin{description}
 \item[Type] an integer with optional attributes
-\item[Meaning] escape-for-TeX{{{
+\item[Meaning] 
           The value of this limit for newly-created jobs.
-          }}}
+          
 \item[Occurrence] optional
 
 \end{description}
 \item[Element \xmlel{hard}]
 \begin{description}
 \item[Type] an integer with optional attributes
-\item[Meaning] escape-for-TeX{{{
+\item[Meaning] 
           The value this limit cannot be raised above.
-          }}}
+          
 \item[Occurrence] optional
 
 \end{description}
@@ -988,9 +1013,12 @@ and \xmlel{tr:DataLimit} types:
 \end{bigdescription}\endgroup
 
 \endgroup
+\end{generated}
+
 % /GENERATED
 
-% GENERATED: xsltproc --stringparam destType DataLimit ivoatex/schemadoc.xslt TAPRegExt-v1.0.xsd
+% GENERATED: !schemadoc TAPRegExt-v1.0.xsd DataLimit
+\begin{generated}
 \begingroup
       	\renewcommand*\descriptionlabel[1]{%
       	\hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:DataLimit} Type Schema Documentation}
@@ -1024,14 +1052,14 @@ and \xmlel{tr:DataLimit} types:
 \item[unit]
 \begin{description}
 \item[Type] string with controlled vocabulary
-\item[Meaning] escape-for-TeX{{{
+\item[Meaning] 
             The unit of the limit specified.
-            }}}
+            
 \item[Occurrence] required
 
 \item[Allowed Values]\hfil
-\begin{longtermsdescription}\item[escape-for-TeX{{{byte}}}]escape-for-TeX{{{}}}
-\item[escape-for-TeX{{{row}}}]escape-for-TeX{{{}}}
+\begin{longtermsdescription}\item[byte]
+\item[row]
 \end{longtermsdescription}
 \end{description}
 
@@ -1039,6 +1067,8 @@ and \xmlel{tr:DataLimit} types:
 \end{bigdescription}\endgroup
 
 \endgroup
+\end{generated}
+
 % /GENERATED
 
 \subsection{The Capability Record}
@@ -1067,7 +1097,8 @@ fixed it to \nolinkurl{ivo://ivoa.net/std/TAP}.  This URI should still
 be given for TAP 1.0 services.  Services having other capabilities
 (e.g., TAP 1.1 or even UWS) will use other standardIDs.
 
-% GENERATED: xsltproc --stringparam destType TableAccess ivoatex/schemadoc.xslt TAPRegExt-v1.0.xsd
+% GENERATED: !schemadoc TAPRegExt-v1.0.xsd TableAccess
+\begin{generated}
 \begingroup
       	\renewcommand*\descriptionlabel[1]{%
       	\hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:TableAccess} Type Schema Documentation}
@@ -1116,79 +1147,79 @@ be given for TAP 1.0 services.  Services having other capabilities
 \begingroup\small\begin{bigdescription}\item[Element \xmlel{dataModel}]
 \begin{description}
 \item[Type] a string with optional attributes
-\item[Meaning] escape-for-TeX{{{
+\item[Meaning] 
               Identifier of IVOA-approved data model supported by the 
               service.
-              }}}
+              
 \item[Occurrence] optional; multiple occurrences allowed.
 
 \end{description}
 \item[Element \xmlel{language}]
 \begin{description}
 \item[Type] composite: \xmlel{tr:Language}
-\item[Meaning] escape-for-TeX{{{
+\item[Meaning] 
               Language supported by the service.
-              }}}
+              
 \item[Occurrence] required; multiple occurrences allowed.
 
 \end{description}
 \item[Element \xmlel{outputFormat}]
 \begin{description}
 \item[Type] composite: \xmlel{tr:OutputFormat}
-\item[Meaning] escape-for-TeX{{{
+\item[Meaning] 
                 Output format supported by the service.
-              }}}
+              
 \item[Occurrence] required; multiple occurrences allowed.
 
 \end{description}
 \item[Element \xmlel{uploadMethod}]
 \begin{description}
 \item[Type] composite: \xmlel{tr:UploadMethod}
-\item[Meaning] escape-for-TeX{{{
+\item[Meaning] 
                 Upload method supported by the service.
-              }}}
+              
 \item[Occurrence] optional; multiple occurrences allowed.
-\item[Comment] escape-for-TeX{{{
+\item[Comment] 
                 The absence of upload methods indicates
                 that the service does not support uploads
                 at all.
-              }}}
+              
 
 \end{description}
 \item[Element \xmlel{retentionPeriod}]
 \begin{description}
 \item[Type] composite: \xmlel{tr:TimeLimits}
-\item[Meaning] escape-for-TeX{{{
+\item[Meaning] 
               Limits on the time between job creation and
               destruction time.
-              }}}
+              
 \item[Occurrence] optional
 
 \end{description}
 \item[Element \xmlel{executionDuration}]
 \begin{description}
 \item[Type] composite: \xmlel{tr:TimeLimits}
-\item[Meaning] escape-for-TeX{{{
+\item[Meaning] 
               Limits on executionDuration.
-              }}}
+              
 \item[Occurrence] optional
 
 \end{description}
 \item[Element \xmlel{outputLimit}]
 \begin{description}
 \item[Type] composite: \xmlel{tr:DataLimits}
-\item[Meaning] escape-for-TeX{{{
+\item[Meaning] 
               Limits on the size of data returned.
-              }}}
+              
 \item[Occurrence] optional
 
 \end{description}
 \item[Element \xmlel{uploadLimit}]
 \begin{description}
 \item[Type] composite: \xmlel{tr:DataLimits}
-\item[Meaning] escape-for-TeX{{{
+\item[Meaning] 
               Limits on the size of uploaded data.
-              }}}
+              
 \item[Occurrence] optional
 
 \end{description}
@@ -1197,6 +1228,8 @@ be given for TAP 1.0 services.  Services having other capabilities
 \end{bigdescription}\endgroup
 
 \endgroup
+\end{generated}
+
 % /GENERATED
 
 \appendix
@@ -1243,13 +1276,30 @@ the \xmlel{vr:Resource} element.
 	xsi:type="vs:ParamHTTP">
       <accessURL use="base">http://localhost:8080/tap</accessURL>
     </interface>
+    <interface role="std" version="1.1" 
+	xsi:type="tr:DALIInterface">
+      <accessURL use="base">http://localhost:8080/tap</accessURL>
+      <endpoint>
+        <name>sync</name>
+      </endpoint>
+      <endpoint>
+        <name>async</name>
+        <meta property="http://dc.g-vo.org/static/tap-plan">dachs</meta>
+      </endpoint>
+      <endpoint>
+        <name>tables</name>
+      </endpoint>
+      <endpoint>
+        <name>examples</name>
+      </endpoint>
+    </interface>
     <dataModel ivo-id="ivo://org.gavo.dc/std/glots#tables-1.0">GloTS 1.0</dataModel>
     <dataModel ivo-id="ivo://ivoa.net/std/ObsCore#core-1.1">Obscore-1.1</dataModel>
     <language>
       <name>ADQL</name>
       <version ivo-id="ivo://ivoa.net/std/ADQL#v2.0">2.0</version>
       <version ivo-id="ivo://ivoa.net/std/ADQL#v2.1">2.1</version>
-      <description>The Astronomical Data Query Language is the standard IVOA dialect of SQL; it contains a very general SELECT statement as well as some extensions for spherical geometry and higher mathematics....</description>
+      <description>The Astronomical Data Query Language is...</description>
       <languageFeatures type="ivo://ivoa.net/std/TAPRegExt#features-udf">
         <feature>
           <form>ivo_healpix_center(hpxOrder INTEGER, hpxIndex BIGINT) -&gt; POINT</form>
