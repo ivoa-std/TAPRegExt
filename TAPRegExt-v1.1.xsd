@@ -4,7 +4,7 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema"
 xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" 
 xmlns:vm="http://www.ivoa.net/xml/VOMetadata/v0.1" 
 xmlns:tr="http://www.ivoa.net/xml/TAPRegExt/v1.0"
-version="1.0"
+version="1.1-pre1"
 targetNamespace="http://www.ivoa.net/xml/TAPRegExt/v1.0" 
 elementFormDefault="unqualified" 
 attributeFormDefault="unqualified" 
@@ -432,7 +432,7 @@ xsi:schemaLocation="http://www.w3.org/2001/XMLSchema http://vo.ari.uni-heidelber
       An output format supported by the service.
       </xs:documentation>
       <xs:documentation>
-			All TAP services must support VOTable output, with media types as 
+      All TAP services must support VOTable output, with media types as 
       requested by the FORMAT parameter if applicable (cf.~section 2.7.1 
       of the TAP standard).
 
