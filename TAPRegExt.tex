@@ -31,7 +31,7 @@ Taylor}
 
 \begin{abstract}
 This document describes an XML encoding standard for metadata about
-services implementing the table access protocol TAP \citep{std:TAP},
+services implementing the table access protocol TAP \citep{2019ivoa.spec.0927D},
 referred to as TAPRegExt.  Instance documents are
 part of the service's registry record or can be obtained from the service
 itself.  They deliver information to both humans and software on the languages,
@@ -45,13 +45,13 @@ and certain limits enforced by the service.
 
 \label{introduction}
 
-The Table Access Protocol TAP \citep{std:TAP} allows
+The Table Access Protocol TAP \citep{2019ivoa.spec.0927D} allows
 VO clients to send queries to remote database servers and receive the
 results in standard formats.  In addition, it defines means to discover
 database schemata on the remote side, to upload data from the local disk
 or third-party hosts, and more.  TAP builds upon a variety of other
 standards, premier among which is the Universal Worker Service 
-\citep{std:UWS}, which describes how client and server
+\citep{2016ivoa.spec.1024H}, which describes how client and server
 can negotiate the execution of a query and the retrieval of results
 without having to maintain a continuous connection.
 
@@ -59,13 +59,14 @@ To accommodate a wide variety of requirements, the TAP specification
 offers implementors many choices on optional features, resource limits, or
 locally defined functionality.  One purpose of TAPRegExt is to allow the
 service to communicate such choices to remote clients using the mechanisms
-laid down in the VO Service Interfaces standard \citep{std:VOSI}
+laid down in the VO Service Interfaces standard
+\citep{2017ivoa.spec.0524G}.
 
 Clients also need to discover TAP services offering certain kinds of data.
 Central to this is the concept of a registry in which resources can be
 described and consequently discovered by users and applications in the VO.
 Registries receive resource descriptions as defined in the IVOA standard 
-\citep{std:VOR}. In this schema, support for 
+\citep{2018ivoa.spec.0625P}. In this schema, support for 
 a standard service protocol is described as a service's capability; the
 associated metadata is contained within the service resource description's
 \texttt{<capability>} element.
@@ -81,7 +82,7 @@ communication of supported data models to the registry.
 
 \begin{figure}[th]
 \begin{center}
-\includegraphics[width=0.9\textwidth]{TAPRegExt-arch.png}
+\includegraphics[width=0.9\textwidth]{role_diagram.pdf}
 \end{center}
 \caption{IVOA Architecture diagram with TAPRegExt and
 the related standards marked up}
@@ -93,16 +94,15 @@ ways:
 
 
 \begin{description}
-\item[VOResource, v1.03 \citep{std:VOR}] Descriptions of services that support TAP are encoded
+\item[VOResource, v1.1 \citep{2018ivoa.spec.0625P}] Descriptions of services that support TAP are encoded
 using the VOResource XML schema. TAPRegExt is an extension 
 of the VOResource core schema.
-\item[TAP, v1.0 \citep{std:TAP}]The TAP standard defines some of the concepts that TAPRegExt
+\item[TAP, v1.1 \citep{2019ivoa.spec.0927D}]The TAP standard defines some of the concepts that TAPRegExt
 deals with. The TAP standard document indirectly
 refers to this document in the specification of its capabilities endpoint.
-TAPRegExt 1.1 also reflects the evolution leading up to TAP 1.1.
-\item[UWS, v1.0 \citep{std:UWS}]The UWS standard describes additional parameters the choices 
+\item[UWS, v1.1 \citep{2016ivoa.spec.1024H}]The UWS standard describes additional parameters the choices 
 of which are communicated using TAPRegExt.
-\item[StandardsRegExt \citep{std:STDREGEXT}] TAPRegExt uses the StandardKeyEnumeration mechanism introduced
+\item[StandardsRegExt \citep{2012ivoa.spec.0508H}] TAPRegExt uses the StandardKeyEnumeration mechanism introduced
 in StandardsRegExt to define controlled vocabularies.
 
 \end{description}
@@ -111,13 +111,13 @@ This standard also relates to other IVOA standards:
 
 
 \begin{description}
-\item[IVOA Support Interfaces, v1.0 \citep{std:VOSI}] \hfil\break VOSI describes the standard interfaces to discover metadata about
+\item[IVOA Support Interfaces, v1.1 \citep{2017ivoa.spec.0524G}] \hfil\break VOSI describes the standard interfaces to discover metadata about
 services; this document defines the response TAP services should
 provide on the \texttt{capabilities} endpoint described by VOSI.
 \item[IVOA defined data models]Data models specified by the IVOA can define the structure of
 database tables holding instances of those data models.
 The first examples of such definitions are ObsCore
-\citep{std:OBSCORE} and RegTAP \citep{std:RegTAP}.  Services providing
+\citep{2017ivoa.spec.0509L} and RegTAP \citep{2019ivoa.spec.1011D}.  Services providing
 access to such tables
 declare that fact within TAPRegExt instance documents.
 
@@ -165,7 +165,7 @@ xsi:schemaLocation="http://www.ivoa.net/xml/TAPRegExt/v1.0
 Note that you must give the \texttt{xsi:schemaLocation} of
 the TAPRegExt schema when the capability defined here is part of a published
 registry resource record as per the IVOA Registry Interface standard 
-\citep{std:RI1}.  This does not apply to the use
+\citep{2018ivoa.spec.0723D}.  This does not apply to the use
 in a TAP server's capabilities endpoint.
 
 
@@ -179,7 +179,7 @@ on a data model or a set of data models to work on all TAP services exposing
 tables instantiating the data model(s).
 
 In TAPRegExt, a data model is identified by its IVOA identifier
-\citep{std:VOID}.  The example document in Appendix~\ref{app:example}
+\citep{2016ivoa.spec.0523D}.  The example document in Appendix~\ref{app:example}
 uses this to define support for both the ObsCore and RegTAP data models.
 
 % GENERATED: xsltproc --stringparam destType DataModelType ivoatex/schemadoc.xslt TAPRegExt-v1.0.xsd
@@ -237,7 +237,7 @@ or more versions.
 
 The recommended way to associate larger amounts of documentation with a
 language entry in a capability element is via registration of the language
-using the mechanisms defined in StdRegExt \citep{std:STDREGEXT} and associating
+using the mechanisms defined in StdRegExt \citep{2012ivoa.spec.0508H} and associating
 the registry record with the language element through the latter's 
 \xmlel{ivo-id}
 attribute.  The IVOID for the only language mandatory for TAP services,
@@ -428,7 +428,7 @@ The \texttt{type\_name} nonterminal is not defined by the ADQL
 		it expands to ``some sort of SQL type specifier'' (which may
 		include spaces and parentheses).  For an enumeration of common types
 		in ADQL, refer to the last column of the table in section 2.5 of 
-		the TAP standard \citep{std:TAP}.
+		the TAP standard \citep{2019ivoa.spec.0927D}.
 
 Example:
 
@@ -746,7 +746,7 @@ This document defines the following protocol identifiers:
 \begin{itemize}
 
 \item \texttt{upload-inline} -- HTTP upload as per section 2.5.2 of 
-the TAP standard \citep{std:TAP}.{}
+the TAP standard \citep{2019ivoa.spec.0927D}.{}
 
 \item \texttt{upload-http} -- retrieval from an http URL.{}
 
@@ -1302,6 +1302,6 @@ to allow fragment identifiers on it
 \item Migrated to ivoatex
 \end{itemize}
 
-\bibliography{ivoatex/ivoabib}
+\bibliography{ivoatex/ivoabib,ivoatex/docrepo}
 
 \end{document}

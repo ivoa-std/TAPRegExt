@@ -16,10 +16,11 @@ DOCTYPE = WD
 
 # Source files for the TeX document (but the main file must always
 # be called $(DOCNAME).tex
-SOURCES = $(DOCNAME).tex $(SCHEMA_FILE) sample.xml gitmeta.tex 
+SOURCES = $(DOCNAME).tex $(SCHEMA_FILE) sample.xml gitmeta.tex role_diagram.pdf
 
-# List of pixel image files to be included in submitted package 
-FIGURES = TAPRegExt-arch.png
+# List of image files to be included in submitted package (anything that
+# can be rendered directly by common web browsers)
+FIGURES = role_diagram.svg
 
 # List of PDF figures (for vector graphics)
 VECTORFIGURES = 
