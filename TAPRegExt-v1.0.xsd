@@ -7,7 +7,9 @@ xmlns:tr="http://www.ivoa.net/xml/TAPRegExt/v1.0"
 version="1.0"
 targetNamespace="http://www.ivoa.net/xml/TAPRegExt/v1.0" 
 elementFormDefault="unqualified" 
-attributeFormDefault="unqualified">
+attributeFormDefault="unqualified" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.w3.org/2001/XMLSchema http://vo.ari.uni-heidelberg.de/docs/schemata/XMLSchema.xsd">
   <xs:annotation>
     <xs:appinfo>
       <vm:schemaName>TAPRegExt</vm:schemaName>
@@ -119,10 +121,126 @@ attributeFormDefault="unqualified">
     </xs:complexContent>
   </xs:complexType>
 
+  <xs:complexType name="DALIInterface">
+    <xs:annotation>
+      <xs:documentation>
+        An interface for a complex, multi-endpoint interfaces as
+        regulated by DALI.
+      </xs:documentation>
+      <xs:documentation>
+        In addition to the standard vr:Interface elements, DALIInterfaces
+        have endpoints, listed by name; that name doubles as a path segment
+        to append to the interface's access URL, yielding the URI at
+        which the endpoint is operated.
+      </xs:documentation>
+    </xs:annotation>
+    
+    <xs:complexContent>
+      <xs:extension base="vr:Interface">
+        <xs:sequence>
+          <xs:element name="endpoint" type="tr:Endpoint"
+              minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>
+                An endpoint accessible through this interface.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Endpoint">
+    <xs:annotation>
+      <xs:documentation>
+        An endpoint of a complex interface.
+      </xs:documentation>
+      <xs:documentation>
+        An endpoint is characterised and addrssed by its name;
+        they can further be defined through RDF triples.  This is a
+        generic extension mechanism for endpoint-specific metadata,
+        primarily intended for custom, vendor-specific extensions.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="name" type="xs:token"
+          minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>
+            The endpoint name, which is also the last component of the
+            path of its URI.
+          </xs:documentation>
+          <xs:documentation>
+            Names without dashes are reserved for IVOA use and are expected to
+            work the same way on all services.  Well-known examples for
+            such endpoint names include sync, async, and tables.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+
+      <xs:element name="meta" type="tr:MetaTriple"
+          minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Auxiliary information on this endpoint.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="MetaTriple">
+    <xs:annotation>
+      <xs:documentation>
+        A container for an RDFa triple giving information related to
+        an endpoint.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="xs:token">
+        <xs:attribute name="about" type="xs:anyURI" use="optional">
+          <xs:annotation>
+            <xs:documentation>
+              The subject of the statement.
+            </xs:documentation>
+            <xs:documentation>
+              If missing, the endpoint itself is assumed as the subject.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="property" type="xs:anyURI" use="required">
+          <xs:annotation>
+            <xs:documentation>
+              The property of the statement.
+            </xs:documentation>
+            <xs:documentation>
+              This is a reference to an RDF resource.  IVOA standards may define
+              semantics for scheme-less URI; non-IVOA properties must use
+              full URIs with at least scheme and authority; in this
+              version, no vocab attributes are supported.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="resource" type="xs:anyURI" use="optional">
+          <xs:annotation>
+            <xs:documentation>
+              The object of the statement.
+            </xs:documentation>
+            <xs:documentation>
+              If missing, the text content of the element is used as the
+              object.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
   <xs:complexType name="DataModelType">
     <xs:annotation>
       <xs:documentation>
-        An IVOA defined data model, identified by an IVOID 
+        An IVOA defined data model, identified by an IVORN 
         intended for machine consumption and a short label
         intended for human comsumption.
       </xs:documentation>
@@ -149,7 +267,7 @@ attributeFormDefault="unqualified">
       <xs:documentation>
       Each language element can describe one or more versions
       of a language.  Either name alone or name-version can be
-      used as values for the LANG parameter of the service.
+      used as values for the server's LANG parameter.
       </xs:documentation>
     </xs:annotation>
 
