@@ -36,16 +36,15 @@ sample.xml: samplegroom.sed Makefile
 	# this rule only works if there's a (proper) TAP service on
 	# http://localhost:8080/tap
 	curl -s http://dc.zah.uni-heidelberg.de/__system__/tap/run/tap/capabilities \
-		| xmlstarlet ed -d "//feature[starts-with(form, 'ivo_apply_pm')]" \
-			-d "//feature[starts-with(form, 'gavo_to_jd')]" \
-			-d "//feature[starts-with(form, 'gavo_to_mjd')]" \
-			-d "//feature[starts-with(form, 'ivo_hashlist_has')]" \
-			-d "//feature[starts-with(form, 'ivo_nocasematch')]" \
-			-d "//feature[starts-with(form, 'ivo_hasword')]" \
+		| xmlstarlet ed -d "//languageFeatures[@type='ivo://ivoa.net/std/TAPRegExt#features-udf']/feature[not(starts-with(form, 'ivo_hashlist_has'))]" \
+		  -d "//languageFeatures[@type='ivo://org.gavo.dc/std/exts#extra-adql-keywords']/feature[not(starts-with(form, 'MOC'))]" \
+		  -d "//outputFormat[not(@ivo-id or mime='text/csv')]" \
+		  -d "//capability[@standardID='ivo://ivoa.net/std/VOSI#availability']" \
+		  -d "//dataModel[@ivo-id='ivo://org.gavo.dc/std/glots#tables-1.0']" \
 		| xmlstarlet fo > $@.tmp
-#	gavo admin xsdValidate $@.tmp
+	gavo admin xsdValidate $@.tmp
 	sed -f samplegroom.sed $@.tmp > $@
-#	rm $@.tmp
+	rm $@.tmp
 	
 install:
 	# local to Markus' setup
