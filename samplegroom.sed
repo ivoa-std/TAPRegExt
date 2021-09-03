@@ -1,4 +1,4 @@
-s/xmlns\|standardID\|xsi:type/\
+s/xmlns/\
 	&/g
 s/xsi:schemaLocation="[^"]*"//
 s/__system__\/tap\/run\///
