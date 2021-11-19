@@ -3,7 +3,7 @@
 \input gitmeta
 
 \usepackage{listings}
-\lstloadlanguages{XML}
+\lstloadlanguages{XML,SQL}
 \lstset{flexiblecolumns=true,tagstyle=\ttfamily,
 showstringspaces=False}
 \usepackage{todonotes}
@@ -1543,6 +1543,77 @@ be given for TAP 1.0 services.  Services having other capabilities
 \end{generated}
 
 % /GENERATED
+
+\section{Discovering TAP Services}
+
+Clients will usually discover TAP services in the VO Registry using
+RegTAP \citep{2019ivoa.spec.1011D}.
+
+As long as there are large numbers of TAP 1.0 services that a client's
+users might be interested in, the recommended discovery mode is through
+the ParamHTTP interface, i.e.,
+
+\begin{lstlisting}[language=SQL]
+SELECT access_url, res_title
+FROM rr.resource
+  NATURAL JOIN rr.capability
+  NATURAL JOIN rr.interface
+WHERE
+  standard_id='ivo://ivoa.net/std/tap'
+  AND intf_type='vs:paramhttp'
+  AND intf_role='std'
+\end{lstlisting}
+
+When TAP 1.0 services are no longer relevant, clients should transition
+to discovering the new-style DALIInterface, i.e.,\todo{Change the
+experimental dachs: prefix as we go to PR and update the schema;
+meanwhile, this query will return the Heidelberg DaCHS server.}
+
+\begin{lstlisting}[language=SQL]
+SELECT access_url, res_title
+FROM rr.resource
+  NATURAL JOIN rr.capability
+  NATURAL JOIN rr.interface
+WHERE
+  standard_id='ivo://ivoa.net/std/tap'
+  AND intf_type='dachs:daliinterface'
+  AND intf_role='std'
+\end{lstlisting}
+
+This pattern will eventually allow us to drop the erroneous use of
+\xmlel{vs:ParamHTTP}.
+
+In both cases, the access\_url will be the parent resource of the sync,
+async, and capabilities endpoints of the TAP service.  These queries
+cover what Discovering Data Collections \citep{2019ivoa.spec.0520D}
+calls ``Service Discovery''.
+
+In the ``Data Discovery'' case, if clients want to constrain protocols
+(which is not recommended in general), they will also need to look for
+TAP's auxiliary capability id, \nolinkurl{http://ivoa.net/std/tap#aux}.
+Here is an example for a query discovering TAP services offering access
+to tables constrained by keywords in the the resource description,
+employing the TAP 1.0-compatible discovery pattern:
+
+\begin{lstlisting}[language=SQL]
+SELECT access_url, res_title, 
+  table_name, res_description, table_description
+FROM rr.resource
+  NATURAL JOIN rr.capability
+  NATURAL JOIN rr.interface
+  NATURAL JOIN rr.res_table
+WHERE
+  standard_id in ('ivo://ivoa.net/std/tap','ivo://ivoa.net/std/tap#aux')
+  AND intf_type='vs:paramhttp'
+  AND intf_role='std'
+  AND 1=ivo_hasword(res_description, 'RR Lyrae')
+\end{lstlisting}
+
+Clients should attempt to filter out duplicates by table\_name-s in the
+results of such queries, as operators may choose to have a table
+registered in both the tablesets of the TAP service and the
+CatalogResource.
+
 
 \appendix
 
