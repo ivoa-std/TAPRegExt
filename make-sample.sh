@@ -30,5 +30,5 @@ sed  -e 's/xmlns\|standardID\|xsi:type/\
 s/xsi:schemaLocation="[^"]*"//
 s/\(Query Language is\)[^<]*/\1.../
 s/__system__\/tap\/run/tap/
-' $DEST.tmp.$$ 
+' $DEST.tmp.$$
 echo '\end{lstlisting}'

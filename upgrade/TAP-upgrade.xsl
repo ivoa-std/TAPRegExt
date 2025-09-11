@@ -1,55 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  -  This will convert records that have a TAP capability to use the 
+  -  This will convert records that have a TAP capability to use the
   -  v1.0 version of the TAPRegExt extension.  If the resource file
-  -  only cites the TAP standard ID but otherwise does not use any 
-  -  (proto) version of the TAP registry schema, this stylesheet will 
-  -  fill in minimal default information: namely, the support for ADQL 2.0.  
+  -  only cites the TAP standard ID but otherwise does not use any
+  -  (proto) version of the TAP registry schema, this stylesheet will
+  -  fill in minimal default information: namely, the support for ADQL 2.0.
   -
-  -  Note that this stylesheet requires an XSLT version 2 engine.  It has 
+  -  Note that this stylesheet requires an XSLT version 2 engine.  It has
   -  has been tested against Saxon v8, which is available via
   -  http://wiki.ivoa.net/internal/IVOA/RegUpgradeSummer2006/saxon8.jar.
-  -  To run, type: 
+  -  To run, type:
   -
   -     java -jar saxon8.jar tapresource.xml TAP-upgrade.xsl [param=val ...]
   -        > updresource.xml
-  -  
+  -
   -  This stylesheet tries to neaten things up a bit:
   -    o  all VOResource related namespaces are declared at the resource root
-  -    o  The TAP and VODataService namespaces will only be declared if they 
-  -         are actually used.  (Other schemas which appear to be superfluous 
+  -    o  The TAP and VODataService namespaces will only be declared if they
+  -         are actually used.  (Other schemas which appear to be superfluous
   -         are still passed.)
-  -    o  pretty indentation can be applied (over-riding the original 
+  -    o  pretty indentation can be applied (over-riding the original
   -         indentation) can be turned on by setting the prettyPrint parameter
   -         to true.  (The ident parameter overrides the default indentation.)
-  -         Otherwise, the original indentation is preserved.  
-  -  
+  -         Otherwise, the original indentation is preserved.
+  -
   -  Other Features:
   -    o  If the VOResource is wrapped in a non-VO envelope (e.g. OAI envelope),
-  -         it will be passed unchanged.  
+  -         it will be passed unchanged.
   -    o  VODataService v1.0 is transformed to VODataService v1.1
   -    o  If the transTAPonly is true (the default), a record will be updated
-  -         only if it describes a TAP service; if it doesn't, 
-  -         VODataService v1.0 will not be tranformed.  If transTAPonly 
-  -         is false, VODataService v1.0 is always transformed to 
-  -         VODataService v1.1, regardless of whether the TAP extension is 
+  -         only if it describes a TAP service; if it doesn't,
+  -         VODataService v1.0 will not be tranformed.  If transTAPonly
+  -         is false, VODataService v1.0 is always transformed to
+  -         VODataService v1.1, regardless of whether the TAP extension is
   -         invoked.
-  -    o  see parameter documentation below for further controls.  
+  -    o  see parameter documentation below for further controls.
   -->
-<xsl:stylesheet xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" 
-                xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.1" 
-                xmlns:tap="http://www.ivoa.net/xml/TAP/v1.0" 
-                xmlns:stc="http://www.ivoa.net/xml/STC/stc-v1.30.xsd" 
-                xmlns:vs2="http://www.ivoa.net/xml/VODataService/v1.0" 
-                xmlns:tap0="http://www.ivoa.net/xml/TAP/v0.1" 
-                xmlns:xlink="http://www.w3.org/1999/xlink" 
-                xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
-                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+<xsl:stylesheet xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0"
+                xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.1"
+                xmlns:tap="http://www.ivoa.net/xml/TAP/v1.0"
+                xmlns:stc="http://www.ivoa.net/xml/STC/stc-v1.30.xsd"
+                xmlns:vs2="http://www.ivoa.net/xml/VODataService/v1.0"
+                xmlns:tap0="http://www.ivoa.net/xml/TAP/v0.1"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                 xmlns=""
-                exclude-result-prefixes="#all" 
+                exclude-result-prefixes="#all"
                 version="2.0">
 
-   <!-- 
+   <!--
      -  Stylesheet to convert VOResource records from VODataService v1.0
      -   to VODataService v1.1
      -->
@@ -58,9 +58,9 @@
    <xsl:preserve-space elements="*"/>
 
    <!--
-     -  If true, insert carriage returns and indentation to produce a neatly 
+     -  If true, insert carriage returns and indentation to produce a neatly
      -  formatted output.  If false, any spacing between tags in the source
-     -  document will be preserved.  
+     -  document will be preserved.
      -->
    <xsl:param name="prettyPrint" select="false()"/>
 
@@ -84,31 +84,31 @@
    <!--
      -  The prefix to prepend to schema files listed in the xsi:schemaLocation
      -  (if used).  The value should include a trailing slash as necessary.
-     -  The default is an empty string, which indicates the current working 
-     -  directory (where output is used).  Note that the xsi:schemaLocation 
+     -  The default is an empty string, which indicates the current working
+     -  directory (where output is used).  Note that the xsi:schemaLocation
      -  is only set if it is set on the input.
      -->
    <xsl:param name="schemaLocationPrefix"/>
 
    <!--
      -  Set to 1 if the xsi:schemaLocation should be set or zero if it should
-     -  not be.  If not set at all (default), xsi:schemaLocation is only set 
+     -  not be.  If not set at all (default), xsi:schemaLocation is only set
      -  if it is set on the input.
      -->
    <xsl:param name="setSchemaLocation"/>
 
    <!--
      -  Set to 0 or greater if a default validationLevel should set
-     -  as all possible locations.  If greater than -1, the value will 
+     -  as all possible locations.  If greater than -1, the value will
      -  be the value of the validationLevel.  You must also provide
      -  an ID to the validatedBy parameter below in order for the level
-     -  to be set.  
+     -  to be set.
      -->
    <xsl:param name="validationLevel" select="-1"/>
 
-   <!-- 
-     -  Set to the IVOA identifier of your validating registry.  This 
-     -  must be set for validation levels to be added.  
+   <!--
+     -  Set to the IVOA identifier of your validating registry.  This
+     -  must be set for validation levels to be added.
      -->
    <xsl:param name="validatedBy"/>
 
@@ -120,8 +120,8 @@
    <!--
      -  If true, transform only records that describe tap services; otherwise,
      -  any record that simple invokes VODataService v1.0 will be converted
-     -  to use VODataService v1.1.  If false or not set, non-TAP services 
-     -  invoking VODataService v1.0 will be passed unchanged.  
+     -  to use VODataService v1.1.  If false or not set, non-TAP services
+     -  invoking VODataService v1.0 will be passed unchanged.
      -->
    <xsl:param name="transTAPonly" select="true()"/>
 
@@ -136,21 +136,21 @@
    <xsl:param name="resourceElement">Resource</xsl:param>
 
    <!--
-     -  If resourceName is set (with an non-empty value), the output 
-     -  document will have a root element of $resourceName and a 
-     -  this namespace.  It will contain the VOResource metadata; all 
-     -  other wrapping elements from the input will be filtered out. 
+     -  If resourceName is set (with an non-empty value), the output
+     -  document will have a root element of $resourceName and a
+     -  this namespace.  It will contain the VOResource metadata; all
+     -  other wrapping elements from the input will be filtered out.
      -->
    <xsl:param name="resourceNS">http://www.ivoa.net/xml/RegistryInterface/v1.0</xsl:param>
 
    <!--
      -  The namespace to assign to the VOResource root element in the output
-     -  document.  This defaults to the value of $resourceNS (which 
+     -  document.  This defaults to the value of $resourceNS (which
      -  defaults to the IVOA RegistryInterface namespace).
      -->
    <xsl:param name="newResourceNS" select="$resourceNS"/>
 
-   <!-- 
+   <!--
      -  The prefix to assign to the namespace for the output root element.
      -  The default is ri.
      -->
@@ -158,10 +158,10 @@
 
    <!--
      -  The name to give to the VOResource root element in the output
-     -  document.  This defaults to the value of $resourceName (which 
+     -  document.  This defaults to the value of $resourceName (which
      -  defaults to "Resource").
      -->
-   <xsl:param name="newResourceElement" 
+   <xsl:param name="newResourceElement"
               select="concat($newResourcePrefix,':',$resourceElement)"/>
 
    <xsl:param name="xsi">http://www.w3.org/2001/XMLSchema-instance</xsl:param>
@@ -184,7 +184,7 @@
          <xsl:if test="namespace-uri-for-prefix(substring-before(.,':'),..)=$vs11">1</xsl:if>
       </xsl:for-each>
    </xsl:variable>
-   <xsl:variable name="needVS11" 
+   <xsl:variable name="needVS11"
                  select="boolean($hasVS10) or boolean($hasVS11)"/>
 
    <xsl:variable name="setSL">
@@ -234,7 +234,7 @@
       </xsl:apply-templates>
    </xsl:template>
 
-   <xsl:template match="*[local-name()=$resourceElement and 
+   <xsl:template match="*[local-name()=$resourceElement and
                           namespace-uri()=$resourceNS]"  priority="2">
       <xsl:param name="sp"/>
       <xsl:param name="step"/>
@@ -295,12 +295,12 @@
          </xsl:if>
 
          <xsl:for-each select="in-scope-prefixes(.)">
-            <xsl:if test="not(contains($updatingprefixes, .)) and 
-                          not(contains($inheritedprefixes, .)) and 
+            <xsl:if test="not(contains($updatingprefixes, .)) and
+                          not(contains($inheritedprefixes, .)) and
                           $curel//*[starts-with(@xsi:type, concat(.,'#'))]">
-               <!-- this if is meant to avoid declaring namespaces that are 
+               <!-- this if is meant to avoid declaring namespaces that are
                     not used. -->
-               <xsl:namespace name="{.}" 
+               <xsl:namespace name="{.}"
                               select="namespace-uri-for-prefix(.,$curel)"/>
             </xsl:if>
          </xsl:for-each>
@@ -317,11 +317,11 @@
                </xsl:otherwise>
             </xsl:choose>
          </xsl:attribute>
-         <xsl:apply-templates select="@*[local-name()!='updated' and 
-                                         local-name()!='created' and 
-                                         local-name()!='status' and 
-                                         not(local-name()='type' and 
-                                             namespace-uri()=$xsi)]"  
+         <xsl:apply-templates select="@*[local-name()!='updated' and
+                                         local-name()!='created' and
+                                         local-name()!='status' and
+                                         not(local-name()='type' and
+                                             namespace-uri()=$xsi)]"
                               mode="vor" />
          <xsl:apply-templates select="@xsi:type"/>
 
@@ -329,8 +329,8 @@
             <xsl:value-of select="$inheritedprefixes"/>
             <xsl:value-of select="$updatingprefixes"/>
             <xsl:for-each select="in-scope-prefixes(.)">
-              <xsl:if test="not(contains($updatingprefixes, .)) and 
-                            not(contains($inheritedprefixes, .)) and 
+              <xsl:if test="not(contains($updatingprefixes, .)) and
+                            not(contains($inheritedprefixes, .)) and
                             $curel//*[starts-with(@xsi:type, concat(.,'#'))]">
                 <xsl:value-of select="."/>
                 <xsl:text>#</xsl:text>
@@ -361,7 +361,7 @@
              <xsl:value-of select="$sp"/>
            </xsl:when>
            <xsl:otherwise>
-             <xsl:apply-templates 
+             <xsl:apply-templates
                   select="preceding-sibling::text()[position()=last()]" />
            </xsl:otherwise>
          </xsl:choose>
@@ -374,7 +374,7 @@
             <xsl:when test="$prettyPrint">
                <xsl:value-of select="$step"/>
             </xsl:when>
-            <xsl:when 
+            <xsl:when
                  test="string-length(substring-after($childsp,$usesp)) &gt; 0">
                <xsl:value-of select="substring-after($childsp,$usesp)"/>
             </xsl:when>
@@ -421,9 +421,9 @@
       </schema>
    </xsl:template>
 
-   <!-- 
+   <!--
      -  this will handle tables from the various Service resources
-     -  which need to be wrapped in tablesets.  
+     -  which need to be wrapped in tablesets.
      -->
    <xsl:template match="table[position()=1]" mode="vor">
       <xsl:param name="sp"/>
@@ -435,7 +435,7 @@
              <xsl:value-of select="$sp"/>
            </xsl:when>
            <xsl:otherwise>
-             <xsl:apply-templates 
+             <xsl:apply-templates
                   select="preceding-sibling::text()[position()=last()]" />
            </xsl:otherwise>
          </xsl:choose>
@@ -448,7 +448,7 @@
             <xsl:when test="$prettyPrint">
                <xsl:value-of select="$step"/>
             </xsl:when>
-            <xsl:when 
+            <xsl:when
                  test="string-length(substring-after($childsp,$usesp)) &gt; 0">
                <xsl:value-of select="substring-after($childsp,$usesp)"/>
             </xsl:when>
@@ -502,7 +502,7 @@
       <xsl:param name="sp"/>
       <xsl:param name="step"/>
 
-      <xsl:variable name="myoldsp" 
+      <xsl:variable name="myoldsp"
                     select="preceding-sibling::text()[position()=last()]"/>
       <xsl:variable name="childsp" select="text()[1]"/>
       <xsl:variable name="usestep">
@@ -510,7 +510,7 @@
             <xsl:when test="$prettyPrint">
                <xsl:value-of select="$step"/>
             </xsl:when>
-            <xsl:when 
+            <xsl:when
                  test="string-length(substring-after($childsp,$myoldsp)) &gt; 0">
                <xsl:value-of select="substring-after($childsp,$myoldsp)"/>
             </xsl:when>
@@ -524,11 +524,11 @@
 
       <xsl:element name="table">
         <xsl:choose>
-          <xsl:when test="@role='out' or 
-                          (@role!='base_table' and @role!='view' and 
-                           ../capability[@standardID=$SIAstdID or 
-                                         @standardID=$SSAstdID or 
-                                         @standardID=$SCSstdID or 
+          <xsl:when test="@role='out' or
+                          (@role!='base_table' and @role!='view' and
+                           ../capability[@standardID=$SIAstdID or
+                                         @standardID=$SSAstdID or
+                                         @standardID=$SCSstdID or
                                          @standardID=$SLAstdID])">
              <xsl:attribute name="type">output</xsl:attribute>
           </xsl:when>
@@ -610,7 +610,7 @@
             <xsl:copy/>
          </xsl:for-each>
          <xsl:if test="not(contains($pfx,concat('#',$prefix,'#')))">
-            <xsl:namespace name="{$prefix}" 
+            <xsl:namespace name="{$prefix}"
                            select="namespace-uri-for-prefix($prefix,.)"/>
          </xsl:if>
 
@@ -624,11 +624,11 @@
             <xsl:value-of select="$sp"/>
          </xsl:if>
       </xsl:element>
-      
+
    </xsl:template>
 
    <!--
-     -  TAP capability: when we don't invoke an extension schema via 
+     -  TAP capability: when we don't invoke an extension schema via
      -  xsi:type, fill in some defaults
      -->
    <xsl:template match="capability[@standardID=$TAPstdID and not(@xsi:type)]"
@@ -651,7 +651,7 @@
                <xsl:value-of select="text()[1]"/>
             </xsl:when>
             <xsl:otherwise>
-               <xsl:value-of 
+               <xsl:value-of
                     select="preceding-sibling::text()[position()=last()]"/>
                <xsl:value-of select="$indent"/>
             </xsl:otherwise>
@@ -663,7 +663,7 @@
             <xsl:when test="$prettyPrint">
                <xsl:value-of select="$step"/>
             </xsl:when>
-            <xsl:when 
+            <xsl:when
                  test="string-length(substring-after($subsp,$subsp)) &gt; 0">
                <xsl:value-of select="substring-after($subsp,$subsp)"/>
             </xsl:when>
@@ -757,7 +757,7 @@
 
    <!--
      -  Copy VOResource elements unchanged by default.  The difference is
-     -  that we control namespace nodes explicitly by using the 
+     -  that we control namespace nodes explicitly by using the
      -  <xsl:element> directive rather than <xsl:copy>
      -->
    <xsl:template match="*" priority="-2" mode="vor">
@@ -891,7 +891,7 @@
                          not(contains($npfx,concat('#',$firstpref,'#')))">
             <xsl:call-template name="newprefixes">
                <xsl:with-param name="pfx" select="$pfx"/>
-               <xsl:with-param name="npfx" 
+               <xsl:with-param name="npfx"
                                select="concat($npfx,$firstpref,'#')"/>
                <xsl:with-param name="inscope" select="$restpref"/>
             </xsl:call-template>
@@ -961,7 +961,7 @@
    </xsl:template>
 
    <!--
-     -  indent the given number of levels.  The amount of indentation will 
+     -  indent the given number of levels.  The amount of indentation will
      -  be nlev times the value of the global $indent.
      -  @param nlev   the number of indentations to insert.
      -  @param sp     the string representing the per-indentation space;
@@ -1037,7 +1037,7 @@
    </xsl:template>
 
    <!--
-     -  attempt to return the extra indentation applied to children 
+     -  attempt to return the extra indentation applied to children
      -    of the current context node.  If a positive indentation cannot
      -    be returned, return the default indentation.
      -->
@@ -1061,7 +1061,7 @@
       <xsl:variable name="diff" select="$childind - $prevind"/>
 
       <xsl:choose>
-         <xsl:when test="number($childind) &gt; number($prevind) and 
+         <xsl:when test="number($childind) &gt; number($prevind) and
                          number($prevind) &gt; 0">
             <xsl:call-template name="doindent">
                <xsl:with-param name="nlev" select="$diff"/>

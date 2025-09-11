@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <!-- The resource record for TAPRegExt; this will be uploaded into the
 RofR -->
-<ri:Resource 
-	xsi:type="vstd:Standard" 
-	created="2011-06-07T17:19:00" 
-	updated="2021-07-07T10:00:00" 
+<ri:Resource
+	xsi:type="vstd:Standard"
+	created="2011-06-07T17:19:00"
+	updated="2021-07-07T10:00:00"
 	status="active"
-	xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" 
-	xmlns:vstd="http://www.ivoa.net/xml/StandardsRegExt/v1.0" 
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0"
+	xmlns:vstd="http://www.ivoa.net/xml/StandardsRegExt/v1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0"
 	xsi:schemaLocation="http://www.ivoa.net/xml/VOResource/v1.0
 		http://www.ivoa.net/xml/VOResource/v1.0
@@ -151,14 +151,14 @@ RofR -->
 
 	<key>
 		<name>features-adql-unit</name>
-		<description>Features related to the service's support of in-ADQL unit 
+		<description>Features related to the service's support of in-ADQL unit
 		parsing and coversion. ADQL 2.1 has only one feature, IN_UNIT, here.
 		</description>
 	</key>
 
 	<key>
 		<name>features-adql-offset</name>
-		<description>Features related to the service's support of the ADQL OFFSET 
+		<description>Features related to the service's support of the ADQL OFFSET
 		construct; ADQL 2.1 has only one feature, OFFSET, here.
 		</description>
 	</key>
