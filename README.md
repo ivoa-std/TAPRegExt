@@ -8,7 +8,7 @@ to be registered.
 The last stable version is
 **[REC-1.0](https://www.ivoa.net/documents/TAPRegExt/20120827/)**.
 
-The version in development is WD-1.1 and a 
+The version in development is WD-1.1 and a
 [![PDF-Preview](https://img.shields.io/badge/Preview-PDF-blue)](../../releases/download/auto-pdf-preview/TAPRegExt-draft.pdf)
 is automatically produced from this repository
 
@@ -19,7 +19,7 @@ The document source is in TAPRegExt.tex and TAPRegExt-v*.xsd is the schema itsel
 dumprecord.py is a program that generates sample.xml from the capabilities
 record for the TAP service of GAVO DaCHS.  It will thus only work if
 you have GAVO DaCHS installed, and you will most certainly not want that
-for the purpose of building this document.  
+for the purpose of building this document.
 
 
 [![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/)

@@ -1,4 +1,4 @@
-\documentclass{ivoa} 
+\documentclass{ivoa}
 \input tthdefs
 \input gitmeta
 
@@ -51,7 +51,7 @@ VO clients to send queries to remote database servers and receive the
 results in standard formats.  In addition, it defines means to discover
 database schemata on the remote side, to upload data from the local disk
 or third-party hosts, and more.  TAP builds upon a variety of other
-standards, premier among which is the Universal Worker Service 
+standards, premier among which is the Universal Worker Service
 \citep{2016ivoa.spec.1024H}, which describes how client and server
 can negotiate the execution of a query and the retrieval of results
 without having to maintain a continuous connection.
@@ -66,14 +66,14 @@ laid down in the VO Service Interfaces standard
 Clients also need to discover TAP services offering certain kinds of data.
 Central to this is the concept of a registry in which resources can be
 described and consequently discovered by users and applications in the VO.
-Registries receive resource descriptions as defined in the IVOA standard 
-\citep{2018ivoa.spec.0625P}. In this schema, support for 
+Registries receive resource descriptions as defined in the IVOA standard
+\citep{2018ivoa.spec.0625P}. In this schema, support for
 a standard service protocol is described as a service's capability; the
 associated metadata is contained within the service resource description's
 \texttt{<capability>} element.
 
 TAPRegExt defines this capability element for TAP services.  In the context
-of registering TAP services, an important role filled by TAPRegExt is the 
+of registering TAP services, an important role filled by TAPRegExt is the
 communication of supported data models to the registry.
 
 
@@ -96,12 +96,12 @@ ways:
 
 \begin{description}
 \item[VOResource, v1.1 \citep{2018ivoa.spec.0625P}] Descriptions of services that support TAP are encoded
-using the VOResource XML schema. TAPRegExt is an extension 
+using the VOResource XML schema. TAPRegExt is an extension
 of the VOResource core schema.
 \item[TAP, v1.1 \citep{2019ivoa.spec.0927D}]The TAP standard defines some of the concepts that TAPRegExt
 deals with. The TAP standard document indirectly
 refers to this document in the specification of its capabilities endpoint.
-\item[UWS, v1.1 \citep{2016ivoa.spec.1024H}]The UWS standard describes additional parameters the choices 
+\item[UWS, v1.1 \citep{2016ivoa.spec.1024H}]The UWS standard describes additional parameters the choices
 of which are communicated using TAPRegExt.
 \item[StandardsRegExt \citep{2012ivoa.spec.0508H}] TAPRegExt uses the StandardKeyEnumeration mechanism introduced
 in StandardsRegExt to define controlled vocabularies.
@@ -150,7 +150,7 @@ that defines the TAPRegExt schema (cf.~Appendix~\ref{app:fullschema}).
 Authors of VOResource instance documents may choose to
 provide a location for the VOResource XML schema document and its
 extensions using the
-\xmlel{xsi:schemaLocation} attribute.  
+\xmlel{xsi:schemaLocation} attribute.
 While generators are
 free to provide any schema location (e.g., a local mirror), this specification
 recommends using the TAPRegExt namespace URI as its location URL,
@@ -164,7 +164,7 @@ xsi:schemaLocation="http://www.ivoa.net/xml/TAPRegExt/v1.0
 
 Note that you must give the \texttt{xsi:schemaLocation} of
 the TAPRegExt schema when the capability defined here is part of a published
-registry resource record as per the IVOA Registry Interface standard 
+registry resource record as per the IVOA Registry Interface standard
 \citep{2018ivoa.spec.0723D}.  This does not apply to the use
 in a TAP server's capabilities endpoint.
 
@@ -189,7 +189,7 @@ uses this to define support for both the ObsCore and RegTAP data models.
       	\hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:DataModelType} Type Schema Documentation}
 
 \noindent{\small
-        An IVOA defined data model, identified by an IVORN 
+        An IVOA defined data model, identified by an IVORN
         intended for machine consumption and a short label
         intended for human comsumption.
       \par}
@@ -212,9 +212,9 @@ uses this to define support for both the ObsCore and RegTAP data models.
 \item[ivo-id]
 \begin{description}
 \item[Type] a URI: \xmlel{xs:anyURI}
-\item[Meaning] 
+\item[Meaning]
             The IVOID of the data model.
-            
+
 \item[Occurrence] required
 \end{description}
 
@@ -241,18 +241,18 @@ or more versions.
 The recommended way to associate larger amounts of documentation with a
 language entry in a capability element is via registration of the language
 using the mechanisms defined in StdRegExt \citep{2012ivoa.spec.0508H} and associating
-the registry record with the language element through the latter's 
+the registry record with the language element through the latter's
 \xmlel{ivo-id}
 attribute.  The IVOID for the only language mandatory for TAP services,
-ADQL 2.0, is 
+ADQL 2.0, is
 \nolinkurl{ivo://ivoa.net/std/ADQL#v2.0}.
 .
 
-The type of the \xmlel{ivo-id} attribute on version is 
+The type of the \xmlel{ivo-id} attribute on version is
 \xmlel{xs:anyURI} as opposed to \xmlel{vr:IdentifierURI} since
-the latter does not allow fragment identifiers in VOResource 1.0. 
+the latter does not allow fragment identifiers in VOResource 1.0.
 The description constrains the value to be an
-IVOID (i.e., a URI with a schema of ivo:), though.  
+IVOID (i.e., a URI with a schema of ivo:), though.
 The same reasoning applies to the \xmlel{ivo-id}
 attributes of \xmlel{outputFormat} and \xmlel{uploadMethod}.
 
@@ -294,43 +294,43 @@ attributes of \xmlel{outputFormat} and \xmlel{uploadMethod}.
 \begingroup\small\begin{bigdescription}\item[Element \xmlel{name}]
 \begin{description}
 \item[Type] a prefixless XML name
-\item[Meaning] 
+\item[Meaning]
           The name of the language without a version suffix.
-          
+
 \item[Occurrence] required
 
 \end{description}
 \item[Element \xmlel{version}]
 \begin{description}
 \item[Type] a string with optional attributes
-\item[Meaning] 
+\item[Meaning]
             A version of the language supported by the server.
-          
+
 \item[Occurrence] required; multiple occurrences allowed.
 
 \end{description}
 \item[Element \xmlel{description}]
 \begin{description}
 \item[Type] string: \xmlel{xs:token}
-\item[Meaning] 
+\item[Meaning]
           A short, human-readable description of the
           query language.
-          
+
 \item[Occurrence] optional
 
 \end{description}
 \item[Element \xmlel{languageFeatures}]
 \begin{description}
 \item[Type] composite: \xmlel{tr:LanguageFeatureList}
-\item[Meaning] 
+\item[Meaning]
             Optional features of the query language, grouped by
             feature type.
-          
+
 \item[Occurrence] optional; multiple occurrences allowed.
-\item[Comment] 
+\item[Comment]
             This includes listing user defined functions, geometry support,
             or similar concepts.
-          
+
 
 \end{description}
 
@@ -379,17 +379,17 @@ attributes of \xmlel{outputFormat} and \xmlel{uploadMethod}.
 \item[ivo-id]
 \begin{description}
 \item[Type] a URI: \xmlel{xs:anyURI}
-\item[Meaning] 
+\item[Meaning]
             An optional IVOID of the language.
-            
+
 \item[Occurrence] optional
-\item[Comment] 
+\item[Comment]
               To more formally define a language supported by a service,
               a resource record for the language can be created, either
-              centrally on the Registry of Registries or by other registry operators.  
+              centrally on the Registry of Registries or by other registry operators.
               When such a record exists, the ivo-id attribute of language
               should point to it.
-            
+
 \end{description}
 
 
@@ -405,12 +405,12 @@ Query languages may support optional features.  For ADQL, the most prominent
 of those are user-defined functions, i.e., functions not defined in the language
 standard but added by the operators of the service, and geometry functions.
 Such optional features may be communicated to the service client in
-\xmlel{tr:languageFeatures} elements.  
+\xmlel{tr:languageFeatures} elements.
 
 Each such list is labelled with a \xmlel{type} attribute
 indicating the type of language option being described.
 This string should be an IVOID whose semantics in this context,
-along with the semantics of the content of its descendant 
+along with the semantics of the content of its descendant
 \xmlel{feature/form} elements,
 can be documented in association with the language in question.
 
@@ -432,11 +432,11 @@ arg       ::= <regular_identifier> <type_name>
 \end{verbatim}
 
 The \texttt{type\_name} nonterminal is not defined by the ADQL
-		grammar in version 2.0. 
+		grammar in version 2.0.
 		For the purposes of TAPRegExt, it is sufficient to assume
 		it expands to ``some sort of SQL type specifier'' (which may
 		include spaces and parentheses).  For an enumeration of common types
-		in ADQL, refer to the last column of the table in section 2.5 of 
+		in ADQL, refer to the last column of the table in section 2.5 of
 		the TAP standard \citep{2019ivoa.spec.0927D}.
 
 Example:
@@ -447,7 +447,7 @@ Example:
   <feature>
     <form>match(pattern TEXT, string TEXT) -> INTEGER</form>
     <description>
-      match returns 1 if the POSIX regular expression pattern 
+      match returns 1 if the POSIX regular expression pattern
       matches anything in string, 0 otherwise.
     </description>
   </feature>
@@ -455,10 +455,10 @@ Example:
 \end{lstlisting}
 
 
-\item[\nolinkurl{ivo://ivoa.net/std/TAPRegExt\#features-adqlgeo}] Each feature declares support for one of the geometry functions 
+\item[\nolinkurl{ivo://ivoa.net/std/TAPRegExt\#features-adqlgeo}] Each feature declares support for one of the geometry functions
 		defined by ADQL
     (support for these functions is in general optional for ADQL
-    implementations, though TAP imposes some constraints on what 
+    implementations, though TAP imposes some constraints on what
     combinations of support are permitted).
 
 The signature of these functions, where supported, is fixed by ADQL;
@@ -486,13 +486,13 @@ Example:
       	\hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:LanguageFeatureList} Type Schema Documentation}
 
 \noindent{\small
-        An enumeration of non-standard or non-mandatory features of 
+        An enumeration of non-standard or non-mandatory features of
         a specific type implemented by the language.
       \par}
 
 \noindent{\small
-        A feature type is a language-dependent concept like 
-        "user defined function", "geometry support", or possibly 
+        A feature type is a language-dependent concept like
+        "user defined function", "geometry support", or possibly
         "units supported".  A featureList gives all features of
         a given type applicable for the service.  Multiple featureLists
         are possible.
@@ -523,15 +523,15 @@ Example:
 \item[type]
 \begin{description}
 \item[Type] a URI: \xmlel{xs:anyURI}
-\item[Meaning] 
+\item[Meaning]
           The type of the features given here.
-        
+
 \item[Occurrence] required
-\item[Comment] 
+\item[Comment]
           This is in general an IVOID.  TAPRegExt itself gives
           IVOIDs for defining user defined functions and geometry
           support.
-        
+
 \end{description}
 
 
@@ -544,10 +544,10 @@ Example:
 \begingroup\small\begin{bigdescription}\item[Element \xmlel{feature}]
 \begin{description}
 \item[Type] composite: \xmlel{tr:LanguageFeature}
-\item[Meaning] 
+\item[Meaning]
             A language feature of the type given by the
             type attribute.
-          
+
 \item[Occurrence] optional; multiple occurrences allowed.
 
 \end{description}
@@ -587,22 +587,22 @@ Example:
 \begingroup\small\begin{bigdescription}\item[Element \xmlel{form}]
 \begin{description}
 \item[Type] string: \xmlel{xs:token}
-\item[Meaning] 
+\item[Meaning]
             Formal notation for the language feature.
-          
+
 \item[Occurrence] required
-\item[Comment] 
+\item[Comment]
             The syntax for the content of this element is defined by the
             type attribute of its parent language list.
-          
+
 
 \end{description}
 \item[Element \xmlel{description}]
 \begin{description}
 \item[Type] string: \xmlel{xs:string}
-\item[Meaning] 
+\item[Meaning]
             Human-readable freeform documentation for the language feature.
-          
+
 \item[Occurrence] optional
 
 \end{description}
@@ -621,9 +621,9 @@ Example:
 
 A TAP service may offer a variety of output formats.
 What output formats are available is defined using
-\xmlel{outputFormat} elements.   They 
+\xmlel{outputFormat} elements.   They
 declare an RFC 2046 media type \citep{std:MIME} as well
-as aliases (the shorthand forms the server also accepts in the 
+as aliases (the shorthand forms the server also accepts in the
 FORMAT parameter).  If desired, the format can be further described with an
 IVOID in the ivo-id attribute; TAPRegExt provides keys for some variants of
 VOTables which are not interoperably distinguishable by their MIME types so far:
@@ -648,8 +648,8 @@ VOTables which are not interoperably distinguishable by their MIME types so far:
       \par}
 
 \noindent{\small
-      All TAP services must support VOTable output, with media types as 
-      requested by the FORMAT parameter if applicable (cf.~section 2.7.1 
+      All TAP services must support VOTable output, with media types as
+      requested by the FORMAT parameter if applicable (cf.~section 2.7.1
       of the TAP standard).
 
       The primary identifier for an output format is the RFC 2046 media
@@ -679,11 +679,11 @@ VOTables which are not interoperably distinguishable by their MIME types so far:
 \item[ivo-id]
 \begin{description}
 \item[Type] a URI: \xmlel{xs:anyURI}
-\item[Meaning] 
+\item[Meaning]
         An optional IVOID of the output format.
-        
+
 \item[Occurrence] optional
-\item[Comment] 
+\item[Comment]
           When the media type does not uniquely define the
           format (or a generic media type like application/octet-stream or
           text/plain is given), the IVOID can point to a key
@@ -691,7 +691,7 @@ VOTables which are not interoperably distinguishable by their MIME types so far:
           precisely.  To see values defined in TAPRegExt,
           retrieve the ivo://ivoa.net/std/TAPRegExt
           resource record and look for keys starting with {"}output-{"}.
-        
+
 \end{description}
 
 
@@ -704,24 +704,24 @@ VOTables which are not interoperably distinguishable by their MIME types so far:
 \begingroup\small\begin{bigdescription}\item[Element \xmlel{mime}]
 \begin{description}
 \item[Type] string: \xmlel{xs:token}
-\item[Meaning] 
+\item[Meaning]
           The media type of this format.
-          
+
 \item[Occurrence] required
-\item[Comment] 
+\item[Comment]
           The format of this string is specified by RFC 2046.
-          The service has to accept this string as a 
+          The service has to accept this string as a
           value of the FORMAT parameter.
-          
+
 
 \end{description}
 \item[Element \xmlel{alias}]
 \begin{description}
 \item[Type] string: \xmlel{xs:token}
-\item[Meaning] 
-          Other values of FORMAT ({"}shorthands{"}) that make the service return 
+\item[Meaning]
+          Other values of FORMAT ({"}shorthands{"}) that make the service return
           documents with the media type.
-          
+
 \item[Occurrence] optional; multiple occurrences allowed.
 
 \end{description}
@@ -747,14 +747,14 @@ methods are given as IVOIDs.
 
 IVOIDs for the standard upload methods are provided within the
 resource record
-\texttt{ivo://ivoa.net/std/TAPRegExt}.  
-The IVOIDs are built by using the keys as fragments after the 
+\texttt{ivo://ivoa.net/std/TAPRegExt}.
+The IVOIDs are built by using the keys as fragments after the
 TAPRegExt IVOID.
 
 It is permitted to register upload methods under authorities other than
 ivoa.net.
 The registry records can then provide more in-depth information. For
-the upload methods defined in the TAP specification, however, 
+the upload methods defined in the TAP specification, however,
 the IVOIDs of the keys in the TAPRegExt resource record must be used to enable
 clients to identify supported methods using string comparisons.
 
@@ -763,7 +763,7 @@ This document defines the following protocol identifiers:
 
 \begin{itemize}
 
-\item \texttt{upload-inline} -- HTTP upload as per section 2.5.2 of 
+\item \texttt{upload-inline} -- HTTP upload as per section 2.5.2 of
 the TAP standard \citep{2019ivoa.spec.0927D}.{}
 
 \item \texttt{upload-http} -- retrieval from an http URL.{}
@@ -794,7 +794,7 @@ would say:
       \par}
 
 \noindent{\small
-      Upload methods are always identified by an IVOID.  
+      Upload methods are always identified by an IVOID.
       Descriptions can be obtained by dereferencing this
       IVOID.  To see values defined in TAPRegExt,
       retrieve the ivo://ivoa.net/std/TAPRegExt
@@ -823,9 +823,9 @@ would say:
 \item[ivo-id]
 \begin{description}
 \item[Type] a URI: \xmlel{xs:anyURI}
-\item[Meaning] 
+\item[Meaning]
             The IVOID of the upload method.
-            
+
 \item[Occurrence] optional
 \end{description}
 
@@ -883,7 +883,7 @@ This document defines two time-like resource limits:
 		a query.{}
 
 \end{itemize}
-All values in time-like limits are given in seconds.  Both 
+All values in time-like limits are given in seconds.  Both
 \xmlel{retentionPeriod} and \xmlel{executionDuration} are of type
 \xmlel{tr:TimeLimits}.
 
@@ -914,18 +914,18 @@ All values in time-like limits are given in seconds.  Both
 \begingroup\small\begin{bigdescription}\item[Element \xmlel{default}]
 \begin{description}
 \item[Type] integer
-\item[Meaning] 
+\item[Meaning]
           The value of this limit for newly-created jobs, given in seconds.
-          
+
 \item[Occurrence] optional
 
 \end{description}
 \item[Element \xmlel{hard}]
 \begin{description}
 \item[Type] integer
-\item[Meaning] 
+\item[Meaning]
           The value this limit cannot be raised above, given in seconds.
-          
+
 \item[Occurrence] optional
 
 \end{description}
@@ -940,7 +940,7 @@ All values in time-like limits are given in seconds.  Both
 
 \subsubsection{Limits on Data}
 Limits on data are expressed much like time limits in that they give
-\xmlel{default} and a \xmlel{hard} value as well.  
+\xmlel{default} and a \xmlel{hard} value as well.
 Both those values have a unit attribute that can either be \texttt{byte}
 or \texttt{row} for data limits.
 
@@ -954,11 +954,11 @@ the \xmlel{default} gives the
 value of TAP's \texttt{MAXREC} parameter the service will use when none
 is specified.{}
 
-\item \xmlel{uploadLimit} -- the maximum size of uploads.  This 
+\item \xmlel{uploadLimit} -- the maximum size of uploads.  This
 is not a TAP adjustable parameter.  The \xmlel{default} value
 advises clients about the server's wishes as to a limit above which
-some sort of acknowledgement should be requested from the user.  The 
-\xmlel{hard} limit gives the maximum size of an upload to the 
+some sort of acknowledgement should be requested from the user.  The
+\xmlel{hard} limit gives the maximum size of an upload to the
 server.{}
 
 \end{itemize}
@@ -994,18 +994,18 @@ and \xmlel{tr:DataLimit} types:
 \begingroup\small\begin{bigdescription}\item[Element \xmlel{default}]
 \begin{description}
 \item[Type] an integer with optional attributes
-\item[Meaning] 
+\item[Meaning]
           The value of this limit for newly-created jobs.
-          
+
 \item[Occurrence] optional
 
 \end{description}
 \item[Element \xmlel{hard}]
 \begin{description}
 \item[Type] an integer with optional attributes
-\item[Meaning] 
+\item[Meaning]
           The value this limit cannot be raised above.
-          
+
 \item[Occurrence] optional
 
 \end{description}
@@ -1053,9 +1053,9 @@ and \xmlel{tr:DataLimit} types:
 \item[unit]
 \begin{description}
 \item[Type] string with controlled vocabulary
-\item[Meaning] 
+\item[Meaning]
             The unit of the limit specified.
-            
+
 \item[Occurrence] required
 
 \item[Allowed Values]\hfil
@@ -1103,7 +1103,7 @@ specification implemented.
 
 In order to open the path to advanced use cases (e.g., involving
 authenticated access), services implementing TAPRegExt~1.1 must include
-another interface element of type \xmlel{tr:DALIInterface}.  
+another interface element of type \xmlel{tr:DALIInterface}.
 
 % GENERATED: !schemadoc TAPRegExt-v1.1.xsd DALIInterface
 \begin{generated}
@@ -1143,9 +1143,9 @@ another interface element of type \xmlel{tr:DALIInterface}.
 \begingroup\small\begin{bigdescription}\item[Element \xmlel{endpoint}]
 \begin{description}
 \item[Type] composite: \xmlel{tr:Endpoint}
-\item[Meaning] 
+\item[Meaning]
                 An endpoint accessible through this interface.
-              
+
 \item[Occurrence] optional; multiple occurrences allowed.
 
 \end{description}
@@ -1200,24 +1200,24 @@ datalink?}.
 \begingroup\small\begin{bigdescription}\item[Element \xmlel{name}]
 \begin{description}
 \item[Type] string: \xmlel{xs:token}
-\item[Meaning] 
+\item[Meaning]
             The endpoint name, which is also the last component of the
             path of its URI.
-          
+
 \item[Occurrence] required
-\item[Comment] 
+\item[Comment]
             Names without dashes are reserved for IVOA use and are expected to
             work the same way on all services.  Well-known examples for
             such endpoint names include sync, async, and tables.
-          
+
 
 \end{description}
 \item[Element \xmlel{meta}]
 \begin{description}
 \item[Type] a string with optional attributes
-\item[Meaning] 
+\item[Meaning]
             Auxiliary information on this endpoint.
-          
+
 \item[Occurrence] optional; multiple occurrences allowed.
 
 \end{description}
@@ -1276,39 +1276,39 @@ make statements consisting of a subject (\xmlel{about}), a predicate
 \item[about]
 \begin{description}
 \item[Type] a URI: \xmlel{xs:anyURI}
-\item[Meaning] 
+\item[Meaning]
               The subject of the statement.
-            
+
 \item[Occurrence] optional
-\item[Comment] 
+\item[Comment]
               If missing, the endpoint itself is assumed as the subject.
-            
+
 \end{description}
 \item[property]
 \begin{description}
 \item[Type] a URI: \xmlel{xs:anyURI}
-\item[Meaning] 
+\item[Meaning]
               The property of the statement.
-            
+
 \item[Occurrence] required
-\item[Comment] 
+\item[Comment]
               This is a reference to an RDF resource.  IVOA standards may define
               semantics for scheme-less URI; non-IVOA properties must use
               full URIs with at least scheme and authority; in this
               version, no vocab attributes are supported.
-            
+
 \end{description}
 \item[resource]
 \begin{description}
 \item[Type] a URI: \xmlel{xs:anyURI}
-\item[Meaning] 
+\item[Meaning]
               The object of the statement.
-            
+
 \item[Occurrence] optional
-\item[Comment] 
+\item[Comment]
               If missing, the text content of the element is used as the
               object.
-            
+
 \end{description}
 
 
@@ -1387,7 +1387,7 @@ not need to rely on per-endpoint metadata of this complexity.
 
 \label{caprec}
 
-Using the types defined above, the 
+Using the types defined above, the
 \xmlel{tr:TableAccess} type can be defined.  Note that
 it is a type, not a (global) element.  In instance documents, you
 will typically place it in a capability element with an explicit
@@ -1395,10 +1395,10 @@ type specification, like this:
 
 
 \begin{lstlisting}[language=XML,basicstyle=\footnotesize]
-  <capability 
-    xmlns:tr="http://www.ivoa.net/xml/TAP/v1.0" 
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-    standardID="ivo://ivoa.net/std/TAP" 
+  <capability
+    xmlns:tr="http://www.ivoa.net/xml/TAP/v1.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    standardID="ivo://ivoa.net/std/TAP"
     xsi:type="tr:TableAccess">
     ...
 \end{lstlisting}
@@ -1459,79 +1459,79 @@ be given for TAP 1.0 services.  Services having other capabilities
 \begingroup\small\begin{bigdescription}\item[Element \xmlel{dataModel}]
 \begin{description}
 \item[Type] a string with optional attributes
-\item[Meaning] 
-              Identifier of IVOA-approved data model supported by the 
+\item[Meaning]
+              Identifier of IVOA-approved data model supported by the
               service.
-              
+
 \item[Occurrence] optional; multiple occurrences allowed.
 
 \end{description}
 \item[Element \xmlel{language}]
 \begin{description}
 \item[Type] composite: \xmlel{tr:Language}
-\item[Meaning] 
+\item[Meaning]
               Language supported by the service.
-              
+
 \item[Occurrence] required; multiple occurrences allowed.
 
 \end{description}
 \item[Element \xmlel{outputFormat}]
 \begin{description}
 \item[Type] composite: \xmlel{tr:OutputFormat}
-\item[Meaning] 
+\item[Meaning]
                 Output format supported by the service.
-              
+
 \item[Occurrence] required; multiple occurrences allowed.
 
 \end{description}
 \item[Element \xmlel{uploadMethod}]
 \begin{description}
 \item[Type] composite: \xmlel{tr:UploadMethod}
-\item[Meaning] 
+\item[Meaning]
                 Upload method supported by the service.
-              
+
 \item[Occurrence] optional; multiple occurrences allowed.
-\item[Comment] 
+\item[Comment]
                 The absence of upload methods indicates
                 that the service does not support uploads
                 at all.
-              
+
 
 \end{description}
 \item[Element \xmlel{retentionPeriod}]
 \begin{description}
 \item[Type] composite: \xmlel{tr:TimeLimits}
-\item[Meaning] 
+\item[Meaning]
               Limits on the time between job creation and
               destruction time.
-              
+
 \item[Occurrence] optional
 
 \end{description}
 \item[Element \xmlel{executionDuration}]
 \begin{description}
 \item[Type] composite: \xmlel{tr:TimeLimits}
-\item[Meaning] 
+\item[Meaning]
               Limits on executionDuration.
-              
+
 \item[Occurrence] optional
 
 \end{description}
 \item[Element \xmlel{outputLimit}]
 \begin{description}
 \item[Type] composite: \xmlel{tr:DataLimits}
-\item[Meaning] 
+\item[Meaning]
               Limits on the size of data returned.
-              
+
 \item[Occurrence] optional
 
 \end{description}
 \item[Element \xmlel{uploadLimit}]
 \begin{description}
 \item[Type] composite: \xmlel{tr:DataLimits}
-\item[Meaning] 
+\item[Meaning]
               Limits on the size of uploaded data.
-              
+
 \item[Occurrence] optional
 
 \end{description}
@@ -1566,7 +1566,7 @@ this URI is only intended for use in review or debugging.
 
 \label{app:example}
 
-This appendix contains an instance document as it should be 
+This appendix contains an instance document as it should be
 delivered from the VOSI capability endpoint. When embedded in a
 VOResource record, the capability elements would be direct children of
 the \xmlel{vr:Resource} element.  The example file declares one custom
@@ -1578,21 +1578,21 @@ capabilities endpoint.
 
 % GENERATED: make-sample.sh
 \begin{lstlisting}[basicstyle=\footnotesize,language=XML]
-<cap:capabilities 
-	xmlns:cap="http://www.ivoa.net/xml/VOSICapabilities/v1.0" 
-	xmlns:tr="http://www.ivoa.net/xml/TAPRegExt/v1.0" 
-	xmlns:vg="http://www.ivoa.net/xml/VORegistry/v1.0" 
-	xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" 
-	xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.1" 
+<cap:capabilities
+	xmlns:cap="http://www.ivoa.net/xml/VOSICapabilities/v1.0"
+	xmlns:tr="http://www.ivoa.net/xml/TAPRegExt/v1.0"
+	xmlns:vg="http://www.ivoa.net/xml/VORegistry/v1.0"
+	xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0"
+	xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.1"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
-  <capability 
-	standardID="ivo://ivoa.net/std/TAP" 
+  <capability
+	standardID="ivo://ivoa.net/std/TAP"
 	xsi:type="tr:TableAccess">
-    <interface role="std" version="1.1" 
+    <interface role="std" version="1.1"
 	xsi:type="vs:ParamHTTP">
       <accessURL use="base">http://localhost:8080/tap</accessURL>
     </interface>
-    <interface role="std" version="1.1" 
+    <interface role="std" version="1.1"
 	xsi:type="tr:DALIInterface">
       <accessURL use="base">http://localhost:8080/tap</accessURL>
       <endpoint>
@@ -1727,9 +1727,9 @@ the given index at the given order.</description>
       <hard unit="byte">8000000</hard>
     </uploadLimit>
   </capability>
-  <capability 
+  <capability
 	standardID="ivo://ivoa.net/std/VOSI#capabilities">
-    <interface role="std" 
+    <interface role="std"
 	xsi:type="vs:ParamHTTP">
       <accessURL use="full">http://localhost:8080/tap/capabilities</accessURL>
     </interface>
@@ -1820,7 +1820,7 @@ all other IVOIDs dependent on this.{}
 TAP standardID.  TAPRegExt capabilities are now allowed with arbitrary
 standardIDs
 \item Changed former use of the term ``IVORN''  to ``IVOID'' (or
-Registry part, as appropriate) to comply with a proposed clarification of 
+Registry part, as appropriate) to comply with a proposed clarification of
 terminology in Identifiers 2.0
 \item The example now shows an entire capabilities response
 \item Repaired obscore data model URI in the example

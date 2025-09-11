@@ -1,6 +1,6 @@
 # ivoatex Makefile.  The ivoatex/README for the targets available.
 
-SCHEMA_FILE=TAPRegExt-v1.1.xsd 
+SCHEMA_FILE=TAPRegExt-v1.1.xsd
 
 # short name of your document (edit $DOCNAME.tex; would be like RegTAP)
 DOCNAME = TAPRegExt
@@ -24,7 +24,7 @@ SOURCES = $(DOCNAME).tex $(SCHEMA_FILE) sample.xml gitmeta.tex role_diagram.pdf
 FIGURES = role_diagram.svg
 
 # List of PDF figures (for vector graphics)
-VECTORFIGURES = 
+VECTORFIGURES =
 
 
 # Additional files to distribute (e.g., CSS, schema files, examples...)
