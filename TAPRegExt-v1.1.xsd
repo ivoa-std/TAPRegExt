@@ -4,12 +4,12 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema"
 xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0"
 xmlns:vm="http://www.ivoa.net/xml/VOMetadata/v0.1"
 xmlns:tr="http://www.ivoa.net/xml/TAPRegExt/v1.0"
-version="1.1-pre1"
+version="1.1-pre2"
 targetNamespace="http://www.ivoa.net/xml/TAPRegExt/v1.0"
 elementFormDefault="unqualified"
 attributeFormDefault="unqualified"
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation="http://www.w3.org/2001/XMLSchema http://vo.ari.uni-heidelberg.de/docs/schemata/XMLSchema.xsd">
+>
   <xs:annotation>
     <xs:appinfo>
       <vm:schemaName>TAPRegExt</vm:schemaName>
@@ -82,8 +82,9 @@ xsi:schemaLocation="http://www.w3.org/2001/XMLSchema http://vo.ari.uni-heidelber
             minOccurs="0" maxOccurs="1">
             <xs:annotation>
               <xs:documentation>
-              Limits on the time between job creation and
-              destruction time.
+              Limits for how long a service will retain async jobs
+              for the service's default access
+              mode (typically anonymous-sync).
               </xs:documentation>
             </xs:annotation>
           </xs:element>
@@ -92,7 +93,9 @@ xsi:schemaLocation="http://www.w3.org/2001/XMLSchema http://vo.ari.uni-heidelber
             minOccurs="0" maxOccurs="1">
             <xs:annotation>
               <xs:documentation>
-              Limits on executionDuration.
+              Limits on the time after which a query will be cancelled
+              for the service's default access mode (typically
+              anonymous-sync).
               </xs:documentation>
             </xs:annotation>
           </xs:element>
@@ -101,7 +104,9 @@ xsi:schemaLocation="http://www.w3.org/2001/XMLSchema http://vo.ari.uni-heidelber
             minOccurs="0" maxOccurs="1">
             <xs:annotation>
               <xs:documentation>
-              Limits on the size of data returned.
+              Limits on the size of data returned
+              for the service's default access mode (typically
+              anonymous-sync).
               </xs:documentation>
             </xs:annotation>
           </xs:element>
@@ -110,12 +115,21 @@ xsi:schemaLocation="http://www.w3.org/2001/XMLSchema http://vo.ari.uni-heidelber
             minOccurs="0" maxOccurs="1">
             <xs:annotation>
               <xs:documentation>
-              Limits on the size of uploaded data.
+              Limits on the size of uploaded data
+              for the service's default access mode (typically
+              anonymous-sync).
               </xs:documentation>
             </xs:annotation>
           </xs:element>
 
-
+					<xs:element name="limits" type="tr:PerModeLimits"
+						minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>
+							Per-mode overrides of the limits defined gobally.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:element>
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -602,4 +616,93 @@ xsi:schemaLocation="http://www.w3.org/2001/XMLSchema http://vo.ari.uni-heidelber
     </xs:simpleContent>
   </xs:complexType>
 
+	<xs:complexType name="PerModeLimits">
+		<xs:annotation>
+			<xs:documentation>
+			The limits corresponding to an access mode (auth/non-auth, sync/async).
+			</xs:documentation>
+		</xs:annotation>
+
+		<xs:sequence>
+  		<xs:element name="retentionPeriod" type="tr:TimeLimits"
+    		minOccurs="0" maxOccurs="1">
+    		<xs:annotation>
+      		<xs:documentation>
+      		Limits for how long a service will retain async jobs
+					in this limit element's mode.
+      		</xs:documentation>
+    		</xs:annotation>
+  		</xs:element>
+
+  		<xs:element name="executionDuration" type="tr:TimeLimits"
+    		minOccurs="0" maxOccurs="1">
+    		<xs:annotation>
+      		<xs:documentation>
+      		Limits on the time after which a query will be cancelled
+					in this limit element's mode.
+      		</xs:documentation>
+    		</xs:annotation>
+  		</xs:element>
+
+  		<xs:element name="outputLimit" type="tr:DataLimits"
+    		minOccurs="0" maxOccurs="1">
+    		<xs:annotation>
+      		<xs:documentation>
+      		Limits on the size of data returned
+					in this limit element's mode.
+      		</xs:documentation>
+    		</xs:annotation>
+  		</xs:element>
+
+  		<xs:element name="uploadLimit" type="tr:DataLimits"
+    		minOccurs="0" maxOccurs="1">
+    		<xs:annotation>
+      		<xs:documentation>
+      		Limits on the size of uploaded data
+					in this limit element's mode.
+      		</xs:documentation>
+    		</xs:annotation>
+  		</xs:element>
+		</xs:sequence>
+
+		<xs:attribute name="mode">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="anonymous-sync">
+						<xs:annotation>
+							<xs:documentation>
+								These limits apply to unauthenticated clients running
+								synchronous queries.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="anonymous-async">
+						<xs:annotation>
+							<xs:documentation>
+								These limits apply to unauthenticated clients running
+								asynchronous queries.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="auth-sync">
+						<xs:annotation>
+							<xs:documentation>
+								These limits apply to authenticated clients running
+								synchronous queries.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="auth-async">
+						<xs:annotation>
+							<xs:documentation>
+								These limits apply to authenticated clients running
+								asynchronous queries.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	
+	</xs:complexType>
 </xs:schema>
