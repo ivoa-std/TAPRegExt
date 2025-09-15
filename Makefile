@@ -28,19 +28,13 @@ VECTORFIGURES =
 
 
 # Additional files to distribute (e.g., CSS, schema files, examples...)
-AUX_FILES = $(SCHEMA_FILE)  sample.xml
+AUX_FILES = $(SCHEMA_FILE) sample.xml
 
 -include ivoatex/Makefile
 
-ivoatex/Makefile:
-	@echo "*** ivoatex submodule not found.  Initialising submodules."
-	@echo
-	git submodule update --init
-
-
 sample.xml: make-sample.sh
-	./make-sample.sh > sample.xml
-	
+	./make-sample.sh
+
 install:
 	# local to Markus' setup
 	~/gavo/standards/fixschema $(SCHEMA_FILE) > ~/gavo/trunk/gavo/resources/schemata/TAPRegExt.xsd

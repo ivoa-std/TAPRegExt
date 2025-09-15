@@ -476,15 +476,23 @@ of the timestamp.</description>
       <default>172800</default>
     </retentionPeriod>
     <executionDuration>
-      <default>7200</default>
+      <default>50</default>
     </executionDuration>
     <outputLimit>
       <default unit="row">20000</default>
       <hard unit="row">20000000</hard>
     </outputLimit>
     <uploadLimit>
-      <hard unit="byte">80000000</hard>
+      <hard unit="byte">100000000</hard>
     </uploadLimit>
+    <limits mode="anonymous-async">
+      <executionDuration>
+        <default>7200</default>
+      </executionDuration>
+      <uploadLimit>
+        <hard unit="byte">80000000</hard>
+      </uploadLimit>
+    </limits>
   </capability>
   <capability standardID="ivo://ivoa.net/std/VOSI#capabilities">
     <interface role="std" xsi:type="vs:ParamHTTP">
