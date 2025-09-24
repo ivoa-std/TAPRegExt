@@ -879,9 +879,8 @@ no limits are enforced.
 
 Limits can be specified as direct children of \xmlel{capability}, or in
 \xmlel{limits} groups as per Sect.~\ref{sect:permode}.  The limits in
-direct children should describe what is enforced for clients doing sync
-queries without authentication unless the service does not support that
-mode of operation.
+direct children give defaults, overrideable in the limits groups for
+specific modes.
 
 \subsubsection{Limits on Time}
 This document defines two time-like resource limits:
@@ -1673,9 +1672,7 @@ be given for TAP 1.0 services.  Services having other capabilities
 \begin{description}
 \item[Type] composite: \xmlel{tr:TimeLimits}
 \item[Meaning]
-              Limits for how long a service will retain async jobs
-              for the service's default access
-              mode (typically anonymous-sync).
+              Default limits for how long a service will retain async jobs.
 
 \item[Occurrence] optional
 
@@ -1684,9 +1681,7 @@ be given for TAP 1.0 services.  Services having other capabilities
 \begin{description}
 \item[Type] composite: \xmlel{tr:TimeLimits}
 \item[Meaning]
-              Limits on the time after which a query will be cancelled
-              for the service's default access mode (typically
-              anonymous-sync).
+              Default limits on the time after which a query will be cancelled.
 
 \item[Occurrence] optional
 
@@ -1695,9 +1690,7 @@ be given for TAP 1.0 services.  Services having other capabilities
 \begin{description}
 \item[Type] composite: \xmlel{tr:DataLimits}
 \item[Meaning]
-              Limits on the size of data returned
-              for the service's default access mode (typically
-              anonymous-sync).
+              Deafult limits on the size of data returned.
 
 \item[Occurrence] optional
 
@@ -1706,9 +1699,7 @@ be given for TAP 1.0 services.  Services having other capabilities
 \begin{description}
 \item[Type] composite: \xmlel{tr:DataLimits}
 \item[Meaning]
-              Limits on the size of uploaded data
-              for the service's default access mode (typically
-              anonymous-sync).
+              Default limits on the size of uploaded data.
 
 \item[Occurrence] optional
 

@@ -82,9 +82,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             minOccurs="0" maxOccurs="1">
             <xs:annotation>
               <xs:documentation>
-              Limits for how long a service will retain async jobs
-              for the service's default access
-              mode (typically anonymous-sync).
+              Default limits for how long a service will retain async jobs.
               </xs:documentation>
             </xs:annotation>
           </xs:element>
@@ -93,9 +91,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             minOccurs="0" maxOccurs="1">
             <xs:annotation>
               <xs:documentation>
-              Limits on the time after which a query will be cancelled
-              for the service's default access mode (typically
-              anonymous-sync).
+              Default limits on the time after which a query will be cancelled.
               </xs:documentation>
             </xs:annotation>
           </xs:element>
@@ -104,9 +100,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             minOccurs="0" maxOccurs="1">
             <xs:annotation>
               <xs:documentation>
-              Limits on the size of data returned
-              for the service's default access mode (typically
-              anonymous-sync).
+              Deafult limits on the size of data returned.
               </xs:documentation>
             </xs:annotation>
           </xs:element>
@@ -115,9 +109,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             minOccurs="0" maxOccurs="1">
             <xs:annotation>
               <xs:documentation>
-              Limits on the size of uploaded data
-              for the service's default access mode (typically
-              anonymous-sync).
+              Default limits on the size of uploaded data.
               </xs:documentation>
             </xs:annotation>
           </xs:element>
