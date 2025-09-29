@@ -192,14 +192,12 @@ In TAPRegExt, a data model is identified by its IVOA identifier
 % GENERATED: !schemadoc TAPRegExt-v1.1.xsd DataModelType
 \begin{generated}
 \begingroup
-      	\renewcommand*\descriptionlabel[1]{%
-      	\hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:DataModelType} Type Schema Documentation}
+       \renewcommand*\descriptionlabel[1]{%
+       \hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:DataModelType} Type Schema Documentation}
 
-\noindent{\small
-        An IVOA defined data model, identified by an IVORN
+\noindent{\small{}An IVOA defined data model, identified by an IVORN
         intended for machine consumption and a short label
-        intended for human comsumption.
-      \par}
+        intended for human comsumption.\par}
 
 \vspace{1ex}\noindent\textbf{\xmlel{tr:DataModelType} Type Schema Definition}
 
@@ -219,9 +217,7 @@ In TAPRegExt, a data model is identified by its IVOA identifier
 \item[ivo-id]
 \begin{description}
 \item[Type] a URI: \xmlel{xs:anyURI}
-\item[Meaning]
-            The IVOID of the data model.
-
+\item[Meaning] The IVOID of the data model.
 \item[Occurrence] required
 \end{description}
 
@@ -266,18 +262,14 @@ attributes of \xmlel{outputFormat} and \xmlel{uploadMethod}.
 % GENERATED: !schemadoc TAPRegExt-v1.1.xsd Language
 \begin{generated}
 \begingroup
-      	\renewcommand*\descriptionlabel[1]{%
-      	\hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:Language} Type Schema Documentation}
+       \renewcommand*\descriptionlabel[1]{%
+       \hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:Language} Type Schema Documentation}
 
-\noindent{\small
-      A query language supported by the service.
-      \par}
+\noindent{\small{}A query language supported by the service.\par}
 
-\noindent{\small
-      Each language element can describe one or more versions
+\noindent{\small{}Each language element can describe one or more versions
       of a language.  Either name alone or name-version can be
-      used as values for the server's LANG parameter.
-      \par}
+      used as values for the server's LANG parameter.\par}
 
 \vspace{1ex}\noindent\textbf{\xmlel{tr:Language} Type Schema Definition}
 
@@ -301,43 +293,33 @@ attributes of \xmlel{outputFormat} and \xmlel{uploadMethod}.
 \begingroup\small\begin{bigdescription}\item[Element \xmlel{name}]
 \begin{description}
 \item[Type] a prefixless XML name
-\item[Meaning]
-          The name of the language without a version suffix.
-
+\item[Meaning] The name of the language without a version suffix.
 \item[Occurrence] required
 
 \end{description}
 \item[Element \xmlel{version}]
 \begin{description}
 \item[Type] a string with optional attributes
-\item[Meaning]
-            A version of the language supported by the server.
-
+\item[Meaning] A version of the language supported by the server.
 \item[Occurrence] required; multiple occurrences allowed.
 
 \end{description}
 \item[Element \xmlel{description}]
 \begin{description}
 \item[Type] string: \xmlel{xs:token}
-\item[Meaning]
-          A short, human-readable description of the
+\item[Meaning] A short, human-readable description of the
           query language.
-
 \item[Occurrence] optional
 
 \end{description}
 \item[Element \xmlel{languageFeatures}]
 \begin{description}
 \item[Type] composite: \xmlel{tr:LanguageFeatureList}
-\item[Meaning]
-            Optional features of the query language, grouped by
+\item[Meaning] Optional features of the query language, grouped by
             feature type.
-
 \item[Occurrence] optional; multiple occurrences allowed.
-\item[Comment]
-            This includes listing user defined functions, geometry support,
+\item[Comment] This includes listing user defined functions, geometry support,
             or similar concepts.
-
 
 \end{description}
 
@@ -352,21 +334,17 @@ attributes of \xmlel{outputFormat} and \xmlel{uploadMethod}.
 % GENERATED: !schemadoc TAPRegExt-v1.1.xsd Version
 \begin{generated}
 \begingroup
-      	\renewcommand*\descriptionlabel[1]{%
-      	\hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:Version} Type Schema Documentation}
+       \renewcommand*\descriptionlabel[1]{%
+       \hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:Version} Type Schema Documentation}
 
-\noindent{\small
-      One version of the language supported by the service.
-      \par}
+\noindent{\small{}One version of the language supported by the service.\par}
 
-\noindent{\small
-      If the service supports more than one version of the
+\noindent{\small{}If the service supports more than one version of the
       language, include multiple version elements.
       It is recommended that you use a version numbering
       scheme like MAJOR.MINOR in such a way that sorting
       by ascending character codes will leave the most
-      recent version at the bottom of the list.
-      \par}
+      recent version at the bottom of the list.\par}
 
 \vspace{1ex}\noindent\textbf{\xmlel{tr:Version} Type Schema Definition}
 
@@ -386,17 +364,13 @@ attributes of \xmlel{outputFormat} and \xmlel{uploadMethod}.
 \item[ivo-id]
 \begin{description}
 \item[Type] a URI: \xmlel{xs:anyURI}
-\item[Meaning]
-            An optional IVOID of the language.
-
+\item[Meaning] An optional IVOID of the language.
 \item[Occurrence] optional
-\item[Comment]
-              To more formally define a language supported by a service,
+\item[Comment] To more formally define a language supported by a service,
               a resource record for the language can be created, either
               centrally on the Registry of Registries or by other registry operators.
               When such a record exists, the ivo-id attribute of language
               should point to it.
-
 \end{description}
 
 
@@ -489,18 +463,15 @@ Example:
 % GENERATED: !schemadoc TAPRegExt-v1.1.xsd LanguageFeatureList
 \begin{generated}
 \begingroup
-      	\renewcommand*\descriptionlabel[1]{%
-      	\hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:LanguageFeatureList} Type Schema Documentation}
+       \renewcommand*\descriptionlabel[1]{%
+       \hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:LanguageFeatureList} Type Schema Documentation}
 
-\noindent{\small
-        An enumeration of non-standard or non-mandatory features of
-        a specific type implemented by the language.
-      \par}
+\noindent{\small{}An enumeration of non-standard or non-mandatory features of
+        a specific type implemented by the language.\par}
 
-\noindent{\small
-        A feature type is a language-dependent concept like
-        "user defined function", "geometry support", or possibly
-        "units supported".  A featureList gives all features of
+\noindent{\small{}A feature type is a language-dependent concept like
+        {"}user defined function{"}, {"}geometry support{"}, or possibly
+        {"}units supported{"}.  A featureList gives all features of
         a given type applicable for the service.  Multiple featureLists
         are possible.
 
@@ -509,8 +480,7 @@ Example:
         the value of which will typically be an IVOID.
         To see values defined in TAPRegExt,
         retrieve the ivo://ivoa.net/std/TAPRegExt
-        resource record and look for keys starting with "features-".
-      \par}
+        resource record and look for keys starting with {"}features-{"}.\par}
 
 \vspace{1ex}\noindent\textbf{\xmlel{tr:LanguageFeatureList} Type Schema Definition}
 
@@ -530,15 +500,11 @@ Example:
 \item[type]
 \begin{description}
 \item[Type] a URI: \xmlel{xs:anyURI}
-\item[Meaning]
-          The type of the features given here.
-
+\item[Meaning] The type of the features given here.
 \item[Occurrence] required
-\item[Comment]
-          This is in general an IVOID.  TAPRegExt itself gives
+\item[Comment] This is in general an IVOID.  TAPRegExt itself gives
           IVOIDs for defining user defined functions and geometry
           support.
-
 \end{description}
 
 
@@ -551,10 +517,8 @@ Example:
 \begingroup\small\begin{bigdescription}\item[Element \xmlel{feature}]
 \begin{description}
 \item[Type] composite: \xmlel{tr:LanguageFeature}
-\item[Meaning]
-            A language feature of the type given by the
+\item[Meaning] A language feature of the type given by the
             type attribute.
-
 \item[Occurrence] optional; multiple occurrences allowed.
 
 \end{description}
@@ -570,13 +534,11 @@ Example:
 % GENERATED: !schemadoc TAPRegExt-v1.1.xsd LanguageFeature
 \begin{generated}
 \begingroup
-      	\renewcommand*\descriptionlabel[1]{%
-      	\hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:LanguageFeature} Type Schema Documentation}
+       \renewcommand*\descriptionlabel[1]{%
+       \hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:LanguageFeature} Type Schema Documentation}
 
-\noindent{\small
-        A non-standard or non-mandatory feature implemented
-        by the language..
-      \par}
+\noindent{\small{}A non-standard or non-mandatory feature implemented
+        by the language..\par}
 
 \vspace{1ex}\noindent\textbf{\xmlel{tr:LanguageFeature} Type Schema Definition}
 
@@ -594,22 +556,16 @@ Example:
 \begingroup\small\begin{bigdescription}\item[Element \xmlel{form}]
 \begin{description}
 \item[Type] string: \xmlel{xs:token}
-\item[Meaning]
-            Formal notation for the language feature.
-
+\item[Meaning] Formal notation for the language feature.
 \item[Occurrence] required
-\item[Comment]
-            The syntax for the content of this element is defined by the
+\item[Comment] The syntax for the content of this element is defined by the
             type attribute of its parent language list.
-
 
 \end{description}
 \item[Element \xmlel{description}]
 \begin{description}
 \item[Type] string: \xmlel{xs:string}
-\item[Meaning]
-            Human-readable freeform documentation for the language feature.
-
+\item[Meaning] Human-readable freeform documentation for the language feature.
 \item[Occurrence] optional
 
 \end{description}
@@ -647,15 +603,12 @@ VOTables which are not interoperably distinguishable by their MIME types so far:
 % GENERATED: !schemadoc TAPRegExt-v1.1.xsd OutputFormat
 \begin{generated}
 \begingroup
-      	\renewcommand*\descriptionlabel[1]{%
-      	\hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:OutputFormat} Type Schema Documentation}
+       \renewcommand*\descriptionlabel[1]{%
+       \hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:OutputFormat} Type Schema Documentation}
 
-\noindent{\small
-      An output format supported by the service.
-      \par}
+\noindent{\small{}An output format supported by the service.\par}
 
-\noindent{\small
-      All TAP services must support VOTable output, with media types as
+\noindent{\small{}All TAP services must support VOTable output, with media types as
       requested by the FORMAT parameter if applicable (cf.~section 2.7.1
       of the TAP standard).
 
@@ -664,8 +617,7 @@ VOTables which are not interoperably distinguishable by their MIME types so far:
       use a media type (or make one up using the x- syntax), although
       the concrete media syntax is not enforced by the schema.
 
-      For more detailed specification, an IVOID may be used.
-      \par}
+      For more detailed specification, an IVOID may be used.\par}
 
 \vspace{1ex}\noindent\textbf{\xmlel{tr:OutputFormat} Type Schema Definition}
 
@@ -676,6 +628,7 @@ VOTables which are not interoperably distinguishable by their MIME types so far:
     <xs:element name="alias" type="xs:token" minOccurs="0"
               maxOccurs="unbounded" />
   </xs:sequence>
+  <xs:attributeGroup ref="tr:mode-dependent" />
   <xs:attribute name="ivo-id" type="xs:anyURI" />
 </xs:complexType>
 \end{lstlisting}
@@ -686,19 +639,15 @@ VOTables which are not interoperably distinguishable by their MIME types so far:
 \item[ivo-id]
 \begin{description}
 \item[Type] a URI: \xmlel{xs:anyURI}
-\item[Meaning]
-        An optional IVOID of the output format.
-
+\item[Meaning] An optional IVOID of the output format.
 \item[Occurrence] optional
-\item[Comment]
-          When the media type does not uniquely define the
+\item[Comment] When the media type does not uniquely define the
           format (or a generic media type like application/octet-stream or
           text/plain is given), the IVOID can point to a key
           or StandardsRegExt document defining the format more
           precisely.  To see values defined in TAPRegExt,
           retrieve the ivo://ivoa.net/std/TAPRegExt
           resource record and look for keys starting with {"}output-{"}.
-
 \end{description}
 
 
@@ -711,24 +660,18 @@ VOTables which are not interoperably distinguishable by their MIME types so far:
 \begingroup\small\begin{bigdescription}\item[Element \xmlel{mime}]
 \begin{description}
 \item[Type] string: \xmlel{xs:token}
-\item[Meaning]
-          The media type of this format.
-
+\item[Meaning] The media type of this format.
 \item[Occurrence] required
-\item[Comment]
-          The format of this string is specified by RFC 2046.
+\item[Comment] The format of this string is specified by RFC 2046.
           The service has to accept this string as a
           value of the FORMAT parameter.
-
 
 \end{description}
 \item[Element \xmlel{alias}]
 \begin{description}
 \item[Type] string: \xmlel{xs:token}
-\item[Meaning]
-          Other values of FORMAT ({"}shorthands{"}) that make the service return
+\item[Meaning] Other values of FORMAT ({"}shorthands{"}) that make the service return
           documents with the media type.
-
 \item[Occurrence] optional; multiple occurrences allowed.
 
 \end{description}
@@ -793,24 +736,20 @@ would say:
 % GENERATED: !schemadoc TAPRegExt-v1.1.xsd UploadMethod
 \begin{generated}
 \begingroup
-      	\renewcommand*\descriptionlabel[1]{%
-      	\hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:UploadMethod} Type Schema Documentation}
+       \renewcommand*\descriptionlabel[1]{%
+       \hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:UploadMethod} Type Schema Documentation}
 
-\noindent{\small
-      An upload method as defined by IVOA.
-      \par}
+\noindent{\small{}An upload method as defined by IVOA.\par}
 
-\noindent{\small
-      Upload methods are always identified by an IVOID.
+\noindent{\small{}Upload methods are always identified by an IVOID.
       Descriptions can be obtained by dereferencing this
       IVOID.  To see values defined in TAPRegExt,
       retrieve the ivo://ivoa.net/std/TAPRegExt
-      resource record and look for keys starting with "upload-".
+      resource record and look for keys starting with {"}upload-{"}.
 
       You can register custom upload methods, but you must use the
       standard IVOIDs for the upload methods defined in the TAP
-      specification.
-      \par}
+      specification.\par}
 
 \vspace{1ex}\noindent\textbf{\xmlel{tr:UploadMethod} Type Schema Definition}
 
@@ -830,9 +769,7 @@ would say:
 \item[ivo-id]
 \begin{description}
 \item[Type] a URI: \xmlel{xs:anyURI}
-\item[Meaning]
-            The IVOID of the upload method.
-
+\item[Meaning] The IVOID of the upload method.
 \item[Occurrence] optional
 \end{description}
 
@@ -897,12 +834,10 @@ All values in time-like limits are given in seconds.  Both
 % GENERATED: !schemadoc TAPRegExt-v1.1.xsd TimeLimits
 \begin{generated}
 \begingroup
-      	\renewcommand*\descriptionlabel[1]{%
-      	\hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:TimeLimits} Type Schema Documentation}
+       \renewcommand*\descriptionlabel[1]{%
+       \hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:TimeLimits} Type Schema Documentation}
 
-\noindent{\small
-      Time-valued limits, all values given in seconds.
-      \par}
+\noindent{\small{}Time-valued limits, all values given in seconds.\par}
 
 \vspace{1ex}\noindent\textbf{\xmlel{tr:TimeLimits} Type Schema Definition}
 
@@ -921,18 +856,14 @@ All values in time-like limits are given in seconds.  Both
 \begingroup\small\begin{bigdescription}\item[Element \xmlel{default}]
 \begin{description}
 \item[Type] integer
-\item[Meaning]
-          The value of this limit for newly-created jobs, given in seconds.
-
+\item[Meaning] The value of this limit for newly-created jobs, given in seconds.
 \item[Occurrence] optional
 
 \end{description}
 \item[Element \xmlel{hard}]
 \begin{description}
 \item[Type] integer
-\item[Meaning]
-          The value this limit cannot be raised above, given in seconds.
-
+\item[Meaning] The value this limit cannot be raised above, given in seconds.
 \item[Occurrence] optional
 
 \end{description}
@@ -976,12 +907,10 @@ and \xmlel{tr:DataLimit} types:
 % GENERATED: !schemadoc TAPRegExt-v1.1.xsd DataLimits
 \begin{generated}
 \begingroup
-      	\renewcommand*\descriptionlabel[1]{%
-      	\hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:DataLimits} Type Schema Documentation}
+       \renewcommand*\descriptionlabel[1]{%
+       \hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:DataLimits} Type Schema Documentation}
 
-\noindent{\small
-      Limits on data sizes, given in rows or bytes.
-      \par}
+\noindent{\small{}Limits on data sizes, given in rows or bytes.\par}
 
 \vspace{1ex}\noindent\textbf{\xmlel{tr:DataLimits} Type Schema Definition}
 
@@ -1001,18 +930,14 @@ and \xmlel{tr:DataLimit} types:
 \begingroup\small\begin{bigdescription}\item[Element \xmlel{default}]
 \begin{description}
 \item[Type] an integer with optional attributes
-\item[Meaning]
-          The value of this limit for newly-created jobs.
-
+\item[Meaning] The value of this limit for newly-created jobs.
 \item[Occurrence] optional
 
 \end{description}
 \item[Element \xmlel{hard}]
 \begin{description}
 \item[Type] an integer with optional attributes
-\item[Meaning]
-          The value this limit cannot be raised above.
-
+\item[Meaning] The value this limit cannot be raised above.
 \item[Occurrence] optional
 
 \end{description}
@@ -1028,12 +953,10 @@ and \xmlel{tr:DataLimit} types:
 % GENERATED: !schemadoc TAPRegExt-v1.1.xsd DataLimit
 \begin{generated}
 \begingroup
-      	\renewcommand*\descriptionlabel[1]{%
-      	\hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:DataLimit} Type Schema Documentation}
+       \renewcommand*\descriptionlabel[1]{%
+       \hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:DataLimit} Type Schema Documentation}
 
-\noindent{\small
-      A limit on some data size, either in rows or in bytes.
-      \par}
+\noindent{\small{}A limit on some data size, either in rows or in bytes.\par}
 
 \vspace{1ex}\noindent\textbf{\xmlel{tr:DataLimit} Type Schema Definition}
 
@@ -1060,9 +983,7 @@ and \xmlel{tr:DataLimit} types:
 \item[unit]
 \begin{description}
 \item[Type] string with controlled vocabulary
-\item[Meaning]
-            The unit of the limit specified.
-
+\item[Meaning] The unit of the limit specified.
 \item[Occurrence] required
 
 \item[Allowed Values]\hfil
@@ -1115,20 +1036,16 @@ another interface element of type \xmlel{tr:DALIInterface}.
 % GENERATED: !schemadoc TAPRegExt-v1.1.xsd DALIInterface
 \begin{generated}
 \begingroup
-      	\renewcommand*\descriptionlabel[1]{%
-      	\hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:DALIInterface} Type Schema Documentation}
+       \renewcommand*\descriptionlabel[1]{%
+       \hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:DALIInterface} Type Schema Documentation}
 
-\noindent{\small
-        An interface for a complex, multi-endpoint interfaces as
-        regulated by DALI.
-      \par}
+\noindent{\small{}An interface for a complex, multi-endpoint interfaces as
+        regulated by DALI.\par}
 
-\noindent{\small
-        In addition to the standard vr:Interface elements, DALIInterfaces
+\noindent{\small{}In addition to the standard vr:Interface elements, DALIInterfaces
         have endpoints, listed by name; that name doubles as a path segment
         to append to the interface's access URL, yielding the URI at
-        which the endpoint is operated.
-      \par}
+        which the endpoint is operated.\par}
 
 \vspace{1ex}\noindent\textbf{\xmlel{tr:DALIInterface} Type Schema Definition}
 
@@ -1150,9 +1067,7 @@ another interface element of type \xmlel{tr:DALIInterface}.
 \begingroup\small\begin{bigdescription}\item[Element \xmlel{endpoint}]
 \begin{description}
 \item[Type] composite: \xmlel{tr:Endpoint}
-\item[Meaning]
-                An endpoint accessible through this interface.
-
+\item[Meaning] An endpoint accessible through this interface.
 \item[Occurrence] optional; multiple occurrences allowed.
 
 \end{description}
@@ -1176,19 +1091,15 @@ datalink?}.
 % GENERATED: !schemadoc TAPRegExt-v1.1.xsd Endpoint
 \begin{generated}
 \begingroup
-      	\renewcommand*\descriptionlabel[1]{%
-      	\hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:Endpoint} Type Schema Documentation}
+       \renewcommand*\descriptionlabel[1]{%
+       \hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:Endpoint} Type Schema Documentation}
 
-\noindent{\small
-        An endpoint of a complex interface.
-      \par}
+\noindent{\small{}An endpoint of a complex interface.\par}
 
-\noindent{\small
-        An endpoint is characterised and addrssed by its name;
+\noindent{\small{}An endpoint is characterised and addressed by its name;
         they can further be defined through RDF triples.  This is a
         generic extension mechanism for endpoint-specific metadata,
-        primarily intended for custom, vendor-specific extensions.
-      \par}
+        primarily intended for custom, vendor-specific extensions.\par}
 
 \vspace{1ex}\noindent\textbf{\xmlel{tr:Endpoint} Type Schema Definition}
 
@@ -1207,24 +1118,18 @@ datalink?}.
 \begingroup\small\begin{bigdescription}\item[Element \xmlel{name}]
 \begin{description}
 \item[Type] string: \xmlel{xs:token}
-\item[Meaning]
-            The endpoint name, which is also the last component of the
+\item[Meaning] The endpoint name, which is also the last component of the
             path of its URI.
-
 \item[Occurrence] required
-\item[Comment]
-            Names without dashes are reserved for IVOA use and are expected to
+\item[Comment] Names without dashes are reserved for IVOA use and are expected to
             work the same way on all services.  Well-known examples for
             such endpoint names include sync, async, and tables.
-
 
 \end{description}
 \item[Element \xmlel{meta}]
 \begin{description}
 \item[Type] a string with optional attributes
-\item[Meaning]
-            Auxiliary information on this endpoint.
-
+\item[Meaning] Auxiliary information on this endpoint.
 \item[Occurrence] optional; multiple occurrences allowed.
 
 \end{description}
@@ -1255,13 +1160,11 @@ make statements consisting of a subject (\xmlel{about}), a predicate
 % GENERATED: !schemadoc TAPRegExt-v1.1.xsd MetaTriple
 \begin{generated}
 \begingroup
-      	\renewcommand*\descriptionlabel[1]{%
-      	\hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:MetaTriple} Type Schema Documentation}
+       \renewcommand*\descriptionlabel[1]{%
+       \hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:MetaTriple} Type Schema Documentation}
 
-\noindent{\small
-        A container for an RDFa triple giving information related to
-        an endpoint.
-      \par}
+\noindent{\small{}A container for an RDFa triple giving information related to
+        an endpoint.\par}
 
 \vspace{1ex}\noindent\textbf{\xmlel{tr:MetaTriple} Type Schema Definition}
 
@@ -1283,39 +1186,27 @@ make statements consisting of a subject (\xmlel{about}), a predicate
 \item[about]
 \begin{description}
 \item[Type] a URI: \xmlel{xs:anyURI}
-\item[Meaning]
-              The subject of the statement.
-
+\item[Meaning] The subject of the statement.
 \item[Occurrence] optional
-\item[Comment]
-              If missing, the endpoint itself is assumed as the subject.
-
+\item[Comment] If missing, the endpoint itself is assumed as the subject.
 \end{description}
 \item[property]
 \begin{description}
 \item[Type] a URI: \xmlel{xs:anyURI}
-\item[Meaning]
-              The property of the statement.
-
+\item[Meaning] The property of the statement.
 \item[Occurrence] required
-\item[Comment]
-              This is a reference to an RDF resource.  IVOA standards may define
+\item[Comment] This is a reference to an RDF resource.  IVOA standards may define
               semantics for scheme-less URI; non-IVOA properties must use
               full URIs with at least scheme and authority; in this
               version, no vocab attributes are supported.
-
 \end{description}
 \item[resource]
 \begin{description}
 \item[Type] a URI: \xmlel{xs:anyURI}
-\item[Meaning]
-              The object of the statement.
-
+\item[Meaning] The object of the statement.
 \item[Occurrence] optional
-\item[Comment]
-              If missing, the text content of the element is used as the
+\item[Comment] If missing, the text content of the element is used as the
               object.
-
 \end{description}
 
 
@@ -1419,17 +1310,13 @@ be given for TAP 1.0 services.  Services having other capabilities
 % GENERATED: !schemadoc TAPRegExt-v1.1.xsd TableAccess
 \begin{generated}
 \begingroup
-      	\renewcommand*\descriptionlabel[1]{%
-      	\hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:TableAccess} Type Schema Documentation}
+       \renewcommand*\descriptionlabel[1]{%
+       \hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:TableAccess} Type Schema Documentation}
 
-\noindent{\small
-      The capabilities of a TAP server.
-      \par}
+\noindent{\small{}The capabilities of a TAP server.\par}
 
-\noindent{\small
-      The capabilities attempt to define most issues that the
-      TAP standard leaves to the implementors ("may", "should").
-      \par}
+\noindent{\small{}The capabilities attempt to define most issues that the
+      TAP standard leaves to the implementors ({"}may{"}, {"}should{"}).\par}
 
 \vspace{1ex}\noindent\textbf{\xmlel{tr:TableAccess} Type Schema Definition}
 
@@ -1466,79 +1353,61 @@ be given for TAP 1.0 services.  Services having other capabilities
 \begingroup\small\begin{bigdescription}\item[Element \xmlel{dataModel}]
 \begin{description}
 \item[Type] a string with optional attributes
-\item[Meaning]
-              Identifier of IVOA-approved data model supported by the
+\item[Meaning] Identifier of IVOA-approved data model supported by the
               service.
-
 \item[Occurrence] optional; multiple occurrences allowed.
 
 \end{description}
 \item[Element \xmlel{language}]
 \begin{description}
 \item[Type] composite: \xmlel{tr:Language}
-\item[Meaning]
-              Language supported by the service.
-
+\item[Meaning] Language supported by the service.
 \item[Occurrence] required; multiple occurrences allowed.
 
 \end{description}
 \item[Element \xmlel{outputFormat}]
 \begin{description}
 \item[Type] composite: \xmlel{tr:OutputFormat}
-\item[Meaning]
-                Output format supported by the service.
-
+\item[Meaning] Output format supported by the service.
 \item[Occurrence] required; multiple occurrences allowed.
 
 \end{description}
 \item[Element \xmlel{uploadMethod}]
 \begin{description}
 \item[Type] composite: \xmlel{tr:UploadMethod}
-\item[Meaning]
-                Upload method supported by the service.
-
+\item[Meaning] Upload method supported by the service.
 \item[Occurrence] optional; multiple occurrences allowed.
-\item[Comment]
-                The absence of upload methods indicates
+\item[Comment] The absence of upload methods indicates
                 that the service does not support uploads
                 at all.
-
 
 \end{description}
 \item[Element \xmlel{retentionPeriod}]
 \begin{description}
 \item[Type] composite: \xmlel{tr:TimeLimits}
-\item[Meaning]
-              Limits on the time between job creation and
+\item[Meaning] Limits on the time between job creation and
               destruction time.
-
 \item[Occurrence] optional
 
 \end{description}
 \item[Element \xmlel{executionDuration}]
 \begin{description}
 \item[Type] composite: \xmlel{tr:TimeLimits}
-\item[Meaning]
-              Limits on executionDuration.
-
+\item[Meaning] Limits on executionDuration.
 \item[Occurrence] optional
 
 \end{description}
 \item[Element \xmlel{outputLimit}]
 \begin{description}
 \item[Type] composite: \xmlel{tr:DataLimits}
-\item[Meaning]
-              Limits on the size of data returned.
-
+\item[Meaning] Limits on the size of data returned.
 \item[Occurrence] optional
 
 \end{description}
 \item[Element \xmlel{uploadLimit}]
 \begin{description}
 \item[Type] composite: \xmlel{tr:DataLimits}
-\item[Meaning]
-              Limits on the size of uploaded data.
-
+\item[Meaning] Limits on the size of uploaded data.
 \item[Occurrence] optional
 
 \end{description}
