@@ -4,12 +4,11 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema"
 xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0"
 xmlns:vm="http://www.ivoa.net/xml/VOMetadata/v0.1"
 xmlns:tr="http://www.ivoa.net/xml/TAPRegExt/v1.0"
-version="1.1-pre1"
+version="1.1-pre3"
 targetNamespace="http://www.ivoa.net/xml/TAPRegExt/v1.0"
 elementFormDefault="unqualified"
 attributeFormDefault="unqualified"
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation="http://www.w3.org/2001/XMLSchema http://vo.ari.uni-heidelberg.de/docs/schemata/XMLSchema.xsd">
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <xs:annotation>
     <xs:appinfo>
       <vm:schemaName>TAPRegExt</vm:schemaName>
@@ -22,6 +21,42 @@ xsi:schemaLocation="http://www.w3.org/2001/XMLSchema http://vo.ari.uni-heidelber
   </xs:annotation>
   <xs:import namespace="http://www.ivoa.net/xml/VOResource/v1.0"
     schemaLocation="https://www.ivoa.net/xml/VOResource/VOResource-v1.0.xsd"/>
+
+	<xs:attributeGroup name="mode-dependent">
+		<xs:annotation>
+			<xs:documentation>
+				This attribute group is intended to be used wherever a TAPRegExt
+				declaration might depend on the access mode.  Currently, only
+				sync vs. async is supported.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="forMode">
+			<xs:annotation>
+				<xs:documentation>
+					This declaration only applies to the named mode.
+				</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="sync">
+						<xs:annotation>
+							<xs:documentation>
+								This declaration is for synchronous queries.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="async">
+						<xs:annotation>
+							<xs:documentation>
+								This declaration is for asynchronous queries.
+							</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+
   <xs:complexType name="TableAccess">
     <xs:annotation>
       <xs:documentation>
@@ -79,7 +114,7 @@ xsi:schemaLocation="http://www.w3.org/2001/XMLSchema http://vo.ari.uni-heidelber
           </xs:element>
 
           <xs:element name="retentionPeriod" type="tr:TimeLimits"
-            minOccurs="0" maxOccurs="1">
+            minOccurs="0" maxOccurs="unbounded">
             <xs:annotation>
               <xs:documentation>
               Limits on the time between job creation and
@@ -89,7 +124,7 @@ xsi:schemaLocation="http://www.w3.org/2001/XMLSchema http://vo.ari.uni-heidelber
           </xs:element>
 
           <xs:element name="executionDuration" type="tr:TimeLimits"
-            minOccurs="0" maxOccurs="1">
+            minOccurs="0" maxOccurs="unbounded">
             <xs:annotation>
               <xs:documentation>
               Limits on executionDuration.
@@ -98,7 +133,7 @@ xsi:schemaLocation="http://www.w3.org/2001/XMLSchema http://vo.ari.uni-heidelber
           </xs:element>
 
           <xs:element name="outputLimit" type="tr:DataLimits"
-            minOccurs="0" maxOccurs="1">
+            minOccurs="0" maxOccurs="unbounded">
             <xs:annotation>
               <xs:documentation>
               Limits on the size of data returned.
@@ -107,7 +142,7 @@ xsi:schemaLocation="http://www.w3.org/2001/XMLSchema http://vo.ari.uni-heidelber
           </xs:element>
 
           <xs:element name="uploadLimit" type="tr:DataLimits"
-            minOccurs="0" maxOccurs="1">
+            minOccurs="0" maxOccurs="unbounded">
             <xs:annotation>
               <xs:documentation>
               Limits on the size of uploaded data.
@@ -471,6 +506,8 @@ xsi:schemaLocation="http://www.w3.org/2001/XMLSchema http://vo.ari.uni-heidelber
 
     </xs:sequence>
 
+    <xs:attributeGroup ref="tr:mode-dependent"/>
+
     <xs:attribute name="ivo-id" type="xs:anyURI">
       <xs:annotation>
         <xs:documentation>
@@ -487,7 +524,6 @@ xsi:schemaLocation="http://www.w3.org/2001/XMLSchema http://vo.ari.uni-heidelber
         </xs:documentation>
       </xs:annotation>
     </xs:attribute>
-
   </xs:complexType>
 
   <xs:complexType name="UploadMethod">
@@ -517,6 +553,7 @@ xsi:schemaLocation="http://www.w3.org/2001/XMLSchema http://vo.ari.uni-heidelber
             </xs:documentation>
           </xs:annotation>
         </xs:attribute>
+   			<xs:attributeGroup ref="tr:mode-dependent"/>
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
@@ -547,6 +584,8 @@ xsi:schemaLocation="http://www.w3.org/2001/XMLSchema http://vo.ari.uni-heidelber
         </xs:annotation>
       </xs:element>
     </xs:sequence>
+
+    <xs:attributeGroup ref="tr:mode-dependent"/>
   </xs:complexType>
 
   <xs:complexType name="DataLimits">
@@ -574,6 +613,8 @@ xsi:schemaLocation="http://www.w3.org/2001/XMLSchema http://vo.ari.uni-heidelber
         </xs:annotation>
       </xs:element>
     </xs:sequence>
+
+    <xs:attributeGroup ref="tr:mode-dependent"/>
   </xs:complexType>
 
   <xs:complexType name="DataLimit">
