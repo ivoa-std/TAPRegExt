@@ -74,7 +74,15 @@ associated metadata is contained within the service resource description's
 
 TAPRegExt defines this capability element for TAP services.  In the context
 of registering TAP services, an important role filled by TAPRegExt is the
-communication of supported data models to the registry.
+communication of supported data models to the Registry.
+
+The specification comes with a non-normative example
+document\footnote{\auxiliaryurl{sample.xml}} showing this
+specification's  major features.  It also declares a separate capability
+for the VOSI capabilities endpoint.  The example is written as a
+response from a TAP service's capabilities endpoint.  When embedded in a
+VOResource record, the capability elements would be direct children of
+the \xmlel{vr:Resource} element.
 
 
 \subsection{TAPRegExt within the VO Architecture}
@@ -179,8 +187,7 @@ on a data model or a set of data models to work on all TAP services exposing
 tables instantiating the data model(s).
 
 In TAPRegExt, a data model is identified by its IVOA identifier
-\citep{2016ivoa.spec.0523D}.  The example document in Appendix~\ref{app:example}
-uses this to define support for both the ObsCore and RegTAP data models.
+\citep{2016ivoa.spec.0523D}.
 
 % GENERATED: !schemadoc TAPRegExt-v1.1.xsd DataModelType
 \begin{generated}
@@ -1562,183 +1569,6 @@ The schema accompanying this specific version is published alongside this
 document\footnote{\auxiliaryurl{TAPRegExt-v1.0.xsd}}.  The document at
 this URI is only intended for use in review or debugging.
 
-\section{Example Document}
-
-\label{app:example}
-
-This appendix contains an instance document as it should be
-delivered from the VOSI capability endpoint. When embedded in a
-VOResource record, the capability elements would be direct children of
-the \xmlel{vr:Resource} element.  The example file declares one custom
-extension to the async endpoint, a user defined function from the
-Catalogue of user defined functions, the common extension features from
-ADQL 2.1.  It also declares a separate capability for the VOSI
-capabilities endpoint.
-
-
-% GENERATED: make-sample.sh
-\begin{lstlisting}[basicstyle=\footnotesize,language=XML]
-<cap:capabilities
-	xmlns:cap="http://www.ivoa.net/xml/VOSICapabilities/v1.0"
-	xmlns:tr="http://www.ivoa.net/xml/TAPRegExt/v1.0"
-	xmlns:vg="http://www.ivoa.net/xml/VORegistry/v1.0"
-	xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0"
-	xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.1"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
-  <capability
-	standardID="ivo://ivoa.net/std/TAP"
-	xsi:type="tr:TableAccess">
-    <interface role="std" version="1.1"
-	xsi:type="vs:ParamHTTP">
-      <accessURL use="base">http://localhost:8080/tap</accessURL>
-    </interface>
-    <interface role="std" version="1.1"
-	xsi:type="tr:DALIInterface">
-      <accessURL use="base">http://localhost:8080/tap</accessURL>
-      <endpoint>
-        <name>sync</name>
-      </endpoint>
-      <endpoint>
-        <name>async</name>
-        <meta property="http://dc.g-vo.org/static/tap-plan">dachs</meta>
-      </endpoint>
-      <endpoint>
-        <name>tables</name>
-      </endpoint>
-      <endpoint>
-        <name>examples</name>
-      </endpoint>
-    </interface>
-    <dataModel ivo-id="ivo://org.gavo.dc/std/glots#tables-1.0">GloTS 1.0</dataModel>
-    <dataModel ivo-id="ivo://ivoa.net/std/ObsCore#core-1.1">Obscore-1.1</dataModel>
-    <language>
-      <name>ADQL</name>
-      <version ivo-id="ivo://ivoa.net/std/ADQL#v2.0">2.0</version>
-      <version ivo-id="ivo://ivoa.net/std/ADQL#v2.1">2.1</version>
-      <description>The Astronomical Data Query Language is...</description>
-      <languageFeatures type="ivo://ivoa.net/std/TAPRegExt#features-udf">
-        <feature>
-          <form>ivo_healpix_center(hpxOrder INTEGER, hpxIndex BIGINT) -&gt; POINT</form>
-          <description>returns a POINT corresponding to the center of the healpix with
-the given index at the given order.</description>
-        </feature>
-      </languageFeatures>
-      <languageFeatures type="ivo://ivoa.net/std/TAPRegExt#features-adqlgeo">
-        <feature>
-          <form>BOX</form>
-        </feature>
-        <feature>
-          <form>POINT</form>
-        </feature>
-        <feature>
-          <form>CIRCLE</form>
-        </feature>
-        <feature>
-          <form>POLYGON</form>
-        </feature>
-        <feature>
-          <form>REGION</form>
-        </feature>
-        <feature>
-          <form>CENTROID</form>
-        </feature>
-        <feature>
-          <form>COORD1</form>
-        </feature>
-        <feature>
-          <form>COORD2</form>
-        </feature>
-        <feature>
-          <form>DISTANCE</form>
-        </feature>
-        <feature>
-          <form>CONTAINS</form>
-        </feature>
-        <feature>
-          <form>INTERSECTS</form>
-        </feature>
-        <feature>
-          <form>AREA</form>
-        </feature>
-      </languageFeatures>
-      <languageFeatures type="ivo://ivoa.net/std/TAPRegExt#features-adql-string">
-        <feature>
-          <form>LOWER</form>
-        </feature>
-        <feature>
-          <form>ILIKE</form>
-        </feature>
-      </languageFeatures>
-      <languageFeatures type="ivo://ivoa.net/std/TAPRegExt#features-adql-offset">
-        <feature>
-          <form>OFFSET</form>
-        </feature>
-      </languageFeatures>
-      <languageFeatures type="ivo://ivoa.net/std/TAPRegExt#features-adql-type">
-        <feature>
-          <form>CAST</form>
-        </feature>
-      </languageFeatures>
-      <languageFeatures type="ivo://ivoa.net/std/TAPRegExt#features-adql-unit">
-        <feature>
-          <form>IN_UNIT</form>
-        </feature>
-      </languageFeatures>
-      <languageFeatures type="ivo://ivoa.net/std/TAPRegExt#features-adql-common-table">
-        <feature>
-          <form>WITH</form>
-        </feature>
-      </languageFeatures>
-      <languageFeatures type="ivo://org.gavo.dc/std/exts#extra-adql-keywords"/>
-      <languageFeatures type="ivo://ivoa.net/std/TAPRegExt#features-adql-sets">
-        <feature>
-          <form>UNION</form>
-        </feature>
-        <feature>
-          <form>EXCEPT</form>
-        </feature>
-        <feature>
-          <form>INTERSECT</form>
-        </feature>
-      </languageFeatures>
-    </language>
-    <outputFormat ivo-id="ivo://ivoa.net/std/TAPRegEXT#output-votable-binary">
-      <mime>application/x-votable+xml</mime>
-      <alias>votable</alias>
-    </outputFormat>
-    <outputFormat>
-      <mime>text/csv</mime>
-    </outputFormat>
-    <uploadMethod ivo-id="ivo://ivoa.net/std/TAPRegExt#upload-inline"/>
-    <uploadMethod ivo-id="ivo://ivoa.net/std/TAPRegExt#upload-http"/>
-    <uploadMethod ivo-id="ivo://ivoa.net/std/TAPRegExt#upload-https"/>
-    <uploadMethod ivo-id="ivo://ivoa.net/std/TAPRegExt#upload-ftp"/>
-    <retentionPeriod>
-      <default>172800</default>
-    </retentionPeriod>
-    <executionDuration>
-      <default>7200</default>
-    </executionDuration>
-    <outputLimit>
-      <default unit="row">20000</default>
-      <hard unit="row">20000000</hard>
-    </outputLimit>
-    <uploadLimit>
-      <hard unit="byte">8000000</hard>
-    </uploadLimit>
-  </capability>
-  <capability
-	standardID="ivo://ivoa.net/std/VOSI#capabilities">
-    <interface role="std"
-	xsi:type="vs:ParamHTTP">
-      <accessURL use="full">http://localhost:8080/tap/capabilities</accessURL>
-    </interface>
-  </capability>
-</cap:capabilities>
-\end{lstlisting}
-
-% /GENERATED
-
 \section{Changes from Previous Versions}
 
 \label{changes}
@@ -1747,6 +1577,8 @@ the given index at the given order.</description>
 
 \begin{itemize}
 \item Adding tr:DALIInterface to the schema.
+\item Dropping the appendix with an example document.  Using a
+standalone, validated file and auxiliaryurl instead.
 \end{itemize}
 
 \subsection{Changes from WD-20110127}

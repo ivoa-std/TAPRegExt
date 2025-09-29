@@ -1,34 +1,21 @@
-#!/bin/sh
-# write a sample TAPRegExt record from the capabilities on
-# http://localhost:8080/tap to stdout; this, really, assumes a DaCHS running
-# there, and because of the validation, it also assumes a DaCHS is installed
-# locally.
+#!/bin/bash
+# write a sample TAPRegExt record from the capabilities on a DaCHS
+# server on localhost to stdout.  We validate the document against the schema
+# in this repo, so we need stilts as for make test.
 #
 # It also needs xmlstarlet.
 
-DEST=sample.xml
-
-function cleanup() {
-	rm -f $DEST.tmp.$$
-}
-trap cleanup EXIT
-
 curl -s http://localhost:8080/tap/capabilities \
-	| xmlstarlet ed -d "//feature[starts-with(form, 'ivo_apply_pm')]" \
-		-d "//languageFeatures[@type='ivo://ivoa.net/std/TAPRegExt#features-udf']/feature[not(starts-with(form, 'ivo_healpix_center'))]" \
-		-d "//languageFeatures[@type='ivo://org.gavo.dc/std/exts#extra-adql-keywords']/feature[not(starts-with(form, 'ivo_healpix_center'))]" \
-		-d "//outputFormat[not(mime='application/x-votable+xml' or mime='text/csv')]" \
+	| xmlstarlet ed \
 		-d "//capability[not(contains(@standardID, 'capabilities') or contains(@standardID, 'TAP'))]" \
-		-d "//dataModel[.='Registry 1.1']" \
-	| xmlstarlet fo -o -s 2 > $DEST.tmp.$$
+	| xmlstarlet fo -o -s 2
 
-dachs admin xsdValidate $DEST.tmp.$$ > /dev/null || exit 1
-echo '\begin{lstlisting}[basicstyle=\footnotesize,language=XML]'
-sed  -e 's/xmlns\|standardID\|xsi:type/\
-	&/g
-/xml-stylesheet/d
-s/xsi:schemaLocation="[^"]*"//
-s/\(Query Language is\)[^<]*/\1.../
-s/__system__\/tap\/run/tap/
-' $DEST.tmp.$$
-echo '\end{lstlisting}'
+exit 0
+STILTS=stilts
+SCHEMA_FILE=TAPRegExt-v1.1.xsd
+$STILTS xsdvalidate \
+		schemaloc="http://www.ivoa.net/xml/TAPRegExt/v1.0=$SCHEMA_FILE" \
+		schemaloc="http://www.ivoa.net/xml/VOSICapabilities/v1.0=https://www.ivoa.net/xml/VOSICapabilities/v1.0" \
+		schemaloc="http://www.ivoa.net/xml/VODataService/v1.1=https://www.ivoa.net/xml/VODataService/v1.1" \
+		doc=sample.xml
+

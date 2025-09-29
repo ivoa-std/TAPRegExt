@@ -28,30 +28,32 @@ VECTORFIGURES =
 
 
 # Additional files to distribute (e.g., CSS, schema files, examples...)
-AUX_FILES = $(SCHEMA_FILE)
+AUX_FILES = $(SCHEMA_FILE)  sample.xml
 
 -include ivoatex/Makefile
-
-sample.xml: samplegroom.sed Makefile
-	# this rule only works if there's a (proper) TAP service on
-	# http://localhost:8080/tap
-	curl -s http://dc.zah.uni-heidelberg.de/__system__/tap/run/tap/capabilities \
-		| xmlstarlet ed -d "//languageFeatures[@type='ivo://ivoa.net/std/TAPRegExt#features-udf']/feature[not(starts-with(form, 'ivo_hashlist_has'))]" \
-		  -d "//languageFeatures[@type='ivo://org.gavo.dc/std/exts#extra-adql-keywords']/feature[not(starts-with(form, 'MOC'))]" \
-		  -d "//outputFormat[not(@ivo-id or mime='text/csv')]" \
-		  -d "//capability[@standardID='ivo://ivoa.net/std/VOSI#availability']" \
-		  -d "//dataModel[@ivo-id='ivo://org.gavo.dc/std/glots#tables-1.0']" \
-		| xmlstarlet fo > $@.tmp
-	gavo admin xsdValidate $@.tmp
-	sed -f samplegroom.sed $@.tmp > $@
-	rm $@.tmp
-	
-
-install:
-	# local to Markus' setup
-	fixschema $(SCHEMA_FILE) > ~/gavo/trunk/schemata/TAPRegExt.xsd
 
 ivoatex/Makefile:
 	@echo "*** ivoatex submodule not found.  Initialising submodules."
 	@echo
 	git submodule update --init
+
+
+sample.xml: make-sample.sh
+	./make-sample.sh > sample.xml
+	
+install:
+	# local to Markus' setup
+	~/gavo/standards/fixschema $(SCHEMA_FILE) > ~/gavo/trunk/gavo/resources/schemata/TAPRegExt.xsd
+
+STILTS ?= stilts
+SCHEMA_FILE=TAPRegExt-v1.1.xsd
+
+# These tests need stilts >3.4 and xmlstarlet
+test:
+	@sh test-assertions.sh
+	@$(STILTS) xsdvalidate $(SCHEMA_FILE)
+	@$(STILTS) xsdvalidate \
+		schemaloc="http://www.ivoa.net/xml/TAPRegExt/v1.0=$(SCHEMA_FILE)" \
+		schemaloc="http://www.ivoa.net/xml/VOSICapabilities/v1.0=https://www.ivoa.net/xml/VOSICapabilities/v1.0" \
+		schemaloc="http://www.ivoa.net/xml/VODataService/v1.1=https://www.ivoa.net/xml/VODataService/v1.1" \
+		doc=sample.xml
