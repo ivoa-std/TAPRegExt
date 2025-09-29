@@ -177,6 +177,31 @@ registry resource record as per the IVOA Registry Interface standard
 in a TAP server's capabilities endpoint.
 
 
+\subsection{Mode-dependent Declarations}
+\label{sect:modedep}
+
+Several TAPRegExt elements have a \xmlel{forMode} attribute.  This
+allows operators to declare different behaviour of their services
+depending on the ``mode'' used to access the service, which currently
+means choosing between sync and async.  For instance, certain output
+formats may produce more than one physical file, in which case it would
+only be available in async mode.  More commonly, services may give async
+services much more liberal limits for total execution time or the number
+of rows retrievable.
+
+Elements without a \xmlel{forMode} attribute apply to all modes for
+which no more specific specification is given.  Elements with a
+\xmlel{forMode} attribute override elements without one.  That is, to
+find the applicable declaration for a particular access mode, clients
+should first look for an element with the current access mode and then
+for one without \xmlel{forMode}.  Whatever is found first is the
+relevant declaration.
+
+This is orthogonal to limits and features that depend on the
+authentication status.  Services varying these depending on who runs a
+query should adjust their capability documents accordingly
+(cf.~sect.~\ref{reslimits}).
+
 \subsection{Declaring Instantiated Data Models}
 
 \label{dms}
@@ -192,8 +217,8 @@ In TAPRegExt, a data model is identified by its IVOA identifier
 % GENERATED: !schemadoc TAPRegExt-v1.1.xsd DataModelType
 \begin{generated}
 \begingroup
-       \renewcommand*\descriptionlabel[1]{%
-       \hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:DataModelType} Type Schema Documentation}
+        \renewcommand*\descriptionlabel[1]{%
+        \hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:DataModelType} Type Schema Documentation}
 
 \noindent{\small{}An IVOA defined data model, identified by an IVORN
         intended for machine consumption and a short label
@@ -262,8 +287,8 @@ attributes of \xmlel{outputFormat} and \xmlel{uploadMethod}.
 % GENERATED: !schemadoc TAPRegExt-v1.1.xsd Language
 \begin{generated}
 \begingroup
-       \renewcommand*\descriptionlabel[1]{%
-       \hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:Language} Type Schema Documentation}
+        \renewcommand*\descriptionlabel[1]{%
+        \hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:Language} Type Schema Documentation}
 
 \noindent{\small{}A query language supported by the service.\par}
 
@@ -334,8 +359,8 @@ attributes of \xmlel{outputFormat} and \xmlel{uploadMethod}.
 % GENERATED: !schemadoc TAPRegExt-v1.1.xsd Version
 \begin{generated}
 \begingroup
-       \renewcommand*\descriptionlabel[1]{%
-       \hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:Version} Type Schema Documentation}
+        \renewcommand*\descriptionlabel[1]{%
+        \hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:Version} Type Schema Documentation}
 
 \noindent{\small{}One version of the language supported by the service.\par}
 
@@ -463,8 +488,8 @@ Example:
 % GENERATED: !schemadoc TAPRegExt-v1.1.xsd LanguageFeatureList
 \begin{generated}
 \begingroup
-       \renewcommand*\descriptionlabel[1]{%
-       \hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:LanguageFeatureList} Type Schema Documentation}
+        \renewcommand*\descriptionlabel[1]{%
+        \hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:LanguageFeatureList} Type Schema Documentation}
 
 \noindent{\small{}An enumeration of non-standard or non-mandatory features of
         a specific type implemented by the language.\par}
@@ -534,8 +559,8 @@ Example:
 % GENERATED: !schemadoc TAPRegExt-v1.1.xsd LanguageFeature
 \begin{generated}
 \begingroup
-       \renewcommand*\descriptionlabel[1]{%
-       \hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:LanguageFeature} Type Schema Documentation}
+        \renewcommand*\descriptionlabel[1]{%
+        \hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:LanguageFeature} Type Schema Documentation}
 
 \noindent{\small{}A non-standard or non-mandatory feature implemented
         by the language..\par}
@@ -600,11 +625,15 @@ VOTables which are not interoperably distinguishable by their MIME types so far:
 	with a BINARY2 child
 \end{description}
 
+Operators can restrict individual output formats to either sync or async
+requests using the \xmlel{forMode} attribute as explained in
+\ref{sect:modedep}.
+
 % GENERATED: !schemadoc TAPRegExt-v1.1.xsd OutputFormat
 \begin{generated}
 \begingroup
-       \renewcommand*\descriptionlabel[1]{%
-       \hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:OutputFormat} Type Schema Documentation}
+        \renewcommand*\descriptionlabel[1]{%
+        \hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:OutputFormat} Type Schema Documentation}
 
 \noindent{\small{}An output format supported by the service.\par}
 
@@ -650,6 +679,17 @@ VOTables which are not interoperably distinguishable by their MIME types so far:
           resource record and look for keys starting with {"}output-{"}.
 \end{description}
 
+\item[forMode]
+\begin{description}
+\item[Type] string
+\item[Meaning] This declaration only applies to the named mode.
+\item[Occurrence] optional
+
+\item[Allowed Values\vrule width 0pt depth 5pt]\hfil
+           \begin{longtermsdescription}\item[sync]This declaration is for synchronous queries.
+\item[async]This declaration is for asynchronous queries.
+\end{longtermsdescription}
+\end{description}
 
 \end{bigdescription}\endgroup
 
@@ -733,11 +773,15 @@ would say:
   <uploadMethod ivo-id="ivo://ivoa.net/std/TAPRegExt#upload-ftp"/>
 \end{lstlisting}
 
+Operators can restrict individual upload methods to either sync or async
+requests using the \xmlel{forMode} attribute as explained in
+\ref{sect:modedep}.
+
 % GENERATED: !schemadoc TAPRegExt-v1.1.xsd UploadMethod
 \begin{generated}
 \begingroup
-       \renewcommand*\descriptionlabel[1]{%
-       \hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:UploadMethod} Type Schema Documentation}
+        \renewcommand*\descriptionlabel[1]{%
+        \hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:UploadMethod} Type Schema Documentation}
 
 \noindent{\small{}An upload method as defined by IVOA.\par}
 
@@ -758,6 +802,7 @@ would say:
   <xs:complexContent >
     <xs:restriction base="xs:anyType" >
       <xs:attribute name="ivo-id" type="xs:anyURI" />
+      <xs:attributeGroup ref="tr:mode-dependent" />
     </xs:restriction>
   </xs:complexContent>
 </xs:complexType>
@@ -773,6 +818,17 @@ would say:
 \item[Occurrence] optional
 \end{description}
 
+\item[forMode]
+\begin{description}
+\item[Type] string
+\item[Meaning] This declaration only applies to the named mode.
+\item[Occurrence] optional
+
+\item[Allowed Values\vrule width 0pt depth 5pt]\hfil
+           \begin{longtermsdescription}\item[sync]This declaration is for synchronous queries.
+\item[async]This declaration is for asynchronous queries.
+\end{longtermsdescription}
+\end{description}
 
 \end{bigdescription}\endgroup
 
@@ -798,6 +854,12 @@ TAPRegExt's \xmlel{capabilities} element allows the declaration of such limits.
 These declarations are primarily intended for human consumption and should give
 conservative guidelines.  Thus, the operators of a service implementing a
 complex, possibly dynamic limits policy should give lower estimates here.
+
+It is rather common that operators enforce different limits depending on
+the access mode (sync or async).  Therefore, most limits have a
+\xmlel{forMode} attribute as per sect.~\ref{sect:modedep}; for
+convenience and later extensibiilty, that is even true for
+\xmlel{retentionPeriod}, which admittedly cannot apply to sync requests.
 
 If a service supports authentication and has different
 limits depending on what user is authenticated, it should make an effort
@@ -834,8 +896,8 @@ All values in time-like limits are given in seconds.  Both
 % GENERATED: !schemadoc TAPRegExt-v1.1.xsd TimeLimits
 \begin{generated}
 \begingroup
-       \renewcommand*\descriptionlabel[1]{%
-       \hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:TimeLimits} Type Schema Documentation}
+        \renewcommand*\descriptionlabel[1]{%
+        \hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:TimeLimits} Type Schema Documentation}
 
 \noindent{\small{}Time-valued limits, all values given in seconds.\par}
 
@@ -848,8 +910,27 @@ All values in time-like limits are given in seconds.  Both
               maxOccurs="1" />
     <xs:element name="hard" type="xs:integer" minOccurs="0" maxOccurs="1" />
   </xs:sequence>
+  <xs:attributeGroup ref="tr:mode-dependent" />
 </xs:complexType>
 \end{lstlisting}
+
+\vspace{0.5ex}\noindent\textbf{\xmlel{tr:TimeLimits} Attributes}
+
+\begingroup\small\begin{bigdescription}\item[forMode]
+\begin{description}
+\item[Type] string
+\item[Meaning] This declaration only applies to the named mode.
+\item[Occurrence] optional
+
+\item[Allowed Values\vrule width 0pt depth 5pt]\hfil
+           \begin{longtermsdescription}\item[sync]This declaration is for synchronous queries.
+\item[async]This declaration is for asynchronous queries.
+\end{longtermsdescription}
+\end{description}
+
+\end{bigdescription}\endgroup
+
+
 
 \vspace{0.5ex}\noindent\textbf{\xmlel{tr:TimeLimits} Metadata Elements}
 
@@ -907,8 +988,8 @@ and \xmlel{tr:DataLimit} types:
 % GENERATED: !schemadoc TAPRegExt-v1.1.xsd DataLimits
 \begin{generated}
 \begingroup
-       \renewcommand*\descriptionlabel[1]{%
-       \hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:DataLimits} Type Schema Documentation}
+        \renewcommand*\descriptionlabel[1]{%
+        \hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:DataLimits} Type Schema Documentation}
 
 \noindent{\small{}Limits on data sizes, given in rows or bytes.\par}
 
@@ -922,8 +1003,27 @@ and \xmlel{tr:DataLimit} types:
     <xs:element name="hard" type="tr:DataLimit" minOccurs="0"
               maxOccurs="1" />
   </xs:sequence>
+  <xs:attributeGroup ref="tr:mode-dependent" />
 </xs:complexType>
 \end{lstlisting}
+
+\vspace{0.5ex}\noindent\textbf{\xmlel{tr:DataLimits} Attributes}
+
+\begingroup\small\begin{bigdescription}\item[forMode]
+\begin{description}
+\item[Type] string
+\item[Meaning] This declaration only applies to the named mode.
+\item[Occurrence] optional
+
+\item[Allowed Values\vrule width 0pt depth 5pt]\hfil
+           \begin{longtermsdescription}\item[sync]This declaration is for synchronous queries.
+\item[async]This declaration is for asynchronous queries.
+\end{longtermsdescription}
+\end{description}
+
+\end{bigdescription}\endgroup
+
+
 
 \vspace{0.5ex}\noindent\textbf{\xmlel{tr:DataLimits} Metadata Elements}
 
@@ -953,8 +1053,8 @@ and \xmlel{tr:DataLimit} types:
 % GENERATED: !schemadoc TAPRegExt-v1.1.xsd DataLimit
 \begin{generated}
 \begingroup
-       \renewcommand*\descriptionlabel[1]{%
-       \hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:DataLimit} Type Schema Documentation}
+        \renewcommand*\descriptionlabel[1]{%
+        \hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:DataLimit} Type Schema Documentation}
 
 \noindent{\small{}A limit on some data size, either in rows or in bytes.\par}
 
@@ -986,8 +1086,8 @@ and \xmlel{tr:DataLimit} types:
 \item[Meaning] The unit of the limit specified.
 \item[Occurrence] required
 
-\item[Allowed Values]\hfil
-\begin{longtermsdescription}\item[byte]
+\item[Allowed Values\vrule width 0pt depth 5pt]\hfil
+           \begin{longtermsdescription}\item[byte]
 \item[row]
 \end{longtermsdescription}
 \end{description}
@@ -1036,8 +1136,8 @@ another interface element of type \xmlel{tr:DALIInterface}.
 % GENERATED: !schemadoc TAPRegExt-v1.1.xsd DALIInterface
 \begin{generated}
 \begingroup
-       \renewcommand*\descriptionlabel[1]{%
-       \hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:DALIInterface} Type Schema Documentation}
+        \renewcommand*\descriptionlabel[1]{%
+        \hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:DALIInterface} Type Schema Documentation}
 
 \noindent{\small{}An interface for a complex, multi-endpoint interfaces as
         regulated by DALI.\par}
@@ -1091,8 +1191,8 @@ datalink?}.
 % GENERATED: !schemadoc TAPRegExt-v1.1.xsd Endpoint
 \begin{generated}
 \begingroup
-       \renewcommand*\descriptionlabel[1]{%
-       \hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:Endpoint} Type Schema Documentation}
+        \renewcommand*\descriptionlabel[1]{%
+        \hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:Endpoint} Type Schema Documentation}
 
 \noindent{\small{}An endpoint of a complex interface.\par}
 
@@ -1160,8 +1260,8 @@ make statements consisting of a subject (\xmlel{about}), a predicate
 % GENERATED: !schemadoc TAPRegExt-v1.1.xsd MetaTriple
 \begin{generated}
 \begingroup
-       \renewcommand*\descriptionlabel[1]{%
-       \hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:MetaTriple} Type Schema Documentation}
+        \renewcommand*\descriptionlabel[1]{%
+        \hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:MetaTriple} Type Schema Documentation}
 
 \noindent{\small{}A container for an RDFa triple giving information related to
         an endpoint.\par}
@@ -1310,8 +1410,8 @@ be given for TAP 1.0 services.  Services having other capabilities
 % GENERATED: !schemadoc TAPRegExt-v1.1.xsd TableAccess
 \begin{generated}
 \begingroup
-       \renewcommand*\descriptionlabel[1]{%
-       \hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:TableAccess} Type Schema Documentation}
+        \renewcommand*\descriptionlabel[1]{%
+        \hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{tr:TableAccess} Type Schema Documentation}
 
 \noindent{\small{}The capabilities of a TAP server.\par}
 
@@ -1334,14 +1434,14 @@ be given for TAP 1.0 services.  Services having other capabilities
         <xs:element name="uploadMethod" type="tr:UploadMethod" minOccurs="0"
                   maxOccurs="unbounded" />
         <xs:element name="retentionPeriod" type="tr:TimeLimits" minOccurs="0"
-                  maxOccurs="1" />
+                  maxOccurs="unbounded" />
         <xs:element name="executionDuration" type="tr:TimeLimits"
                   minOccurs="0"
-                  maxOccurs="1" />
+                  maxOccurs="unbounded" />
         <xs:element name="outputLimit" type="tr:DataLimits" minOccurs="0"
-                  maxOccurs="1" />
+                  maxOccurs="unbounded" />
         <xs:element name="uploadLimit" type="tr:DataLimits" minOccurs="0"
-                  maxOccurs="1" />
+                  maxOccurs="unbounded" />
       </xs:sequence>
     </xs:extension>
   </xs:complexContent>
@@ -1387,28 +1487,28 @@ be given for TAP 1.0 services.  Services having other capabilities
 \item[Type] composite: \xmlel{tr:TimeLimits}
 \item[Meaning] Limits on the time between job creation and
               destruction time.
-\item[Occurrence] optional
+\item[Occurrence] optional; multiple occurrences allowed.
 
 \end{description}
 \item[Element \xmlel{executionDuration}]
 \begin{description}
 \item[Type] composite: \xmlel{tr:TimeLimits}
 \item[Meaning] Limits on executionDuration.
-\item[Occurrence] optional
+\item[Occurrence] optional; multiple occurrences allowed.
 
 \end{description}
 \item[Element \xmlel{outputLimit}]
 \begin{description}
 \item[Type] composite: \xmlel{tr:DataLimits}
 \item[Meaning] Limits on the size of data returned.
-\item[Occurrence] optional
+\item[Occurrence] optional; multiple occurrences allowed.
 
 \end{description}
 \item[Element \xmlel{uploadLimit}]
 \begin{description}
 \item[Type] composite: \xmlel{tr:DataLimits}
 \item[Meaning] Limits on the size of uploaded data.
-\item[Occurrence] optional
+\item[Occurrence] optional; multiple occurrences allowed.
 
 \end{description}
 
@@ -1446,6 +1546,9 @@ this URI is only intended for use in review or debugging.
 
 \begin{itemize}
 \item Adding tr:DALIInterface to the schema.
+\item Allowing a forMode attribute on outputFormat, uploadMethod,
+retentionPeriod, executionDuration, outputLimit, and uploadLimit; to
+make that work, allowing more than one of the limit elements now.
 \item Dropping the appendix with an example document.  Using a
 standalone, validated file and auxiliaryurl instead.
 \end{itemize}

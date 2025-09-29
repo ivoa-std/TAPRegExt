@@ -39,7 +39,7 @@ ivoatex/Makefile:
 
 
 sample.xml: make-sample.sh
-	./make-sample.sh > sample.xml
+	./make-sample.sh
 	
 install:
 	# local to Markus' setup

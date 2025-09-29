@@ -8,9 +8,8 @@
 curl -s http://localhost:8080/tap/capabilities \
 	| xmlstarlet ed \
 		-d "//capability[not(contains(@standardID, 'capabilities') or contains(@standardID, 'TAP'))]" \
-	| xmlstarlet fo -o -s 2
+	| xmlstarlet fo -o -s 2 > sample.xml
 
-exit 0
 STILTS=stilts
 SCHEMA_FILE=TAPRegExt-v1.1.xsd
 $STILTS xsdvalidate \

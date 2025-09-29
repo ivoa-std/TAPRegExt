@@ -476,6 +476,9 @@ of the timestamp.</description>
       <default>172800</default>
     </retentionPeriod>
     <executionDuration>
+      <default>50</default>
+    </executionDuration>
+    <executionDuration forMode="async">
       <default>7200</default>
     </executionDuration>
     <outputLimit>
@@ -483,6 +486,9 @@ of the timestamp.</description>
       <hard unit="row">20000000</hard>
     </outputLimit>
     <uploadLimit>
+      <hard unit="byte">10000000</hard>
+    </uploadLimit>
+    <uploadLimit forMode="async">
       <hard unit="byte">80000000</hard>
     </uploadLimit>
   </capability>
