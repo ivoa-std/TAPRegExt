@@ -553,7 +553,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
             </xs:documentation>
           </xs:annotation>
         </xs:attribute>
-   			<xs:attributeGroup ref="tr:mode-dependent"/>
+        <xs:attributeGroup ref="tr:mode-dependent"/>
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
