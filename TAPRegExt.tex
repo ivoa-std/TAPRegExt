@@ -189,13 +189,25 @@ only be available in async mode.  More commonly, services may give async
 services much more liberal limits for total execution time or the number
 of rows retrievable.
 
-Elements without a \xmlel{forMode} attribute apply to all modes for
-which no more specific specification is given.  Elements with a
-\xmlel{forMode} attribute override elements without one.  That is, to
-find the applicable declaration for a particular access mode, clients
-should first look for an element with the current access mode and then
-for one without \xmlel{forMode}.  Whatever is found first is the
-relevant declaration.
+Elements without a \xmlel{forMode} attribute apply to all modes.  The
+semantics of non-empty \xmlel{forMode} attributes depends on what
+elements they are on:
+
+\begin{itemize}
+\item For \xmlel{outputFormat} and \xmlel{uploadMethod}, specifications
+are accumulative (i.e., you cannot retract formats or methods per mode,
+just add to them).
+
+\item For \xmlel{retentionPeriod}, \xmlel{executionDuration},
+\xmlel{outputLimit}, and \xmlel{uploadLimit}, limits given in elements
+with a \xmlel{forMode} attribute override limits given in elements
+without one for the mode specified.  For these elements, only zero or
+one occurrences are allowed each without \xmlel{forMode} and per
+\xmlel{forMode} value\footnote{This constraint is hard to express in XML
+Schema and is thus not enforced by it; its purpose is to make sure that
+clients will find unique limits.}.
+
+\end{itemize}
 
 This is orthogonal to limits and features that depend on the
 authentication status.  Services varying these depending on who runs a
