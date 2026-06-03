@@ -30,6 +30,8 @@ VECTORFIGURES =
 # Additional files to distribute (e.g., CSS, schema files, examples...)
 AUX_FILES = $(SCHEMA_FILE)  sample.xml
 
+AUTHOR_EMAIL=msdemlei@ari.uni-heidelberg.de
+
 -include ivoatex/Makefile
 
 ivoatex/Makefile:
@@ -40,7 +42,7 @@ ivoatex/Makefile:
 
 sample.xml: make-sample.sh
 	./make-sample.sh
-	
+
 install:
 	# local to Markus' setup
 	~/gavo/standards/fixschema $(SCHEMA_FILE) > ~/gavo/trunk/gavo/resources/schemata/TAPRegExt.xsd
