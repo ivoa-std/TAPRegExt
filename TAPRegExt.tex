@@ -2,6 +2,9 @@
 \input tthdefs
 \input gitmeta
 
+\tolerance=3000
+\hyphenation{TAP-Reg-Ext}
+
 \usepackage{listings}
 \lstloadlanguages{XML}
 \lstset{flexiblecolumns=true,tagstyle=\ttfamily,
@@ -23,6 +26,7 @@ Taylor}
 
 \editor{Markus Demleitner}
 
+\previousversion[https://www.ivoa.net/documents/TAPRegExt/20151117]{WD-1.1-20151117}
 \previousversion[http://www.ivoa.net/documents/TAPRegExt/20120827/]{REC-1.0}
 \previousversion[http://www.ivoa.net/Documents/TAPRegExt/20120208]{PR-20110727}
 
@@ -72,9 +76,7 @@ a standard service protocol is described as a service's capability; the
 associated metadata is contained within the service resource description's
 \texttt{<capability>} element.
 
-TAPRegExt defines this capability element for TAP services.  In the context
-of registering TAP services, an important role filled by TAPRegExt is the
-communication of supported data models to the Registry.
+TAPRegExt defines this capability element for TAP services.
 
 The specification comes with a non-normative example
 document\footnote{\auxiliaryurl{sample.xml}} showing this
@@ -123,12 +125,12 @@ This standard also relates to other IVOA standards:
 \item[IVOA Support Interfaces, v1.1 \citep{2017ivoa.spec.0524G}] \hfil\break VOSI describes the standard interfaces to discover metadata about
 services; this document defines the response TAP services should
 provide on the \texttt{capabilities} endpoint described by VOSI.
-\item[IVOA defined data models]Data models specified by the IVOA can define the structure of
-database tables holding instances of those data models.
-The first examples of such definitions are ObsCore
-\citep{2017ivoa.spec.0509L} and RegTAP \citep{2019ivoa.spec.1011D}.  Services providing
-access to such tables
-declare that fact within TAPRegExt instance documents.
+\item[IVOA defined data models] It was once envisioned that TAP services
+holding standard table structures (``adhering to a data model'') using a
+mechanism defined here.  Obscore
+\citep{2017ivoa.spec.0509L} and RegTAP \citep{2019ivoa.spec.1011D} did
+that, but it turned out that this lead to very undesirable discovery
+patterns.  Do not do that any more for new standards.
 
 \end{description}
 
@@ -199,7 +201,7 @@ are accumulative (i.e., you cannot retract formats or methods per mode,
 just add to them).
 
 \item For \xmlel{retentionPeriod}, \xmlel{executionDuration},
-\xmlel{outputLimit}, and \xmlel{uploadLimit}, limits given in elements
+\xmlel{outputLimit}, and \xmlel{upload\-Limit}, limits given in elements
 with a \xmlel{forMode} attribute override limits given in elements
 without one for the mode specified.  For these elements, only zero or
 one occurrences are allowed each without \xmlel{forMode} and per
@@ -219,12 +221,14 @@ query should adjust their capability documents accordingly
 \label{dms}
 
 The IVOA defines certain data models that can be instantiated in database
-tables exposed by a TAP service.  This allows a query built exclusively
-on a data model or a set of data models to work on all TAP services exposing
-tables instantiating the data model(s).
-
-In TAPRegExt, a data model is identified by its IVOA identifier
-\citep{2016ivoa.spec.0523D}.
+tables exposed by a TAP service.  The first version of TAPRegExt
+foresaw declaring ``support for'' such a data model at the service
+level.  It turned out that this was wrong.  Adherence to a data model is
+not a property of a service but of a table or schema.  Hence, in new
+standards, do not use the dataModel element any more.  It is
+documented here because Obscore and RegTAP are still relying on it.
+This \xmlel{dataModel} element may be dropped when all records still
+using it have vanished from the Registry.
 
 % GENERATED: !schemadoc TAPRegExt-v1.1.xsd DataModelType
 \begin{generated}
